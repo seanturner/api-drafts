@@ -363,7 +363,7 @@ Table of Contents
 
 2.3.  Flexible Implementation
 
-   The Socket API for protocols like TCP us generally limited to
+   The Socket API for protocols like TCP is generally limited to
    connecting to a single address over a single interface.  They also
    present a single stream to the application.  Software layers built
    upon this API often propagate this limitation of a single-address
@@ -772,7 +772,7 @@ Table of Contents
       such as UDP, where the Connection remains an abstraction at the
       end points.  It can also represent a pool of transport protocol
       instances, e.g., a set of TCP and QUIC connections to equivalent
-      endpoints, or a stream of a multi-streaming transport protocol
+      Endpoints, or a stream of a multi-streaming transport protocol
       instance.  Connections can be created from a Preconnection or by a
       Listener.
 
@@ -838,7 +838,7 @@ Table of Contents
       register with multiple paths, protocols, and Local Endpoints,
       unless constrained by Selection Properties and/or the specified
       Local Endpoint(s).  Connections can be accepted on any of the
-      available paths or endpoints.
+      available paths or Endpoints.
 
    *  Rendezvous: The action of establishing a peer-to-peer connection
       with a Remote Endpoint.  It simultaneously attempts to initiate a
@@ -877,13 +877,13 @@ Table of Contents
       that specific protocols encode and communicate to the Remote
       Endpoint.  When receiving Messages, Message Properties can contain
       information about the received Message, such as metadata generated
-      at the receiver and information signalled by the remote endpoint.
+      at the receiver and information signalled by the Remote Endpoint.
       For example, a Message can be marked with a Message Property
       indicating that it is the final message on a connection if the
       peer sent a TCP FIN.
 
    *  Send: The action to transmit a Message over a Connection to the
-      remote endpoint.  The interface to Send can accept Message
+      Remote Endpoint.  The interface to Send can accept Message
       Properties specific to how the Message content is to be sent.  The
       status of the Send operation is delivered back to the sending
       application in an Event (Section 4.1.6).
