@@ -440,8 +440,8 @@ Table of Contents
    Any functionality that is common across multiple transport protocols
    SHOULD be made accessible through a unified set of calls using the
    Transport Services API.  As a baseline, any Transport Services API
-   MUST allow access to the minimal set of features offered by transport
-   protocols [RFC8923].
+   SHOULD allow access to the minimal set of features offered by
+   transport protocols [RFC8923].
 
    An application can specify constraints and preferences for the
    protocols, features, and network interfaces it will use via
