@@ -260,7 +260,7 @@ Table of Contents
    +-----------------------------------------------------+
                              |
    +-----------------------------------------------------+
-   |         Transport  Services Implementation          |
+   |          Transport Services Implementation          |
    |  (Using: DNS, UDP, TCP, SCTP, DCCP, TLS, QUIC, etc) |
    +-----------------------------------------------------+
                              |
