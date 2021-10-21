@@ -378,7 +378,7 @@ Table of Contents
 
    *  to provide state caching and application control over it.
 
-   Implemenation of the Transport System within the Transport Services
+   Implementations of the Transport System within the Transport Services
    Architecture are intended to be flexible at connection establishment
    time, considering many different options and trying to select the
    most optimal combinations by racing them and measuring the results
