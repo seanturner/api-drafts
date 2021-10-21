@@ -414,7 +414,7 @@ Table of Contents
    the transport layer to evolve and improve without fundamentally
    changing the contract with the application.  This requires a careful
    consideration of how to expose the capabilities of protocols.  This
-   architecture also encompasses System Policies that can influence and
+   architecture also encompasses system policies that can influence and
    inform how transport protocols use a network path or interface.
 
    There are several ways the Transport Services Architecture can offer
