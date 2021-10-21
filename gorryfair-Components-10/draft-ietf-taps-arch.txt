@@ -562,16 +562,16 @@ Table of Contents
    [I-D.ietf-taps-interface] nor the guidelines for implementation of
    the Transport System [I-D.ietf-taps-impl] define new protocols or
    protocol capabilities that affect what is communicated across the
-   network.  Use of the Transport Service Architecture MUST NOT require
+   network.  Use of the Transport Services Architecture MUST NOT require
    that a peer on the other side of a connection uses the same API or
    implementation.  A Transport System acting as a connection initiator
-   is able to communicate with any existing ednpoint that implements the
+   is able to communicate with any existing endpoint that implements the
    transport protocol(s) and all the required properties selected by the
    Transport System.  Similarly, a Transport System acting as a listener
    can receive connections for any protocol that is supported by the
    Transport System from an existing initiator that implements the
    protocol, independent of whether the initiator uses the Transport
-   Services Archhitecture or not.
+   Services Architecture or not.
 
    The Transport System makes decisions that select protocols and
    interfaces.  In normal use, a Transport Ssystem SHOULD result in
@@ -764,7 +764,7 @@ Table of Contents
 
    *  Connection: A Connection object represents one or more active
       transport protocol instances that can send and/or receive Messages
-      between local and remote ednpoints.  It is an abstraction that
+      between local and remote endpoints.  It is an abstraction that
       represents the communication.  The Connection object holds state
       pertaining to the underlying transport protocol instances and any
       ongoing data transfers.  For example, an active Connection can
@@ -773,7 +773,7 @@ Table of Contents
       such as UDP, where the Connection remains an abstraction at the
       end points.  It can also represent a pool of transport protocol
       instances, e.g., a set of TCP and QUIC connections to equivalent
-      Endpoints, or a stream of a multi-streaming transport protocol
+      endpoints, or a stream of a multi-streaming transport protocol
       instance.  Connections can be created from a Preconnection or by a
       Listener.
 
@@ -839,7 +839,7 @@ Table of Contents
       register with multiple paths, protocols, and Local Endpoints,
       unless constrained by Selection Properties and/or the specified
       Local Endpoint(s).  Connections can be accepted on any of the
-      available paths or Endpoints.
+      available paths or endpoints.
 
    *  Rendezvous: The action of establishing a peer-to-peer connection
       with a Remote Endpoint.  It simultaneously attempts to initiate a
