@@ -890,8 +890,8 @@ Table of Contents
       application in an Event (Section 4.1.6).
 
    *  Receive: An action that indicates that the application is ready to
-      asynchronously accept a Message over a Connection from a remote
-      endpoint, while the Message content itself will be delivered in an
+      asynchronously accept a Message over a Connection from a Remote
+      Endpoint, while the Message content itself will be delivered in an
       Event (Section 4.1.6).  The interface to Receive can include
       Message Properties specific to the Message that is to be delivered
       to the application.
