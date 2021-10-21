@@ -275,7 +275,7 @@ Table of Contents
    patterns into a unified whole.  By combining name resolution with
    connection establishment and data transfer in a single API, it allows
    for more flexible implementations to provide path and transport
-   protocol agility on the application's behalf.  The transport service
+   protocol agility on the application's behalf.  The transport system
    implementation [I-D.ietf-taps-impl] is responsible for mapping the
    API to the various available transport protocols and managing the
    available network interfaces and paths.
