@@ -136,8 +136,8 @@ Table of Contents
    application separately (see Section 4.2.2).
 
    This document was developed in parallel with the specification of the
-   Transport Services API [I-D.ietf-taps-interface] and Implementation
-   Guidelines [I-D.ietf-taps-impl].  Although following the Transport
+   Transport Services API [I-D.ietf-taps-interface] and implementation
+   guidelines [I-D.ietf-taps-impl].  Although following the Transport
    Services architecture does not require that all APIs and
    implementations are identical, a common minimal set of features
    represented in a consistent fashion will enable applications to be
@@ -260,7 +260,7 @@ Table of Contents
    +-----------------------------------------------------+
                              |
    +-----------------------------------------------------+
-   |         Transport  Services implementation          |
+   |         Transport  Services Implementation          |
    |  (Using: DNS, UDP, TCP, SCTP, DCCP, TLS, QUIC, etc) |
    +-----------------------------------------------------+
                              |
@@ -417,7 +417,7 @@ Table of Contents
    architecture also encompasses system policies that can influence and
    inform how transport protocols use a network path or interface.
 
-   There are several ways the Transport Services architecture can offer
+   There are several ways the Transport Services system can offer
    flexibility to an application: it can provide access to multiple sets
    of protocols and protocol features; it can use these protocols across
    multiple paths that could have different performance and functional
@@ -577,12 +577,12 @@ Table of Contents
    whether the initiator uses the Transport Services architecture or
    not.
 
-   A Transport Services implementation makes decisions that select
-   protocols and interfaces.  In normal use, a Transport Services
-   implementation SHOULD result in consistent protocol and interface
-   selection decisions for the same network conditions given the same
-   set of Properties.  This is intended to provide predictable outcomes
-   to the application using the API.
+   A Transport Services system makes decisions that select protocols and
+   interfaces.  In normal use, a Transport Services system SHOULD result
+   in consistent protocol and interface selection decisions for the same
+   network conditions given the same set of Properties.  This is
+   intended to provide predictable outcomes to the application using the
+   API.
 
 4.  Transport Services Architecture and Concepts
 
@@ -601,8 +601,8 @@ Table of Contents
    1.  API concepts, which are intended to be exposed to applications;
        and
 
-   2.  Transport Services implementation, which are intended to be
-       internally by the system.
+   2.  System-implementation concepts, which are intended to be
+       internally used by aTransport Services implementation.
 
    The following diagram summarizes the top-level concepts in the
    architecture and how they relate to one another.
