@@ -822,7 +822,7 @@ Table of Contents
       keys, supported cryptographic algorithms, and requirements for
       validating trust of remote identities.  Security Parameters are
       primarily associated with a Preconnection object, but properties
-      related to identities can be associated directly with Endpoints.
+      related to identities can be associated directly with endpoints.
 
 4.1.4.  Establishment Actions
 
