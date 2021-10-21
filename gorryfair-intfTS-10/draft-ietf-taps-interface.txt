@@ -674,12 +674,12 @@ Table of Contents
 
    *  Transport Services systems SHOULD implement each Selection
       Property, Connection Property, and Message Context Property
-      specified in this document.  The interface SHOULD be implemented
-      even when in a specific implementation/platform it will always
-      result in no operation, e.g. there is no action when the API
-      specifies a Property that is not available in a transport protocol
-      implemented on a specific platform.  For example, if TCP is the
-      only underlying transport protocol, the Message Property
+      specified in this document.  The Transport Services API SHOULD be
+      implemented even when in a specific implementation/platform it
+      will always result in no operation, e.g. there is no action when
+      the API specifies a Property that is not available in a transport
+      protocol implemented on a specific platform.  For example, if TCP
+      is the only underlying transport protocol, the Message Property
       msgOrdered can be implemented (trivially, as a no-op) as disabling
       the requirement for ordering will not have any effect on delivery
       order for Connections over TCP.  Similarly, the msg-lifetime
