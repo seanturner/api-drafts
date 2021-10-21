@@ -191,9 +191,10 @@ Table of Contents
       requiring significant changes by application developers.
 
    *  Section 4 presents the Transport Services architecture diagram and
-      defines the concepts that are used by both the API and
-      Implementation Guidelines.  The Preconnection allows applications
-      to configure Connection Properties.
+      defines the concepts that are used by both the API
+      [I-D.ietf-taps-interface] and implementation guidelines
+      [I-D.ietf-taps-impl].  The Preconnection allows applications to
+      configure Connection Properties.
 
    *  Section 4 also presents how an abstract Connection is used to
       select a transport protocol instance such as TCP, UDP, or another
