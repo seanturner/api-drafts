@@ -577,7 +577,7 @@ Table of Contents
    Services Architecture or not.
 
    The Transport System makes decisions that select protocols and
-   interfaces.  In normal use, a Transport Ssystem SHOULD result in
+   interfaces.  In normal use, a Transport System SHOULD result in
    consistent protocol and interface selection decisions for the same
    network conditions given the same set of Properties.  This is
    intended to provide predictable outcomes to the application using the
