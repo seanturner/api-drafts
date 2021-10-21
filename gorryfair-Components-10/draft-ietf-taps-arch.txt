@@ -411,7 +411,7 @@ Table of Contents
    the transport layer to evolve and improve without fundamentally
    changing the contract with the application.  This requires a careful
    consideration of how to expose the capabilities of protocols.  This
-   architecture also ecompasses System Policies that can influence and
+   architecture also encompasses System Policies that can influence and
    inform how transport protocols use a network path or interface.
 
    There are several ways the Transport Services Architecture can offer
@@ -471,12 +471,12 @@ Table of Contents
    selection of network interfaces ought to permit as many interfaces as
    possible.
 
-   Applications using the Transport Services API interface are REQUIRED
-   to be robust to the automated selection provided by the Transport
-   System.  This automated selection is constrained by the properties
-   and preferences expressed by the application and requires
-   applications to explictly set properties that define any necssary
-   constraints on protocol, path, and interface selection.
+   Applications using the Transport Services API are REQUIRED to be
+   robust to the automated selection provided by the Transport System.
+   This automated selection is constrained by the properties and
+   preferences expressed by the application and requires applications to
+   explictly set properties that define any necssary constraints on
+   protocol, path, and interface selection.
 
 3.2.  Allow Access to Specialized Features
 
