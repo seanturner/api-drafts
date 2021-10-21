@@ -431,14 +431,14 @@ Table of Contents
    enabling evolution below the transport layer.
 
    The normative requirements described in this section allow Transport
-   Services APIs and Transpor System Implementations to provide this
+   Services APIs and Transport System implementations to provide this
    functionality without causing incompatibility or introducing security
    vulnerabilities.
 
 3.1.  Provide Common APIs for Common Features
 
    Any functionality that is common across multiple transport protocols
-   SHOULD be made accessible through a unified set of call using the
+   SHOULD be made accessible through a unified set of calls using the
    Transport Services API.  As a baseline, any Transport Services API
    MUST allow access to the minimal set of features offered by transport
    protocols [RFC8923].
