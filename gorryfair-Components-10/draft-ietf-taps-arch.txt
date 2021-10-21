@@ -545,11 +545,11 @@ Table of Contents
       conflict with any other application-requested properties.
 
    To ensure that security protocols are not incorrectly swapped, a
-   Transport System implemenation MUST only select Protocol Stacks that
+   Transport System implementation MUST only select Protocol Stacks that
    meet application requirements ([RFC8922]).  Transport System
-   implemenation SHOULD only race Protocol Stacks where the transport
+   implementations SHOULD only race Protocol Stacks where the transport
    security protocols within the stacks are identical.  A Transport
-   System implemenation MUST NOT automatically fall back from secure
+   System implementation MUST NOT automatically fall back from secure
    protocols to insecure protocols, or to weaker versions of secure
    protocols.  A Transport System implementation MAY allow applications
    to explicitly specify that fallback to a specific other version of a
