@@ -8,12 +8,8 @@ Intended status: Informational                             T. Pauly, Ed.
 Expires: 25 April 2022                                        Apple Inc.
                                                              T. Enghardt
                                                                  Netflix
-                                                                T. Jones
-                                                  University of Aberdeen
                                                                P. Tiesel
                                                                   SAP SE
-                                                              C. Perkins
-                                                   University of Glasgow
                                                                 M. Welzl
                                                       University of Oslo
                                                          22 October 2021
@@ -2084,9 +2080,11 @@ MessageFramer.Deliver(Connection, MessageContext, Data, IsEndOfMessage)
    This work has been supported by the Research Council of Norway under
    its "Toppforsk" programme through the "OCARINA" project.
 
-   Thanks to Stuart Cheshire, Josh Graessley, David Schinazi, and Eric
-   Kinnear for their implementation and design efforts, including Happy
-   Eyeballs, that heavily influenced this work.
+   Thanks to Colin Perkins, Tom Jones, Karl-Johan Grinnemo, Gorry
+   Fairhurst, for their contributions to the design of this
+   specification.  Thanks also to Stuart Cheshire, Josh Graessley, David
+   Schinazi, and Eric Kinnear for their implementation and design
+   efforts, including Happy Eyeballs, that heavily influenced this work.
 
 14.  References
 
@@ -2424,15 +2422,6 @@ Authors' Addresses
    Email: ietf@tenghardt.net
 
 
-   Tom Jones
-   University of Aberdeen
-   Fraser Noble Building
-   Aberdeen, AB24 3UE
-   United Kingdom
-
-   Email: tom@erg.abdn.ac.uk
-
-
    Philipp S. Tiesel
    SAP SE
    Konrad-Zuse-Ring 10
@@ -2440,15 +2429,6 @@ Authors' Addresses
    Germany
 
    Email: philipp@tiesel.net
-
-
-   Colin Perkins
-   University of Glasgow
-   School of Computing Science
-   Glasgow G12 8QQ
-   United Kingdom
-
-   Email: csp@csperkins.org
 
 
    Michael Welzl
