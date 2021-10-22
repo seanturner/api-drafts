@@ -10,8 +10,6 @@
 <meta content="Anna Brunstrom" name="author">
 <meta content="Godred Fairhurst" name="author">
 <meta content="Colin Perkins" name="author">
-<meta content="Philipp S. Tiesel" name="author">
-<meta content="Christopher A. Wood" name="author">
 <meta content="
        This document describes an architecture for exposing transport protocol features to applications for network communication, a Transport Services system. The Transport Services Application Programming Interface (API) is based on an asynchronous, event-driven interaction pattern. This API uses messages for representing data transfer to applications, and describes how implementations can use multiple IP addresses, multiple protocols, and multiple paths, and provide multiple application streams. This document further defines common terminology and concepts to be used in definitions of a Transport Service API and a Transport Services implementation. 
     " name="description">
@@ -1087,14 +1085,6 @@ svg [stroke="fill"], svg [fill^="#fff"] {
       <div class="author-name">C. Perkins</div>
 <div class="org">University of Glasgow</div>
 </div>
-<div class="author">
-      <div class="author-name">P. Tiesel</div>
-<div class="org">SAP SE</div>
-</div>
-<div class="author">
-      <div class="author-name">C.A. Wood</div>
-<div class="org">Cloudflare</div>
-</div>
 </dd>
 </dl>
 </div>
@@ -1923,7 +1913,11 @@ Research Foundation: Gottfried Wilhelm Leibniz-Preis 2011 (FKZ FE 570/4-1).<a hr
 Research Council under grant EP/R04144X/1.<a href="#section-7-3" class="pilcrow">¶</a></p>
 <p id="section-7-4">Thanks to Theresa Enghardt, Max Franke, Mirja Kuehlewind, Jonathan Lennox, and 
 Michael Welzl for the discussions and feedback that helped shape the architecture 
-described here. Thanks as well to Stuart Cheshire, Josh Graessley, David Schinazi, 
+described here. 
+Particular thanks is also due to Philipp S. Tiesel and  Christopher A. Wood, 
+who were both co-authors of this architecture specification as it progressed 
+through the TAPS working group.
+Thanks as well to Stuart Cheshire, Josh Graessley, David Schinazi, 
 and Eric Kinnear for their implementation and design efforts, including Happy
 Eyeballs, that heavily influenced this work.<a href="#section-7-4" class="pilcrow">¶</a></p>
 </section>
@@ -2074,29 +2068,6 @@ Eyeballs, that heavily influenced this work.<a href="#section-7-4" class="pilcro
 <div class="email">
 <span>Email:</span>
 <a href="mailto:csp@csperkins.org" class="email">csp@csperkins.org</a>
-</div>
-</address>
-<address class="vcard">
-        <div dir="auto" class="left"><span class="fn nameRole">Philipp S. Tiesel</span></div>
-<div dir="auto" class="left"><span class="org">SAP SE</span></div>
-<div dir="auto" class="left"><span class="street-address">Konrad-Zuse-Ring 10</span></div>
-<div dir="auto" class="left"><span class="locality">14469 Potsdam</span></div>
-<div dir="auto" class="left"><span class="country-name">Germany</span></div>
-<div class="email">
-<span>Email:</span>
-<a href="mailto:philipp@tiesel.net" class="email">philipp@tiesel.net</a>
-</div>
-</address>
-<address class="vcard">
-        <div dir="auto" class="left"><span class="fn nameRole">Christopher A. Wood</span></div>
-<div dir="auto" class="left"><span class="org">Cloudflare</span></div>
-<div dir="auto" class="left"><span class="street-address">101 Townsend St</span></div>
-<div dir="auto" class="left">
-<span class="locality">San Francisco</span>,  </div>
-<div dir="auto" class="left"><span class="country-name">United States of America</span></div>
-<div class="email">
-<span>Email:</span>
-<a href="mailto:caw@heapingbits.net" class="email">caw@heapingbits.net</a>
 </div>
 </address>
 </section>
