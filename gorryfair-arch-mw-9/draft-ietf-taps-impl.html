@@ -8,9 +8,7 @@
 <meta content="Anna Brunstrom" name="author">
 <meta content="Tommy Pauly" name="author">
 <meta content="Theresa Enghardt" name="author">
-<meta content="Tom Jones" name="author">
 <meta content="Philipp S. Tiesel" name="author">
-<meta content="Colin Perkins" name="author">
 <meta content="Michael Welzl" name="author">
 <meta content="
        The Transport Services system enables applications to use transport protocols flexibly for network communication
@@ -216,19 +214,6 @@ html {
   --pilcrow-strong: #bbb;
   --small-font-size: 14.5px;
   scrollbar-color: #bbb #eee;
-}
-@media (prefers-color-scheme: dark) {
-html {
-  --background-color: #121212;
-  --text-color: #f0f0f0;
-  --title-color: #fff;
-  --link-color: #4da4f0;
-  --highlight-color: #282828;
-  --line-color: #444;
-  --pilcrow-weak: #444;
-  --pilcrow-strong: #666;
-  scrollbar-color: #777 #333;
-}
 }
 body {
   max-width: 600px;
@@ -448,17 +433,22 @@ figcaption, caption {
   text-align: left;
 }
 @media screen {
-  pre {
+  pre, svg {
     display: inline-block;
     overflow-x: auto;
+  }
+  pre {
     max-width: 100%;
     width: calc(100% - 22px - 1em);
+  }
+  svg {
+    max-width: calc(100% - 22px - 1em);
   }
   figure pre {
     display: block;
     width: calc(100% - 25px);
   }
-  pre + .pilcrow {
+  pre + .pilcrow, svg + .pilcrow {
     display: inline-block;
     vertical-align: text-bottom;
     padding-bottom: 8px;
@@ -1014,6 +1004,34 @@ address div.right {
   font-weight: bold;
   font-size: 0.9em;
 }
+
+/* Dark mode. */
+@media (prefers-color-scheme: dark) {
+html {
+  --background-color: #121212;
+  --text-color: #f0f0f0;
+  --title-color: #fff;
+  --link-color: #4da4f0;
+  --highlight-color: #282828;
+  --line-color: #444;
+  --pilcrow-weak: #444;
+  --pilcrow-strong: #666;
+  scrollbar-color: #777 #333;
+}
+/* Trick: a prefix match works because only black and white are allowed */
+svg [stroke="black"], svg [stroke^="#000"] {
+  stroke: var(--text-color);
+}
+svg [stroke="white"], svg [stroke^="#fff"] {
+  stroke: var(--background-color);
+}
+svg [fill="black"], svg [fill^="#000"], svg :not([fill]) {
+  fill: var(--text-color);
+}
+svg [stroke="fill"], svg [fill^="#fff"] {
+  fill: var(--background-color);
+}
+}
 </style>
 
 </head>
@@ -1026,7 +1044,7 @@ address div.right {
 </tr></thead>
 <tfoot><tr>
 <td class="left">Brunstrom, et al.</td>
-<td class="center">Expires 24 April 2022</td>
+<td class="center">Expires 25 April 2022</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1039,12 +1057,12 @@ address div.right {
 <dd class="internet-draft">draft-ietf-taps-impl</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2021-10-21" class="published">21 October 2021</time>
+<time datetime="2021-10-22" class="published">22 October 2021</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Informational</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2022-04-24">24 April 2022</time></dd>
+<dd class="expires"><time datetime="2022-04-25">25 April 2022</time></dd>
 <dt class="label-authors">Authors:</dt>
 <dd class="authors">
 <div class="author">
@@ -1062,16 +1080,8 @@ address div.right {
 <div class="org">Netflix</div>
 </div>
 <div class="author">
-      <div class="author-name">T. Jones</div>
-<div class="org">University of Aberdeen</div>
-</div>
-<div class="author">
       <div class="author-name">P. Tiesel</div>
 <div class="org">SAP SE</div>
-</div>
-<div class="author">
-      <div class="author-name">C. Perkins</div>
-<div class="org">University of Glasgow</div>
 </div>
 <div class="author">
       <div class="author-name">M. Welzl</div>
@@ -1106,7 +1116,7 @@ event-driven interaction pattern. This document serves as a guide to implementat
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 24 April 2022.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 25 April 2022.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -1365,7 +1375,7 @@ event-driven interaction pattern. This document serves as a guide to implementat
       <h2 id="name-introduction">
 <a href="#section-1" class="section-number selfRef">1. </a><a href="#name-introduction" class="section-name selfRef">Introduction</a>
       </h2>
-<p id="section-1-1">The Transport Services architecture <span>[<a href="#I-D.ietf-taps-arch" class="xref">I-D.ietf-taps-arch</a>]</span> defines a system that allows applications to use transport networking protocols flexibly. The interface such a system exposes to applications is defined as the Transport Services API <span>[<a href="#I-D.ietf-taps-interface" class="xref">I-D.ietf-taps-interface</a>]</span>. This API is designed to be generic across multiple transport protocols and sets of protocols features.<a href="#section-1-1" class="pilcrow">¶</a></p>
+<p id="section-1-1">The Transport Services architecture <span>[<a href="#I-D.ietf-taps-arch" class="xref">I-D.ietf-taps-arch</a>]</span> defines a system that allows applications to flexibly use transport networking protocols. The API that such a system exposes to applications is defined as the Transport Services API <span>[<a href="#I-D.ietf-taps-interface" class="xref">I-D.ietf-taps-interface</a>]</span>. This API is designed to be generic across multiple transport protocols and sets of protocols features.<a href="#section-1-1" class="pilcrow">¶</a></p>
 <p id="section-1-2">This document serves as a guide to implementation on how to build a system that provides a Transport Services API. It is the job of an implementation of a Transport Services system to turn the requests of an application into decisions on how to establish connections, and how to transfer data over those connections once established. The terminology used in this document is based on the Architecture <span>[<a href="#I-D.ietf-taps-arch" class="xref">I-D.ietf-taps-arch</a>]</span>.<a href="#section-1-2" class="pilcrow">¶</a></p>
 </section>
 </div>
@@ -1385,7 +1395,7 @@ event-driven interaction pattern. This document serves as a guide to implementat
       </ul>
 <p id="section-2-3">Preconnection objects should be implemented as bundles of properties that an application can both read and write. A Preconnection object influences a Connection only at one point in time: when the Connection is created. Connection objects represent the interface between the application and the implementation to manage transport state, and conduct data transfer. During the process of establishment (<a href="#conn-establish" class="xref">Section 4</a>), the Connection will not be bound to a specific transport protocol instance, since multiple candidate Protocol Stacks might be raced.<a href="#section-2-3" class="pilcrow">¶</a></p>
 <p id="section-2-4">Once a Preconnection has been used to create an outbound Connection or a Listener, the implementation should ensure that the copy of the properties held by the Connection or Listener is not affected when the application makes changes to a Preconnection object. This may involve the implementation performing a deep-copy, copying the object with all the objects that it references.<a href="#section-2-4" class="pilcrow">¶</a></p>
-<p id="section-2-5">Once the Connection is established, its interface maps actions and events to the details of the chosen Protocol Stack. For example, the same Connection object may ultimately represent a single instance of one transport protocol (e.g., a TCP connection, a TLS session over TCP, a UDP flow with fully-specified Local and Remote Endpoints, a DTLS session, a SCTP stream, a QUIC stream, or an HTTP/2 stream).
+<p id="section-2-5">Once the Connection is established, Transport Services implementation maps actions and events to the details of the chosen Protocol Stack. For example, the same Connection object may ultimately represent a single instance of one transport protocol (e.g., a TCP connection, a TLS session over TCP, a UDP flow with fully-specified Local and Remote Endpoints, a DTLS session, a SCTP stream, a QUIC stream, or an HTTP/2 stream).
 The properties held by a Connection or Listener is independent of other connections that are not part of the same Connection Group.<a href="#section-2-5" class="pilcrow">¶</a></p>
 <p id="section-2-6">Connection establishment is only a local operation for a Datagram transport (e.g., UDP(-Lite)), which serves to simplify the local send/receive functions and to filter the traffic for the specified addresses and ports <span>[<a href="#RFC8085" class="xref">RFC8085</a>]</span>.<a href="#section-2-6" class="pilcrow">¶</a></p>
 <p id="section-2-7">Once Initiate has been called, the Selection Properties and Endpoint information are immutable (i.e, an application is not able to later modify Selection Properties on the original Preconnection object).
@@ -1465,7 +1475,7 @@ properties, Avoided properties, and possibly other criteria.<a href="#section-4-
 <a href="#section-4.1" class="section-number selfRef">4.1. </a><a href="#name-structuring-candidates-as-a" class="section-name selfRef">Structuring Candidates as a Tree</a>
         </h3>
 <p id="section-4.1-1">As noted above, the considereration of multiple candidates in a gathering and racing process can be conceptually structured as a tree; this terminological convention is used throughout this document.<a href="#section-4.1-1" class="pilcrow">¶</a></p>
-<p id="section-4.1-2">Each leaf node of the tree represents a single, coherent connection attempt, with an Endpoint, a Path, and a set of protocols that can directly negotiate and send data on the network. Each node in the tree that is not a leaf represents a connection attempt that is either underspecified, or else includes multiple distinct options. For example, when connecting on an IP network, a connection attempt to a hostname and port is underspecified, because the connection attempt requires a resolved IP address as its Remote Endpoint. In this case, the node represented by the connection attempt to the hostname is a parent node, with child nodes for each IP address. Similarly, an implementation that is allowed to connect using multiple interfaces will have a parent node of the tree for the decision between the paths, with a branch for each interface.<a href="#section-4.1-2" class="pilcrow">¶</a></p>
+<p id="section-4.1-2">Each leaf node of the tree represents a single, coherent connection attempt, with an endpoint, a path, and a set of protocols that can directly negotiate and send data on the network. Each node in the tree that is not a leaf represents a connection attempt that is either underspecified, or else includes multiple distinct options. For example, when connecting on an IP network, a connection attempt to a hostname and port is underspecified, because the connection attempt requires a resolved IP address as its Remote Endpoint. In this case, the node represented by the connection attempt to the hostname is a parent node, with child nodes for each IP address. Similarly, an implementation that is allowed to connect using multiple interfaces will have a parent node of the tree for the decision between the paths, with a branch for each interface.<a href="#section-4.1-2" class="pilcrow">¶</a></p>
 <p id="section-4.1-3">The example aggregate connection attempt above can be drawn as a tree by grouping the addresses resolved on the same interface into branches:<a href="#section-4.1-3" class="pilcrow">¶</a></p>
 <div class="alignLeft art-text artwork" id="section-4.1-4">
 <pre>
@@ -1483,7 +1493,7 @@ properties, Avoided properties, and possibly other criteria.<a href="#section-4-
   +====================+  +====================+  +======================+
 </pre><a href="#section-4.1-4" class="pilcrow">¶</a>
 </div>
-<p id="section-4.1-5">The rest of this section will use a notation scheme to represent this tree. The parent (or trunk) node of the tree will be represented by a single integer, such as "1". Each child of that node will have an integer that identifies it, from 1 to the number of children. That child node will be uniquely identified by concatenating its integer to it's parents identifier with a dot in between, such as "1.1" and "1.2". Each node will be summarized by a tuple of three elements: Endpoint, Path, and Protocol. The above example can now be written more succinctly as:<a href="#section-4.1-5" class="pilcrow">¶</a></p>
+<p id="section-4.1-5">The rest of this section will use a notation scheme to represent this tree. The parent (or trunk) node of the tree will be represented by a single integer, such as "1". Each child of that node will have an integer that identifies it, from 1 to the number of children. That child node will be uniquely identified by concatenating its integer to it's parents identifier with a dot in between, such as "1.1" and "1.2". Each node will be summarized by a tuple of three elements: endpoint, path, and protocol. The above example can now be written more succinctly as:<a href="#section-4.1-5" class="pilcrow">¶</a></p>
 <div class="alignLeft art-text artwork" id="section-4.1-6">
 <pre>
 1 [www.example.com:80, Any, TCP]
@@ -1715,7 +1725,7 @@ When ordering branches, an implementation can give more weight to properties tha
         <h3 id="name-candidate-racing">
 <a href="#section-4.3" class="section-number selfRef">4.3. </a><a href="#name-candidate-racing" class="section-name selfRef">Candidate Racing</a>
         </h3>
-<p id="section-4.3-1">The primary goal of the Candidate Racing process is to successfully negotiate a protocol stack to an endpoint over an interface--to connect a single leaf node of the tree--with as little delay and as few unnecessary connections attempts as possible. Optimizing these two factors improves the user experience, while minimizing network load.<a href="#section-4.3-1" class="pilcrow">¶</a></p>
+<p id="section-4.3-1">The primary goal of the Candidate Racing process is to successfully negotiate a protocol stack to an endpoint over an interface to connect a single leaf node of the tree with as little delay and as few unnecessary connections attempts as possible. Optimizing these two factors improves the user experience, while minimizing network load.<a href="#section-4.3-1" class="pilcrow">¶</a></p>
 <p id="section-4.3-2">This section covers the dynamic aspect of connection establishment. The tree described above is a useful conceptual and architectural model. However, an implementation is unable to know the full tree before it is formed and many of the possible branches ultimately might not be used.<a href="#section-4.3-2" class="pilcrow">¶</a></p>
 <p id="section-4.3-3">There are three different approaches to racing the attempts for different nodes of the connection establishment tree:<a href="#section-4.3-3" class="pilcrow">¶</a></p>
 <ol start="1" type="1" class="normal type-1" id="section-4.3-4">
@@ -1794,16 +1804,16 @@ When ordering branches, an implementation can give more weight to properties tha
         <h3 id="name-establishing-multiplexed-co">
 <a href="#section-4.5" class="section-number selfRef">4.5. </a><a href="#name-establishing-multiplexed-co" class="section-name selfRef">Establishing multiplexed connections</a>
         </h3>
-<p id="section-4.5-1">Multiplexing several Connections over a single underlying transport connection requires that the Connections to be multiplexed belong to the same Connection Group (as is indicated by the application using the Clone call). When the underlying transport connection supports multi-streaming, the Transport System can map each Connection in the Connection Group to a different stream.
-Thus, when the Connections that are offered to an application by the Transport System are multiplexed,
-the Transport System may implement the establishment of a new Connection by simply beginning to use
-a new stream of an already established transport connection and there is no need for a connection establishment
+<p id="section-4.5-1">Multiplexing several Connections over a single underlying transport connection requires that the Connections to be multiplexed belong to the same Connection Group (as is indicated by the application using the Clone call). When the underlying transport connection supports multi-streaming, the Transport Services System can map each Connection in the Connection Group to a different stream.
+Thus, when the Connections that are offered to an application by the Transport Services API are multiplexed,
+the Transport Services implementation can establish a new Connection by simply beginning to use
+a new stream of an already established transport Connection and there is no need for a connection establishment
 procedure. This, then, also means that there may not
 be any "establishment" message (like a TCP SYN), but the application can simply start sending
-or receiving. Therefore, when the Initiate action of a Transport System is called without Messages being
-handed over, it cannot be guaranteed that the other endpoint will have any way to know about this, and hence
-a passive endpoint's ConnectionReceived event may not be called upon an active endpoint's Inititate.
-Instead, calling the ConnectionReceived event may be delayed until the first Message arrives.<a href="#section-4.5-1" class="pilcrow">¶</a></p>
+or receiving. Therefore, when the Initiate action of a Transport Services API is called without Messages being
+handed over, it cannot be guaranteed that the Remote Endpoint will have any way to know about this, and hence
+a passive endpoint's ConnectionReceived event might not be called until data is received.
+Instead, calling the ConnectionReceived event could be delayed until the first Message arrives.<a href="#section-4.5-1" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="connectionless-racing">
@@ -1903,7 +1913,7 @@ transport protocol session or DCCP connection).<a href="#section-5.1.1-1.8" clas
           <h4 id="name-send-completion">
 <a href="#section-5.1.2" class="section-number selfRef">5.1.2. </a><a href="#name-send-completion" class="section-name selfRef">Send Completion</a>
           </h4>
-<p id="section-5.1.2-1">The application should be notified whenever a Message or partial Message has been consumed by the Protocol Stack, or has failed to send. The time at which a Message is considered to have been consumed by the Protocol Stack may vary depending on the protocol. For example, for a basic datagram protocol like UDP, this may correspond to the time when the packet is sent into the interface driver. For a protocol that buffers data in queues, like TCP, this may correspond to when the data has entered the send buffer. The time at which a message has failed to send is after the Protocol Stack or the Transport Services implementation itself has not successfully sent the entire Message content or partial Message content on any open candidate connection; this may depend on protocol-specific timeouts.<a href="#section-5.1.2-1" class="pilcrow">¶</a></p>
+<p id="section-5.1.2-1">The application should be notified whenever a Message or partial Message has been consumed by the Protocol Stack, or has failed to send. The time at which a Message is considered to have been consumed by the Protocol Stack may vary depending on the protocol. For example, for a basic datagram protocol like UDP, this may correspond to the time when the packet is sent into the interface driver. For a protocol that buffers data in queues, like TCP, this may correspond to when the data has entered the send buffer. The time at which a message failed to send is when Transport Services implementation (including the Protocol Stack) has not successfully sent the entire Message content or partial Message content on any open candidate connection; this can depend on protocol-specific timeouts.<a href="#section-5.1.2-1" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="batching-sends">
@@ -1911,7 +1921,7 @@ transport protocol session or DCCP connection).<a href="#section-5.1.1-1.8" clas
           <h4 id="name-batching-sends">
 <a href="#section-5.1.3" class="section-number selfRef">5.1.3. </a><a href="#name-batching-sends" class="section-name selfRef">Batching Sends</a>
           </h4>
-<p id="section-5.1.3-1">Since sending a Message may involve a context switch between the application and the transport system, sending patterns that involve multiple small Messages can incur high overhead if each needs to be enqueued separately. To avoid this, the application can indicate a batch of Send actions through the API. When this is used, the implementation can defer the processing of Messages until the batch is complete.<a href="#section-5.1.3-1" class="pilcrow">¶</a></p>
+<p id="section-5.1.3-1">Since sending a Message may involve a context switch between the application and the Transport Services system, sending patterns that involve multiple small Messages can incur high overhead if each needs to be enqueued separately. To avoid this, the application can indicate a batch of Send actions through the API. When this is used, the implementation can defer the processing of Messages until the batch is complete.<a href="#section-5.1.3-1" class="pilcrow">¶</a></p>
 </section>
 </div>
 </section>
@@ -1921,8 +1931,8 @@ transport protocol session or DCCP connection).<a href="#section-5.1.1-1.8" clas
         <h3 id="name-receiving-messages">
 <a href="#section-5.2" class="section-number selfRef">5.2. </a><a href="#name-receiving-messages" class="section-name selfRef">Receiving Messages</a>
         </h3>
-<p id="section-5.2-1">Similar to sending, Receiving a Message is determined by the top-level protocol in the established Protocol Stack. The main difference with Receiving is that the size and boundaries of the Message are not known beforehand. The application can communicate in its Receive action the parameters for the Message, which can help the implementation know how much data to deliver and when. For example, if the application only wants to receive a complete Message, the implementation should wait until an entire Message (datagram, stream, or frame) is read before delivering any Message content to the application. This requires the implementation to understand where messages end, either via a supplied deframer or because the top-level protocol in the established Protocol Stack preserves message boundaries. If the top-level protocol only supports a byte-stream and no framers were supported, the application can control the flow of received data by specifying the minimum number of bytes of Message content it wants to receive at one time.<a href="#section-5.2-1" class="pilcrow">¶</a></p>
-<p id="section-5.2-2">If a Connection finishes before a requested Receive action can be satisfied, the implementation should deliver any partial Message content outstanding, or if none is available, an indication that there will be no more received Messages.<a href="#section-5.2-2" class="pilcrow">¶</a></p>
+<p id="section-5.2-1">Similar to sending, Receiving a Message is determined by the top-level protocol in the established Protocol Stack. The main difference with Receiving is that the size and boundaries of the Message are not known beforehand. The application can communicate in its Receive action the parameters for the Message, which can help the Transport Services implementation know how much data to deliver and when. For example, if the application only wants to receive a complete Message, the implementation should wait until an entire Message (datagram, stream, or frame) is read before delivering any Message content to the application. This requires the implementation to understand where messages end, either via a supplied deframer or because the top-level protocol in the established Protocol Stack preserves message boundaries. If the top-level protocol only supports a byte-stream and no framers were supported, the application can control the flow of received data by specifying the minimum number of bytes of Message content it wants to receive at one time.<a href="#section-5.2-1" class="pilcrow">¶</a></p>
+<p id="section-5.2-2">If a Connection finishes before a requested Receive action can be satisfied, the Transport Services API should deliver any partial Message content outstanding, or if none is available, an indication that there will be no more received Messages.<a href="#section-5.2-2" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="fastopen">
@@ -1933,7 +1943,7 @@ transport protocol session or DCCP connection).<a href="#section-5.1.1-1.8" clas
 <p id="section-5.3-1">Several protocols allow sending higher-level protocol or application data during their protocol establishment, such as TCP Fast Open <span>[<a href="#RFC7413" class="xref">RFC7413</a>]</span> and TLS 1.3 <span>[<a href="#RFC8446" class="xref">RFC8446</a>]</span>. This approach is referred to as sending Zero-RTT (0-RTT) data. This is a desirable feature, but poses challenges to an implementation that uses racing during connection establishment.<a href="#section-5.3-1" class="pilcrow">¶</a></p>
 <p id="section-5.3-2">The amount of data that can be sent as 0-RTT data varies by protocol and can be queried by the application using the <code>Maximum Message Size Concurrent with Connection Establishment</code> Connection Property. An implementation can set this property according to the protocols that it will race based on the given Selection Properties when the application requests to establish a connection.<a href="#section-5.3-2" class="pilcrow">¶</a></p>
 <p id="section-5.3-3">If the application has 0-RTT data to send in any protocol handshakes, it needs to provide this data before the handshakes have begun. When racing, this means that the data should be provided before the process of connection establishment has begun. If the application wants to send 0-RTT data, it must indicate this to the implementation by setting the <code>Safely Replayable</code> send parameter to true when sending the data. In general, 0-RTT data may be replayed (for example, if a TCP SYN contains data, and the SYN is retransmitted, the data will be retransmitted as well but may be considered as a new connection instead of a retransmission). Also, when racing connections, different leaf nodes have the opportunity to send the same data independently. If data is truly safely replayable, this should be permissible.<a href="#section-5.3-3" class="pilcrow">¶</a></p>
-<p id="section-5.3-4">Once the application has provided its 0-RTT data, an implementation should keep a copy of this data and provide it to each new leaf node that is started and for which a 0-RTT protocol is being used.<a href="#section-5.3-4" class="pilcrow">¶</a></p>
+<p id="section-5.3-4">Once the application has provided its 0-RTT data, a Transport Services implementation should keep a copy of this data and provide it to each new leaf node that is started and for which a 0-RTT protocol is being used.<a href="#section-5.3-4" class="pilcrow">¶</a></p>
 <p id="section-5.3-5">It is also possible that protocol stacks within a particular leaf node use 0-RTT handshakes without any safely replayable application data. For example, TCP Fast Open could use a Client Hello from TLS as its 0-RTT data, shortening the cumulative handshake time.<a href="#section-5.3-5" class="pilcrow">¶</a></p>
 <p id="section-5.3-6">0-RTT handshakes often rely on previous state, such as TCP Fast Open cookies, previously established TLS tickets, or out-of-band distributed pre-shared keys (PSKs). Implementations should be aware of security concerns around using these tokens across multiple addresses or paths when racing. In the case of TLS, any given ticket or PSK should only be used on one leaf node, since servers will likely reject duplicate tickets in order to prevent replays (see section-8.1 <span>[<a href="#RFC8446" class="xref">RFC8446</a>]</span>). If implementations have multiple tickets available from a previous connection, each leaf node attempt can use a different ticket. In effect, each leaf node will send the same early application data, yet encoded (encrypted) differently on the wire.<a href="#section-5.3-6" class="pilcrow">¶</a></p>
 </section>
@@ -1950,11 +1960,11 @@ simple transformations between application Message data and raw transport
 protocol data. A Framer can encapsulate or encode outbound Messages, and
 decapsulate or decode inbound data into Messages.<a href="#section-6-1" class="pilcrow">¶</a></p>
 <p id="section-6-2">While many protocols can be represented as Message Framers, for the
-purposes of the Transport Services interface these are ways for applications
+purposes of the Transport Services API, these are ways for applications
 or application frameworks to define their own Message parsing to be
 included within a Connection's Protocol Stack. As an example, TLS 
 is exposed as a protocol natively supported by the Transport Services
-interface, even though it could also serve the purpose of framing data over TCP.<a href="#section-6-2" class="pilcrow">¶</a></p>
+API, even though it could also serve the purpose of framing data over TCP.<a href="#section-6-2" class="pilcrow">¶</a></p>
 <p id="section-6-3">Most Message Framers fall into one of two categories:<a href="#section-6-3" class="pilcrow">¶</a></p>
 <ul class="normal">
 <li class="normal" id="section-6-4.1">Header-prefixed record formats, such as a basic Type-Length-Value (TLV) structure<a href="#section-6-4.1" class="pilcrow">¶</a>
@@ -1962,10 +1972,10 @@ interface, even though it could also serve the purpose of framing data over TCP.
         <li class="normal" id="section-6-4.2">Delimiter-separated formats, such as HTTP/1.1.<a href="#section-6-4.2" class="pilcrow">¶</a>
 </li>
       </ul>
-<p id="section-6-5">Common Message Framers can be provided by the Transport Services implementation,
+<p id="section-6-5">Common Message Framers can be provided by a Transport Services implementation,
 but an implementation ought to allow custom Message Framers to be defined by
 the application or some other piece of software. This section describes one
-possible interface for defining Message Framers as an example.<a href="#section-6-5" class="pilcrow">¶</a></p>
+possible API for defining Message Framers as an example.<a href="#section-6-5" class="pilcrow">¶</a></p>
 <div id="defining-message-framers">
 <section id="section-6.1">
         <h3 id="name-defining-message-framers">
@@ -1974,7 +1984,7 @@ possible interface for defining Message Framers as an example.<a href="#section-
 <p id="section-6.1-1">A Message Framer is primarily defined by the code that handles events
 for a framer implementation, specifically how it handles inbound and outbound data
 parsing. The function that implements custom framing logic will be referred to
-as the "framer implementation", which may be provided by the Transport Services
+as the "framer implementation", which may be provided by a Transport Services
 implementation or the application itself. The Message Framer refers to the object
 or function within the main Connection implementation that delivers events
 to the custom framer implementation whenever data is ready to be parsed or framed.<a href="#section-6.1-1" class="pilcrow">¶</a></p>
@@ -2012,7 +2022,7 @@ to fail and provide an error.<a href="#section-6.1-8" class="pilcrow">¶</a></p>
 MessageFramer.FailConnection(Connection, Error)
 </pre><a href="#section-6.1-9" class="pilcrow">¶</a>
 </div>
-<p id="section-6.1-10">Should the framer implementation deem the candidate selected during racing unsuitable it can signal this by failing the Connection prior to marking it as ready.
+<p id="section-6.1-10">Should the framer implementation deem the candidate selected during racing unsuitable, it can signal this to the Transport Services API by failing the Connection prior to marking it as ready.
 If there are no other candidates available, the Connection will fail. Otherwise, the Connection will select a different candidate and the Message Framer will generate a new <code>Start</code> event.<a href="#section-6.1-10" class="pilcrow">¶</a></p>
 <p id="section-6.1-11">Before an implementation marks a Message Framer as ready, it can also dynamically
 add a protocol or framer above it in the stack. This allows protocols that need to add TLS conditionally,
@@ -2110,15 +2120,15 @@ the header, marking the new Message as complete.<a href="#section-6.3-9" class="
       <h2 id="name-implementing-connection-man">
 <a href="#section-7" class="section-number selfRef">7. </a><a href="#name-implementing-connection-man" class="section-name selfRef">Implementing Connection Management</a>
       </h2>
-<p id="section-7-1">Once a Connection is established, the Transport Services system allows applications to interact with the Connection by modifying or inspecting
+<p id="section-7-1">Once a Connection is established, the Transport Services API allows applications to interact with the Connection by modifying or inspecting
 Connection Properties. A Connection can also generate events in the form of Soft Errors.<a href="#section-7-1" class="pilcrow">¶</a></p>
 <p id="section-7-2">The set of Connection Properties that are supported for setting and getting on a Connection are described in <span>[<a href="#I-D.ietf-taps-interface" class="xref">I-D.ietf-taps-interface</a>]</span>. For
-any properties that are generic, and thus could apply to all protocols being used by a Connection, the Transport System should store the properties
+any properties that are generic, and thus could apply to all protocols being used by a Connection, the Transport Services implementation should store the properties
 in storage common to all protocols, and notify all protocol instances in the Protocol Stack whenever the properties have been modified by the application.
-For protocol-specfic properties, such as the User Timeout that applies to TCP, the Transport System only needs to update the relevant protocol instance.<a href="#section-7-2" class="pilcrow">¶</a></p>
+For protocol-specfic properties, such as the User Timeout that applies to TCP, the Transport Services implementation only needs to update the relevant protocol instance.<a href="#section-7-2" class="pilcrow">¶</a></p>
 <p id="section-7-3">If an error is encountered in setting a property (for example, if the application tries to set a TCP-specific property on a Connection that is
 not using TCP), the action should fail gracefully. The application may be informed of the error, but the Connection itself should not be terminated.<a href="#section-7-3" class="pilcrow">¶</a></p>
-<p id="section-7-4">The Transport Services implementation should allow protocol instances in the Protocol Stack to pass up arbitrary generic or protocol-specific
+<p id="section-7-4">The Transport Services API should allow protocol instances in the Protocol Stack to pass up arbitrary generic or protocol-specific
 errors that can be delivered to the application as Soft Errors. These allow the application to be informed of ICMP errors, and other similar events.<a href="#section-7-4" class="pilcrow">¶</a></p>
 <div id="pooled-connections">
 <section id="section-7.1">
@@ -2136,9 +2146,10 @@ This enables implementations to realize transparent connection coalescing, conne
         <h3 id="name-handling-path-changes">
 <a href="#section-7.2" class="section-number selfRef">7.2. </a><a href="#name-handling-path-changes" class="section-name selfRef">Handling Path Changes</a>
         </h3>
-<p id="section-7.2-1">When a path change occurs, e.g., when the IP address of an interface changes or a new interface becomes available, the Transport Services implementation is responsible for notifying the Protocol Instance of the change. The path change may interrupt connectivity on a path for an active connection or provide an opportunity for a transport that supports multipath or migration to adapt to the new paths. Note that, from the Transport Services API point of view, migration is considered a part of multipath connectivity; it is just a limiting policy on multipath usage. If the <code>multipath</code> Selection Property is set to <code>Disabled</code>, migration is disallowed.<a href="#section-7.2-1" class="pilcrow">¶</a></p>
+<p id="section-7.2-1">When a path change occurs, e.g., when the IP address of an interface changes or a new interface becomes available, the Transport Services implementation is responsible for notifying the Protocol Instance of the change. The path change may interrupt connectivity on a path for an active connection or provide an opportunity for a transport that supports multipath or migration to adapt to the new paths. Note that, in the model of the Transport Services API, migration is considered a part of multipath connectivity; it is just a limiting policy on multipath usage. If the <code>multipath</code> Selection Property is set to <code>Disabled</code>, migration is disallowed.<a href="#section-7.2-1" class="pilcrow">¶</a></p>
 <p id="section-7.2-2">For protocols that do not support multipath or migration, the Protocol Instances should be informed of the path change, but should not be forcibly disconnected if the previously used path becomes unavailable. There are many common user scenarios that can lead to a path becoming temporarily unavailable, and then recovering before the transport protocol reaches a timeout error. These are particularly common using mobile devices. Examples include: an Ethernet cable becoming unplugged and then plugged back in; a device losing a Wi-Fi signal while a user is in an elevator, and reattaching when the user leaves the elevator; and a user losing the radio signal while riding a train through a tunnel. If the device is able to rejoin a network with the same IP address, a stateful transport connection can generally resume. Thus, while it is useful for a Protocol Instance to be aware of a temporary loss of connectivity, the Transport Services implementation should not aggressively close connections in these scenarios.<a href="#section-7.2-2" class="pilcrow">¶</a></p>
-<p id="section-7.2-3">If the Protocol Stack includes a transport protocol that supports multipath connectivity, the Transport Services implementation should also inform the Protocol Instance of potentially new paths that become permissible based on the <code>multipath</code> Selection Property and the <code>multipath-policy</code> Connection Property choices made by the application. A protocol can then establish new subflows over new paths while an active path is still available or, if migration is supported, also after a break has been detected, and should attempt to tear down subflows over paths that are no longer used. The Transport Services API's Connection Property <code>multipath-policy</code> allows an application to indicate when and how different paths should be used. However, detailed handling of these policies is still implementation-specific. For example, if the <code>multipath</code> Selection Property is set to <code>active</code>, the decision about when to create a new path or to announce a new path or set of paths to the Remote Endpoint, e.g., in the form of additional IP addresses, is implementation-specific. If the Protocol Stack includes a transport protocol that does not support multipath, but does support migrating between paths, the update to the set of available paths can trigger the connection to be migrated.<a href="#section-7.2-3" class="pilcrow">¶</a></p>
+<p id="section-7.2-3">If the Protocol Stack includes a transport protocol that supports multipath connectivity, the Transport Services implementation should also inform the Protocol Instance of potentially new paths that become permissible based on the <code>multipath</code> Selection Property and the <code>multipath-policy</code> Connection Property choices made by the application. A protocol can then establish new subflows over new paths while an active path is still available or, if migration is supported, also after a break has been detected, and should attempt to tear down subflows over paths that are no longer used. The Connection Property <code>multipath-policy</code> of the Transport Services API
+allows an application to indicate when and how different paths should be used. However, detailed handling of these policies is still implementation-specific. For example, if the <code>multipath</code> Selection Property is set to <code>active</code>, the decision about when to create a new path or to announce a new path or set of paths to the Remote Endpoint, e.g., in the form of additional IP addresses, is implementation-specific. If the Protocol Stack includes a transport protocol that does not support multipath, but does support migrating between paths, the update to the set of available paths can trigger the connection to be migrated.<a href="#section-7.2-3" class="pilcrow">¶</a></p>
 <p id="section-7.2-4">In case of Pooled Connections <a href="#pooled-connections" class="xref">Section 7.1</a>, the Transport Services implementation may add connections over new paths to the pool if permissible based on the multipath policy and Selection Properties. In case a previously used path becomes unavailable, the transport system may disconnect all connections that require this path, but should not disconnect the pooled connection object exposed to the application. The strategy to do so is implementation-specific, but should be consistent with the behavior of multipath transports.<a href="#section-7.2-4" class="pilcrow">¶</a></p>
 </section>
 </div>
@@ -2162,15 +2173,15 @@ also not receive any more data.<a href="#section-8-2" class="pilcrow">¶</a></p>
 semantics must be the strictest subset of the semantics of all supported protocols.
 Hence, as is common with all reliable transport protocols, after a Close action, the
 application can expect to have its reliability requirements honored regarding the data
-it has given to the Transport System, but it cannot expect to be able to read any
+provided to the Transport Services API, but it cannot expect to be able to read any
 more data after calling Close.<a href="#section-8-3" class="pilcrow">¶</a></p>
-<p id="section-8-4">Abort differs from Close only in that no guarantees are given regarding data
-that the application has handed over to the Transport System before calling Abort.<a href="#section-8-4" class="pilcrow">¶</a></p>
+<p id="section-8-4">Abort differs from Close only in that no guarantees are given regarding any data
+that the application sent to the Transport Services API before calling Abort.<a href="#section-8-4" class="pilcrow">¶</a></p>
 <p id="section-8-5">As explained in <a href="#establish-mux" class="xref">Section 4.5</a>, when a new stream is multiplexed on an already
 existing connection of a Transport Protocol Instance, there is no need for a connection
-establishment procedure. Because the Connections that are offered by the Transport System
+establishment procedure. Because the Connections that are offered by a Transport Services implementation
 can be implemented as streams that are multiplexed on a transport protocol's connection,
-it can therefore not be guaranteed that one Endpoint's Initiate action
+it can therefore not be guaranteed an Initiate action from one endpoint
 provokes a ConnectionReceived event at its peer.<a href="#section-8-5" class="pilcrow">¶</a></p>
 <p id="section-8-6">For Close (provoking a Finished event) and Abort (provoking a ConnectionError event), the
 same logic applies: while it is desirable to be informed when a peer closes or aborts a
@@ -2186,16 +2197,16 @@ a Finish event upon a Close action from the peer <span>[<a href="#NEAT-flow-mapp
       </h2>
 <p id="section-9-1">Beyond a single Connection's lifetime, it is useful for an implementation to keep state and history. This cached
 state can help improve future Connection establishment due to re-using results and credentials, and favoring paths and protocols that performed well in the past.<a href="#section-9-1" class="pilcrow">¶</a></p>
-<p id="section-9-2">Cached state may be associated with different Endpoints for the same Connection, depending on the protocol generating the cached content.
+<p id="section-9-2">Cached state may be associated with different endpoints for the same Connection, depending on the protocol generating the cached content.
 For example, session tickets for TLS are associated with specific endpoints, and thus should be cached based on a Connection's
-hostname Endpoint (if applicable). On the other hand, performance characteristics of a path are more likely tied to the IP address
+hostname endpoint (if applicable). However, performance characteristics of a path are more likely tied to the IP address
 and subnet being used.<a href="#section-9-2" class="pilcrow">¶</a></p>
 <div id="protocol-state-caches">
 <section id="section-9.1">
         <h3 id="name-protocol-state-caches">
 <a href="#section-9.1" class="section-number selfRef">9.1. </a><a href="#name-protocol-state-caches" class="section-name selfRef">Protocol state caches</a>
         </h3>
-<p id="section-9.1-1">Some protocols will have long-term state to be cached in association with Endpoints. This state often has some time after which
+<p id="section-9.1-1">Some protocols will have long-term state to be cached in association with endpoints. This state often has some time after which
 it is expired, so the implementation should allow each protocol to specify an expiration for cached content.<a href="#section-9.1-1" class="pilcrow">¶</a></p>
 <p id="section-9.1-2">Examples of cached protocol state include:<a href="#section-9.1-2" class="pilcrow">¶</a></p>
 <ul class="normal">
@@ -2208,9 +2219,9 @@ be used for future hostname resolutions without requiring asking the DNS resolve
 </li>
         </ul>
 <p id="section-9.1-4">Cached protocol state is primarily used during Connection establishment for a single Protocol Stack, but may be used to influence an
-implementation's preference between several candidate Protocol Stacks. For example, if two IP address Endpoints are otherwise
+implementation's preference between several candidate Protocol Stacks. For example, if two IP address endpoints are otherwise
 equally preferred, an implementation may choose to attempt a connection to an address for which it has a TCP Fast Open cookie.<a href="#section-9.1-4" class="pilcrow">¶</a></p>
-<p id="section-9.1-5">Applications can request that a Connection Group maintain a separate cache for
+<p id="section-9.1-5">Applications can use the Transport Services API to request that a Connection Group maintain a separate cache for
 protocol state. Connections in the group will not use cached state
 from connections outside the group, and connections outside the group will not
 use state cached from connections inside the group. This may be necessary, for
@@ -2245,8 +2256,8 @@ linkability via trackable TLS tickets or TFO cookies.<a href="#section-9.1-5" cl
       <h2 id="name-specific-transport-protocol">
 <a href="#section-10" class="section-number selfRef">10. </a><a href="#name-specific-transport-protocol" class="section-name selfRef">Specific Transport Protocol Considerations</a>
       </h2>
-<p id="section-10-1">Each protocol that can run as part of a Transport Services implementation should have a well-defined API mapping.
-API mappings for a protocol apply most to Connections in which the given protocol is the "top" of the Protocol Stack.
+<p id="section-10-1">Each protocol that is supported by a Transport Services implementation should have a well-defined API mapping.
+API mappings for a protocol are important for Connections in which a given protocol is the "top" of the Protocol Stack.
 For example, the mapping of the <code>Send</code> function for TCP applies to Connections in which the application directly sends over TCP.<a href="#section-10-1" class="pilcrow">¶</a></p>
 <p id="section-10-2">Each protocol has a notion of Connectedness. Possible values for Connectedness are:<a href="#section-10-2" class="pilcrow">¶</a></p>
 <ul class="normal">
@@ -2328,7 +2339,7 @@ ConnectionReceived:  </dt>
 <dt id="section-10.1-4.17">
 Clone:  </dt>
           <dd style="margin-left: 1.5em" id="section-10.1-4.18">
-            <p id="section-10.1-4.18.1">Calling <code>Clone</code> on a TCP Connection creates a new Connection with equivalent parameters. These Connections, and Connections generated via later calls to <code>Clone</code> on one of them, form a Connection Group. To realize entanglement for these Connections, with the exception of <code>Connection Priority</code>, changing a Connection Property on one of them must affect the Connection Properties of the others too. No guarantees of honoring the Connection Property <code>Connection Priority</code> are given, and thus it is safe for an implementation of a transport system to ignore this property. When it is reasonable to assume that Connections traverse the same path (e.g., when they share the same encapsulation), support for it can also experimentally be implemented using a congestion control coupling mechanism (see for example <span>[<a href="#TCP-COUPLING" class="xref">TCP-COUPLING</a>]</span> or <span>[<a href="#RFC3124" class="xref">RFC3124</a>]</span>).<a href="#section-10.1-4.18.1" class="pilcrow">¶</a></p>
+            <p id="section-10.1-4.18.1">Calling <code>Clone</code> on a TCP Connection creates a new Connection with equivalent parameters. These Connections, and Connections generated via later calls to <code>Clone</code> on an Establied Connection, form a Connection Group. To realize entanglement for these Connections, with the exception of <code>Connection Priority</code>, changing a Connection Property on one of them must affect the Connection Properties of the others too. No guarantees of honoring the Connection Property <code>Connection Priority</code> are given, and thus it is safe for an implementation of a transport system to ignore this property. When it is reasonable to assume that Connections traverse the same path (e.g., when they share the same encapsulation), support for it can also experimentally be implemented using a congestion control coupling mechanism (see for example <span>[<a href="#TCP-COUPLING" class="xref">TCP-COUPLING</a>]</span> or <span>[<a href="#RFC3124" class="xref">RFC3124</a>]</span>).<a href="#section-10.1-4.18.1" class="pilcrow">¶</a></p>
 </dd>
           <dd class="break"></dd>
 <dt id="section-10.1-4.19">
@@ -2365,7 +2376,7 @@ Abort:  </dt>
         </h3>
 <p id="section-10.2-1">Connectedness: Connected<a href="#section-10.2-1" class="pilcrow">¶</a></p>
 <p id="section-10.2-2">Data Unit: Byte-stream<a href="#section-10.2-2" class="pilcrow">¶</a></p>
-<p id="section-10.2-3">API mappings for MPTCP are identical to TCP. MPTCP adds support for multipath properties,
+<p id="section-10.2-3">the Transport Services API mappings for MPTCP are identical to TCP. MPTCP adds support for multipath properties,
 such as "Multipath Transport" and "Policy for using Multipath Transports".<a href="#section-10.2-3" class="pilcrow">¶</a></p>
 </section>
 </div>
@@ -2466,7 +2477,7 @@ Abort:  </dt>
         </h3>
 <p id="section-10.4-1">Connectedness: Connectionless<a href="#section-10.4-1" class="pilcrow">¶</a></p>
 <p id="section-10.4-2">Data Unit: Datagram<a href="#section-10.4-2" class="pilcrow">¶</a></p>
-<p id="section-10.4-3">API mappings for UDP-Lite are identical to UDP. Properties that require checksum coverage are not supported
+<p id="section-10.4-3">The Transport Services API mappings for UDP-Lite are identical to UDP. Properties that require checksum coverage are not supported
 by UDP-Lite, such as "Corruption Protection Length", "Full Checksum Coverage on Sending", 
 "Required Minimum Corruption Protection Coverage for Receiving", and "Full Checksum Coverage on Receiving".<a href="#section-10.4-3" class="pilcrow">¶</a></p>
 </section>
@@ -2526,7 +2537,7 @@ Listen:  </dt>
 <p id="section-10.5-5">There are cases where it is required to open multiple connections for the same address(es). 
 For example, one Connection might be opened for a multicast group to for a multicast control bus, 
 and another application later opens a separate Connection to the same group to send signals to and/or receive signals from the common bus. 
-In such cases, the interface needs to explicitly enable re-use of the same set of addresses (equivalent to setting SO_REUSEADDR 
+In such cases, the Transport Services system needs to explicitly enable re-use of the same set of addresses (equivalent to setting SO_REUSEADDR 
 in the socket API).<a href="#section-10.5-5" class="pilcrow">¶</a></p>
 <span class="break"></span><dl class="dlParallel" id="section-10.5-6">
           <dt id="section-10.5-6.1">
@@ -2584,7 +2595,7 @@ Connection Object:  </dt>
 </dd>
         <dd class="break"></dd>
 </dl>
-<p id="section-10.6-5">Stream mapping requires an association to already be in place between the client and the server, and it requires the server to understand that a new incoming stream should be represented as a new Connection Object by the Transport Services system. A new SCTP stream is created by sending an SCTP message with a new stream id. Thus, to implement stream mapping, the Transport Services system MUST provide a newly created Connection Object to the application upon the reception of such a message. The necessary semantics to implement a Transport Services system's Close and Abort primitives are provided by the stream reconfiguration (reset) procedure described in <span>[<a href="#RFC6525" class="xref">RFC6525</a>]</span>. This also allows to re-use a stream id after resetting ("closing") the stream. To implement this functionality, SCTP stream reconfiguration <span>[<a href="#RFC6525" class="xref">RFC6525</a>]</span> MUST be supported by both the client and the server side.<a href="#section-10.6-5" class="pilcrow">¶</a></p>
+<p id="section-10.6-5">Stream mapping requires an association to already be in place between the client and the server, and it requires the server to understand that a new incoming stream should be represented as a new Connection Object by the Transport Services system. A new SCTP stream is created by sending an SCTP message with a new stream id. Thus, to implement stream mapping, the Transport Services API MUST provide a newly created Connection Object to the application upon the reception of such a message. The necessary semantics to implement a Transport Services system Close and Abort primitives are provided by the stream reconfiguration (reset) procedure described in <span>[<a href="#RFC6525" class="xref">RFC6525</a>]</span>. This also allows to re-use a stream id after resetting ("closing") the stream. To implement this functionality, SCTP stream reconfiguration <span>[<a href="#RFC6525" class="xref">RFC6525</a>]</span> MUST be supported by both the client and the server side.<a href="#section-10.6-5" class="pilcrow">¶</a></p>
 <p id="section-10.6-6">To avoid head-of-line blocking, stream mapping SHOULD only be implemented when both sides support message interleaving <span>[<a href="#RFC8260" class="xref">RFC8260</a>]</span>. This allows a sender to schedule transmissions between multiple streams without risking that transmission of a large message on one stream might block transmissions on other streams for a long time.<a href="#section-10.6-6" class="pilcrow">¶</a></p>
 <p id="section-10.6-7">To avoid conflicts between stream ids, the following procedure is recommended: the first Connection, for which the SCTP association has been created, MUST always use stream id zero. All additional Connections are assigned to unused stream ids in growing order. To avoid a conflict when both endpoints map new Connections simultaneously, the peer which initiated association MUST use even stream ids whereas the remote side MUST map its Connections to odd stream ids. Both sides maintain a status map of the assigned stream ids. Generally, new streams SHOULD consume the lowest available (even or odd, depending on the side) stream id; this rule is relevant when lower ids become available because Connection objects associated with the streams are closed.<a href="#section-10.6-7" class="pilcrow">¶</a></p>
 <p id="section-10.6-8">SCTP stream mapping as described here has been implemented in a research prototype; a desription of this implementation is given in <span>[<a href="#NEAT-flow-mapping" class="xref">NEAT-flow-mapping</a>]</span>.<a href="#section-10.6-8" class="pilcrow">¶</a></p>
@@ -2592,7 +2603,7 @@ Connection Object:  </dt>
           <dt id="section-10.6-9.1">
 Initiate:  </dt>
           <dd style="margin-left: 1.5em" id="section-10.6-9.2">
-            <p id="section-10.6-9.2.1">If this is the only Connection object that is assigned to the SCTP association or stream mapping is
+            <p id="section-10.6-9.2.1">If this is the only Connection object that is assigned to the SCTP Association or stream mapping is
 not used, CONNECT.SCTP is called. Else, unless the Selection Property <code>activeReadBeforeSend</code>
 is Preferred or Required, a new stream is used: if there are enough streams
 available, <code>Initiate</code> is a local operation that assigns a new stream id to the Connection object.
@@ -2722,7 +2733,7 @@ Research Foundation: Gottfried Wilhelm Leibniz-Preis 2011 (FKZ FE 570/4-1).<a hr
 Research Council under grant EP/R04144X/1.<a href="#section-13-3" class="pilcrow">¶</a></p>
 <p id="section-13-4">This work has been supported by the Research Council of Norway under its "Toppforsk"
 programme through the "OCARINA" project.<a href="#section-13-4" class="pilcrow">¶</a></p>
-<p id="section-13-5">Thanks to Stuart Cheshire, Josh Graessley, David Schinazi, and Eric Kinnear for their implementation and design efforts, including Happy Eyeballs, that heavily influenced this work.<a href="#section-13-5" class="pilcrow">¶</a></p>
+<p id="section-13-5">Thanks to Colin Perkins, Tom Jones, Karl-Johan Grinnemo, Gorry Fairhurst, for their contributions to the design of this specification. Thanks also to Stuart Cheshire, Josh Graessley, David Schinazi, and Eric Kinnear for their implementation and design efforts, including Happy Eyeballs, that heavily influenced this work.<a href="#section-13-5" class="pilcrow">¶</a></p>
 </section>
 </div>
 <section id="section-14">
@@ -2917,7 +2928,7 @@ The configuration is valid, but none of the available transport protocols can sa
 The remote or local specifier provided by the application can not be resolved.<a href="#appendix-C-2.3" class="pilcrow">¶</a>
 </li>
         <li class="normal" id="appendix-C-2.4">EstablishmentFailed:
-The Transport Services system was unable to establish a transport-layer connection to the remote endpoint specified by the application.<a href="#appendix-C-2.4" class="pilcrow">¶</a>
+The Transport Services system was unable to establish a transport-layer connection to the Remote Endpoint specified by the application.<a href="#appendix-C-2.4" class="pilcrow">¶</a>
 </li>
         <li class="normal" id="appendix-C-2.5">PolicyProhibited:
 The system policy prevents the transport system from performing the action requested by the application.<a href="#appendix-C-2.5" class="pilcrow">¶</a>
@@ -2971,7 +2982,7 @@ Delivery of a message was not possible after a timeout.<a href="#appendix-C-2.12
 </li>
             <li class="normal" id="appendix-D-2.2.2.3">NEAT project: <a href="https://www.neat-project.org">https://www.neat-project.org</a><a href="#appendix-D-2.2.2.3" class="pilcrow">¶</a>
 </li>
-            <li class="normal" id="appendix-D-2.2.2.4">NEATPy is a Python shim over NEAT which updates the NEAT API to be in line with version 6 of the TAPS interface draft.<a href="#appendix-D-2.2.2.4" class="pilcrow">¶</a>
+            <li class="normal" id="appendix-D-2.2.2.4">NEATPy is a Python shim over NEAT which updates the NEAT API to be in line with version 6 of the Transport Services API draft.<a href="#appendix-D-2.2.2.4" class="pilcrow">¶</a>
 </li>
             <li class="normal" id="appendix-D-2.2.2.5">Code: <a href="https://github.com/theagilepadawan/NEATPy">https://github.com/theagilepadawan/NEATPy</a><a href="#appendix-D-2.2.2.5" class="pilcrow">¶</a>
 </li>
@@ -3030,17 +3041,6 @@ Delivery of a message was not possible after a timeout.<a href="#appendix-C-2.12
 </div>
 </address>
 <address class="vcard">
-        <div dir="auto" class="left"><span class="fn nameRole">Tom Jones</span></div>
-<div dir="auto" class="left"><span class="org">University of Aberdeen</span></div>
-<div dir="auto" class="left"><span class="street-address">Fraser Noble Building</span></div>
-<div dir="auto" class="left"><span class="locality">Aberdeen, AB24 3UE</span></div>
-<div dir="auto" class="left"><span class="country-name">United Kingdom</span></div>
-<div class="email">
-<span>Email:</span>
-<a href="mailto:tom@erg.abdn.ac.uk" class="email">tom@erg.abdn.ac.uk</a>
-</div>
-</address>
-<address class="vcard">
         <div dir="auto" class="left"><span class="fn nameRole">Philipp S. Tiesel</span></div>
 <div dir="auto" class="left"><span class="org">SAP SE</span></div>
 <div dir="auto" class="left"><span class="street-address">Konrad-Zuse-Ring 10</span></div>
@@ -3049,17 +3049,6 @@ Delivery of a message was not possible after a timeout.<a href="#appendix-C-2.12
 <div class="email">
 <span>Email:</span>
 <a href="mailto:philipp@tiesel.net" class="email">philipp@tiesel.net</a>
-</div>
-</address>
-<address class="vcard">
-        <div dir="auto" class="left"><span class="fn nameRole">Colin Perkins</span></div>
-<div dir="auto" class="left"><span class="org">University of Glasgow</span></div>
-<div dir="auto" class="left"><span class="street-address">School of Computing Science</span></div>
-<div dir="auto" class="left"><span class="locality">Glasgow G12 8QQ</span></div>
-<div dir="auto" class="left"><span class="country-name">United Kingdom</span></div>
-<div class="email">
-<span>Email:</span>
-<a href="mailto:csp@csperkins.org" class="email">csp@csperkins.org</a>
 </div>
 </address>
 <address class="vcard">
