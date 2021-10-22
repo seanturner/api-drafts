@@ -217,19 +217,6 @@ html {
   --small-font-size: 14.5px;
   scrollbar-color: #bbb #eee;
 }
-@media (prefers-color-scheme: dark) {
-html {
-  --background-color: #121212;
-  --text-color: #f0f0f0;
-  --title-color: #fff;
-  --link-color: #4da4f0;
-  --highlight-color: #282828;
-  --line-color: #444;
-  --pilcrow-weak: #444;
-  --pilcrow-strong: #666;
-  scrollbar-color: #777 #333;
-}
-}
 body {
   max-width: 600px;
   margin: 75px auto;
@@ -448,17 +435,22 @@ figcaption, caption {
   text-align: left;
 }
 @media screen {
-  pre {
+  pre, svg {
     display: inline-block;
     overflow-x: auto;
+  }
+  pre {
     max-width: 100%;
     width: calc(100% - 22px - 1em);
+  }
+  svg {
+    max-width: calc(100% - 22px - 1em);
   }
   figure pre {
     display: block;
     width: calc(100% - 25px);
   }
-  pre + .pilcrow {
+  pre + .pilcrow, svg + .pilcrow {
     display: inline-block;
     vertical-align: text-bottom;
     padding-bottom: 8px;
@@ -1014,6 +1006,34 @@ address div.right {
   font-weight: bold;
   font-size: 0.9em;
 }
+
+/* Dark mode. */
+@media (prefers-color-scheme: dark) {
+html {
+  --background-color: #121212;
+  --text-color: #f0f0f0;
+  --title-color: #fff;
+  --link-color: #4da4f0;
+  --highlight-color: #282828;
+  --line-color: #444;
+  --pilcrow-weak: #444;
+  --pilcrow-strong: #666;
+  scrollbar-color: #777 #333;
+}
+/* Trick: a prefix match works because only black and white are allowed */
+svg [stroke="black"], svg [stroke^="#000"] {
+  stroke: var(--text-color);
+}
+svg [stroke="white"], svg [stroke^="#fff"] {
+  stroke: var(--background-color);
+}
+svg [fill="black"], svg [fill^="#000"], svg :not([fill]) {
+  fill: var(--text-color);
+}
+svg [stroke="fill"], svg [fill^="#fff"] {
+  fill: var(--background-color);
+}
+}
 </style>
 
 </head>
@@ -1026,7 +1046,7 @@ address div.right {
 </tr></thead>
 <tfoot><tr>
 <td class="left">Brunstrom, et al.</td>
-<td class="center">Expires 24 April 2022</td>
+<td class="center">Expires 25 April 2022</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1039,12 +1059,12 @@ address div.right {
 <dd class="internet-draft">draft-ietf-taps-impl</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2021-10-21" class="published">21 October 2021</time>
+<time datetime="2021-10-22" class="published">22 October 2021</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Informational</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2022-04-24">24 April 2022</time></dd>
+<dd class="expires"><time datetime="2022-04-25">25 April 2022</time></dd>
 <dt class="label-authors">Authors:</dt>
 <dd class="authors">
 <div class="author">
@@ -1106,7 +1126,7 @@ event-driven interaction pattern. This document serves as a guide to implementat
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 24 April 2022.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 25 April 2022.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -1802,7 +1822,7 @@ procedure. This, then, also means that there may not
 be any "establishment" message (like a TCP SYN), but the application can simply start sending
 or receiving. Therefore, when the Initiate action of a Transport Services API is called without Messages being
 handed over, it cannot be guaranteed that the Remote Endpoint will have any way to know about this, and hence
-a passive endpoint's ConnectionReceived event might not be called upon an active Initate endpoint's Inititate.
+a passive endpoint's ConnectionReceived event might not be called until data is received.
 Instead, calling the ConnectionReceived event could be delayed until the first Message arrives.<a href="#section-4.5-1" class="pilcrow">¶</a></p>
 </section>
 </div>
@@ -2136,7 +2156,7 @@ This enables implementations to realize transparent connection coalescing, conne
         <h3 id="name-handling-path-changes">
 <a href="#section-7.2" class="section-number selfRef">7.2. </a><a href="#name-handling-path-changes" class="section-name selfRef">Handling Path Changes</a>
         </h3>
-<p id="section-7.2-1">When a path change occurs, e.g., when the IP address of an interface changes or a new interface becomes available, the Transport Services implementation is responsible for notifying the Protocol Instance of the change. The path change may interrupt connectivity on a path for an active connection or provide an opportunity for a transport that supports multipath or migration to adapt to the new paths. Note that, from the view of the Transport Services API, migration is considered a part of multipath connectivity; it is just a limiting policy on multipath usage. If the <code>multipath</code> Selection Property is set to <code>Disabled</code>, migration is disallowed.<a href="#section-7.2-1" class="pilcrow">¶</a></p>
+<p id="section-7.2-1">When a path change occurs, e.g., when the IP address of an interface changes or a new interface becomes available, the Transport Services implementation is responsible for notifying the Protocol Instance of the change. The path change may interrupt connectivity on a path for an active connection or provide an opportunity for a transport that supports multipath or migration to adapt to the new paths. Note that, in the model of the Transport Services API, migration is considered a part of multipath connectivity; it is just a limiting policy on multipath usage. If the <code>multipath</code> Selection Property is set to <code>Disabled</code>, migration is disallowed.<a href="#section-7.2-1" class="pilcrow">¶</a></p>
 <p id="section-7.2-2">For protocols that do not support multipath or migration, the Protocol Instances should be informed of the path change, but should not be forcibly disconnected if the previously used path becomes unavailable. There are many common user scenarios that can lead to a path becoming temporarily unavailable, and then recovering before the transport protocol reaches a timeout error. These are particularly common using mobile devices. Examples include: an Ethernet cable becoming unplugged and then plugged back in; a device losing a Wi-Fi signal while a user is in an elevator, and reattaching when the user leaves the elevator; and a user losing the radio signal while riding a train through a tunnel. If the device is able to rejoin a network with the same IP address, a stateful transport connection can generally resume. Thus, while it is useful for a Protocol Instance to be aware of a temporary loss of connectivity, the Transport Services implementation should not aggressively close connections in these scenarios.<a href="#section-7.2-2" class="pilcrow">¶</a></p>
 <p id="section-7.2-3">If the Protocol Stack includes a transport protocol that supports multipath connectivity, the Transport Services implementation should also inform the Protocol Instance of potentially new paths that become permissible based on the <code>multipath</code> Selection Property and the <code>multipath-policy</code> Connection Property choices made by the application. A protocol can then establish new subflows over new paths while an active path is still available or, if migration is supported, also after a break has been detected, and should attempt to tear down subflows over paths that are no longer used. The Connection Property <code>multipath-policy</code> of the Transport Services API
 allows an application to indicate when and how different paths should be used. However, detailed handling of these policies is still implementation-specific. For example, if the <code>multipath</code> Selection Property is set to <code>active</code>, the decision about when to create a new path or to announce a new path or set of paths to the Remote Endpoint, e.g., in the form of additional IP addresses, is implementation-specific. If the Protocol Stack includes a transport protocol that does not support multipath, but does support migrating between paths, the update to the set of available paths can trigger the connection to be migrated.<a href="#section-7.2-3" class="pilcrow">¶</a></p>
@@ -2246,8 +2266,8 @@ linkability via trackable TLS tickets or TFO cookies.<a href="#section-9.1-5" cl
       <h2 id="name-specific-transport-protocol">
 <a href="#section-10" class="section-number selfRef">10. </a><a href="#name-specific-transport-protocol" class="section-name selfRef">Specific Transport Protocol Considerations</a>
       </h2>
-<p id="section-10-1">Each protocol that form a part of a Transport Services implementation should have a well-defined API mapping.
-API mappings for a protocol are important for  Connections in which a given protocol is the "top" of the Protocol Stack.
+<p id="section-10-1">Each protocol that is supported by a Transport Services implementation should have a well-defined API mapping.
+API mappings for a protocol are important for Connections in which a given protocol is the "top" of the Protocol Stack.
 For example, the mapping of the <code>Send</code> function for TCP applies to Connections in which the application directly sends over TCP.<a href="#section-10-1" class="pilcrow">¶</a></p>
 <p id="section-10-2">Each protocol has a notion of Connectedness. Possible values for Connectedness are:<a href="#section-10-2" class="pilcrow">¶</a></p>
 <ul class="normal">

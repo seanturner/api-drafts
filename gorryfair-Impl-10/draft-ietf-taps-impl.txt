@@ -5,7 +5,7 @@
 TAPS Working Group                                     A. Brunstrom, Ed.
 Internet-Draft                                       Karlstad University
 Intended status: Informational                             T. Pauly, Ed.
-Expires: 24 April 2022                                        Apple Inc.
+Expires: 25 April 2022                                        Apple Inc.
                                                              T. Enghardt
                                                                  Netflix
                                                                 T. Jones
@@ -16,7 +16,7 @@ Expires: 24 April 2022                                        Apple Inc.
                                                    University of Glasgow
                                                                 M. Welzl
                                                       University of Oslo
-                                                         21 October 2021
+                                                         22 October 2021
 
 
              Implementing Interfaces to Transport Services
@@ -46,7 +46,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 24 April 2022.
+   This Internet-Draft will expire on 25 April 2022.
 
 Copyright Notice
 
@@ -924,8 +924,8 @@ Aggregate [Endpoint: www.example.com:80] [Interface: Any]   [Protocol: TCP]
    called without Messages being handed over, it cannot be guaranteed
    that the Remote Endpoint will have any way to know about this, and
    hence a passive endpoint's ConnectionReceived event might not be
-   called upon an active Initate endpoint's Inititate.  Instead, calling
-   the ConnectionReceived event could be delayed until the first Message
+   called until data is received.  Instead, calling the
+   ConnectionReceived event could be delayed until the first Message
    arrives.
 
 4.6.  Handling connectionless protocols
@@ -1420,7 +1420,7 @@ MessageFramer.Deliver(Connection, MessageContext, Data, IsEndOfMessage)
    the change.  The path change may interrupt connectivity on a path for
    an active connection or provide an opportunity for a transport that
    supports multipath or migration to adapt to the new paths.  Note
-   that, from the view of the Transport Services API, migration is
+   that, in the model of the Transport Services API, migration is
    considered a part of multipath connectivity; it is just a limiting
    policy on multipath usage.  If the multipath Selection Property is
    set to Disabled, migration is disallowed.
@@ -1613,12 +1613,12 @@ MessageFramer.Deliver(Connection, MessageContext, Data, IsEndOfMessage)
 
 10.  Specific Transport Protocol Considerations
 
-   Each protocol that form a part of a Transport Services implementation
-   should have a well-defined API mapping.  API mappings for a protocol
-   are important for Connections in which a given protocol is the "top"
-   of the Protocol Stack.  For example, the mapping of the Send function
-   for TCP applies to Connections in which the application directly
-   sends over TCP.
+   Each protocol that is supported by a Transport Services
+   implementation should have a well-defined API mapping.  API mappings
+   for a protocol are important for Connections in which a given
+   protocol is the "top" of the Protocol Stack.  For example, the
+   mapping of the Send function for TCP applies to Connections in which
+   the application directly sends over TCP.
 
    Each protocol has a notion of Connectedness.  Possible values for
    Connectedness are:
