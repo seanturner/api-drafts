@@ -182,20 +182,20 @@ Table of Contents
       changes to the application.
 
    *  Section 3 explains the fundamental requirements for a Transport
-      Services API.  These principles are intended to make sure that
+      Services system.  These principles are intended to make sure that
       transport protocols can continue to be enhanced and evolve without
       requiring significant changes by application developers.
 
-   *  Section 4 presents the Transport Services architecture diagram and
-      defines the concepts that are used by both the API
-      [I-D.ietf-taps-interface] and implementation guidelines
+   *  Section 4 presents a diagram showing the Transport Services
+      architecture and defines the concepts that are used by both the
+      API [I-D.ietf-taps-interface] and implementation guidelines
       [I-D.ietf-taps-impl].  The Preconnection allows applications to
       configure Connection Properties.
 
    *  Section 4 also presents how an abstract Connection is used to
       select a transport protocol instance such as TCP, UDP, or another
       transport.  The Connection represents an object that can be used
-      to send and receive Messages.
+      to send and receive messages.
 
 1.3.  Specification of Requirements
 
@@ -267,12 +267,12 @@ Table of Contents
                    Figure 2: Transport Services API Model
 
    The Transport Services API [I-D.ietf-taps-interface] defines the
-   interface for an application to create network connections and
-   transfer data.  It combines interfaces for multiple interaction
-   patterns into a unified whole.  By combining name resolution with
-   connection establishment and data transfer in a single API, it allows
-   for more flexible implementations to provide path and transport
-   protocol agility on the application's behalf.
+   interface for an application to create Connections and transfer data.
+   It combines interfaces for multiple interaction patterns into a
+   unified whole.  By combining name resolution with connection
+   establishment and data transfer in a single API, it allows for more
+   flexible implementations to provide path and transport protocol
+   agility on the application's behalf.
 
    The Transport Services implementation [I-D.ietf-taps-impl] implements
    the transport layer protocols and other functions needed to send and
@@ -322,13 +322,13 @@ Table of Contents
 2.2.  Data Transfer Using Messages
 
    The Socket API provides a message interface for datagram protocols
-   like UDP, but provide an unstructured stream abstraction for TCP.
-   While TCP does indeed provide the ability to send and receive data as
-   streams, most applications need to interpret structure within these
-   streams.  For example, HTTP/1.1 uses character delimiters to segment
-   messages over a stream [RFC7230]; TLS record headers carry a version,
-   content type, and length [RFC8446]; and HTTP/2 uses frames to segment
-   its headers and bodies [RFC7540].
+   like UDP, but provides an unstructured stream abstraction for TCP.
+   While TCP has the ability to send and receive data as a byte-stream,
+   most applications need to interpret structure within this byte-
+   stream.  For example, HTTP/1.1 uses character delimiters to segment
+   messages over a byte-stream [RFC7230]; TLS record headers carry a
+   version, content type, and length [RFC8446]; and HTTP/2 uses frames
+   to segment its headers and bodies [RFC7540].
 
    The Transport Services API represents data as messages, so that it
    more closely matches the way applications use the network.  Providing
@@ -337,15 +337,9 @@ Table of Contents
    *  the ability to associate deadlines with messages, for applications
       that care about timing;
 
-   *  the ability to provide control of reliability, choosing which
-      messages to retransmit when there is packet loss, and how best to
-      make use of the data that arrived;
-
-   *  the ability to manage dependencies between messages, when a
-      Transport Services implementation could decide to not deliver a
-      message, either following packet loss or because it has missed a
-      deadline.  In particular, this can avoid (re-)sending data that
-      relies on a previous transmission that was never received.
+   *  the ability control reliability, which messages to retransmit when
+      there is packet loss, and how best to make use of the data that
+      arrived;
 
    *  the ability to automatically assign messages and connections to
       underlying transport connections to utilize multi-streaming and
@@ -414,8 +408,8 @@ Table of Contents
    inform how transport protocols use a network path or interface.
 
    There are several ways the Transport Services system can offer
-   flexibility to an application: it can provide access to multiple sets
-   of protocols and protocol features; it can use these protocols across
+   flexibility to an application: it can provide access to transport
+   protocols and protocol features; it can use these protocols across
    multiple paths that could have different performance and functional
    characteristics; and it can communicate with different remote systems
    to optimize performance, robustness to failure, or some other metric.
@@ -574,11 +568,11 @@ Table of Contents
    not.
 
    A Transport Services system makes decisions that select protocols and
-   interfaces.  In normal use, a Transport Services system SHOULD result
-   in consistent protocol and interface selection decisions for the same
-   network conditions given the same set of Properties.  This is
-   intended to provide predictable outcomes to the application using the
-   API.
+   interfaces.  In normal use, a given version of a Transport Services
+   system SHOULD result in consistent protocol and interface selection
+   decisions for the same network conditions given the same set of
+   Properties.  This is intended to provide predictable outcomes to the
+   application using the API.
 
 4.  Transport Services Architecture and Concepts
 
@@ -880,8 +874,7 @@ Table of Contents
       information about the received Message, such as metadata generated
       at the receiver and information signalled by the Remote Endpoint.
       For example, a Message can be marked with a Message Property
-      indicating that it is the final message on a connection if the
-      peer sent a TCP FIN.
+      indicating that it is the final message on a connection.
 
    *  Send: The action to transmit a Message over a Connection to the
       Remote Endpoint.  The interface to Send can accept Message
@@ -1015,10 +1008,10 @@ Table of Contents
       phase (Section 4.2.2).
 
    *  Candidate Protocol Stack: One Protocol Stack that can be used by
-      an application for a connection, of which there can be several.
-      Candidate Protocol Stacks are identified during the gathering
-      phase (Section 4.2.1) and are started during the racing phase
-      (Section 4.2.2).
+      an application for a Connection, which there can be several
+      candidates.  Candidate Protocol Stacks are identified during the
+      gathering phase (Section 4.2.1) and are started during the racing
+      phase (Section 4.2.2).
 
    *  System Policy: Represents the input from an operating system or
       other global preferences that can constrain or influence how an
@@ -1051,7 +1044,7 @@ Table of Contents
 4.2.2.  Candidate Racing
 
    Connection establishment attempts for a set of candidates may be
-   performed simultaneously, synchronously, serially, or some
+   performed simultaneously, synchronously, serially, or using some
    combination of all of these.  We refer to this process as racing,
    borrowing terminology from Happy Eyeballs [RFC8305].
 
@@ -1080,7 +1073,7 @@ Table of Contents
    protocol state, cached path state, and heuristics, may be shared
    (e.g. across multiple connections in an application).  This provides
    efficiency and convenience for the application, since the Transport
-   Services implementation can automatically optimize behavior.
+   Services system can automatically optimize behavior.
 
    There are several reasons, however, that an application might want to
    explicitly isolate some Connections.  These reasons include:
