@@ -5,7 +5,7 @@
 TAPS Working Group                                      B. Trammell, Ed.
 Internet-Draft                                   Google Switzerland GmbH
 Intended status: Standards Track                           M. Welzl, Ed.
-Expires: 24 April 2022                                University of Oslo
+Expires: 25 April 2022                                University of Oslo
                                                              T. Enghardt
                                                                  Netflix
                                                             G. Fairhurst
@@ -22,7 +22,7 @@ Expires: 24 April 2022                                University of Oslo
                                                               Apple Inc.
                                                                  K. Rose
                                                Akamai Technologies, Inc.
-                                                         21 October 2021
+                                                         22 October 2021
 
 
      An Abstract Application Layer Interface to Transport Services
@@ -56,7 +56,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 24 April 2022.
+   This Internet-Draft will expire on 25 April 2022.
 
 Copyright Notice
 
@@ -203,14 +203,14 @@ Table of Contents
    The Transport Services system derives specific path and protocol
    selection properties and supported transport features from the
    analysis provided in [RFC8095], [RFC8923], and [RFC8922].  The
-   Transpor Services API enables a Transport Services implementation to
-   dynamically choose a transport protocol rather than statically
-   binding applications to a protocol at compile time.  The Transport
-   Services API also provides applications with a way to override
-   transport selection and instantiate a specific stack, e.g., to
-   support servers wishing to listen to a specific protocol.  However,
-   forcing a choice to use a specific transport stack is discouraged for
-   general use, because it can reduce portability.
+   Transport Services API enables an implementation to dynamically
+   choose a transport protocol rather than statically binding
+   applications to a protocol at compile time.  The Transport Services
+   API also provides applications with a way to override transport
+   selection and instantiate a specific stack, e.g., to support servers
+   wishing to listen to a specific protocol.  However, forcing a choice
+   to use a specific transport stack is discouraged for general use,
+   because it can reduce portability.
 
 1.1.  Terminology and Notation
 
