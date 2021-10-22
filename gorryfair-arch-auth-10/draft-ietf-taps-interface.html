@@ -22,15 +22,15 @@ network paths dynamically at runtime. This API enables faster deployment
 of new protocols and protocol features without requiring changes to the
 applications. The specified API follows the Transport Services Architecture
 by providing asynchronous, atomic transmission of messages. It is intended to replace the
-traditional BSD sockets API as the common interface to the
+BSD sockets API as the common interface to the
 transport layer, in an environment where endpoints could select from 
 multiple interfaces and potential transport protocols. 
     " name="description">
-<meta content="xml2rfc 3.9.1" name="generator">
+<meta content="xml2rfc 3.10.0" name="generator">
 <meta content="Internet-Draft" name="keyword">
 <meta content="draft-ietf-taps-interface" name="ietf.draft">
 <!-- Generator version information:
-  xml2rfc 3.9.1
+  xml2rfc 3.10.0
     Python 3.9.5
     appdirs 1.4.4
     ConfigArgParse 1.3
@@ -226,19 +226,6 @@ html {
   --small-font-size: 14.5px;
   scrollbar-color: #bbb #eee;
 }
-@media (prefers-color-scheme: dark) {
-html {
-  --background-color: #121212;
-  --text-color: #f0f0f0;
-  --title-color: #fff;
-  --link-color: #4da4f0;
-  --highlight-color: #282828;
-  --line-color: #444;
-  --pilcrow-weak: #444;
-  --pilcrow-strong: #666;
-  scrollbar-color: #777 #333;
-}
-}
 body {
   max-width: 600px;
   margin: 75px auto;
@@ -254,22 +241,22 @@ body {
 }
 
 /* headings */
-#title, h1, h2, h3, h4, h5, h6 {
+h1, h2, h3, h4, h5, h6 {
   font-family: "Cabin Condensed", sans-serif;
   font-weight: 600;
   margin: 0.8em 0 0.3em;
   font-size-adjust: 0.5;
   color: var(--title-color);
 }
-#title {
+h1#title {
   font-size: 32px;
   line-height: 40px;
   clear: both;
 }
-#title, #rfcnum {
+h1#title, h1#rfcnum {
   margin: 1.5em 0 0.2em;
 }
-#rfcnum + #title {
+h1#rfcnum + h1#title {
   margin: 0.2em 0;
 }
 
@@ -457,17 +444,22 @@ figcaption, caption {
   text-align: left;
 }
 @media screen {
-  pre {
+  pre, svg {
     display: inline-block;
     overflow-x: auto;
+  }
+  pre {
     max-width: 100%;
     width: calc(100% - 22px - 1em);
+  }
+  svg {
+    max-width: calc(100% - 22px - 1em);
   }
   figure pre {
     display: block;
     width: calc(100% - 25px);
   }
-  pre + .pilcrow {
+  pre + .pilcrow, svg + .pilcrow {
     display: inline-block;
     vertical-align: text-bottom;
     padding-bottom: 8px;
@@ -481,9 +473,6 @@ aside, blockquote {
   font-style: italic;
 }
 blockquote {
-  background-color: var(--highlight-color);
-  border: 1px solid var(--line-color);
-  border-radius: 3px;
   margin: 1em 0;
 }
 cite {
@@ -1026,6 +1015,34 @@ address div.right {
   font-weight: bold;
   font-size: 0.9em;
 }
+
+/* Dark mode. */
+@media (prefers-color-scheme: dark) {
+html {
+  --background-color: #121212;
+  --text-color: #f0f0f0;
+  --title-color: #fff;
+  --link-color: #4da4f0;
+  --highlight-color: #282828;
+  --line-color: #444;
+  --pilcrow-weak: #444;
+  --pilcrow-strong: #666;
+  scrollbar-color: #777 #333;
+}
+/* Trick: a prefix match works because only black and white are allowed */
+svg [stroke="black"], svg [stroke^="#000"] {
+  stroke: var(--text-color);
+}
+svg [stroke="white"], svg [stroke^="#fff"] {
+  stroke: var(--background-color);
+}
+svg [fill="black"], svg [fill^="#000"], svg :not([fill]) {
+  fill: var(--text-color);
+}
+svg [stroke="fill"], svg [fill^="#fff"] {
+  fill: var(--background-color);
+}
+}
 </style>
 
 </head>
@@ -1034,11 +1051,11 @@ address div.right {
 <thead><tr>
 <td class="left">Internet-Draft</td>
 <td class="center">TAPS Interface</td>
-<td class="right">September 2021</td>
+<td class="right">October 2021</td>
 </tr></thead>
 <tfoot><tr>
 <td class="left">Trammell, et al.</td>
-<td class="center">Expires 25 March 2022</td>
+<td class="center">Expires 25 April 2022</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1051,12 +1068,12 @@ address div.right {
 <dd class="internet-draft">draft-ietf-taps-interface</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2021-09-21" class="published">21 September 2021</time>
+<time datetime="2021-10-22" class="published">22 October 2021</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Standards Track</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2022-03-25">25 March 2022</time></dd>
+<dd class="expires"><time datetime="2022-04-25">25 April 2022</time></dd>
 <dt class="label-authors">Authors:</dt>
 <dd class="authors">
 <div class="author">
@@ -1113,7 +1130,7 @@ network paths dynamically at runtime. This API enables faster deployment
 of new protocols and protocol features without requiring changes to the
 applications. The specified API follows the Transport Services Architecture
 by providing asynchronous, atomic transmission of messages. It is intended to replace the
-traditional BSD sockets API as the common interface to the
+BSD sockets API as the common interface to the
 transport layer, in an environment where endpoints could select from 
 multiple interfaces and potential transport protocols.<a href="#section-abstract-1" class="pilcrow">¶</a></p>
 </section>
@@ -1136,7 +1153,7 @@ multiple interfaces and potential transport protocols.<a href="#section-abstract
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 25 March 2022.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 25 April 2022.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -1164,353 +1181,353 @@ multiple interfaces and potential transport protocols.<a href="#section-abstract
         <a href="#" onclick="scroll(0,0)" class="toplink">▲</a><h2 id="name-table-of-contents">
 <a href="#name-table-of-contents" class="section-name selfRef">Table of Contents</a>
         </h2>
-<nav class="toc"><ul class="ulEmpty ulBare toc compact">
-<li class="ulEmpty ulBare toc compact" id="section-toc.1-1.1">
+<nav class="toc"><ul class="compact toc ulBare ulEmpty">
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.1">
             <p id="section-toc.1-1.1.1" class="keepWithNext"><a href="#section-1" class="xref">1</a>.  <a href="#name-introduction" class="xref">Introduction</a></p>
-<ul class="ulEmpty ulBare toc compact">
-<li class="ulEmpty ulBare toc compact" id="section-toc.1-1.1.2.1">
+<ul class="compact toc ulBare ulEmpty">
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.1.2.1">
                 <p id="section-toc.1-1.1.2.1.1" class="keepWithNext"><a href="#section-1.1" class="xref">1.1</a>.  <a href="#name-terminology-and-notation" class="xref">Terminology and Notation</a></p>
 </li>
-              <li class="ulEmpty ulBare toc compact" id="section-toc.1-1.1.2.2">
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.1.2.2">
                 <p id="section-toc.1-1.1.2.2.1" class="keepWithNext"><a href="#section-1.2" class="xref">1.2</a>.  <a href="#name-specification-of-requiremen" class="xref">Specification of Requirements</a></p>
 </li>
             </ul>
 </li>
-          <li class="ulEmpty ulBare toc compact" id="section-toc.1-1.2">
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.2">
             <p id="section-toc.1-1.2.1"><a href="#section-2" class="xref">2</a>.  <a href="#name-overview-of-interface-desig" class="xref">Overview of Interface Design</a></p>
 </li>
-          <li class="ulEmpty ulBare toc compact" id="section-toc.1-1.3">
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3">
             <p id="section-toc.1-1.3.1"><a href="#section-3" class="xref">3</a>.  <a href="#name-api-summary" class="xref">API Summary</a></p>
-<ul class="ulEmpty ulBare toc compact">
-<li class="ulEmpty ulBare toc compact" id="section-toc.1-1.3.2.1">
+<ul class="compact toc ulBare ulEmpty">
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3.2.1">
                 <p id="section-toc.1-1.3.2.1.1"><a href="#section-3.1" class="xref">3.1</a>.  <a href="#name-usage-examples" class="xref">Usage Examples</a></p>
-<ul class="ulEmpty ulBare toc compact">
-<li class="ulEmpty ulBare toc compact" id="section-toc.1-1.3.2.1.2.1">
+<ul class="compact toc ulBare ulEmpty">
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3.2.1.2.1">
                     <p id="section-toc.1-1.3.2.1.2.1.1"><a href="#section-3.1.1" class="xref">3.1.1</a>.  <a href="#name-server-example" class="xref">Server Example</a></p>
 </li>
-                  <li class="ulEmpty ulBare toc compact" id="section-toc.1-1.3.2.1.2.2">
+                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3.2.1.2.2">
                     <p id="section-toc.1-1.3.2.1.2.2.1"><a href="#section-3.1.2" class="xref">3.1.2</a>.  <a href="#name-client-example" class="xref">Client Example</a></p>
 </li>
-                  <li class="ulEmpty ulBare toc compact" id="section-toc.1-1.3.2.1.2.3">
+                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3.2.1.2.3">
                     <p id="section-toc.1-1.3.2.1.2.3.1"><a href="#section-3.1.3" class="xref">3.1.3</a>.  <a href="#name-peer-example" class="xref">Peer Example</a></p>
 </li>
                 </ul>
 </li>
             </ul>
 </li>
-          <li class="ulEmpty ulBare toc compact" id="section-toc.1-1.4">
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4">
             <p id="section-toc.1-1.4.1"><a href="#section-4" class="xref">4</a>.  <a href="#name-transport-properties" class="xref">Transport Properties</a></p>
-<ul class="ulEmpty ulBare toc compact">
-<li class="ulEmpty ulBare toc compact" id="section-toc.1-1.4.2.1">
+<ul class="compact toc ulBare ulEmpty">
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4.2.1">
                 <p id="section-toc.1-1.4.2.1.1"><a href="#section-4.1" class="xref">4.1</a>.  <a href="#name-transport-property-names" class="xref">Transport Property Names</a></p>
 </li>
-              <li class="ulEmpty ulBare toc compact" id="section-toc.1-1.4.2.2">
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4.2.2">
                 <p id="section-toc.1-1.4.2.2.1"><a href="#section-4.2" class="xref">4.2</a>.  <a href="#name-transport-property-types" class="xref">Transport Property Types</a></p>
 </li>
             </ul>
 </li>
-          <li class="ulEmpty ulBare toc compact" id="section-toc.1-1.5">
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.5">
             <p id="section-toc.1-1.5.1"><a href="#section-5" class="xref">5</a>.  <a href="#name-scope-of-the-interface-defi" class="xref">Scope of the Interface Definition</a></p>
 </li>
-          <li class="ulEmpty ulBare toc compact" id="section-toc.1-1.6">
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.6">
             <p id="section-toc.1-1.6.1"><a href="#section-6" class="xref">6</a>.  <a href="#name-pre-establishment-phase" class="xref">Pre-Establishment Phase</a></p>
-<ul class="ulEmpty ulBare toc compact">
-<li class="ulEmpty ulBare toc compact" id="section-toc.1-1.6.2.1">
+<ul class="compact toc ulBare ulEmpty">
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.6.2.1">
                 <p id="section-toc.1-1.6.2.1.1"><a href="#section-6.1" class="xref">6.1</a>.  <a href="#name-specifying-endpoints" class="xref">Specifying Endpoints</a></p>
-<ul class="ulEmpty ulBare toc compact">
-<li class="ulEmpty ulBare toc compact" id="section-toc.1-1.6.2.1.2.1">
+<ul class="compact toc ulBare ulEmpty">
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.6.2.1.2.1">
                     <p id="section-toc.1-1.6.2.1.2.1.1"><a href="#section-6.1.1" class="xref">6.1.1</a>.  <a href="#name-using-multicast-endpoints" class="xref">Using Multicast Endpoints</a></p>
 </li>
-                  <li class="ulEmpty ulBare toc compact" id="section-toc.1-1.6.2.1.2.2">
+                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.6.2.1.2.2">
                     <p id="section-toc.1-1.6.2.1.2.2.1"><a href="#section-6.1.2" class="xref">6.1.2</a>.  <a href="#name-endpoint-aliases" class="xref">Endpoint Aliases</a></p>
 </li>
-                  <li class="ulEmpty ulBare toc compact" id="section-toc.1-1.6.2.1.2.3">
+                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.6.2.1.2.3">
                     <p id="section-toc.1-1.6.2.1.2.3.1"><a href="#section-6.1.3" class="xref">6.1.3</a>.  <a href="#name-endpoint-examples" class="xref">Endpoint Examples</a></p>
 </li>
-                  <li class="ulEmpty ulBare toc compact" id="section-toc.1-1.6.2.1.2.4">
+                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.6.2.1.2.4">
                     <p id="section-toc.1-1.6.2.1.2.4.1"><a href="#section-6.1.4" class="xref">6.1.4</a>.  <a href="#name-multicast-examples" class="xref">Multicast Examples</a></p>
 </li>
                 </ul>
 </li>
-              <li class="ulEmpty ulBare toc compact" id="section-toc.1-1.6.2.2">
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.6.2.2">
                 <p id="section-toc.1-1.6.2.2.1"><a href="#section-6.2" class="xref">6.2</a>.  <a href="#name-specifying-transport-proper" class="xref">Specifying Transport Properties</a></p>
-<ul class="ulEmpty ulBare toc compact">
-<li class="ulEmpty ulBare toc compact" id="section-toc.1-1.6.2.2.2.1">
+<ul class="compact toc ulBare ulEmpty">
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.6.2.2.2.1">
                     <p id="section-toc.1-1.6.2.2.2.1.1"><a href="#section-6.2.1" class="xref">6.2.1</a>.  <a href="#name-reliable-data-transfer-conn" class="xref">Reliable Data Transfer (Connection)</a></p>
 </li>
-                  <li class="ulEmpty ulBare toc compact" id="section-toc.1-1.6.2.2.2.2">
+                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.6.2.2.2.2">
                     <p id="section-toc.1-1.6.2.2.2.2.1"><a href="#section-6.2.2" class="xref">6.2.2</a>.  <a href="#name-preservation-of-message-bou" class="xref">Preservation of Message Boundaries</a></p>
 </li>
-                  <li class="ulEmpty ulBare toc compact" id="section-toc.1-1.6.2.2.2.3">
+                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.6.2.2.2.3">
                     <p id="section-toc.1-1.6.2.2.2.3.1"><a href="#section-6.2.3" class="xref">6.2.3</a>.  <a href="#name-configure-per-message-relia" class="xref">Configure Per-Message Reliability</a></p>
 </li>
-                  <li class="ulEmpty ulBare toc compact" id="section-toc.1-1.6.2.2.2.4">
+                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.6.2.2.2.4">
                     <p id="section-toc.1-1.6.2.2.2.4.1"><a href="#section-6.2.4" class="xref">6.2.4</a>.  <a href="#name-preservation-of-data-orderi" class="xref">Preservation of Data Ordering</a></p>
 </li>
-                  <li class="ulEmpty ulBare toc compact" id="section-toc.1-1.6.2.2.2.5">
+                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.6.2.2.2.5">
                     <p id="section-toc.1-1.6.2.2.2.5.1"><a href="#section-6.2.5" class="xref">6.2.5</a>.  <a href="#name-use-0-rtt-session-establish" class="xref">Use 0-RTT Session Establishment with a Safely Replayable Message</a></p>
 </li>
-                  <li class="ulEmpty ulBare toc compact" id="section-toc.1-1.6.2.2.2.6">
+                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.6.2.2.2.6">
                     <p id="section-toc.1-1.6.2.2.2.6.1"><a href="#section-6.2.6" class="xref">6.2.6</a>.  <a href="#name-multistream-connections-in-" class="xref">Multistream Connections in Group</a></p>
 </li>
-                  <li class="ulEmpty ulBare toc compact" id="section-toc.1-1.6.2.2.2.7">
+                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.6.2.2.2.7">
                     <p id="section-toc.1-1.6.2.2.2.7.1"><a href="#section-6.2.7" class="xref">6.2.7</a>.  <a href="#name-full-checksum-coverage-on-s" class="xref">Full Checksum Coverage on Sending</a></p>
 </li>
-                  <li class="ulEmpty ulBare toc compact" id="section-toc.1-1.6.2.2.2.8">
+                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.6.2.2.2.8">
                     <p id="section-toc.1-1.6.2.2.2.8.1"><a href="#section-6.2.8" class="xref">6.2.8</a>.  <a href="#name-full-checksum-coverage-on-r" class="xref">Full Checksum Coverage on Receiving</a></p>
 </li>
-                  <li class="ulEmpty ulBare toc compact" id="section-toc.1-1.6.2.2.2.9">
+                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.6.2.2.2.9">
                     <p id="section-toc.1-1.6.2.2.2.9.1"><a href="#section-6.2.9" class="xref">6.2.9</a>.  <a href="#name-congestion-control" class="xref">Congestion control</a></p>
 </li>
-                  <li class="ulEmpty ulBare toc compact" id="section-toc.1-1.6.2.2.2.10">
+                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.6.2.2.2.10">
                     <p id="section-toc.1-1.6.2.2.2.10.1"><a href="#section-6.2.10" class="xref">6.2.10</a>. <a href="#name-keep-alive" class="xref">Keep alive</a></p>
 </li>
-                  <li class="ulEmpty ulBare toc compact" id="section-toc.1-1.6.2.2.2.11">
+                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.6.2.2.2.11">
                     <p id="section-toc.1-1.6.2.2.2.11.1"><a href="#section-6.2.11" class="xref">6.2.11</a>. <a href="#name-interface-instance-or-type" class="xref">Interface Instance or Type</a></p>
 </li>
-                  <li class="ulEmpty ulBare toc compact" id="section-toc.1-1.6.2.2.2.12">
+                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.6.2.2.2.12">
                     <p id="section-toc.1-1.6.2.2.2.12.1"><a href="#section-6.2.12" class="xref">6.2.12</a>. <a href="#name-provisioning-domain-instanc" class="xref">Provisioning Domain Instance or Type</a></p>
 </li>
-                  <li class="ulEmpty ulBare toc compact" id="section-toc.1-1.6.2.2.2.13">
+                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.6.2.2.2.13">
                     <p id="section-toc.1-1.6.2.2.2.13.1"><a href="#section-6.2.13" class="xref">6.2.13</a>. <a href="#name-use-temporary-local-address" class="xref">Use Temporary Local Address</a></p>
 </li>
-                  <li class="ulEmpty ulBare toc compact" id="section-toc.1-1.6.2.2.2.14">
+                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.6.2.2.2.14">
                     <p id="section-toc.1-1.6.2.2.2.14.1"><a href="#section-6.2.14" class="xref">6.2.14</a>. <a href="#name-multipath-transport" class="xref">Multipath Transport</a></p>
 </li>
-                  <li class="ulEmpty ulBare toc compact" id="section-toc.1-1.6.2.2.2.15">
+                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.6.2.2.2.15">
                     <p id="section-toc.1-1.6.2.2.2.15.1"><a href="#section-6.2.15" class="xref">6.2.15</a>. <a href="#name-advertisement-of-alternativ" class="xref">Advertisement of Alternative Addresses</a></p>
 </li>
-                  <li class="ulEmpty ulBare toc compact" id="section-toc.1-1.6.2.2.2.16">
+                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.6.2.2.2.16">
                     <p id="section-toc.1-1.6.2.2.2.16.1"><a href="#section-6.2.16" class="xref">6.2.16</a>. <a href="#name-direction-of-communication" class="xref">Direction of communication</a></p>
 </li>
-                  <li class="ulEmpty ulBare toc compact" id="section-toc.1-1.6.2.2.2.17">
+                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.6.2.2.2.17">
                     <p id="section-toc.1-1.6.2.2.2.17.1"><a href="#section-6.2.17" class="xref">6.2.17</a>. <a href="#name-notification-of-icmp-soft-e" class="xref">Notification of ICMP soft error message arrival</a></p>
 </li>
-                  <li class="ulEmpty ulBare toc compact" id="section-toc.1-1.6.2.2.2.18">
+                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.6.2.2.2.18">
                     <p id="section-toc.1-1.6.2.2.2.18.1"><a href="#section-6.2.18" class="xref">6.2.18</a>. <a href="#name-initiating-side-is-not-the-" class="xref">Initiating side is not the first to write</a></p>
 </li>
                 </ul>
 </li>
-              <li class="ulEmpty ulBare toc compact" id="section-toc.1-1.6.2.3">
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.6.2.3">
                 <p id="section-toc.1-1.6.2.3.1"><a href="#section-6.3" class="xref">6.3</a>.  <a href="#name-specifying-security-paramet" class="xref">Specifying Security Parameters and Callbacks</a></p>
-<ul class="ulEmpty ulBare toc compact">
-<li class="ulEmpty ulBare toc compact" id="section-toc.1-1.6.2.3.2.1">
+<ul class="compact toc ulBare ulEmpty">
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.6.2.3.2.1">
                     <p id="section-toc.1-1.6.2.3.2.1.1"><a href="#section-6.3.1" class="xref">6.3.1</a>.  <a href="#name-specifying-security-paramete" class="xref">Specifying Security Parameters on a Pre-Connection</a></p>
 </li>
-                  <li class="ulEmpty ulBare toc compact" id="section-toc.1-1.6.2.3.2.2">
+                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.6.2.3.2.2">
                     <p id="section-toc.1-1.6.2.3.2.2.1"><a href="#section-6.3.2" class="xref">6.3.2</a>.  <a href="#name-connection-establishment-ca" class="xref">Connection Establishment Callbacks</a></p>
 </li>
                 </ul>
 </li>
             </ul>
 </li>
-          <li class="ulEmpty ulBare toc compact" id="section-toc.1-1.7">
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.7">
             <p id="section-toc.1-1.7.1"><a href="#section-7" class="xref">7</a>.  <a href="#name-establishing-connections" class="xref">Establishing Connections</a></p>
-<ul class="ulEmpty ulBare toc compact">
-<li class="ulEmpty ulBare toc compact" id="section-toc.1-1.7.2.1">
+<ul class="compact toc ulBare ulEmpty">
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.7.2.1">
                 <p id="section-toc.1-1.7.2.1.1"><a href="#section-7.1" class="xref">7.1</a>.  <a href="#name-active-open-initiate" class="xref">Active Open: Initiate</a></p>
 </li>
-              <li class="ulEmpty ulBare toc compact" id="section-toc.1-1.7.2.2">
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.7.2.2">
                 <p id="section-toc.1-1.7.2.2.1"><a href="#section-7.2" class="xref">7.2</a>.  <a href="#name-passive-open-listen" class="xref">Passive Open: Listen</a></p>
 </li>
-              <li class="ulEmpty ulBare toc compact" id="section-toc.1-1.7.2.3">
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.7.2.3">
                 <p id="section-toc.1-1.7.2.3.1"><a href="#section-7.3" class="xref">7.3</a>.  <a href="#name-peer-to-peer-establishment-" class="xref">Peer-to-Peer Establishment: Rendezvous</a></p>
 </li>
-              <li class="ulEmpty ulBare toc compact" id="section-toc.1-1.7.2.4">
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.7.2.4">
                 <p id="section-toc.1-1.7.2.4.1"><a href="#section-7.4" class="xref">7.4</a>.  <a href="#name-connection-groups" class="xref">Connection Groups</a></p>
 </li>
             </ul>
 </li>
-          <li class="ulEmpty ulBare toc compact" id="section-toc.1-1.8">
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.8">
             <p id="section-toc.1-1.8.1"><a href="#section-8" class="xref">8</a>.  <a href="#name-managing-connections" class="xref">Managing Connections</a></p>
-<ul class="ulEmpty ulBare toc compact">
-<li class="ulEmpty ulBare toc compact" id="section-toc.1-1.8.2.1">
+<ul class="compact toc ulBare ulEmpty">
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.8.2.1">
                 <p id="section-toc.1-1.8.2.1.1"><a href="#section-8.1" class="xref">8.1</a>.  <a href="#name-generic-connection-properti" class="xref">Generic Connection Properties</a></p>
-<ul class="ulEmpty ulBare toc compact">
-<li class="ulEmpty ulBare toc compact" id="section-toc.1-1.8.2.1.2.1">
+<ul class="compact toc ulBare ulEmpty">
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.8.2.1.2.1">
                     <p id="section-toc.1-1.8.2.1.2.1.1"><a href="#section-8.1.1" class="xref">8.1.1</a>.  <a href="#name-required-minimum-corruption" class="xref">Required Minimum Corruption Protection Coverage for Receiving</a></p>
 </li>
-                  <li class="ulEmpty ulBare toc compact" id="section-toc.1-1.8.2.1.2.2">
+                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.8.2.1.2.2">
                     <p id="section-toc.1-1.8.2.1.2.2.1"><a href="#section-8.1.2" class="xref">8.1.2</a>.  <a href="#name-connection-priority" class="xref">Connection Priority</a></p>
 </li>
-                  <li class="ulEmpty ulBare toc compact" id="section-toc.1-1.8.2.1.2.3">
+                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.8.2.1.2.3">
                     <p id="section-toc.1-1.8.2.1.2.3.1"><a href="#section-8.1.3" class="xref">8.1.3</a>.  <a href="#name-timeout-for-aborting-connec" class="xref">Timeout for Aborting Connection</a></p>
 </li>
-                  <li class="ulEmpty ulBare toc compact" id="section-toc.1-1.8.2.1.2.4">
+                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.8.2.1.2.4">
                     <p id="section-toc.1-1.8.2.1.2.4.1"><a href="#section-8.1.4" class="xref">8.1.4</a>.  <a href="#name-timeout-for-keep-alive-pack" class="xref">Timeout for keep alive packets</a></p>
 </li>
-                  <li class="ulEmpty ulBare toc compact" id="section-toc.1-1.8.2.1.2.5">
+                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.8.2.1.2.5">
                     <p id="section-toc.1-1.8.2.1.2.5.1"><a href="#section-8.1.5" class="xref">8.1.5</a>.  <a href="#name-connection-group-transmissi" class="xref">Connection Group Transmission Scheduler</a></p>
 </li>
-                  <li class="ulEmpty ulBare toc compact" id="section-toc.1-1.8.2.1.2.6">
+                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.8.2.1.2.6">
                     <p id="section-toc.1-1.8.2.1.2.6.1"><a href="#section-8.1.6" class="xref">8.1.6</a>.  <a href="#name-capacity-profile" class="xref">Capacity Profile</a></p>
 </li>
-                  <li class="ulEmpty ulBare toc compact" id="section-toc.1-1.8.2.1.2.7">
+                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.8.2.1.2.7">
                     <p id="section-toc.1-1.8.2.1.2.7.1"><a href="#section-8.1.7" class="xref">8.1.7</a>.  <a href="#name-policy-for-using-multipath-" class="xref">Policy for using Multipath Transports</a></p>
 </li>
-                  <li class="ulEmpty ulBare toc compact" id="section-toc.1-1.8.2.1.2.8">
+                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.8.2.1.2.8">
                     <p id="section-toc.1-1.8.2.1.2.8.1"><a href="#section-8.1.8" class="xref">8.1.8</a>.  <a href="#name-bounds-on-send-or-receive-r" class="xref">Bounds on Send or Receive Rate</a></p>
 </li>
-                  <li class="ulEmpty ulBare toc compact" id="section-toc.1-1.8.2.1.2.9">
+                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.8.2.1.2.9">
                     <p id="section-toc.1-1.8.2.1.2.9.1"><a href="#section-8.1.9" class="xref">8.1.9</a>.  <a href="#name-group-connection-limit" class="xref">Group Connection Limit</a></p>
 </li>
-                  <li class="ulEmpty ulBare toc compact" id="section-toc.1-1.8.2.1.2.10">
+                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.8.2.1.2.10">
                     <p id="section-toc.1-1.8.2.1.2.10.1"><a href="#section-8.1.10" class="xref">8.1.10</a>. <a href="#name-isolate-session" class="xref">Isolate Session</a></p>
 </li>
-                  <li class="ulEmpty ulBare toc compact" id="section-toc.1-1.8.2.1.2.11">
+                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.8.2.1.2.11">
                     <p id="section-toc.1-1.8.2.1.2.11.1"><a href="#section-8.1.11" class="xref">8.1.11</a>. <a href="#name-read-only-connection-proper" class="xref">Read-only Connection Properties</a></p>
 </li>
                 </ul>
 </li>
-              <li class="ulEmpty ulBare toc compact" id="section-toc.1-1.8.2.2">
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.8.2.2">
                 <p id="section-toc.1-1.8.2.2.1"><a href="#section-8.2" class="xref">8.2</a>.  <a href="#name-tcp-specific-properties-use" class="xref">TCP-specific Properties: User Timeout Option (UTO)</a></p>
-<ul class="ulEmpty ulBare toc compact">
-<li class="ulEmpty ulBare toc compact" id="section-toc.1-1.8.2.2.2.1">
+<ul class="compact toc ulBare ulEmpty">
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.8.2.2.2.1">
                     <p id="section-toc.1-1.8.2.2.2.1.1"><a href="#section-8.2.1" class="xref">8.2.1</a>.  <a href="#name-advertised-user-timeout" class="xref">Advertised User Timeout</a></p>
 </li>
-                  <li class="ulEmpty ulBare toc compact" id="section-toc.1-1.8.2.2.2.2">
+                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.8.2.2.2.2">
                     <p id="section-toc.1-1.8.2.2.2.2.1"><a href="#section-8.2.2" class="xref">8.2.2</a>.  <a href="#name-user-timeout-enabled" class="xref">User Timeout Enabled</a></p>
 </li>
-                  <li class="ulEmpty ulBare toc compact" id="section-toc.1-1.8.2.2.2.3">
+                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.8.2.2.2.3">
                     <p id="section-toc.1-1.8.2.2.2.3.1"><a href="#section-8.2.3" class="xref">8.2.3</a>.  <a href="#name-timeout-changeable" class="xref">Timeout Changeable</a></p>
 </li>
                 </ul>
 </li>
-              <li class="ulEmpty ulBare toc compact" id="section-toc.1-1.8.2.3">
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.8.2.3">
                 <p id="section-toc.1-1.8.2.3.1"><a href="#section-8.3" class="xref">8.3</a>.  <a href="#name-connection-lifecycle-events" class="xref">Connection Lifecycle Events</a></p>
-<ul class="ulEmpty ulBare toc compact">
-<li class="ulEmpty ulBare toc compact" id="section-toc.1-1.8.2.3.2.1">
+<ul class="compact toc ulBare ulEmpty">
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.8.2.3.2.1">
                     <p id="section-toc.1-1.8.2.3.2.1.1"><a href="#section-8.3.1" class="xref">8.3.1</a>.  <a href="#name-soft-errors" class="xref">Soft Errors</a></p>
 </li>
-                  <li class="ulEmpty ulBare toc compact" id="section-toc.1-1.8.2.3.2.2">
+                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.8.2.3.2.2">
                     <p id="section-toc.1-1.8.2.3.2.2.1"><a href="#section-8.3.2" class="xref">8.3.2</a>.  <a href="#name-path-change" class="xref">Path change</a></p>
 </li>
                 </ul>
 </li>
             </ul>
 </li>
-          <li class="ulEmpty ulBare toc compact" id="section-toc.1-1.9">
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.9">
             <p id="section-toc.1-1.9.1"><a href="#section-9" class="xref">9</a>.  <a href="#name-data-transfer" class="xref">Data Transfer</a></p>
-<ul class="ulEmpty ulBare toc compact">
-<li class="ulEmpty ulBare toc compact" id="section-toc.1-1.9.2.1">
+<ul class="compact toc ulBare ulEmpty">
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.9.2.1">
                 <p id="section-toc.1-1.9.2.1.1"><a href="#section-9.1" class="xref">9.1</a>.  <a href="#name-messages-and-framers" class="xref">Messages and Framers</a></p>
-<ul class="ulEmpty ulBare toc compact">
-<li class="ulEmpty ulBare toc compact" id="section-toc.1-1.9.2.1.2.1">
+<ul class="compact toc ulBare ulEmpty">
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.9.2.1.2.1">
                     <p id="section-toc.1-1.9.2.1.2.1.1"><a href="#section-9.1.1" class="xref">9.1.1</a>.  <a href="#name-message-contexts" class="xref">Message Contexts</a></p>
 </li>
-                  <li class="ulEmpty ulBare toc compact" id="section-toc.1-1.9.2.1.2.2">
+                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.9.2.1.2.2">
                     <p id="section-toc.1-1.9.2.1.2.2.1"><a href="#section-9.1.2" class="xref">9.1.2</a>.  <a href="#name-message-framers" class="xref">Message Framers</a></p>
 </li>
-                  <li class="ulEmpty ulBare toc compact" id="section-toc.1-1.9.2.1.2.3">
+                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.9.2.1.2.3">
                     <p id="section-toc.1-1.9.2.1.2.3.1"><a href="#section-9.1.3" class="xref">9.1.3</a>.  <a href="#name-message-properties" class="xref">Message Properties</a></p>
 </li>
                 </ul>
 </li>
-              <li class="ulEmpty ulBare toc compact" id="section-toc.1-1.9.2.2">
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.9.2.2">
                 <p id="section-toc.1-1.9.2.2.1"><a href="#section-9.2" class="xref">9.2</a>.  <a href="#name-sending-data" class="xref">Sending Data</a></p>
-<ul class="ulEmpty ulBare toc compact">
-<li class="ulEmpty ulBare toc compact" id="section-toc.1-1.9.2.2.2.1">
+<ul class="compact toc ulBare ulEmpty">
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.9.2.2.2.1">
                     <p id="section-toc.1-1.9.2.2.2.1.1"><a href="#section-9.2.1" class="xref">9.2.1</a>.  <a href="#name-basic-sending" class="xref">Basic Sending</a></p>
 </li>
-                  <li class="ulEmpty ulBare toc compact" id="section-toc.1-1.9.2.2.2.2">
+                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.9.2.2.2.2">
                     <p id="section-toc.1-1.9.2.2.2.2.1"><a href="#section-9.2.2" class="xref">9.2.2</a>.  <a href="#name-send-events" class="xref">Send Events</a></p>
 </li>
-                  <li class="ulEmpty ulBare toc compact" id="section-toc.1-1.9.2.2.2.3">
+                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.9.2.2.2.3">
                     <p id="section-toc.1-1.9.2.2.2.3.1"><a href="#section-9.2.3" class="xref">9.2.3</a>.  <a href="#name-partial-sends" class="xref">Partial Sends</a></p>
 </li>
-                  <li class="ulEmpty ulBare toc compact" id="section-toc.1-1.9.2.2.2.4">
+                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.9.2.2.2.4">
                     <p id="section-toc.1-1.9.2.2.2.4.1"><a href="#section-9.2.4" class="xref">9.2.4</a>.  <a href="#name-batching-sends" class="xref">Batching Sends</a></p>
 </li>
-                  <li class="ulEmpty ulBare toc compact" id="section-toc.1-1.9.2.2.2.5">
+                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.9.2.2.2.5">
                     <p id="section-toc.1-1.9.2.2.2.5.1"><a href="#section-9.2.5" class="xref">9.2.5</a>.  <a href="#name-send-on-active-open-initiat" class="xref">Send on Active Open: InitiateWithSend</a></p>
 </li>
-                  <li class="ulEmpty ulBare toc compact" id="section-toc.1-1.9.2.2.2.6">
+                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.9.2.2.2.6">
                     <p id="section-toc.1-1.9.2.2.2.6.1"><a href="#section-9.2.6" class="xref">9.2.6</a>.  <a href="#name-priority-in-taps" class="xref">Priority in TAPS</a></p>
 </li>
                 </ul>
 </li>
-              <li class="ulEmpty ulBare toc compact" id="section-toc.1-1.9.2.3">
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.9.2.3">
                 <p id="section-toc.1-1.9.2.3.1"><a href="#section-9.3" class="xref">9.3</a>.  <a href="#name-receiving-data" class="xref">Receiving Data</a></p>
-<ul class="ulEmpty ulBare toc compact">
-<li class="ulEmpty ulBare toc compact" id="section-toc.1-1.9.2.3.2.1">
+<ul class="compact toc ulBare ulEmpty">
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.9.2.3.2.1">
                     <p id="section-toc.1-1.9.2.3.2.1.1"><a href="#section-9.3.1" class="xref">9.3.1</a>.  <a href="#name-enqueuing-receives" class="xref">Enqueuing Receives</a></p>
 </li>
-                  <li class="ulEmpty ulBare toc compact" id="section-toc.1-1.9.2.3.2.2">
+                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.9.2.3.2.2">
                     <p id="section-toc.1-1.9.2.3.2.2.1"><a href="#section-9.3.2" class="xref">9.3.2</a>.  <a href="#name-receive-events" class="xref">Receive Events</a></p>
 </li>
-                  <li class="ulEmpty ulBare toc compact" id="section-toc.1-1.9.2.3.2.3">
+                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.9.2.3.2.3">
                     <p id="section-toc.1-1.9.2.3.2.3.1"><a href="#section-9.3.3" class="xref">9.3.3</a>.  <a href="#name-receive-message-properties" class="xref">Receive Message Properties</a></p>
 </li>
                 </ul>
 </li>
             </ul>
 </li>
-          <li class="ulEmpty ulBare toc compact" id="section-toc.1-1.10">
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.10">
             <p id="section-toc.1-1.10.1"><a href="#section-10" class="xref">10</a>. <a href="#name-connection-termination" class="xref">Connection Termination</a></p>
 </li>
-          <li class="ulEmpty ulBare toc compact" id="section-toc.1-1.11">
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.11">
             <p id="section-toc.1-1.11.1"><a href="#section-11" class="xref">11</a>. <a href="#name-connection-state-and-orderi" class="xref">Connection State and Ordering of Operations and Events</a></p>
 </li>
-          <li class="ulEmpty ulBare toc compact" id="section-toc.1-1.12">
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.12">
             <p id="section-toc.1-1.12.1"><a href="#section-12" class="xref">12</a>. <a href="#name-iana-considerations" class="xref">IANA Considerations</a></p>
 </li>
-          <li class="ulEmpty ulBare toc compact" id="section-toc.1-1.13">
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.13">
             <p id="section-toc.1-1.13.1"><a href="#section-13" class="xref">13</a>. <a href="#name-privacy-and-security-consid" class="xref">Privacy and Security Considerations</a></p>
 </li>
-          <li class="ulEmpty ulBare toc compact" id="section-toc.1-1.14">
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.14">
             <p id="section-toc.1-1.14.1"><a href="#section-14" class="xref">14</a>. <a href="#name-acknowledgements" class="xref">Acknowledgements</a></p>
 </li>
-          <li class="ulEmpty ulBare toc compact" id="section-toc.1-1.15">
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.15">
             <p id="section-toc.1-1.15.1"><a href="#section-15" class="xref">15</a>. <a href="#name-references" class="xref">References</a></p>
-<ul class="ulEmpty ulBare toc compact">
-<li class="ulEmpty ulBare toc compact" id="section-toc.1-1.15.2.1">
+<ul class="compact toc ulBare ulEmpty">
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.15.2.1">
                 <p id="section-toc.1-1.15.2.1.1"><a href="#section-15.1" class="xref">15.1</a>.  <a href="#name-normative-references" class="xref">Normative References</a></p>
 </li>
-              <li class="ulEmpty ulBare toc compact" id="section-toc.1-1.15.2.2">
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.15.2.2">
                 <p id="section-toc.1-1.15.2.2.1"><a href="#section-15.2" class="xref">15.2</a>.  <a href="#name-informative-references" class="xref">Informative References</a></p>
 </li>
             </ul>
 </li>
-          <li class="ulEmpty ulBare toc compact" id="section-toc.1-1.16">
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.16">
             <p id="section-toc.1-1.16.1"><a href="#appendix-A" class="xref">Appendix A</a>.  <a href="#name-implementation-mapping" class="xref">Implementation Mapping</a></p>
-<ul class="ulEmpty ulBare toc compact">
-<li class="ulEmpty ulBare toc compact" id="section-toc.1-1.16.2.1">
+<ul class="compact toc ulBare ulEmpty">
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.16.2.1">
                 <p id="section-toc.1-1.16.2.1.1"><a href="#appendix-A.1" class="xref">A.1</a>.  <a href="#name-types" class="xref">Types</a></p>
 </li>
-              <li class="ulEmpty ulBare toc compact" id="section-toc.1-1.16.2.2">
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.16.2.2">
                 <p id="section-toc.1-1.16.2.2.1"><a href="#appendix-A.2" class="xref">A.2</a>.  <a href="#name-events-and-errors" class="xref">Events and Errors</a></p>
 </li>
-              <li class="ulEmpty ulBare toc compact" id="section-toc.1-1.16.2.3">
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.16.2.3">
                 <p id="section-toc.1-1.16.2.3.1"><a href="#appendix-A.3" class="xref">A.3</a>.  <a href="#name-time-duration" class="xref">Time Duration</a></p>
 </li>
             </ul>
 </li>
-          <li class="ulEmpty ulBare toc compact" id="section-toc.1-1.17">
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.17">
             <p id="section-toc.1-1.17.1"><a href="#appendix-B" class="xref">Appendix B</a>.  <a href="#name-convenience-functions" class="xref">Convenience Functions</a></p>
-<ul class="ulEmpty ulBare toc compact">
-<li class="ulEmpty ulBare toc compact" id="section-toc.1-1.17.2.1">
+<ul class="compact toc ulBare ulEmpty">
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.17.2.1">
                 <p id="section-toc.1-1.17.2.1.1"><a href="#appendix-B.1" class="xref">B.1</a>.  <a href="#name-adding-preference-propertie" class="xref">Adding Preference Properties</a></p>
 </li>
-              <li class="ulEmpty ulBare toc compact" id="section-toc.1-1.17.2.2">
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.17.2.2">
                 <p id="section-toc.1-1.17.2.2.1"><a href="#appendix-B.2" class="xref">B.2</a>.  <a href="#name-transport-property-profiles" class="xref">Transport Property Profiles</a></p>
-<ul class="ulEmpty ulBare toc compact">
-<li class="ulEmpty ulBare toc compact" id="section-toc.1-1.17.2.2.2.1">
+<ul class="compact toc ulBare ulEmpty">
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.17.2.2.2.1">
                     <p id="section-toc.1-1.17.2.2.2.1.1"><a href="#appendix-B.2.1" class="xref">B.2.1</a>.  <a href="#name-reliable-inorder-stream" class="xref">reliable-inorder-stream</a></p>
 </li>
-                  <li class="ulEmpty ulBare toc compact" id="section-toc.1-1.17.2.2.2.2">
+                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.17.2.2.2.2">
                     <p id="section-toc.1-1.17.2.2.2.2.1"><a href="#appendix-B.2.2" class="xref">B.2.2</a>.  <a href="#name-reliable-message" class="xref">reliable-message</a></p>
 </li>
-                  <li class="ulEmpty ulBare toc compact" id="section-toc.1-1.17.2.2.2.3">
+                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.17.2.2.2.3">
                     <p id="section-toc.1-1.17.2.2.2.3.1"><a href="#appendix-B.2.3" class="xref">B.2.3</a>.  <a href="#name-unreliable-datagram" class="xref">unreliable-datagram</a></p>
 </li>
                 </ul>
 </li>
             </ul>
 </li>
-          <li class="ulEmpty ulBare toc compact" id="section-toc.1-1.18">
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.18">
             <p id="section-toc.1-1.18.1"><a href="#appendix-C" class="xref">Appendix C</a>.  <a href="#name-relationship-to-the-minimal" class="xref">Relationship to the Minimal Set of Transport Services for End Systems</a></p>
 </li>
-          <li class="ulEmpty ulBare toc compact" id="section-toc.1-1.19">
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.19">
             <p id="section-toc.1-1.19.1"><a href="#appendix-D" class="xref"></a><a href="#name-authors-addresses" class="xref">Authors' Addresses</a></p>
 </li>
         </ul>
@@ -1522,8 +1539,8 @@ multiple interfaces and potential transport protocols.<a href="#section-abstract
       <h2 id="name-introduction">
 <a href="#section-1" class="section-number selfRef">1. </a><a href="#name-introduction" class="section-name selfRef">Introduction</a>
       </h2>
-<p id="section-1-1">This document specifies a modern abstract application programming interface (API) atop the
-high-level architecture for transport services defined in
+<p id="section-1-1">This document specifies an abstract application programming interface (API) that specifies the interface component of
+the high-level architecture for transport services defined in
 <span>[<a href="#I-D.ietf-taps-arch" class="xref">I-D.ietf-taps-arch</a>]</span>. The Transport Services Architecture supports
 asynchronous, atomic transmission of messages over transport protocols and
 network paths dynamically selected at runtime, in environments where an endpoint
@@ -1538,9 +1555,9 @@ mechanisms, which otherwise need to be separately implemented in each applicatio
 <p id="section-1-3">This API derives specific path and protocol selection
 properties and supported transport features from the analysis provided in
 <span>[<a href="#RFC8095" class="xref">RFC8095</a>]</span>, <span>[<a href="#RFC8923" class="xref">RFC8923</a>]</span>, and
-<span>[<a href="#RFC8922" class="xref">RFC8922</a>]</span>. The design encourages implementations 
-underneath the interface to dynamically choose a transport protocol depending on an 
-application's choices rather than statically binding applications to a protocol at 
+<span>[<a href="#RFC8922" class="xref">RFC8922</a>]</span>. The design encourages implementations that provide the
+interface to dynamically choose a transport protocol rather
+than statically binding applications to a protocol at 
 compile time. Nevertheless, the Transport Services API also provides
 applications with a way to override transport selection and instantiate a specific stack,
 e.g., to support servers wishing to listen to a specific protocol. However, forcing a
@@ -1566,7 +1583,7 @@ specific transport stack choice is discouraged for general use, because it can r
 <li class="normal" id="section-1.1-4.1">An Action that creates an Object:<a href="#section-1.1-4.1" class="pilcrow">¶</a>
 </li>
         </ul>
-<div class="artwork art-text alignLeft" id="section-1.1-5">
+<div class="alignLeft art-text artwork" id="section-1.1-5">
 <pre>
       Object := Action()
 </pre><a href="#section-1.1-5" class="pilcrow">¶</a>
@@ -1575,7 +1592,7 @@ specific transport stack choice is discouraged for general use, because it can r
 <li class="normal" id="section-1.1-6.1">An Action that creates an array of Objects:<a href="#section-1.1-6.1" class="pilcrow">¶</a>
 </li>
         </ul>
-<div class="artwork art-text alignLeft" id="section-1.1-7">
+<div class="alignLeft art-text artwork" id="section-1.1-7">
 <pre>
       []Object := Action()
 </pre><a href="#section-1.1-7" class="pilcrow">¶</a>
@@ -1584,7 +1601,7 @@ specific transport stack choice is discouraged for general use, because it can r
 <li class="normal" id="section-1.1-8.1">An Action that is performed on an Object:<a href="#section-1.1-8.1" class="pilcrow">¶</a>
 </li>
         </ul>
-<div class="artwork art-text alignLeft" id="section-1.1-9">
+<div class="alignLeft art-text artwork" id="section-1.1-9">
 <pre>
       Object.Action()
 </pre><a href="#section-1.1-9" class="pilcrow">¶</a>
@@ -1593,7 +1610,7 @@ specific transport stack choice is discouraged for general use, because it can r
 <li class="normal" id="section-1.1-10.1">An Object sends an Event:<a href="#section-1.1-10.1" class="pilcrow">¶</a>
 </li>
         </ul>
-<div class="artwork art-text alignLeft" id="section-1.1-11">
+<div class="alignLeft art-text artwork" id="section-1.1-11">
 <pre>
       Object -&gt; Event&lt;&gt;
 </pre><a href="#section-1.1-11" class="pilcrow">¶</a>
@@ -1603,7 +1620,7 @@ specific transport stack choice is discouraged for general use, because it can r
 Action and Event parameters whose names are suffixed with a question mark are optional.<a href="#section-1.1-12.1" class="pilcrow">¶</a>
 </li>
         </ul>
-<div class="artwork art-text alignLeft" id="section-1.1-13">
+<div class="alignLeft art-text artwork" id="section-1.1-13">
 <pre>
       Action(param0, param1?, ...) / Event&lt;param0, param1, ...&gt;
 </pre><a href="#section-1.1-13" class="pilcrow">¶</a>
@@ -1684,8 +1701,7 @@ does not provide these.<a href="#section-2-2.3" class="pilcrow">¶</a>
 </li>
         <li class="normal" id="section-2-2.4">Asynchronous Connection establishment, transmission, and reception. 
 This allows concurrent operations during establishment and event-driven
-application interactions with the transport layer, in line with developments
-in modern platforms and programming languages;<a href="#section-2-2.4" class="pilcrow">¶</a>
+application interactions with the transport layer;<a href="#section-2-2.4" class="pilcrow">¶</a>
 </li>
         <li class="normal" id="section-2-2.5">Selection between alternate network paths, using additional information about the 
 networks over which a connection can operate (e.g. Provisioning Domain (PvD) 
@@ -1700,8 +1716,8 @@ particular transport be part of a chosen Protocol Stack.<a href="#section-2-2.6"
 security parameters persistent across multiple Connections.<a href="#section-2-2.8" class="pilcrow">¶</a>
 </li>
         <li class="normal" id="section-2-2.9">Explicit support for multistreaming and multipath transport protocols, and
-the grouping of related Connections into Connection Groups through cloning
-of Connections. This allows applications to take full advantage of new
+the grouping of related Connections into Connection Groups through "cloning"
+of Connections (see <a href="#groups" class="xref">Section 7.4</a>). This function allows applications to take full advantage of new
 transport protocols supporting these features.<a href="#section-2-2.9" class="pilcrow">¶</a>
 </li>
       </ul>
@@ -1712,10 +1728,7 @@ transport protocols supporting these features.<a href="#section-2-2.9" class="pi
       <h2 id="name-api-summary">
 <a href="#section-3" class="section-number selfRef">3. </a><a href="#name-api-summary" class="section-name selfRef">API Summary</a>
       </h2>
-<p id="section-3-1">The Transport Services API is the basic common abstract application
-programming interface to the Transport Services Architecture defined in the TAPS
-Architecture <span>[<a href="#I-D.ietf-taps-arch" class="xref">I-D.ietf-taps-arch</a>]</span>.<a href="#section-3-1" class="pilcrow">¶</a></p>
-<p id="section-3-2">An application primarily interacts with this API through two Objects:
+<p id="section-3-1">An application primarily interacts with this API through two Objects:
 Preconnections and Connections. A Preconnection object (<a href="#pre-establishment" class="xref">Section 6</a>) 
 represents a set of properties and constraints on the selection and configuration of
 paths and protocols to establish a Connection with an Endpoint. A Connection object 
@@ -1724,16 +1737,16 @@ received from a Remote Endpoint (i.e., a logical connection that, depending on t
 kind of transport, can be bi-directional or unidirectional, and that can use a stream 
 protocol or a datagram protocol). Connections are presented consistently to the 
 application, irrespective of whether the underlying transport is connection-less or 
-connection-oriented. Connections can be created from Preconnections in three ways:<a href="#section-3-2" class="pilcrow">¶</a></p>
+connection-oriented. Connections can be created from Preconnections in three ways:<a href="#section-3-1" class="pilcrow">¶</a></p>
 <ul class="normal">
-<li class="normal" id="section-3-3.1">by initiating the Preconnection (i.e., actively opening, as in a client; <a href="#initiate" class="xref">Section 7.1</a>),<a href="#section-3-3.1" class="pilcrow">¶</a>
+<li class="normal" id="section-3-2.1">by initiating the Preconnection (i.e., actively opening, as in a client; <a href="#initiate" class="xref">Section 7.1</a>),<a href="#section-3-2.1" class="pilcrow">¶</a>
 </li>
-        <li class="normal" id="section-3-3.2">through listening on the Preconnection (i.e., passively opening, as in a server <a href="#listen" class="xref">Section 7.2</a>),<a href="#section-3-3.2" class="pilcrow">¶</a>
+        <li class="normal" id="section-3-2.2">through listening on the Preconnection (i.e., passively opening, as in a server <a href="#listen" class="xref">Section 7.2</a>),<a href="#section-3-2.2" class="pilcrow">¶</a>
 </li>
-        <li class="normal" id="section-3-3.3">or rendezvousing on the Preconnection (i.e., peer to peer establishment; <a href="#rendezvous" class="xref">Section 7.3</a>).<a href="#section-3-3.3" class="pilcrow">¶</a>
+        <li class="normal" id="section-3-2.3">or rendezvousing on the Preconnection (i.e., peer to peer establishment; <a href="#rendezvous" class="xref">Section 7.3</a>).<a href="#section-3-2.3" class="pilcrow">¶</a>
 </li>
       </ul>
-<p id="section-3-4">Once a Connection is established, data can be sent and received on it in the form of
+<p id="section-3-3">Once a Connection is established, data can be sent and received on it in the form of
 Messages. The interface supports the preservation of message boundaries both
 via explicit Protocol Stack support, and via application support through a
 Message Framer that finds message boundaries in a stream. Messages are
@@ -1741,12 +1754,7 @@ received asynchronously through event handlers registered by the application.
 Errors and other notifications also happen asynchronously on the Connection.
 It is not necessary for an application to handle all Events; some Events may
 have implementation-specific default handlers. The application should not
-assume that ignoring Events (e.g., Errors) is always safe.<a href="#section-3-4" class="pilcrow">¶</a></p>
-<p id="section-3-5"><a href="#pre-establishment" class="xref">Section 6</a>, <a href="#establishment" class="xref">Section 7</a>, <a href="#sending" class="xref">Section 9.2</a>, <a href="#receiving" class="xref">Section 9.3</a>, and
-<a href="#termination" class="xref">Section 10</a> describe the details of application interaction with Objects
-through Actions and Events in each phase of a Connection, following the phases
-(Pre-Establishment, Establishment, Data Transfer, and Termination)
-described in Section 4.1 of <span>[<a href="#I-D.ietf-taps-arch" class="xref">I-D.ietf-taps-arch</a>]</span>.<a href="#section-3-5" class="pilcrow">¶</a></p>
+assume that ignoring Events (e.g., Errors) is always safe.<a href="#section-3-3" class="pilcrow">¶</a></p>
 <div id="usage-examples">
 <section id="section-3.1">
         <h3 id="name-usage-examples">
@@ -1783,7 +1791,7 @@ sequence of Messages into a byte stream and vice versa (<a href="#framing" class
           </h4>
 <p id="section-3.1.1-1">This is an example of how an application might listen for incoming Connections
 using the Transport Services Interface, and receive a request, and send a response.<a href="#section-3.1.1-1" class="pilcrow">¶</a></p>
-<div class="artwork art-text alignLeft" id="section-3.1.1-2">
+<div class="alignLeft art-text artwork" id="section-3.1.1-2">
 <pre>
 LocalSpecifier := NewLocalEndpoint()
 LocalSpecifier.WithInterface("any")
@@ -1831,7 +1839,7 @@ Listener.Stop()
           </h4>
 <p id="section-3.1.2-1">This is an example of how an application might open two Connections to a remote application
 using the Transport Services Interface, and send a request as well as receive a response on each of them.<a href="#section-3.1.2-1" class="pilcrow">¶</a></p>
-<div class="artwork art-text alignLeft" id="section-3.1.2-2">
+<div class="alignLeft art-text artwork" id="section-3.1.2-2">
 <pre>
 RemoteSpecifier := NewRemoteEndpoint()
 RemoteSpecifier.WithHostname("example.com")
@@ -1874,11 +1882,13 @@ Connection2.Close()
 </pre><a href="#section-3.1.2-2" class="pilcrow">¶</a>
 </div>
 <p id="section-3.1.2-3">Preconnections are reusable after being used to initiate a Connection. Hence, for example, after the Connections were closed,
-the following would be correct:
-~~~
+the following would be correct:<a href="#section-3.1.2-3" class="pilcrow">¶</a></p>
+<div class="alignLeft art-text artwork" id="section-3.1.2-4">
+<pre>
 //.. carry out adjustments to the Preconnection, if desire
 Connection := Preconnection.Initiate()
-~~~<a href="#section-3.1.2-3" class="pilcrow">¶</a></p>
+</pre><a href="#section-3.1.2-4" class="pilcrow">¶</a>
+</div>
 </section>
 </div>
 <div id="peer-example">
@@ -1888,9 +1898,10 @@ Connection := Preconnection.Initiate()
           </h4>
 <p id="section-3.1.3-1">This is an example of how an application might establish a connection with a
 peer using Rendezvous(), send a Message, and receive a Message.<a href="#section-3.1.3-1" class="pilcrow">¶</a></p>
-<div class="artwork art-text alignLeft" id="section-3.1.3-2">
+<div class="alignLeft art-text artwork" id="section-3.1.3-2">
 <pre>
-// Configure local candidates: a port on the Local Endpoint and via a STUN server
+// Configure local candidates: a port on the Local Endpoint
+// and via a STUN server
 HostCandidate := NewLocalEndpoint()
 HostCandidate.WithPort(9876)
 
@@ -1915,7 +1926,8 @@ Preconnection := NewPreconnection(LocalCandidates,
 ResolvedLocal, ResolvedRemote = Preconnection.Resolve()
 
 // ...Send the ResolvedLocal list to peer via signalling channel
-// ...Receive a list of RemoteCandidates from peer via signalling channel
+// ...Receive a list of RemoteCandidates from peer via
+//    signalling channel
 
 Preconnection.AddRemote(RemoteCandidates)
 Preconnection.Rendezvous()
@@ -1945,9 +1957,8 @@ Connection.Close()
 <a href="#section-4" class="section-number selfRef">4. </a><a href="#name-transport-properties" class="section-name selfRef">Transport Properties</a>
       </h2>
 <p id="section-4-1">Each application using the Transport Services Interface declares its preferences
-for how the transport service should operate using properties at each stage of
-the lifetime of a connection using Transport Properties, as defined in
-<span>[<a href="#I-D.ietf-taps-arch" class="xref">I-D.ietf-taps-arch</a>]</span>.<a href="#section-4-1" class="pilcrow">¶</a></p>
+for how the transport service should operate. This is done by using Transport Properties, as defined in
+<span>[<a href="#I-D.ietf-taps-arch" class="xref">I-D.ietf-taps-arch</a>]</span>, at each stage of the lifetime of a connection.<a href="#section-4-1" class="pilcrow">¶</a></p>
 <p id="section-4-2">Transport Properties are divided into Selection, Connection, and Message
 Properties. Selection Properties (see <a href="#selection-props" class="xref">Section 6.2</a>) can only be set during pre-establishment. They are only used to specify which paths and protocol stacks can be used and are preferred by the application. 
 Although Connection Properties (see <a href="#connection-props" class="xref">Section 8.1</a>) can be set during pre-establishment, they may be changed later. They are used to inform decisions made during establishment and to fine-tune the established connection. Calling Initiate on a Preconnection creates an outbound Connection or a Listener, and the Selection Properties remain readable from the Connection or Listener, but become immutable.<a href="#section-4-2" class="pilcrow">¶</a></p>
@@ -1973,7 +1984,7 @@ the respective protocol has been selected.<a href="#section-4-5" class="pilcrow"
 <a href="#section-4.1" class="section-number selfRef">4.1. </a><a href="#name-transport-property-names" class="section-name selfRef">Transport Property Names</a>
         </h3>
 <p id="section-4.1-1">Transport Properties are referred to by property names. For the purposes of this document, these names are
-alphanumeric strings in which words may be separated by hyphens.
+alphanumeric strings in which words may be separated by hyphens. Specifically, the following characters are allowed: lowercase letters <code>a-z</code>, uppercase letters <code>A-Z</code>, digits <code>0-9</code>, the hyphen <code>-</code>, and the underscore <code>_</code>.
 These names serve two purposes:<a href="#section-4.1-1" class="pilcrow">¶</a></p>
 <ul class="normal">
 <li class="normal" id="section-4.1-2.1">Allowing different components of a TAPS implementation to pass Transport
@@ -1998,8 +2009,10 @@ the vendor or implementation as the Namespace.<a href="#section-4.1-4.3" class="
 </li>
         </ul>
 <p id="section-4.1-5">Namespaces for each of the keywords provided in the IANA protocol numbers registry 
-(see https://www.iana.org/assignments/protocol-numbers/protocol-numbers.xhtml), reformatted where necessary to conform to an implementation's naming conventions, are reserved
-for Protocol Specific Properties and MUST NOT be used for vendor or implementation-specific properties.<a href="#section-4.1-5" class="pilcrow">¶</a></p>
+(see https://www.iana.org/assignments/protocol-numbers/protocol-numbers.xhtml) are reserved
+for Protocol Specific Properties and MUST NOT be used for vendor or implementation-specific properties. 
+Avoid using any of the terms listed as keywords in the protocol numbers registry as any part of a vendor- or
+implementation-specific property name.<a href="#section-4.1-5" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="property-types">
@@ -2074,7 +2087,7 @@ of the potential Connection (see <a href="#endpointspec" class="xref">Section 6.
 (see <a href="#selection-props" class="xref">Section 6.2</a>), any preconfigured Connection Properties
 (<a href="#connection-props" class="xref">Section 8.1</a>), and the security parameters (see
 <a href="#security-parameters" class="xref">Section 6.3</a>):<a href="#section-6-2" class="pilcrow">¶</a></p>
-<div class="artwork art-text alignLeft" id="section-6-3">
+<div class="alignLeft art-text artwork" id="section-6-3">
 <pre>
    Preconnection := NewPreconnection([]LocalEndpoint,
                                      []RemoteEndpoint,
@@ -2100,7 +2113,7 @@ can be resolved to a server reflexive address for a Preconnection used to
 make a peer-to-peer Rendezvous().<a href="#section-6-5" class="pilcrow">¶</a></p>
 <p id="section-6-6">If more than one Remote Endpoint is specified on the Preconnection, then
 all the Remote Endpoints on the Preconnection SHOULD represent the same
-host. For example, the Remote Endpoints might represent various network
+service. For example, the Remote Endpoints might represent various network
 interfaces of a host, or a server reflexive address that can be used to
 reach a host, or a set of hosts that provide equivalent local balanced
 service.<a href="#section-6-6" class="pilcrow">¶</a></p>
@@ -2119,7 +2132,7 @@ Preconnection during pre-establishment.<a href="#section-6-8" class="pilcrow">¶
 <p id="section-6.1-1">The transport services API uses the Local Endpoint and Remote Endpoint Objects
 to refer to the endpoints of a transport connection. Endpoints can be created
 as either Remote or Local:<a href="#section-6.1-1" class="pilcrow">¶</a></p>
-<div class="artwork art-text alignLeft" id="section-6.1-2">
+<div class="alignLeft art-text artwork" id="section-6.1-2">
 <pre>
 RemoteSpecifier := NewRemoteEndpoint()
 LocalSpecifier := NewLocalEndpoint()
@@ -2134,7 +2147,7 @@ to several different IP addresses on different hosts.<a href="#section-6.1-3" cl
 <li class="normal" id="section-6.1-5.1">Hostname (string):<a href="#section-6.1-5.1" class="pilcrow">¶</a>
 </li>
         </ul>
-<div class="artwork art-text alignLeft" id="section-6.1-6">
+<div class="alignLeft art-text artwork" id="section-6.1-6">
 <pre>
 RemoteSpecifier.WithHostname("example.com")
 </pre><a href="#section-6.1-6" class="pilcrow">¶</a>
@@ -2143,12 +2156,12 @@ RemoteSpecifier.WithHostname("example.com")
 <li class="normal" id="section-6.1-7.1">Port (a 16-bit integer) or a Service (string) that maps to a port:<a href="#section-6.1-7.1" class="pilcrow">¶</a>
 </li>
         </ul>
-<div class="artwork art-text alignLeft" id="section-6.1-8">
+<div class="alignLeft art-text artwork" id="section-6.1-8">
 <pre>
 RemoteSpecifier.WithPort(443)
 </pre><a href="#section-6.1-8" class="pilcrow">¶</a>
 </div>
-<div class="artwork art-text alignLeft" id="section-6.1-9">
+<div class="alignLeft art-text artwork" id="section-6.1-9">
 <pre>
 RemoteSpecifier.WithService("https")
 </pre><a href="#section-6.1-9" class="pilcrow">¶</a>
@@ -2157,12 +2170,12 @@ RemoteSpecifier.WithService("https")
 <li class="normal" id="section-6.1-10.1">IP address (IPv4 or IPv6 address):<a href="#section-6.1-10.1" class="pilcrow">¶</a>
 </li>
         </ul>
-<div class="artwork art-text alignLeft" id="section-6.1-11">
+<div class="alignLeft art-text artwork" id="section-6.1-11">
 <pre>
 RemoteSpecifier.WithIPv4Address(192.0.2.21)
 </pre><a href="#section-6.1-11" class="pilcrow">¶</a>
 </div>
-<div class="artwork art-text alignLeft" id="section-6.1-12">
+<div class="alignLeft art-text artwork" id="section-6.1-12">
 <pre>
 RemoteSpecifier.WithIPv6Address(2001:db8:4920:e29d:a420:7461:7073:0a)
 </pre><a href="#section-6.1-12" class="pilcrow">¶</a>
@@ -2171,24 +2184,26 @@ RemoteSpecifier.WithIPv6Address(2001:db8:4920:e29d:a420:7461:7073:0a)
 <li class="normal" id="section-6.1-13.1">Interface name (string):<a href="#section-6.1-13.1" class="pilcrow">¶</a>
 </li>
         </ul>
-<div class="artwork art-text alignLeft" id="section-6.1-14">
+<div class="alignLeft art-text artwork" id="section-6.1-14">
 <pre>
 LocalSpecifier.WithInterface("en0")
 </pre><a href="#section-6.1-14" class="pilcrow">¶</a>
 </div>
-<p id="section-6.1-15">An Endpoint cannot have multiple identifiers of a same type set. That is,
+<p id="section-6.1-15">Note that an IPv6 address specified with a scope (e.g. <code>2001:db8:4920:e29d:a420:7461:7073:0a%en0</code>) 
+is equivalent to <code>WithIPv6Address</code> with an unscoped address and <code>WithInterface </code> together.<a href="#section-6.1-15" class="pilcrow">¶</a></p>
+<p id="section-6.1-16">An Endpoint cannot have multiple identifiers of a same type set. That is,
 an endpoint cannot have two IP addresses specified. Two separate IP addresses
 are represented as two Endpoint Objects. If a Preconnection specifies a Remote
 Endpoint with a specific IP address set, it will only establish Connections to
 that IP address. If, on the other hand, the Remote Endpoint specifies a hostname
 but no addresses, the Connection can perform name resolution and attempt
-using any address derived from the original hostname of the Remote Endpoint.<a href="#section-6.1-15" class="pilcrow">¶</a></p>
-<p id="section-6.1-16">The Transport Services API resolves names internally, when the Initiate(),
+using any address derived from the original hostname of the Remote Endpoint.<a href="#section-6.1-16" class="pilcrow">¶</a></p>
+<p id="section-6.1-17">The Transport Services API resolves names internally, when the Initiate(),
 Listen(), or Rendezvous() method is called to establish a Connection. Privacy
-considerations for the timing of this resolution are given in <a href="#privacy-security" class="xref">Section 13</a>.<a href="#section-6.1-16" class="pilcrow">¶</a></p>
-<p id="section-6.1-17">The Resolve() action on a Preconnection can be used by the application to force
+considerations for the timing of this resolution are given in <a href="#privacy-security" class="xref">Section 13</a>.<a href="#section-6.1-17" class="pilcrow">¶</a></p>
+<p id="section-6.1-18">The Resolve() action on a Preconnection can be used by the application to force
 early binding when required, for example with some Network Address Translator
-(NAT) traversal protocols (see <a href="#rendezvous" class="xref">Section 7.3</a>).<a href="#section-6.1-17" class="pilcrow">¶</a></p>
+(NAT) traversal protocols (see <a href="#rendezvous" class="xref">Section 7.3</a>).<a href="#section-6.1-18" class="pilcrow">¶</a></p>
 <div id="using-multicast-endpoints">
 <section id="section-6.1.1">
           <h4 id="name-using-multicast-endpoints">
@@ -2199,8 +2214,8 @@ system that the resulting connection will be used to receive multicast messages.
 Remote Endpoint can be used to filter incoming multicast from specific senders. Such
 a Preconnection will only support calling Listen(), not Initiate(). Calling Listen()
 will cause the Transport Services system to register for receiving multicast, such
-as issuing an IGMP join <span>[<a href="#RFC3376" class="xref">RFC3376</a>]</span> or using MLDv2 for IPV6 <span>[<a href="#RFC4604" class="xref">RFC4604</a>]</span>. Any Connections that are accepted from this
-Listener are receive-only.<a href="#section-6.1.1-1" class="pilcrow">¶</a></p>
+as issuing an IGMP join <span>[<a href="#RFC3376" class="xref">RFC3376</a>]</span> or using MLD for IPV6 <span>[<a href="#RFC4604" class="xref">RFC4604</a>]</span>. Any Connections
+that are accepted from this Listener are receive-only.<a href="#section-6.1.1-1" class="pilcrow">¶</a></p>
 <p id="section-6.1.1-2">Similarly, specifying a multicast group address on the Remote Endpoint will indicate that the
 resulting connection will be used to send multicast messages, and that the Preconnection will
 support Initiate() but not Listen(). Any Connections created this way are send-only.<a href="#section-6.1.1-2" class="pilcrow">¶</a></p>
@@ -2219,21 +2234,21 @@ For example, a server that supports both TLS/TCP and QUIC may be accessible
 on two different port numbers depending on which protocol is used.<a href="#section-6.1.2-1" class="pilcrow">¶</a></p>
 <p id="section-6.1.2-2">To support this, Endpoint Objects can specify "aliases". An Endpoint can have
 multiple aliases set.<a href="#section-6.1.2-2" class="pilcrow">¶</a></p>
-<div class="artwork art-text alignLeft" id="section-6.1.2-3">
+<div class="alignLeft art-text artwork" id="section-6.1.2-3">
 <pre>
 RemoteSpecifier.AddAlias(AlternateRemoteSpecifier)
 </pre><a href="#section-6.1.2-3" class="pilcrow">¶</a>
 </div>
 <p id="section-6.1.2-4">In order to scope an alias to a specific transport protocol, an Endpoint can
 specify a protocol identifier.<a href="#section-6.1.2-4" class="pilcrow">¶</a></p>
-<div class="artwork art-text alignLeft" id="section-6.1.2-5">
+<div class="alignLeft art-text artwork" id="section-6.1.2-5">
 <pre>
 RemoteSpecifier.WithProtocol(QUIC)
 </pre><a href="#section-6.1.2-5" class="pilcrow">¶</a>
 </div>
 <p id="section-6.1.2-6">The following example shows a case where "example.com" has a server
 running on port 443, with an alternate port of 8443 for QUIC.<a href="#section-6.1.2-6" class="pilcrow">¶</a></p>
-<div class="artwork art-text alignLeft" id="section-6.1.2-7">
+<div class="alignLeft art-text artwork" id="section-6.1.2-7">
 <pre>
 RemoteSpecifier := NewRemoteEndpoint()
 RemoteSpecifier.WithHostname("example.com")
@@ -2256,7 +2271,7 @@ RemoteSpecifier.AddAlias(QUICRemoteSpecifier)
           </h4>
 <p id="section-6.1.3-1">The following examples of Endpoints show common usage patterns.<a href="#section-6.1.3-1" class="pilcrow">¶</a></p>
 <p id="section-6.1.3-2">Specify a Remote Endpoint using a hostname and service name:<a href="#section-6.1.3-2" class="pilcrow">¶</a></p>
-<div class="artwork art-text alignLeft" id="section-6.1.3-3">
+<div class="alignLeft art-text artwork" id="section-6.1.3-3">
 <pre>
 RemoteSpecifier := NewRemoteEndpoint()
 RemoteSpecifier.WithHostname("example.com")
@@ -2264,7 +2279,7 @@ RemoteSpecifier.WithService("https")
 </pre><a href="#section-6.1.3-3" class="pilcrow">¶</a>
 </div>
 <p id="section-6.1.3-4">Specify a Remote Endpoint using an IPv6 address and remote port:<a href="#section-6.1.3-4" class="pilcrow">¶</a></p>
-<div class="artwork art-text alignLeft" id="section-6.1.3-5">
+<div class="alignLeft art-text artwork" id="section-6.1.3-5">
 <pre>
 RemoteSpecifier := NewRemoteEndpoint()
 RemoteSpecifier.WithIPv6Address(2001:db8:4920:e29d:a420:7461:7073:0a)
@@ -2272,7 +2287,7 @@ RemoteSpecifier.WithPort(443)
 </pre><a href="#section-6.1.3-5" class="pilcrow">¶</a>
 </div>
 <p id="section-6.1.3-6">Specify a Remote Endpoint using an IPv4 address and remote port:<a href="#section-6.1.3-6" class="pilcrow">¶</a></p>
-<div class="artwork art-text alignLeft" id="section-6.1.3-7">
+<div class="alignLeft art-text artwork" id="section-6.1.3-7">
 <pre>
 RemoteSpecifier := NewRemoteEndpoint()
 RemoteSpecifier.WithIPv4Address(192.0.2.21)
@@ -2280,7 +2295,7 @@ RemoteSpecifier.WithPort(443)
 </pre><a href="#section-6.1.3-7" class="pilcrow">¶</a>
 </div>
 <p id="section-6.1.3-8">Specify a Local Endpoint using a local interface name and local port:<a href="#section-6.1.3-8" class="pilcrow">¶</a></p>
-<div class="artwork art-text alignLeft" id="section-6.1.3-9">
+<div class="alignLeft art-text artwork" id="section-6.1.3-9">
 <pre>
 LocalSpecifier := NewLocalEndpoint()
 LocalSpecifier.WithInterface("en0")
@@ -2293,7 +2308,7 @@ Selection Property, see <a href="#prop-interface" class="xref">Section 6.2.11</a
 Properties that are inconsistent with the Local Endpoint, this will result in an Error once the
 application attempts to open a Connection.<a href="#section-6.1.3-10" class="pilcrow">¶</a></p>
 <p id="section-6.1.3-11">Specify a Local Endpoint using a STUN server:<a href="#section-6.1.3-11" class="pilcrow">¶</a></p>
-<div class="artwork art-text alignLeft" id="section-6.1.3-12">
+<div class="alignLeft art-text artwork" id="section-6.1.3-12">
 <pre>
 LocalSpecifier := NewLocalEndpoint()
 LocalSpecifier.WithStunServer(address, port, credentials)
@@ -2307,7 +2322,7 @@ LocalSpecifier.WithStunServer(address, port, credentials)
 <a href="#section-6.1.4" class="section-number selfRef">6.1.4. </a><a href="#name-multicast-examples" class="section-name selfRef">Multicast Examples</a>
           </h4>
 <p id="section-6.1.4-1">Specify a Local Endpoint using an Any-Source Multicast group to join on a named local interface:<a href="#section-6.1.4-1" class="pilcrow">¶</a></p>
-<div class="artwork art-text alignLeft" id="section-6.1.4-2">
+<div class="alignLeft art-text artwork" id="section-6.1.4-2">
 <pre>
 LocalSpecifier := NewLocalEndpoint()
 LocalSpecifier.WithIPv4Address(233.252.0.0)
@@ -2315,7 +2330,7 @@ LocalSpecifier.WithInterface("en0")
 </pre><a href="#section-6.1.4-2" class="pilcrow">¶</a>
 </div>
 <p id="section-6.1.4-3">Source-Specific Multicast requires setting both a Local and Remote Endpoint:<a href="#section-6.1.4-3" class="pilcrow">¶</a></p>
-<div class="artwork art-text alignLeft" id="section-6.1.4-4">
+<div class="alignLeft art-text artwork" id="section-6.1.4-4">
 <pre>
 LocalSpecifier := NewLocalEndpoint()
 LocalSpecifier.WithIPv4Address(232.1.1.1)
@@ -2329,7 +2344,7 @@ RemoteSpecifier.WithIPv4Address(192.0.2.22)
 cases, an application can set up both a Listener and a Connection. The Listener
 is only used to accept Connections that receive inbound multicast. The initiated
 Connection is only used to send multicast.<a href="#section-6.1.4-5" class="pilcrow">¶</a></p>
-<div class="artwork art-text alignLeft" id="section-6.1.4-6">
+<div class="alignLeft art-text artwork" id="section-6.1.4-6">
 <pre>
 // Prepare multicast Listener
 LocalMulticastSpecifier := NewLocalEndpoint()
@@ -2462,14 +2477,14 @@ Properties, can be added to a Preconnection to configure the selection process
 and to further configure the eventually selected protocol stack(s). They are
 collected into a TransportProperties object to be passed into a Preconnection
 object:<a href="#section-6.2-8" class="pilcrow">¶</a></p>
-<div class="artwork art-text alignLeft" id="section-6.2-9">
+<div class="alignLeft art-text artwork" id="section-6.2-9">
 <pre>
 TransportProperties := NewTransportProperties()
 </pre><a href="#section-6.2-9" class="pilcrow">¶</a>
 </div>
 <p id="section-6.2-10">Individual properties are then set on the TransportProperties Object.
 Setting a Transport Property to a value overrides the previous value of this Transport Property.<a href="#section-6.2-10" class="pilcrow">¶</a></p>
-<div class="artwork art-text alignLeft" id="section-6.2-11">
+<div class="alignLeft art-text artwork" id="section-6.2-11">
 <pre>
 TransportProperties.Set(property, value)
 </pre><a href="#section-6.2-11" class="pilcrow">¶</a>
@@ -3188,7 +3203,7 @@ use common safe defaults for these values whenever possible. However, as discuss
 security parameters and constraints from the client at the time of configuration and
 actively during a handshake. These configuration parameters need to be specified in the
 pre-connection phase and are created as follows:<a href="#section-6.3.1-1" class="pilcrow">¶</a></p>
-<div class="artwork art-text alignLeft" id="section-6.3.1-2">
+<div class="alignLeft art-text artwork" id="section-6.3.1-2">
 <pre>
 SecurityParameters := NewSecurityParameters()
 </pre><a href="#section-6.3.1-2" class="pilcrow">¶</a>
@@ -3200,7 +3215,7 @@ identity to the Remote Endpoint. (Note, if private keys are not available, e.g.,
 stored in hardware security modules (HSMs), handshake callbacks must be used. See below for details.)<a href="#section-6.3.1-4.1" class="pilcrow">¶</a>
 </li>
           </ul>
-<div class="artwork art-text alignLeft" id="section-6.3.1-5">
+<div class="alignLeft art-text artwork" id="section-6.3.1-5">
 <pre>
 SecurityParameters.Set(identity, myIdentity)
 SecurityParameters.Set(key-pair, myPrivateKey, myPublicKey)
@@ -3212,7 +3227,7 @@ When not specified, these algorithms should use known and safe defaults for the 
 ciphersuites, supported groups, and signature algorithms. These parameters take a collection of supported algorithms as parameter.<a href="#section-6.3.1-6.1" class="pilcrow">¶</a>
 </li>
           </ul>
-<div class="artwork art-text alignLeft" id="section-6.3.1-7">
+<div class="alignLeft art-text artwork" id="section-6.3.1-7">
 <pre>
 SecurityParameters.Set(supported-group, "secp256k1")
 SecurityParameters.Set(ciphersuite, "TLS_ECDHE_ECDSA_WITH_CHACHA20_POLY1305_SHA256")
@@ -3225,7 +3240,7 @@ out-of-band. Each pre-shared keying material is associated with some identity th
 its use or has some protocol-specific meaning to the Remote Endpoint.<a href="#section-6.3.1-8.1" class="pilcrow">¶</a>
 </li>
           </ul>
-<div class="artwork art-text alignLeft" id="section-6.3.1-9">
+<div class="alignLeft art-text artwork" id="section-6.3.1-9">
 <pre>
 SecurityParameters.Set(pre-shared-key, key, identity)
 </pre><a href="#section-6.3.1-9" class="pilcrow">¶</a>
@@ -3235,7 +3250,7 @@ SecurityParameters.Set(pre-shared-key, key, identity)
 other policies.<a href="#section-6.3.1-10.1" class="pilcrow">¶</a>
 </li>
           </ul>
-<div class="artwork art-text alignLeft" id="section-6.3.1-11">
+<div class="alignLeft art-text artwork" id="section-6.3.1-11">
 <pre>
 SecurityParameters.Set(max-cached-sessions, 16)
 SecurityParameters.Set(cached-session-lifetime-seconds, 3600)
@@ -3249,7 +3264,7 @@ If security is disabled, the Transport Services system will not attempt to add
 transport security automatically. If security is opportunistic, it will allow
 Connections without transport security, but will still attempt to use security if
 available.<a href="#section-6.3.1-12" class="pilcrow">¶</a></p>
-<div class="artwork art-text alignLeft" id="section-6.3.1-13">
+<div class="alignLeft art-text artwork" id="section-6.3.1-13">
 <pre>
 SecurityParameters := NewDisabledSecurityParameters()
 
@@ -3275,7 +3290,7 @@ Security handshake callbacks that may be invoked during connection establishment
 handshake protocol can continue.<a href="#section-6.3.2-2.1" class="pilcrow">¶</a>
 </li>
           </ul>
-<div class="artwork art-text alignLeft" id="section-6.3.2-3">
+<div class="alignLeft art-text artwork" id="section-6.3.2-3">
 <pre>
 TrustCallback := NewCallback({
   // Handle trust, return the result
@@ -3288,7 +3303,7 @@ SecurityParameters.SetTrustVerificationCallback(trustCallback)
 local authentication is requested by a Remote Endpoint.<a href="#section-6.3.2-4.1" class="pilcrow">¶</a>
 </li>
           </ul>
-<div class="artwork art-text alignLeft" id="section-6.3.2-5">
+<div class="alignLeft art-text artwork" id="section-6.3.2-5">
 <pre>
 ChallengeCallback := NewCallback({
   // Handle challenge
@@ -3323,7 +3338,7 @@ the Rendezvous() Action. These Actions are described in the subsections below.<a
 to be listening for incoming Connection requests. Active open is used by clients in
 client-server interactions. Active open is supported by this interface through the
 Initiate Action:<a href="#section-7.1-1" class="pilcrow">¶</a></p>
-<div class="artwork art-text alignLeft" id="section-7.1-2">
+<div class="alignLeft art-text artwork" id="section-7.1-2">
 <pre>
 Connection := Preconnection.Initiate(timeout?)
 </pre><a href="#section-7.1-2" class="pilcrow">¶</a>
@@ -3345,7 +3360,7 @@ Endpoint. The caller may immediately begin sending Messages on the Connection
 while the Connection is being established may be sent multiple times or on
 multiple candidates.<a href="#section-7.1-5" class="pilcrow">¶</a></p>
 <p id="section-7.1-6">The following Events may be sent by the Connection after Initiate() is called:<a href="#section-7.1-6" class="pilcrow">¶</a></p>
-<div class="artwork art-text alignLeft" id="section-7.1-7">
+<div class="alignLeft art-text artwork" id="section-7.1-7">
 <pre>
 Connection -&gt; Ready&lt;&gt;
 </pre><a href="#section-7.1-7" class="pilcrow">¶</a>
@@ -3354,7 +3369,7 @@ Connection -&gt; Ready&lt;&gt;
 connection on at least one usable candidate Protocol Stack over at least one
 candidate Path. No Receive Events (see <a href="#receiving" class="xref">Section 9.3</a>) will occur before
 the Ready Event for Connections established using Initiate.<a href="#section-7.1-8" class="pilcrow">¶</a></p>
-<div class="artwork art-text alignLeft" id="section-7.1-9">
+<div class="alignLeft art-text artwork" id="section-7.1-9">
 <pre>
 Connection -&gt; EstablishmentError&lt;reason?&gt;
 </pre><a href="#section-7.1-9" class="pilcrow">¶</a>
@@ -3379,7 +3394,7 @@ and transmission of the first message can be combined in a single action <a href
 <p id="section-7.2-1">Passive open is the Action of waiting for Connections from Remote Endpoints,
 commonly used by servers in client-server interactions. Passive open is
 supported by this interface through the Listen Action and returns a Listener object:<a href="#section-7.2-1" class="pilcrow">¶</a></p>
-<div class="artwork art-text alignLeft" id="section-7.2-2">
+<div class="alignLeft art-text artwork" id="section-7.2-2">
 <pre>
 Listener := Preconnection.Listen()
 </pre><a href="#section-7.2-2" class="pilcrow">¶</a>
@@ -3391,14 +3406,14 @@ may optionally be specified, to constrain what Connections are accepted.<a href=
 <p id="section-7.2-4">The Listen() Action returns a Listener object. Once Listen() has been called,
 any changes to the Preconnection MUST NOT have any effect on the Listener. The
 Preconnection can be disposed of or reused, e.g., to create another Listener.<a href="#section-7.2-4" class="pilcrow">¶</a></p>
-<div class="artwork art-text alignLeft" id="section-7.2-5">
+<div class="alignLeft art-text artwork" id="section-7.2-5">
 <pre>
 Listener.Stop()
 </pre><a href="#section-7.2-5" class="pilcrow">¶</a>
 </div>
 <p id="section-7.2-6">Listening continues until the global context shuts down, or until the Stop
 action is performed on the Listener object.<a href="#section-7.2-6" class="pilcrow">¶</a></p>
-<div class="artwork art-text alignLeft" id="section-7.2-7">
+<div class="alignLeft art-text artwork" id="section-7.2-7">
 <pre>
 Listener -&gt; ConnectionReceived&lt;Connection&gt;
 </pre><a href="#section-7.2-7" class="pilcrow">¶</a>
@@ -3410,7 +3425,7 @@ Remote Endpoint (for Connectionless protocols), causing a new Connection to be
 created. The resulting Connection is contained within the ConnectionReceived
 Event, and is ready to use as soon as it is passed to the application via the
 event.<a href="#section-7.2-8" class="pilcrow">¶</a></p>
-<div class="artwork art-text alignLeft" id="section-7.2-9">
+<div class="alignLeft art-text artwork" id="section-7.2-9">
 <pre>
 Listener.SetNewConnectionLimit(value)
 </pre><a href="#section-7.2-9" class="pilcrow">¶</a>
@@ -3422,14 +3437,14 @@ by the ConnectionReceived Event, the value is automatically decremented. Once th
 value reaches zero, no further Connections will be delivered until the caller sets the
 limit to a higher value. By default, this value is Infinite. The caller is also able to reset
 the value to Infinite at any point.<a href="#section-7.2-10" class="pilcrow">¶</a></p>
-<div class="artwork art-text alignLeft" id="section-7.2-11">
+<div class="alignLeft art-text artwork" id="section-7.2-11">
 <pre>
 Listener -&gt; EstablishmentError&lt;reason?&gt;
 </pre><a href="#section-7.2-11" class="pilcrow">¶</a>
 </div>
 <p id="section-7.2-12">An EstablishmentError occurs either when the Properties and Security Parameters of the Preconnection cannot be fulfilled for listening or cannot be reconciled with the Local Endpoint (and/or Remote Endpoint, if specified), when the Local Endpoint (or Remote Endpoint, if specified) cannot
 be resolved, or when the application is prohibited from listening by policy.<a href="#section-7.2-12" class="pilcrow">¶</a></p>
-<div class="artwork art-text alignLeft" id="section-7.2-13">
+<div class="alignLeft art-text artwork" id="section-7.2-13">
 <pre>
 Listener -&gt; Stopped&lt;&gt;
 </pre><a href="#section-7.2-13" class="pilcrow">¶</a>
@@ -3444,7 +3459,7 @@ Listener -&gt; Stopped&lt;&gt;
         </h3>
 <p id="section-7.3-1">Simultaneous peer-to-peer Connection establishment is supported by the
 Rendezvous() Action:<a href="#section-7.3-1" class="pilcrow">¶</a></p>
-<div class="artwork art-text alignLeft" id="section-7.3-2">
+<div class="alignLeft art-text artwork" id="section-7.3-2">
 <pre>
 Preconnection.Rendezvous()
 </pre><a href="#section-7.3-2" class="pilcrow">¶</a>
@@ -3468,7 +3483,7 @@ Traversal Using Relays around NAT (TURN) <span>[<a href="#RFC5766" class="xref">
 Local Endpoint will resolve to a mixture of local and server reflexive
 addresses. The Resolve() action on the Preconnection can be used to
 discover these bindings:<a href="#section-7.3-6" class="pilcrow">¶</a></p>
-<div class="artwork art-text alignLeft" id="section-7.3-7">
+<div class="alignLeft art-text artwork" id="section-7.3-7">
 <pre>
 []LocalEndpoint, []RemoteEndpoint := Preconnection.Resolve()
 </pre><a href="#section-7.3-7" class="pilcrow">¶</a>
@@ -3485,7 +3500,7 @@ the peer via a signalling protocol, for example as part of an ICE <span>[<a href
 exchange within SIP <span>[<a href="#RFC3261" class="xref">RFC3261</a>]</span> or WebRTC <span>[<a href="#RFC7478" class="xref">RFC7478</a>]</span>.  The peer will then,
 via the same signalling channel, return the Remote Endpoint candidates.
 The set of Remote Endpoint candidates are then configured onto the Preconnection:<a href="#section-7.3-9" class="pilcrow">¶</a></p>
-<div class="artwork art-text alignLeft" id="section-7.3-10">
+<div class="alignLeft art-text artwork" id="section-7.3-10">
 <pre>
 Preconnection.AddRemote([]RemoteEndpoint)
 </pre><a href="#section-7.3-10" class="pilcrow">¶</a>
@@ -3495,7 +3510,7 @@ candidates and the Remote Endpoint candidates retrieved from the peer via
 the signalling channel have been added to the Preconnection.<a href="#section-7.3-11" class="pilcrow">¶</a></p>
 <p id="section-7.3-12">If successful, the Rendezvous() Action returns a Connection object via a
 RendezvousDone&lt;&gt; Event:<a href="#section-7.3-12" class="pilcrow">¶</a></p>
-<div class="artwork art-text alignLeft" id="section-7.3-13">
+<div class="alignLeft art-text artwork" id="section-7.3-13">
 <pre>
 Preconnection -&gt; RendezvousDone&lt;Connection&gt;
 </pre><a href="#section-7.3-13" class="pilcrow">¶</a>
@@ -3514,7 +3529,7 @@ cannot be reconciled with the Local and/or Remote Endpoints, when the Local
 Endpoint or Remote Endpoint cannot be resolved, when no transport-layer
 connection can be established to the Remote Endpoint, or when the
 application is prohibited from rendezvous by policy:<a href="#section-7.3-15" class="pilcrow">¶</a></p>
-<div class="artwork art-text alignLeft" id="section-7.3-16">
+<div class="alignLeft art-text artwork" id="section-7.3-16">
 <pre>
 Preconnection -&gt; EstablishmentError&lt;reason?&gt;
 </pre><a href="#section-7.3-16" class="pilcrow">¶</a>
@@ -3527,7 +3542,7 @@ Preconnection -&gt; EstablishmentError&lt;reason?&gt;
 <a href="#section-7.4" class="section-number selfRef">7.4. </a><a href="#name-connection-groups" class="section-name selfRef">Connection Groups</a>
         </h3>
 <p id="section-7.4-1">Connection Groups can be created using the Clone Action:<a href="#section-7.4-1" class="pilcrow">¶</a></p>
-<div class="artwork art-text alignLeft" id="section-7.4-2">
+<div class="alignLeft art-text artwork" id="section-7.4-2">
 <pre>
 Connection := Connection.Clone(framer?)
 </pre><a href="#section-7.4-2" class="pilcrow">¶</a>
@@ -3558,7 +3573,7 @@ are Cloned, but these Framers may internally maintain per-Connection state.<a hr
 <p id="section-7.4-6">It is also possible to check which Connections belong to the same Connection Group.
 Calling GroupedConnections() on a specific Connection returns a set of all Connections
 in the same group.<a href="#section-7.4-6" class="pilcrow">¶</a></p>
-<div class="artwork art-text alignLeft" id="section-7.4-7">
+<div class="alignLeft art-text artwork" id="section-7.4-7">
 <pre>
 []Connection := Connection.GroupedConnections()
 </pre><a href="#section-7.4-7" class="pilcrow">¶</a>
@@ -3579,7 +3594,7 @@ Connection Properties by uniformly applying them to all underlying connections
 in a group. Even in such a case, there are possibilities for a Transport Services system
 to implement prioritization within a Connection Group <span>[<a href="#TCP-COUPLING" class="xref">TCP-COUPLING</a>]</span> <span>[<a href="#RFC8699" class="xref">RFC8699</a>]</span>.<a href="#section-7.4-10" class="pilcrow">¶</a></p>
 <p id="section-7.4-11">Attempts to clone a Connection can result in a CloneError:<a href="#section-7.4-11" class="pilcrow">¶</a></p>
-<div class="artwork art-text alignLeft" id="section-7.4-12">
+<div class="alignLeft art-text artwork" id="section-7.4-12">
 <pre>
 Connection -&gt; CloneError&lt;reason?&gt;
 </pre><a href="#section-7.4-12" class="pilcrow">¶</a>
@@ -3587,8 +3602,8 @@ Connection -&gt; CloneError&lt;reason?&gt;
 <p id="section-7.4-13">The <code>Connection Priority</code> Connection Property operates on Connections in a Connection Group
 using the same approach as in <a href="#msg-priority" class="xref">Section 9.1.3.2</a>: when allocating available network
 capacity among Connections in a Connection Group, sends on Connections with
-lower Priority values will be prioritized over sends on Connections with
-higher Priority values. Capacity will be shared among these Connections according to
+higher Priority values will be prioritized over sends on Connections that have
+lower Priority values. Capacity will be shared among these Connections according to
 the Connection Group Transmission Scheduler property (<a href="#conn-scheduler" class="xref">Section 8.1.5</a>). 
 See <a href="#priority-in-taps" class="xref">Section 9.2.6</a> for more.<a href="#section-7.4-13" class="pilcrow">¶</a></p>
 </section>
@@ -3609,14 +3624,18 @@ Generic, applying regardless of transport protocol, or Specific, applicable to a
 single implementation of a single transport protocol stack. Generic Connection
 Properties are defined in <a href="#connection-props" class="xref">Section 8.1</a> below.<a href="#section-8-2" class="pilcrow">¶</a></p>
 <p id="section-8-3">Protocol Specific Properties are defined in a transport- and 
-implementation-specific way, and MUST NOT apply across different protocols. 
-Too much reliance by an application on Protocol Specific Properties can significantly 
-reduce the flexibility of a transport services implementation.<a href="#section-8-3" class="pilcrow">¶</a></p>
+implementation-specific way to
+permit more specialized protocol features to be used. 
+Too much reliance by an application on Protocol Specific Properties can significantly reduce the flexibility 
+of a transport services implementation to make appropriate
+selection and configuration choices. Therefore, it is RECOMMENDED that
+Protocol Properties are used for properties common across different protocols and that
+Protocol Specific Properties are only used where specific protocols or properties are necessary.<a href="#section-8-3" class="pilcrow">¶</a></p>
 <p id="section-8-4">The application can set and query Connection Properties on a per-Connection
 basis. Connection Properties that are not read-only can be set during
 pre-establishment (see <a href="#selection-props" class="xref">Section 6.2</a>), as well as on connections directly using
 the SetProperty action:<a href="#section-8-4" class="pilcrow">¶</a></p>
-<div class="artwork art-text alignLeft" id="section-8-5">
+<div class="alignLeft art-text artwork" id="section-8-5">
 <pre>
 Connection.SetProperty(property, value)
 </pre><a href="#section-8-5" class="pilcrow">¶</a>
@@ -3624,7 +3643,7 @@ Connection.SetProperty(property, value)
 <p id="section-8-6">Note that changing one of the Connection Properties on one Connection in a Connection Group
 will also change it for all other Connections of that group; see further <a href="#groups" class="xref">Section 7.4</a>.<a href="#section-8-6" class="pilcrow">¶</a></p>
 <p id="section-8-7">At any point, the application can query Connection Properties.<a href="#section-8-7" class="pilcrow">¶</a></p>
-<div class="artwork art-text alignLeft" id="section-8-8">
+<div class="alignLeft art-text artwork" id="section-8-8">
 <pre>
 ConnectionProperties := Connection.GetProperties()
 value := ConnectionProperties.Get(property)
@@ -3699,11 +3718,11 @@ Default:  </dt>
           <dd class="break"></dd>
 </dl>
 <p id="section-8.1.1-2">This property specifies the minimum number of bytes in a received
-message that need to be covered by a checksum. A special value of 0 means
-that a received packet does not need to have a non-zero checksum field. 
+message that need to be covered by a checksum. 
 A receiving endpoint will not forward messages that have less coverage 
 to the application. The application is responsible for handling
-any corruption within the non-protected part of the message <span>[<a href="#RFC8085" class="xref">RFC8085</a>]</span>.<a href="#section-8.1.1-2" class="pilcrow">¶</a></p>
+any corruption within the non-protected part of the message <span>[<a href="#RFC8085" class="xref">RFC8085</a>]</span>.
+A special value of 0 means that a received packet may also have a zero checksum field.<a href="#section-8.1.1-2" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="conn-priority">
@@ -3731,10 +3750,11 @@ Default:  </dt>
 </dd>
           <dd class="break"></dd>
 </dl>
-<p id="section-8.1.2-2">This Property is a non-negative integer representing the relative inverse
-priority (i.e., a lower value reflects a higher priority) of this Connection 
+<p id="section-8.1.2-2">This Property is a non-negative integer representing the
+priority of this Connection 
 relative to other Connections in the same
-Connection Group. It has no effect on Connections not part of a Connection
+Connection Group. A higher value reflects a higher priority. It has no effect
+on Connections not part of a Connection
 Group. As noted in <a href="#groups" class="xref">Section 7.4</a>, this property is not entangled when Connections
 are cloned, i.e., changing the Priority on one Connection in a Connection Group 
 does not change it on the other Connections in the same Connection Group. 
@@ -4318,7 +4338,7 @@ based on a UTO option received from the remote peer. This boolean becomes false 
 <p id="section-8.3.1-1">Asynchronous introspection is also possible, via the SoftError Event. This event
 informs the application about the receipt and contents of an ICMP error message related to the Connection. This will only happen if the underlying protocol stack supports access to soft errors; however, even if the underlying stack supports it, there
 is no guarantee that a soft error will be signaled.<a href="#section-8.3.1-1" class="pilcrow">¶</a></p>
-<div class="artwork art-text alignLeft" id="section-8.3.1-2">
+<div class="alignLeft art-text artwork" id="section-8.3.1-2">
 <pre>
 Connection -&gt; SoftError&lt;&gt;
 </pre><a href="#section-8.3.1-2" class="pilcrow">¶</a>
@@ -4333,7 +4353,7 @@ Connection -&gt; SoftError&lt;&gt;
 <p id="section-8.3.2-1">This event notifies the application when at least one of the paths underlying a Connection has changed. Changes occur
 on a single path when the PMTU changes as well as when multiple paths are used
 and paths are added or removed, or a handover has been performed.<a href="#section-8.3.2-1" class="pilcrow">¶</a></p>
-<div class="artwork art-text alignLeft" id="section-8.3.2-2">
+<div class="alignLeft art-text artwork" id="section-8.3.2-2">
 <pre>
 Connection -&gt; PathChange&lt;&gt;
 </pre><a href="#section-8.3.2-2" class="pilcrow">¶</a>
@@ -4365,7 +4385,7 @@ to communicate the boundaries of the data being transferred.<a href="#section-9-
 <p id="section-9.1.1-1">Using the MessageContext object, the application can set and retrieve meta-data of the message, including Message Properties (see <a href="#message-props" class="xref">Section 9.1.3</a>) and framing meta-data (see <a href="#framing-meta" class="xref">Section 9.1.2.2</a>).
 Therefore, a MessageContext object can be passed to the Send action and is returned by each Send and Receive related event.<a href="#section-9.1.1-1" class="pilcrow">¶</a></p>
 <p id="section-9.1.1-2">Message Properties can be set and queried using the Message Context:<a href="#section-9.1.1-2" class="pilcrow">¶</a></p>
-<div class="artwork art-text alignLeft" id="section-9.1.1-3">
+<div class="alignLeft art-text artwork" id="section-9.1.1-3">
 <pre>
 MessageContext.add(scope?, parameter, value)
 PropertyValue := MessageContext.get(scope?, property)
@@ -4373,7 +4393,7 @@ PropertyValue := MessageContext.get(scope?, property)
 </div>
 <p id="section-9.1.1-4">To get or set Message Properties, the optional scope parameter is left empty. To get or set meta-data for a Framer, the application has to pass a reference to this Framer as the scope parameter.<a href="#section-9.1.1-4" class="pilcrow">¶</a></p>
 <p id="section-9.1.1-5">For MessageContexts returned by send Events (see <a href="#send-events" class="xref">Section 9.2.2</a>) and receive Events (see <a href="#receive-events" class="xref">Section 9.3.2</a>), the application can query information about the Local and Remote Endpoint:<a href="#section-9.1.1-5" class="pilcrow">¶</a></p>
-<div class="artwork art-text alignLeft" id="section-9.1.1-6">
+<div class="alignLeft art-text artwork" id="section-9.1.1-6">
 <pre>
 RemoteEndpoint := MessageContext.GetRemoteEndpoint()
 LocalEndpoint := MessageContext.GetLocalEndpoint()
@@ -4409,7 +4429,7 @@ before the application sends data if the framing protocol requires a prefix
 or handshake (see <span>[<a href="#RFC8229" class="xref">RFC8229</a>]</span> for an example of such a framing protocol).<a href="#section-9.1.2-3" class="pilcrow">¶</a></p>
 <span id="name-protocol-stack-showing-a-me"></span><div id="fig-framer-stack">
 <figure id="figure-1">
-            <div class="artwork art-text alignLeft" id="section-9.1.2-4.1">
+            <div class="alignLeft art-text artwork" id="section-9.1.2-4.1">
 <pre>
   Initiate()   Send()   Receive()   Close()
       |          |         ^          |
@@ -4457,7 +4477,7 @@ to run on top of transport protocols. Multiple Framers may be added to a Preconn
 in this case, the Framers operate as a framing stack, i.e. the last one added runs 
 first when framing outbound messages, and last when parsing inbound data.<a href="#section-9.1.2.1-1" class="pilcrow">¶</a></p>
 <p id="section-9.1.2.1-2">The following example adds a basic HTTP Message Framer to a Preconnection:<a href="#section-9.1.2.1-2" class="pilcrow">¶</a></p>
-<div class="artwork art-text alignLeft" id="section-9.1.2.1-3">
+<div class="alignLeft art-text artwork" id="section-9.1.2.1-3">
 <pre>
 framer := NewHTTPMessageFramer()
 Preconnection.AddFramer(framer)
@@ -4476,7 +4496,7 @@ Framers must happen before any operation that may result in the creation of a Co
 key/value pairs to a MessageContext (<a href="#msg-ctx" class="xref">Section 9.1.1</a>).
 This mechanism can be used, for example, to set the type of a Message for a TLV format.
 The namespace of values is custom for each unique Message Framer.<a href="#section-9.1.2.2-1" class="pilcrow">¶</a></p>
-<div class="artwork art-text alignLeft" id="section-9.1.2.2-2">
+<div class="alignLeft art-text artwork" id="section-9.1.2.2-2">
 <pre>
 messageContext := NewMessageContext()
 messageContext.add(framer, key, value)
@@ -4485,14 +4505,14 @@ Connection.Send(messageData, messageContext)
 </div>
 <p id="section-9.1.2.2-3">When an application receives a MessageContext in a Receive event,
 it can also look to see if a value was set by a specific Message Framer.<a href="#section-9.1.2.2-3" class="pilcrow">¶</a></p>
-<div class="artwork art-text alignLeft" id="section-9.1.2.2-4">
+<div class="alignLeft art-text artwork" id="section-9.1.2.2-4">
 <pre>
 messageContext.get(framer, key) -&gt; value
 </pre><a href="#section-9.1.2.2-4" class="pilcrow">¶</a>
 </div>
 <p id="section-9.1.2.2-5">For example, if an HTTP Message Framer is used, the values could correspond
 to HTTP headers:<a href="#section-9.1.2.2-5" class="pilcrow">¶</a></p>
-<div class="artwork art-text alignLeft" id="section-9.1.2.2-6">
+<div class="alignLeft art-text artwork" id="section-9.1.2.2-6">
 <pre>
 httpFramer := NewHTTPMessageFramer()
 ...
@@ -4518,7 +4538,7 @@ share properties specified in the Message Contexts. For example, it would not
 make sense to have the beginning of a Message expire, but allow the end of a
 Message to still be sent.<a href="#section-9.1.3-2" class="pilcrow">¶</a></p>
 <p id="section-9.1.3-3">A MessageContext object contains metadata for the Messages to be sent or received.<a href="#section-9.1.3-3" class="pilcrow">¶</a></p>
-<div class="artwork art-text alignLeft" id="section-9.1.3-4">
+<div class="alignLeft art-text artwork" id="section-9.1.3-4">
 <pre>
 messageData := "hello"
 messageContext := NewMessageContext()
@@ -4920,7 +4940,7 @@ and takes optional per-Message properties (see <a href="#send-basic" class="xref
 are asynchronous, and deliver Events (see <a href="#send-events" class="xref">Section 9.2.2</a>). Sending partial
 Messages for streaming large data is also supported (see <a href="#send-partial" class="xref">Section 9.2.3</a>).<a href="#section-9.2-1" class="pilcrow">¶</a></p>
 <p id="section-9.2-2">Messages are sent on a Connection using the Send action:<a href="#section-9.2-2" class="pilcrow">¶</a></p>
-<div class="artwork art-text alignLeft" id="section-9.2-3">
+<div class="alignLeft art-text artwork" id="section-9.2-3">
 <pre>
 Connection.Send(messageData, messageContext?, endOfMessage?)
 </pre><a href="#section-9.2-3" class="pilcrow">¶</a>
@@ -4937,7 +4957,7 @@ Message or inspecting meta-data related to the Message sent (see <a href="#msg-c
           </h4>
 <p id="section-9.2.1-1">The most basic form of sending on a connection involves enqueuing a single Data
 block as a complete Message with default Message Properties.<a href="#section-9.2.1-1" class="pilcrow">¶</a></p>
-<div class="artwork art-text alignLeft" id="section-9.2.1-2">
+<div class="alignLeft art-text artwork" id="section-9.2.1-2">
 <pre>
 messageData := "hello"
 Connection.Send(messageData)
@@ -4977,7 +4997,7 @@ is implementation-specific.<a href="#section-9.2.2-3" class="pilcrow">¶</a></p>
             <h5 id="name-sent">
 <a href="#section-9.2.2.1" class="section-number selfRef">9.2.2.1. </a><a href="#name-sent" class="section-name selfRef">Sent</a>
             </h5>
-<div class="artwork art-text alignLeft" id="section-9.2.2.1-1">
+<div class="alignLeft art-text artwork" id="section-9.2.2.1-1">
 <pre>
 Connection -&gt; Sent&lt;messageContext&gt;
 </pre><a href="#section-9.2.2.1-1" class="pilcrow">¶</a>
@@ -5002,7 +5022,7 @@ calling the next Send Action.<a href="#section-9.2.2.1-3" class="pilcrow">¶</a>
             <h5 id="name-expired">
 <a href="#section-9.2.2.2" class="section-number selfRef">9.2.2.2. </a><a href="#name-expired" class="section-name selfRef">Expired</a>
             </h5>
-<div class="artwork art-text alignLeft" id="section-9.2.2.2-1">
+<div class="alignLeft art-text artwork" id="section-9.2.2.2-1">
 <pre>
 Connection -&gt; Expired&lt;messageContext&gt;
 </pre><a href="#section-9.2.2.2-1" class="pilcrow">¶</a>
@@ -5019,7 +5039,7 @@ Message Context of the Message to which it applies.<a href="#section-9.2.2.2-2" 
             <h5 id="name-senderror">
 <a href="#section-9.2.2.3" class="section-number selfRef">9.2.2.3. </a><a href="#name-senderror" class="section-name selfRef">SendError</a>
             </h5>
-<div class="artwork art-text alignLeft" id="section-9.2.2.3-1">
+<div class="alignLeft art-text artwork" id="section-9.2.2.3-1">
 <pre>
 Connection -&gt; SendError&lt;messageContext, reason?&gt;
 </pre><a href="#section-9.2.2.3-1" class="pilcrow">¶</a>
@@ -5047,7 +5067,7 @@ may be unknown or unbounded.<a href="#section-9.2.3-1" class="pilcrow">¶</a></p
 parameter to the Send Action. This value is always true by default, and
 the simpler forms of Send are equivalent to passing true for endOfMessage.<a href="#section-9.2.3-2" class="pilcrow">¶</a></p>
 <p id="section-9.2.3-3">The following example sends a Message in two separate calls to Send.<a href="#section-9.2.3-3" class="pilcrow">¶</a></p>
-<div class="artwork art-text alignLeft" id="section-9.2.3-4">
+<div class="alignLeft art-text artwork" id="section-9.2.3-4">
 <pre>
 messageContext := NewMessageContext()
 messageContext.add(parameter, value)
@@ -5078,7 +5098,7 @@ and that sending any of the batched Messages can be delayed until the last Messa
 in the batch is enqueued.<a href="#section-9.2.4-1" class="pilcrow">¶</a></p>
 <p id="section-9.2.4-2">The semantics for starting and ending a batch can be implementation-specific, but need
 to allow multiple Send Actions to be enqueued.<a href="#section-9.2.4-2" class="pilcrow">¶</a></p>
-<div class="artwork art-text alignLeft" id="section-9.2.4-3">
+<div class="alignLeft art-text artwork" id="section-9.2.4-3">
 <pre>
 Connection.StartBatch()
 Connection.Send(messageData)
@@ -5096,7 +5116,7 @@ Connection.EndBatch()
 <p id="section-9.2.5-1">For application-layer protocols where the Connection initiator also sends the
 first message, the InitiateWithSend() action combines Connection initiation with
 a first Message sent:<a href="#section-9.2.5-1" class="pilcrow">¶</a></p>
-<div class="artwork art-text alignLeft" id="section-9.2.5-2">
+<div class="alignLeft art-text artwork" id="section-9.2.5-2">
 <pre>
 Connection := Preconnection.InitiateWithSend(messageData, messageContext?, timeout?)
 </pre><a href="#section-9.2.5-2" class="pilcrow">¶</a>
@@ -5163,7 +5183,7 @@ ensuing Receive requests will first operate on these Messages before awaiting an
 <p id="section-9.3.1-1">Receive takes two parameters to specify the length of data that an application
 is willing to receive, both of which are optional and have default values if not
 specified.<a href="#section-9.3.1-1" class="pilcrow">¶</a></p>
-<div class="artwork art-text alignLeft" id="section-9.3.1-2">
+<div class="alignLeft art-text artwork" id="section-9.3.1-2">
 <pre>
 Connection.Receive(minIncompleteLength?, maxLength?)
 </pre><a href="#section-9.3.1-2" class="pilcrow">¶</a>
@@ -5208,7 +5228,7 @@ is implementation-specific.<a href="#section-9.3.2-2" class="pilcrow">¶</a></p>
             <h5 id="name-received">
 <a href="#section-9.3.2.1" class="section-number selfRef">9.3.2.1. </a><a href="#name-received" class="section-name selfRef">Received</a>
             </h5>
-<div class="artwork art-text alignLeft" id="section-9.3.2.1-1">
+<div class="alignLeft art-text artwork" id="section-9.3.2.1-1">
 <pre>
 Connection -&gt; Received&lt;messageData, messageContext&gt;
 </pre><a href="#section-9.3.2.1-1" class="pilcrow">¶</a>
@@ -5226,7 +5246,7 @@ Stack only provides a byte-stream transport.<a href="#section-9.3.2.1-4" class="
             <h5 id="name-receivedpartial">
 <a href="#section-9.3.2.2" class="section-number selfRef">9.3.2.2. </a><a href="#name-receivedpartial" class="section-name selfRef">ReceivedPartial</a>
             </h5>
-<div class="artwork art-text alignLeft" id="section-9.3.2.2-1">
+<div class="alignLeft art-text artwork" id="section-9.3.2.2-1">
 <pre>
 Connection -&gt; ReceivedPartial&lt;messageData, messageContext, endOfMessage&gt;
 </pre><a href="#section-9.3.2.2-1" class="pilcrow">¶</a>
@@ -5262,6 +5282,22 @@ preservation, and no Message Framer was supplied by the application<a href="#sec
 <p id="section-9.3.2.2-6">Note that in the absence of message boundary preservation or
 a Message Framer, all bytes received on the Connection will be represented as one
 large Message of indeterminate length.<a href="#section-9.3.2.2-6" class="pilcrow">¶</a></p>
+<p id="section-9.3.2.2-7">In the following example, an application only wants to receive up to 1000 bytes
+at a time from a Connection. If a 1500-byte message arrives, it would receive
+the message in two separate ReceivedPartial events.<a href="#section-9.3.2.2-7" class="pilcrow">¶</a></p>
+<div class="alignLeft art-text artwork" id="section-9.3.2.2-8">
+<pre>
+Connection.Receive(1, 1000)
+
+// Receive first 1000 bytes, message is incomplete
+Connection -&gt; ReceivedPartial&lt;messageData(1000 bytes), messageContext, false&gt;
+
+Connection.Receive(1, 1000)
+
+// Receive last 500 bytes, message is now complete
+Connection -&gt; ReceivedPartial&lt;messageData(500 bytes), messageContext, true&gt;
+</pre><a href="#section-9.3.2.2-8" class="pilcrow">¶</a>
+</div>
 </section>
 </div>
 <div id="receive-error">
@@ -5269,7 +5305,7 @@ large Message of indeterminate length.<a href="#section-9.3.2.2-6" class="pilcro
             <h5 id="name-receiveerror">
 <a href="#section-9.3.2.3" class="section-number selfRef">9.3.2.3. </a><a href="#name-receiveerror" class="section-name selfRef">ReceiveError</a>
             </h5>
-<div class="artwork art-text alignLeft" id="section-9.3.2.3-1">
+<div class="alignLeft art-text artwork" id="section-9.3.2.3-1">
 <pre>
 Connection -&gt; ReceiveError&lt;messageContext, reason?&gt;
 </pre><a href="#section-9.3.2.3-1" class="pilcrow">¶</a>
@@ -5379,7 +5415,7 @@ requirements, the Connection will send the Closed Event. For example, if reliabl
 for a Message handed over before calling Close, the Closed Event will signify
 that this Message has indeed been delivered. This Action does not affect any other Connection
 in the same Connection Group.<a href="#section-10-3" class="pilcrow">¶</a></p>
-<div class="artwork art-text alignLeft" id="section-10-4">
+<div class="alignLeft art-text artwork" id="section-10-4">
 <pre>
 Connection.Close()
 </pre><a href="#section-10-4" class="pilcrow">¶</a>
@@ -5387,7 +5423,7 @@ Connection.Close()
 <p id="section-10-5">The Closed Event informs the application that a Close Action has successfully
 completed, or that the Remote Endpoint has closed the Connection.
 There is no guarantee that a remote Close will be signaled.<a href="#section-10-5" class="pilcrow">¶</a></p>
-<div class="artwork art-text alignLeft" id="section-10-6">
+<div class="alignLeft art-text artwork" id="section-10-6">
 <pre>
 Connection -&gt; Closed&lt;&gt;
 </pre><a href="#section-10-6" class="pilcrow">¶</a>
@@ -5396,7 +5432,7 @@ Connection -&gt; Closed&lt;&gt;
 not affect any other Connection that is entangled with this one in a Connection Group.
 When the Abort Action has finished, the Connection will send a ConnectionError Event,
 indicating local Abort as a reason.<a href="#section-10-7" class="pilcrow">¶</a></p>
-<div class="artwork art-text alignLeft" id="section-10-8">
+<div class="alignLeft art-text artwork" id="section-10-8">
 <pre>
 Connection.Abort()
 </pre><a href="#section-10-8" class="pilcrow">¶</a>
@@ -5408,7 +5444,7 @@ group will close the underlying session. See also <a href="#groups" class="xref"
 will send a Closed Event when the CloseGroup Action was successful.
 As with Close, any Messages
 remaining to be processed on a Connection will be handled prior to closing.<a href="#section-10-9" class="pilcrow">¶</a></p>
-<div class="artwork art-text alignLeft" id="section-10-10">
+<div class="alignLeft art-text artwork" id="section-10-10">
 <pre>
 Connection.CloseGroup()
 </pre><a href="#section-10-10" class="pilcrow">¶</a>
@@ -5417,7 +5453,7 @@ Connection.CloseGroup()
 in the same Connection Group without delivering any remaining Messages.
 When the AbortGroup Action has finished, all Connections in the group will 
 send a ConnectionError Event, indicating local Abort as a reason.<a href="#section-10-11" class="pilcrow">¶</a></p>
-<div class="artwork art-text alignLeft" id="section-10-12">
+<div class="alignLeft art-text artwork" id="section-10-12">
 <pre>
 Connection.AbortGroup()
 </pre><a href="#section-10-12" class="pilcrow">¶</a>
@@ -5426,7 +5462,7 @@ Connection.AbortGroup()
 peer after a timeout, 
 or 2) the Connection has been aborted (e.g., because the peer has called Abort).
 There is no guarantee that an Abort from the peer will be signaled.<a href="#section-10-13" class="pilcrow">¶</a></p>
-<div class="artwork art-text alignLeft" id="section-10-14">
+<div class="alignLeft art-text artwork" id="section-10-14">
 <pre>
 Connection -&gt; ConnectionError&lt;reason?&gt;
 </pre><a href="#section-10-14" class="pilcrow">¶</a>
@@ -5465,7 +5501,7 @@ an error in all other circumstances.<a href="#section-11-3.6" class="pilcrow">¶
 events that occur upon a transition from one state to another.<a href="#section-11-4" class="pilcrow">¶</a></p>
 <span id="name-connection-state-diagram"></span><div id="fig-connstates">
 <figure id="figure-2">
-        <div class="artwork art-text alignLeft" id="section-11-5.1">
+        <div class="alignLeft art-text artwork" id="section-11-5.1">
 <pre>
               (*)                               (**)
 Establishing -----&gt; Established -----&gt; Closing ------&gt; Closed
@@ -5641,7 +5677,7 @@ and for contributing text, e.g., on multicast.<a href="#section-14-5" class="pil
 <dl class="references">
 <dt id="I-D.ietf-httpbis-priority">[I-D.ietf-httpbis-priority]</dt>
         <dd>
-<span class="refAuthor">Oku, K.</span> and <span class="refAuthor">L. Pardue</span>, <span class="refTitle">"Extensible Prioritization Scheme for HTTP"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-httpbis-priority-04</span>, <time datetime="2021-07-11" class="refDate">11 July 2021</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-httpbis-priority-04">https://datatracker.ietf.org/doc/html/draft-ietf-httpbis-priority-04</a>&gt;</span>. </dd>
+<span class="refAuthor">Oku, K.</span> and <span class="refAuthor">L. Pardue</span>, <span class="refTitle">"Extensible Prioritization Scheme for HTTP"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-httpbis-priority-06</span>, <time datetime="2021-09-30" class="refDate">30 September 2021</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-httpbis-priority-06">https://datatracker.ietf.org/doc/html/draft-ietf-httpbis-priority-06</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="I-D.ietf-taps-impl">[I-D.ietf-taps-impl]</dt>
         <dd>
@@ -5841,7 +5877,7 @@ For instance, it could be a number of seconds, number of milliseconds, or a <cod
 object quite frequently, implementations can provide special actions 
 for adding each preference level i.e, <code>TransportProperties.Set(some_property, avoid)</code> 
 is equivalent to <code>TransportProperties.Avoid(some_property)</code>:<a href="#appendix-B.1-1" class="pilcrow">¶</a></p>
-<div class="artwork art-text alignLeft" id="appendix-B.1-2">
+<div class="alignLeft art-text artwork" id="appendix-B.1-2">
 <pre>
 TransportProperties.Require(property)
 TransportProperties.Prefer(property)

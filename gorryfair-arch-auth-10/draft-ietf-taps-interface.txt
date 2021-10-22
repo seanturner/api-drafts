@@ -5,7 +5,7 @@
 TAPS Working Group                                      B. Trammell, Ed.
 Internet-Draft                                   Google Switzerland GmbH
 Intended status: Standards Track                           M. Welzl, Ed.
-Expires: 25 March 2022                                University of Oslo
+Expires: 25 April 2022                                University of Oslo
                                                              T. Enghardt
                                                                  Netflix
                                                             G. Fairhurst
@@ -22,7 +22,7 @@ Expires: 25 March 2022                                University of Oslo
                                                               Apple Inc.
                                                                  K. Rose
                                                Akamai Technologies, Inc.
-                                                       21 September 2021
+                                                         22 October 2021
 
 
      An Abstract Application Layer Interface to Transport Services
@@ -37,9 +37,9 @@ Abstract
    without requiring changes to the applications.  The specified API
    follows the Transport Services Architecture by providing
    asynchronous, atomic transmission of messages.  It is intended to
-   replace the traditional BSD sockets API as the common interface to
-   the transport layer, in an environment where endpoints could select
-   from multiple interfaces and potential transport protocols.
+   replace the BSD sockets API as the common interface to the transport
+   layer, in an environment where endpoints could select from multiple
+   interfaces and potential transport protocols.
 
 Status of This Memo
 
@@ -56,7 +56,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 25 March 2022.
+   This Internet-Draft will expire on 25 April 2022.
 
 Copyright Notice
 
@@ -92,6 +92,7 @@ Table of Contents
        6.1.1.  Using Multicast Endpoints
        6.1.2.  Endpoint Aliases
        6.1.3.  Endpoint Examples
+       6.1.4.  Multicast Examples
      6.2.  Specifying Transport Properties
        6.2.1.  Reliable Data Transfer (Connection)
        6.2.2.  Preservation of Message Boundaries
@@ -181,13 +182,13 @@ Table of Contents
 
 1.  Introduction
 
-   This document specifies a modern abstract application programming
-   interface (API) atop the high-level architecture for transport
-   services defined in [I-D.ietf-taps-arch].  The Transport Services
-   Architecture supports asynchronous, atomic transmission of messages
-   over transport protocols and network paths dynamically selected at
-   runtime, in environments where an endpoint selects from multiple
-   interfaces and potential transport protocols.
+   This document specifies an abstract application programming interface
+   (API) that specifies the interface component of the high-level
+   architecture for transport services defined in [I-D.ietf-taps-arch].
+   The Transport Services Architecture supports asynchronous, atomic
+   transmission of messages over transport protocols and network paths
+   dynamically selected at runtime, in environments where an endpoint
+   selects from multiple interfaces and potential transport protocols.
 
    Applications that adopt this interface will benefit from a wide set
    of transport features that can evolve over time.  This protocol-
@@ -201,15 +202,15 @@ Table of Contents
 
    This API derives specific path and protocol selection properties and
    supported transport features from the analysis provided in [RFC8095],
-   [RFC8923], and [RFC8922].  The design encourages implementations
-   underneath the interface to dynamically choose a transport protocol
-   depending on an application's choices rather than statically binding
-   applications to a protocol at compile time.  Nevertheless, the
-   Transport Services API also provides applications with a way to
-   override transport selection and instantiate a specific stack, e.g.,
-   to support servers wishing to listen to a specific protocol.
-   However, forcing a specific transport stack choice is discouraged for
-   general use, because it can reduce portability.
+   [RFC8923], and [RFC8922].  The design encourages implementations that
+   provide the interface to dynamically choose a transport protocol
+   rather than statically binding applications to a protocol at compile
+   time.  Nevertheless, the Transport Services API also provides
+   applications with a way to override transport selection and
+   instantiate a specific stack, e.g., to support servers wishing to
+   listen to a specific protocol.  However, forcing a specific transport
+   stack choice is discouraged for general use, because it can reduce
+   portability.
 
 1.1.  Terminology and Notation
 
@@ -259,7 +260,7 @@ Table of Contents
 
    We also make use of the following basic types:
 
-   *  Boolean: Instances take the value "true" or "false".
+   *  Boolean: Instances take the value true or false.
 
    *  Integer: Instances take positive or negative numeric integer
       values, or sometimes special non-numeric (symbolic) values.
@@ -272,8 +273,8 @@ Table of Contents
       type.
 
    *  Tuple: An ordered grouping of multiple value types, represented as
-      a comma-separated list in parentheses, e.g., "(Enumeration,
-      Preference)".  Instances take a sequence of values each valid for
+      a comma-separated list in parentheses, e.g., (Enumeration,
+      Preference).  Instances take a sequence of values each valid for
       the corresponding value type.
 
    *  Array: Denoted []Type, an instance takes a value for each of zero
@@ -320,8 +321,7 @@ Table of Contents
    *  Asynchronous Connection establishment, transmission, and
       reception.  This allows concurrent operations during establishment
       and event-driven application interactions with the transport
-      layer, in line with developments in modern platforms and
-      programming languages;
+      layer;
 
    *  Selection between alternate network paths, using additional
       information about the networks over which a connection can operate
@@ -341,15 +341,11 @@ Table of Contents
 
    *  Explicit support for multistreaming and multipath transport
       protocols, and the grouping of related Connections into Connection
-      Groups through cloning of Connections.  This allows applications
-      to take full advantage of new transport protocols supporting these
-      features.
+      Groups through "cloning" of Connections (see Section 7.4).  This
+      function allows applications to take full advantage of new
+      transport protocols supporting these features.
 
 3.  API Summary
-
-   The Transport Services API is the basic common abstract application
-   programming interface to the Transport Services Architecture defined
-   in the TAPS Architecture [I-D.ietf-taps-arch].
 
    An application primarily interacts with this API through two Objects:
    Preconnections and Connections.  A Preconnection object (Section 6)
@@ -384,12 +380,6 @@ Table of Contents
    not necessary for an application to handle all Events; some Events
    may have implementation-specific default handlers.  The application
    should not assume that ignoring Events (e.g., Errors) is always safe.
-
-   Section 6, Section 7, Section 9.2, Section 9.3, and Section 10
-   describe the details of application interaction with Objects through
-   Actions and Events in each phase of a Connection, following the
-   phases (Pre-Establishment, Establishment, Data Transfer, and
-   Termination) described in Section 4.1 of [I-D.ietf-taps-arch].
 
 3.1.  Usage Examples
 
@@ -509,8 +499,10 @@ Table of Contents
 
    Preconnections are reusable after being used to initiate a
    Connection.  Hence, for example, after the Connections were closed,
-   the following would be correct: ~~~ //.. carry out adjustments to the
-   Preconnection, if desire Connection := Preconnection.Initiate() ~~~
+   the following would be correct:
+
+   //.. carry out adjustments to the Preconnection, if desire
+   Connection := Preconnection.Initiate()
 
 3.1.3.  Peer Example
 
@@ -518,54 +510,56 @@ Table of Contents
    with a peer using Rendezvous(), send a Message, and receive a
    Message.
 
-// Configure local candidates: a port on the Local Endpoint and via a STUN server
-HostCandidate := NewLocalEndpoint()
-HostCandidate.WithPort(9876)
+   // Configure local candidates: a port on the Local Endpoint
+   // and via a STUN server
+   HostCandidate := NewLocalEndpoint()
+   HostCandidate.WithPort(9876)
 
-StunCandidate := NewLocalEndpoint()
-StunCandidate.WithStunServer(address, port, credentials)
+   StunCandidate := NewLocalEndpoint()
+   StunCandidate.WithStunServer(address, port, credentials)
 
-LocalCandidates = [HostCandidate, StunCandidate]
+   LocalCandidates = [HostCandidate, StunCandidate]
 
-// Configure transport and security properties
-TransportProperties := ...
-SecurityParameters  := ...
+   // Configure transport and security properties
+   TransportProperties := ...
+   SecurityParameters  := ...
 
-Preconnection := NewPreconnection(LocalCandidates,
-                                  [], // No remote candidates yet
-                                  TransportProperties,
-                                  SecurityParameters)
+   Preconnection := NewPreconnection(LocalCandidates,
+                                     [], // No remote candidates yet
+                                     TransportProperties,
+                                     SecurityParameters)
 
-// Resolve the LocalCandidates. The Preconnection.Resolve() call
-// resolves both local and remote candidates but, since the remote
-// candidates have not yet been specified, the ResolvedRemote list
-// returned will be empty and is not used.
-ResolvedLocal, ResolvedRemote = Preconnection.Resolve()
+   // Resolve the LocalCandidates. The Preconnection.Resolve() call
+   // resolves both local and remote candidates but, since the remote
+   // candidates have not yet been specified, the ResolvedRemote list
+   // returned will be empty and is not used.
+   ResolvedLocal, ResolvedRemote = Preconnection.Resolve()
 
-// ...Send the ResolvedLocal list to peer via signalling channel
-// ...Receive a list of RemoteCandidates from peer via signalling channel
+   // ...Send the ResolvedLocal list to peer via signalling channel
+   // ...Receive a list of RemoteCandidates from peer via
+   //    signalling channel
 
-Preconnection.AddRemote(RemoteCandidates)
-Preconnection.Rendezvous()
+   Preconnection.AddRemote(RemoteCandidates)
+   Preconnection.Rendezvous()
 
-Preconnection -> RendezvousDone<Connection>
+   Preconnection -> RendezvousDone<Connection>
 
-//---- RendezvousDone event handler begin ----
-Connection.Send(messageDataRequest)
-Connection.Receive()
-//---- RendezvousDone event handler end ----
+   //---- RendezvousDone event handler begin ----
+   Connection.Send(messageDataRequest)
+   Connection.Receive()
+   //---- RendezvousDone event handler end ----
 
-Connection -> Received<messageDataResponse, messageContext>
+   Connection -> Received<messageDataResponse, messageContext>
 
-// Close the Connection in a Receive event handler
-Connection.Close()
+   // Close the Connection in a Receive event handler
+   Connection.Close()
 
 4.  Transport Properties
 
    Each application using the Transport Services Interface declares its
-   preferences for how the transport service should operate using
-   properties at each stage of the lifetime of a connection using
-   Transport Properties, as defined in [I-D.ietf-taps-arch].
+   preferences for how the transport service should operate.  This is
+   done by using Transport Properties, as defined in
+   [I-D.ietf-taps-arch], at each stage of the lifetime of a connection.
 
    Transport Properties are divided into Selection, Connection, and
    Message Properties.  Selection Properties (see Section 6.2) can only
@@ -603,7 +597,9 @@ Connection.Close()
 
    Transport Properties are referred to by property names.  For the
    purposes of this document, these names are alphanumeric strings in
-   which words may be separated by hyphens.  These names serve two
+   which words may be separated by hyphens.  Specifically, the following
+   characters are allowed: lowercase letters a-z, uppercase letters A-Z,
+   digits 0-9, the hyphen -, and the underscore _. These names serve two
    purposes:
 
    *  Allowing different components of a TAPS implementation to pass
@@ -626,7 +622,7 @@ Connection.Close()
       protocol and are defined in an RFC.
 
    *  Protocol Specific Properties MUST use the protocol acronym as the
-      Namespace, e.g., "tcp" for TCP specific Transport Properties.  For
+      Namespace, e.g., tcp for TCP specific Transport Properties.  For
       IETF protocols, property names under these namespaces SHOULD be
       defined in an RFC.
 
@@ -635,10 +631,11 @@ Connection.Close()
 
    Namespaces for each of the keywords provided in the IANA protocol
    numbers registry (see https://www.iana.org/assignments/protocol-
-   numbers/protocol-numbers.xhtml), reformatted where necessary to
-   conform to an implementation's naming conventions, are reserved for
-   Protocol Specific Properties and MUST NOT be used for vendor or
-   implementation-specific properties.
+   numbers/protocol-numbers.xhtml) are reserved for Protocol Specific
+   Properties and MUST NOT be used for vendor or implementation-specific
+   properties.  Avoid using any of the terms listed as keywords in the
+   protocol numbers registry as any part of a vendor- or implementation-
+   specific property name.
 
 4.2.  Transport Property Types
 
@@ -683,10 +680,10 @@ Connection.Close()
       specifies a Property that is not available in a transport protocol
       implemented on a specific platform.  For example, if TCP is the
       only underlying transport protocol, the Message Property
-      "msgOrdered" can be implemented (trivially, as a no-op) as
-      disabling the requirement for ordering will not have any effect on
-      delivery order for Connections over TCP.  Similarly, the "msg-
-      lifetime" Message Property can be implemented but ignored, as the
+      msgOrdered can be implemented (trivially, as a no-op) as disabling
+      the requirement for ordering will not have any effect on delivery
+      order for Connections over TCP.  Similarly, the msg-lifetime
+      Message Property can be implemented but ignored, as the
       description of this Property states that "it is not guaranteed
       that a Message will not be sent when its Lifetime has expired".
 
@@ -736,7 +733,7 @@ Connection.Close()
 
    If more than one Remote Endpoint is specified on the Preconnection,
    then all the Remote Endpoints on the Preconnection SHOULD represent
-   the same host.  For example, the Remote Endpoints might represent
+   the same service.  For example, the Remote Endpoints might represent
    various network interfaces of a host, or a server reflexive address
    that can be used to reach a host, or a set of hosts that provide
    equivalent local balanced service.
@@ -788,6 +785,10 @@ Connection.Close()
 
    LocalSpecifier.WithInterface("en0")
 
+   Note that an IPv6 address specified with a scope (e.g.
+   2001:db8:4920:e29d:a420:7461:7073:0a%en0) is equivalent to
+   WithIPv6Address with an unscoped address and WithInterface together.
+
    An Endpoint cannot have multiple identifiers of a same type set.
    That is, an endpoint cannot have two IP addresses specified.  Two
    separate IP addresses are represented as two Endpoint Objects.  If a
@@ -815,16 +816,21 @@ Connection.Close()
    be used to receive multicast messages.  The Remote Endpoint can be
    used to filter incoming multicast from specific senders.  Such a
    Preconnection will only support calling Listen(), not Initiate().
-   The accepted Connections are receive-only.
+   Calling Listen() will cause the Transport Services system to register
+   for receiving multicast, such as issuing an IGMP join [RFC3376] or
+   using MLD for IPV6 [RFC4604].  Any Connections that are accepted from
+   this Listener are receive-only.
 
    Similarly, specifying a multicast group address on the Remote
    Endpoint will indicate that the resulting connection will be used to
    send multicast messages, and that the Preconnection will support
-   Initiate() but not Listen().  The Connection created this way is
+   Initiate() but not Listen().  Any Connections created this way are
    send-only.
 
    A Rendezvous() call on Preconnections containing group addresses
    results in an EstablishmentError as described in Section 7.3.
+
+   See Section 6.1.4 for more examples.
 
 6.1.2.  Endpoint Aliases
 
@@ -887,7 +893,7 @@ Connection.Close()
 
    As an alternative to specifying an interface name for the Local
    Endpoint, an application can express more fine-grained preferences
-   using the "Interface Instance or Type" Selection Property, see
+   using the Interface Instance or Type Selection Property, see
    Section 6.2.11.  However, if the application specifies Selection
    Properties that are inconsistent with the Local Endpoint, this will
    result in an Error once the application attempts to open a
@@ -897,6 +903,8 @@ Connection.Close()
 
    LocalSpecifier := NewLocalEndpoint()
    LocalSpecifier.WithStunServer(address, port, credentials)
+
+6.1.4.  Multicast Examples
 
    Specify a Local Endpoint using an Any-Source Multicast group to join
    on a named local interface:
@@ -914,6 +922,52 @@ Connection.Close()
 
    RemoteSpecifier := NewRemoteEndpoint()
    RemoteSpecifier.WithIPv4Address(192.0.2.22)
+
+   One common pattern for multicast is to both send and receive
+   multicast.  For such cases, an application can set up both a Listener
+   and a Connection.  The Listener is only used to accept Connections
+   that receive inbound multicast.  The initiated Connection is only
+   used to send multicast.
+
+// Prepare multicast Listener
+LocalMulticastSpecifier := NewLocalEndpoint()
+LocalMulticastSpecifier.WithIPv4Address(233.252.0.0)
+LocalMulticastSpecifier.WithPort(5353)
+LocalMulticastSpecifier.WithInterface("en0")
+
+TransportProperties := NewTransportProperties()
+TransportProperties.Require(preserve-msg-boundaries)
+// Reliable Data Transfer and Preserve Order are Required by default
+
+// Specifying a Remote Endpoint is optional when using Listen()
+Preconnection := NewPreconnection(LocalMulticastSpecifier,
+                                  TransportProperties,
+                                  SecurityParameters)
+
+MulticastListener := Preconnection.Listen()
+
+// Handle inbound messages sent to the multicast group
+MulticastListener -> ConnectionReceived<MulticastReceiverConnection>
+MulticastReceiverConnection.Receive()
+MulticastReceiverConnection -> Received<messageDataRequest, messageContext>
+
+// Prepare Connection to send multicast
+LocalSpecifier := NewLocalEndpoint()
+LocalSpecifier.WithPort(5353)
+LocalSpecifier.WithInterface("en0")
+RemoteMulticastSpecifier := NewRemoteEndpoint()
+RemoteMulticastSpecifier.WithIPv4Address(233.252.0.0)
+RemoteMulticastSpecifier.WithPort(5353)
+RemoteMulticastSpecifier.WithInterface("en0")
+
+Preconnection2 := NewPreconnection(LocalSpecifier,
+                                   RemoteMulticastSpecifier,
+                                   TransportProperties,
+                                   SecurityParameters)
+
+// Send outbound messages to the multicast group
+MulticastSenderConnection := Preconnection.Initiate()
+MulticastSenderConnection.Send(messageData)
 
 6.2.  Specifying Transport Properties
 
@@ -1021,16 +1075,16 @@ Connection.Close()
    Properties are listed in the subsections below.  Many properties are
    only considered during establishment, and can not be changed after a
    Connection is established; however, they can still be queried.  The
-   return type of a queried Selection Property is Boolean, where "true"
-   means that the Selection Property has been applied and "false" means
-   that the Selection Property has not been applied.  Note that "true"
+   return type of a queried Selection Property is Boolean, where true
+   means that the Selection Property has been applied and false means
+   that the Selection Property has not been applied.  Note that true
    does not mean that a request has been honored.  For example, if
-   "Congestion control" was requested with preference level "Prefer",
-   but congestion control could not be supported, querying the
-   "congestionControl" property yields the value "false".  If the
-   preference level "Avoid" was used for "Congestion control", and, as
-   requested, the Connection is not congestion controlled, querying the
-   "congestionControl" property also yields the value "false".
+   Congestion control was requested with preference level Prefer, but
+   congestion control could not be supported, querying the
+   congestionControl property yields the value false.  If the preference
+   level Avoid was used for Congestion control, and, as requested, the
+   Connection is not congestion controlled, querying the
+   congestionControl property also yields the value false.
 
    An implementation of this interface must provide sensible defaults
    for Selection Properties.  The default values for each property below
@@ -1192,11 +1246,10 @@ Connection.Close()
    Default:  Empty (not setting a preference for any interface)
 
    This property allows the application to select any specific network
-   interfaces or categories of interfaces it wants to "Require",
-   "Prohibit", "Prefer", or "Avoid".  Note that marking a specific
-   interface as "Require" strictly limits path selection to that single
-   interface, and often leads to less flexible and resilient connection
-   establishment.
+   interfaces or categories of interfaces it wants to Require, Prohibit,
+   Prefer, or Avoid.  Note that marking a specific interface as Require
+   strictly limits path selection to that single interface, and often
+   leads to less flexible and resilient connection establishment.
 
    In contrast to other Selection Properties, this property is a tuple
    of an (Enumerated) interface identifier and a preference, and can
@@ -1205,14 +1258,14 @@ Connection.Close()
    system.
 
    The set of valid interface types is implementation- and system-
-   specific.  For example, on a mobile device, there may be "Wi-Fi" and
-   "Cellular" interface types available; whereas on a desktop computer,
-   "Wi-Fi" and "Wired Ethernet" interface types might be available.  An
+   specific.  For example, on a mobile device, there may be Wi-Fi and
+   Cellular interface types available; whereas on a desktop computer,
+   Wi-Fi and Wired Ethernet interface types might be available.  An
    implementation should provide all types that are supported on the
    local system, to allow applications to be written generically.  For
    example, if a single implementation is used on both mobile devices
-   and desktop devices, it should define the "Cellular" interface type
-   for both systems, since an application might wish to always prohibit
+   and desktop devices, it should define the Cellular interface type for
+   both systems, since an application might wish to always prohibit
    cellular.
 
    The set of interface types is expected to change over time as new
@@ -1237,9 +1290,9 @@ Connection.Close()
    Similar to interface instances and types (see Section 6.2.11), this
    property allows the application to control path selection by
    selecting which specific Provisioning Domain (PvD) or categories of
-   PVDs it wants to "Require", "Prohibit", "Prefer", or "Avoid".
-   Provisioning Domains define consistent sets of network properties
-   that may be more specific than network interfaces [RFC7556].
+   PVDs it wants to Require, Prohibit, Prefer, or Avoid.  Provisioning
+   Domains define consistent sets of network properties that may be more
+   specific than network interfaces [RFC7556].
 
    As with interface instances and types, this property is a tuple of an
    (Enumerated) PvD identifier and a preference, and can either be
@@ -1310,7 +1363,7 @@ Connection.Close()
       the Remote Endpoint requests it.
 
    The policy for using multiple paths is specified using the separate
-   "multipath-policy" property, see Section 8.1.7 below.  To enable the
+   multipath-policy property, see Section 8.1.7 below.  To enable the
    peer endpoint to initiate additional paths towards a local address
    other than the one initially used, it is necessary to set the
    Alternative Addresses property (see Section 6.2.15 below).
@@ -1327,7 +1380,7 @@ Connection.Close()
    of multiple paths.  The "Disabled" value implies a requirement not to
    use multiple paths in parallel but does not prevent choosing a
    protocol that is capable of using multiple paths, e.g., it does not
-   prevent choosing TCP, but prevents sending the "MP_CAPABLE" option in
+   prevent choosing TCP, but prevents sending the MP_CAPABLE option in
    the TCP handshake.
 
 6.2.15.  Advertisement of Alternative Addresses
@@ -1556,9 +1609,9 @@ SecurityParameters.Set(signature-algorithm, "ed25519")
    one or more candidate transport-layer connections to be created to
    the specified Remote Endpoint.  The caller may immediately begin
    sending Messages on the Connection (see Section 9.2) after calling
-   Initiate(); note that any data marked "Safely Replayable" that is
-   sent while the Connection is being established may be sent multiple
-   times or on multiple candidates.
+   Initiate(); note that any data marked Safely Replayable that is sent
+   while the Connection is being established may be sent multiple times
+   or on multiple candidates.
 
    The following Events may be sent by the Connection after Initiate()
    is called:
@@ -1741,24 +1794,24 @@ SecurityParameters.Set(signature-algorithm, "ed25519")
    openend, and it will send a Ready Event or an EstablishmentError
    Event.  Calling Clone on any of these Connections adds another
    Connection to the Connection Group.  Connections in a Connection
-   Group share all Connection Properties except "Connection Priority"
-   (see Section 8.1.2), and these Connection Properties are entangled:
+   Group share all Connection Properties except Connection Priority (see
+   Section 8.1.2), and these Connection Properties are entangled:
    Changing one of the Connection Properties on one Connection in the
    Connection Group automatically changes the Connection Property for
-   all others.  For example, changing "Timeout for aborting Connection"
+   all others.  For example, changing Timeout for aborting Connection
    (see Section 8.1.3) on one Connection in a Connection Group will
    automatically make the same change to this Connection Property for
    all other Connections in the Connection Group.  Like all other
-   Properties, "Connection Priority" is copied to the new Connection
-   when calling Clone(), but in this case, a later change to the
-   "Connection Priority" on one Connection does not change it on the
-   other Connections in the same Connection Group.
+   Properties, Connection Priority is copied to the new Connection when
+   calling Clone(), but in this case, a later change to the Connection
+   Priority on one Connection does not change it on the other
+   Connections in the same Connection Group.
 
    Message Properties set on a Connection also apply only to that
    Connection.
 
    A new Connection created by Clone can have a Message Framer assigned
-   via the optional "framer" parameter of the Clone Action.  If this
+   via the optional framer parameter of the Clone Action.  If this
    parameter is not supplied, the stack of Message Framers associated
    with a Connection is copied to the cloned Connection when calling
    Clone.  Then, a cloned Connection has the same stack of Message
@@ -1796,14 +1849,14 @@ SecurityParameters.Set(signature-algorithm, "ed25519")
 
    Connection -> CloneError<reason?>
 
-   The "Connection Priority" Connection Property operates on Connections
+   The Connection Priority Connection Property operates on Connections
    in a Connection Group using the same approach as in Section 9.1.3.2:
    when allocating available network capacity among Connections in a
-   Connection Group, sends on Connections with lower Priority values
-   will be prioritized over sends on Connections with higher Priority
-   values.  Capacity will be shared among these Connections according to
-   the Connection Group Transmission Scheduler property (Section 8.1.5).
-   See Section 9.2.6 for more.
+   Connection Group, sends on Connections with higher Priority values
+   will be prioritized over sends on Connections that have lower
+   Priority values.  Capacity will be shared among these Connections
+   according to the Connection Group Transmission Scheduler property
+   (Section 8.1.5).  See Section 9.2.6 for more.
 
 8.  Managing Connections
 
@@ -1820,10 +1873,14 @@ SecurityParameters.Set(signature-algorithm, "ed25519")
    in Section 8.1 below.
 
    Protocol Specific Properties are defined in a transport- and
-   implementation-specific way, and MUST NOT apply across different
-   protocols.  Too much reliance by an application on Protocol Specific
-   Properties can significantly reduce the flexibility of a transport
-   services implementation.
+   implementation-specific way to permit more specialized protocol
+   features to be used.  Too much reliance by an application on Protocol
+   Specific Properties can significantly reduce the flexibility of a
+   transport services implementation to make appropriate selection and
+   configuration choices.  Therefore, it is RECOMMENDED that Protocol
+   Properties are used for properties common across different protocols
+   and that Protocol Specific Properties are only used where specific
+   protocols or properties are necessary.
 
    The application can set and query Connection Properties on a per-
    Connection basis.  Connection Properties that are not read-only can
@@ -1850,23 +1907,22 @@ SecurityParameters.Set(signature-algorithm, "ed25519")
 
    *  Whether the connection can be used to send data.  A connection can
       not be used for sending if the connection was created with the
-      Selection Property "Direction of Communication" set to
-      "unidirectional receive" or if a Message marked as "Final" was
-      sent over this connection.  See also Section 9.1.3.5.
+      Selection Property Direction of Communication set to
+      unidirectional receive or if a Message marked as Final was sent
+      over this connection.  See also Section 9.1.3.5.
 
    *  Whether the connection can be used to receive data.  A connection
       cannot be used for reading if the connection was created with the
-      Selection Property "Direction of Communication" set to
-      "unidirectional send" or if a Message marked as "Final" was
-      received.  See Section 9.3.3.3.  The latter is only supported by
-      certain transport protocols, e.g., by TCP as half-closed
-      connection.
+      Selection Property Direction of Communication set to
+      unidirectional send or if a Message marked as Final was received.
+      See Section 9.3.3.3.  The latter is only supported by certain
+      transport protocols, e.g., by TCP as half-closed connection.
 
    *  For Connections that are Established, Closing, or Closed:
       Connection Properties (Section 8.1) of the actual protocols that
       were selected and instantiated, and Selection Properties that the
       application specified on the Preconnection.  Selection Properties
-      of type "Preference" will be exposed as boolean values indicating
+      of type Preference will be exposed as boolean values indicating
       whether or not the property applies to the selected transport.
       Note that the instantiated protocol stack might not match all
       Protocol Selection Properties that the application specified on
@@ -1890,17 +1946,16 @@ SecurityParameters.Set(signature-algorithm, "ed25519")
 
    Name:  recvChecksumLen
 
-   Type:  Integer (non-negative with special value "Full Coverage")
+   Type:  Integer (non-negative with special value Full Coverage)
 
    Default:  Full Coverage
 
    This property specifies the minimum number of bytes in a received
-   message that need to be covered by a checksum.  A special value of 0
-   means that a received packet does not need to have a non-zero
-   checksum field.  A receiving endpoint will not forward messages that
-   have less coverage to the application.  The application is
-   responsible for handling any corruption within the non-protected part
-   of the message [RFC8085].
+   message that need to be covered by a checksum.  A receiving endpoint
+   will not forward messages that have less coverage to the application.
+   The application is responsible for handling any corruption within the
+   non-protected part of the message [RFC8085].  A special value of 0
+   means that a received packet may also have a zero checksum field.
 
 8.1.2.  Connection Priority
 
@@ -1910,22 +1965,22 @@ SecurityParameters.Set(signature-algorithm, "ed25519")
 
    Default:  100
 
-   This Property is a non-negative integer representing the relative
-   inverse priority (i.e., a lower value reflects a higher priority) of
+   This Property is a non-negative integer representing the priority of
    this Connection relative to other Connections in the same Connection
-   Group.  It has no effect on Connections not part of a Connection
-   Group.  As noted in Section 7.4, this property is not entangled when
-   Connections are cloned, i.e., changing the Priority on one Connection
-   in a Connection Group does not change it on the other Connections in
-   the same Connection Group.  No guarantees of a specific behavior
-   regarding Connection Priority are given; a Transport Services system
-   may ignore this property.  See Section 9.2.6 for more details.
+   Group.  A higher value reflects a higher priority.  It has no effect
+   on Connections not part of a Connection Group.  As noted in
+   Section 7.4, this property is not entangled when Connections are
+   cloned, i.e., changing the Priority on one Connection in a Connection
+   Group does not change it on the other Connections in the same
+   Connection Group.  No guarantees of a specific behavior regarding
+   Connection Priority are given; a Transport Services system may ignore
+   this property.  See Section 9.2.6 for more details.
 
 8.1.3.  Timeout for Aborting Connection
 
    Name:  connTimeout
 
-   Type:  Numeric, with special value "Disabled"
+   Type:  Numeric, with special value Disabled
 
    Default:  Disabled
 
@@ -1933,13 +1988,13 @@ SecurityParameters.Set(signature-algorithm, "ed25519")
    active Connection has failed when trying to reliably deliver data to
    the Remote Endpoint.  Adjusting this Property will only take effect
    when the underlying stack supports reliability.  The special value
-   "Disabled" means that no timeout is scheduled.
+   Disabled means that no timeout is scheduled.
 
 8.1.4.  Timeout for keep alive packets
 
    Name:  keepAliveTimeout
 
-   Type:  Numeric, with special value "Disabled"
+   Type:  Numeric, with special value Disabled
 
    Default:  Implementation-defined
 
@@ -1952,7 +2007,7 @@ SecurityParameters.Set(signature-algorithm, "ed25519")
    supports sending keep-alive packets.  Guidance on setting this value
    for datagram transports is provided in [RFC8085].  A value greater
    than the connection timeout (Section 8.1.3), or the special value
-   "Disabled", will disable the sending of keep-alive packets.
+   Disabled, will disable the sending of keep-alive packets.
 
 8.1.5.  Connection Group Transmission Scheduler
 
@@ -2087,9 +2142,9 @@ SecurityParameters.Set(signature-algorithm, "ed25519")
 
    Name:  minSendRate / minRecvRate / maxSendRate / maxRecvRate
 
-   Type:  Numeric (with special value "Unlimited") / Numeric (with
-      special value "Unlimited") / Numeric (with special value
-      "Unlimited") / Numeric (with special value "Unlimited")
+   Type:  Numeric (with special value Unlimited) / Numeric (with special
+      value Unlimited) / Numeric (with special value Unlimited) /
+      Numeric (with special value Unlimited)
 
    Default:  Unlimited / Unlimited / Unlimited / Unlimited
 
@@ -2097,14 +2152,14 @@ SecurityParameters.Set(signature-algorithm, "ed25519")
    expected to exceed (even if flow control and congestion control allow
    higher rates), and/or a lower-bound rate below which the application
    does not deem it will be useful.  These are specified in bits per
-   second.  The special value "Unlimited" indicates that no bound is
+   second.  The special value Unlimited indicates that no bound is
    specified.
 
 8.1.9.  Group Connection Limit
 
    Name:  groupConnLimit
 
-   Type:  Numeric (with special value "Unlimited")
+   Type:  Numeric (with special value Unlimited)
 
    Default:  Unlimited
 
@@ -2191,7 +2246,7 @@ SecurityParameters.Set(signature-algorithm, "ed25519")
    the Transport Services system.
 
    These TCP-specific properties are included here because the feature
-   "Suggest timeout to the peer" is part of the minimal set of transport
+   Suggest timeout to the peer is part of the minimal set of transport
    services [RFC8923], where this feature was categorized as
    "functional".  This means that when an implementation offers this
    feature, it has to expose an interface to it to the application.
@@ -2199,7 +2254,7 @@ SecurityParameters.Set(signature-algorithm, "ed25519")
    application, which could cause the application to fail.
 
    All of the below properties are optional (e.g., it is possible to
-   specify "User Timeout Enabled" as true, but not specify an Advertised
+   specify User Timeout Enabled as true, but not specify an Advertised
    User Timeout value; in this case, the TCP default will be used).
    These properties reflect the API extension specified in Section 3 of
    [RFC5482].
@@ -2213,8 +2268,8 @@ SecurityParameters.Set(signature-algorithm, "ed25519")
    Default:  the TCP default
 
    This time value is advertised via the TCP User Timeout Option (UTO)
-   [RFC5482] at the Remote Endpoint to adapt its own "Timeout for
-   aborting Connection" (see Section 8.1.3) value.
+   [RFC5482] at the Remote Endpoint to adapt its own Timeout for
+   aborting Connection (see Section 8.1.3) value.
 
 8.2.2.  User Timeout Enabled
 
@@ -2235,10 +2290,10 @@ SecurityParameters.Set(signature-algorithm, "ed25519")
 
    Default:  true
 
-   This property controls whether the "Timeout for aborting Connection"
+   This property controls whether the Timeout for aborting Connection
    (see Section 8.1.3) may be changed based on a UTO option received
-   from the remote peer.  This boolean becomes false when "Timeout for
-   aborting Connection" (see Section 8.1.3) is used.
+   from the remote peer.  This boolean becomes false when Timeout for
+   aborting Connection (see Section 8.1.3) is used.
 
 8.3.  Connection Lifecycle Events
 
@@ -2454,14 +2509,14 @@ SecurityParameters.Set(signature-algorithm, "ed25519")
 
    If a Message Property contradicts a Connection Property, and if this
    per-Message behavior can be supported, it overrides the Connection
-   Property for the specific Message.  For example, if "Reliable Data
-   Transfer (Connection)" is set to "Require" and a protocol with
-   configurable per-Message reliability is used, setting "Reliable Data
-   Transfer (Message)" to "false" for a particular Message will allow
-   this Message to be sent without any reliability guarantees.  Changing
-   the Reliable Data Transfer property on Messages is only possible for
+   Property for the specific Message.  For example, if Reliable Data
+   Transfer (Connection) is set to Require and a protocol with
+   configurable per-Message reliability is used, setting Reliable Data
+   Transfer (Message) to false for a particular Message will allow this
+   Message to be sent without any reliability guarantees.  Changing the
+   Reliable Data Transfer property on Messages is only possible for
    Connections that were established enabling the Selection Property
-   "Configure Per-Message Reliability".
+   Configure Per-Message Reliability.
 
    The following Message Properties are supported:
 
@@ -2483,8 +2538,8 @@ SecurityParameters.Set(signature-algorithm, "ed25519")
    application does not wish to apply a time constraint on the
    transmission of the Message, but it does not express a need for
    reliable delivery; reliability is adjustable per Message via the
-   "Reliable Data Transfer (Message)" property (see Section 9.1.3.7).
-   The type and units of Lifetime are implementation-specific.
+   Reliable Data Transfer (Message) property (see Section 9.1.3.7).  The
+   type and units of Lifetime are implementation-specific.
 
 9.1.3.2.  Priority
 
@@ -2515,7 +2570,7 @@ SecurityParameters.Set(signature-algorithm, "ed25519")
    Type:  Boolean
 
    Default:  the queried Boolean value of the Selection Property
-      "preserveOrder" (Section 6.2.4)
+      preserveOrder (Section 6.2.4)
 
    The order in which Messages were submitted for transmission via the
    Send Action will be preserved on delivery via Receive<> events for
@@ -2543,11 +2598,11 @@ SecurityParameters.Set(signature-algorithm, "ed25519")
    application to receive the Message multiple times.
 
    For protocols that do not protect against duplicated messages, e.g.,
-   UDP, all messages need to be marked as "Safely Replayable".  To
-   enable protocol selection to choose such a protocol, "Safely
-   Replayable" needs to be added to the TransportProperties passed to
-   the Preconnection.  If such a protocol was chosen, disabling "Safely
-   Replayable" on individual messages MUST result in a SendError.
+   UDP, all messages need to be marked as Safely Replayable.  To enable
+   protocol selection to choose such a protocol, Safely Replayable needs
+   to be added to the TransportProperties passed to the Preconnection.
+   If such a protocol was chosen, disabling Safely Replayable on
+   individual messages MUST result in a SendError.
 
 9.1.3.5.  Final
 
@@ -2577,7 +2632,7 @@ SecurityParameters.Set(signature-algorithm, "ed25519")
 
    Name:  msgChecksumLen
 
-   Type:  Integer (non-negative with special value "Full Coverage")
+   Type:  Integer (non-negative with special value Full Coverage)
 
    Default:  Full Coverage
 
@@ -2585,10 +2640,10 @@ SecurityParameters.Set(signature-algorithm, "ed25519")
    Message, starting from byte 0, that the application requires to be
    delivered without corruption due to lower layer errors.  It is used
    to specify options for simple integrity protection via checksums.  A
-   value of 0 means that no checksum needs to be calculated, and "Full
-   Coverage" means that the entire Message needs to be protected by a
-   checksum.  Only "Full Coverage" is guaranteed, any other requests are
-   advisory, which may result in "Full Coverage" being applied.
+   value of 0 means that no checksum needs to be calculated, and Full
+   Coverage means that the entire Message needs to be protected by a
+   checksum.  Only Full Coverage is guaranteed, any other requests are
+   advisory, which may result in Full Coverage being applied.
 
 9.1.3.7.  Reliable Data Transfer (Message)
 
@@ -2597,15 +2652,15 @@ SecurityParameters.Set(signature-algorithm, "ed25519")
    Type:  Boolean
 
    Default:  the queried Boolean value of the Selection Property
-      "reliability" (Section 6.2.1)
+      reliability (Section 6.2.1)
 
    When true, this property specifies that a Message should be sent in
    such a way that the transport protocol ensures all data is received
-   on the other side without corruption.  Changing the "Reliable Data
-   Transfer" property on Messages is only possible for Connections that
-   were established enabling the Selection Property "Configure Per-
-   Message Reliability".  When this is not the case, changing
-   "msgReliable" will generate an error.
+   on the other side without corruption.  Changing the Reliable Data
+   Transfer property on Messages is only possible for Connections that
+   were established enabling the Selection Property Configure Per-
+   Message Reliability.  When this is not the case, changing msgReliable
+   will generate an error.
 
    Disabling this property indicates that the Transport Services system
    may disable retransmissions or other reliability mechanisms for this
@@ -2617,8 +2672,8 @@ SecurityParameters.Set(signature-algorithm, "ed25519")
 
    Type:  Enumeration
 
-   Default:  inherited from the Connection Property
-      "connCapacityProfile" (Section 8.1.6)
+   Default:  inherited from the Connection Property connCapacityProfile
+      (Section 8.1.6)
 
    This enumerated property specifies the application's preferred
    tradeoffs for sending this Message; it is a per-Message override of
@@ -2645,8 +2700,8 @@ SecurityParameters.Set(signature-algorithm, "ed25519")
 
    Attempts to send a message with this property that result in a size
    greater than the transport's current estimate of its maximum packet
-   size ("singularTransmissionMsgMaxLen") can result in transport
-   segmentation when permitted, or in a "SendError".
+   size (singularTransmissionMsgMaxLen) can result in transport
+   segmentation when permitted, or in a SendError.
 
    Note: noSegmentation should be used when it is desired to only send a
    message within a single network packet.
@@ -2832,12 +2887,12 @@ SecurityParameters.Set(signature-algorithm, "ed25519")
 Connection := Preconnection.InitiateWithSend(messageData, messageContext?, timeout?)
 
    Whenever possible, a messageContext should be provided to declare the
-   Message passed to InitiateWithSend as "Safely Replayable".  This
-   allows the Transport Services system to make use of 0-RTT
-   establishment in case this is supported by the available protocol
-   stacks.  When the selected stack(s) do not support transmitting data
-   upon connection establishment, InitiateWithSend is identical to
-   Initiate() followed by Send().
+   Message passed to InitiateWithSend as Safely Replayable.  This allows
+   the Transport Services system to make use of 0-RTT establishment in
+   case this is supported by the available protocol stacks.  When the
+   selected stack(s) do not support transmitting data upon connection
+   establishment, InitiateWithSend is identical to Initiate() followed
+   by Send().
 
    Neither partial sends nor send batching are supported by
    InitiateWithSend().
@@ -2878,8 +2933,8 @@ Connection := Preconnection.InitiateWithSend(messageData, messageContext?, timeo
 9.3.  Receiving Data
 
    Once a Connection is established, it can be used for receiving data
-   (unless the "Direction of Communication" property is set to
-   "unidirectional send").  As with sending, the data is received in
+   (unless the Direction of Communication property is set to
+   unidirectional send).  As with sending, the data is received in
    Messages.  Receiving is an asynchronous operation, in which each call
    to Receive enqueues a request to receive new data from the
    connection.  Once data has been received, or an error is encountered,
@@ -2998,6 +3053,21 @@ Connection -> ReceivedPartial<messageData, messageContext, endOfMessage>
    Note that in the absence of message boundary preservation or a
    Message Framer, all bytes received on the Connection will be
    represented as one large Message of indeterminate length.
+
+   In the following example, an application only wants to receive up to
+   1000 bytes at a time from a Connection.  If a 1500-byte message
+   arrives, it would receive the message in two separate ReceivedPartial
+   events.
+
+Connection.Receive(1, 1000)
+
+// Receive first 1000 bytes, message is incomplete
+Connection -> ReceivedPartial<messageData(1000 bytes), messageContext, false>
+
+Connection.Receive(1, 1000)
+
+// Receive last 500 bytes, message is now complete
+Connection -> ReceivedPartial<messageData(500 bytes), messageContext, true>
 
 9.3.2.3.  ReceiveError
 
@@ -3380,9 +3450,9 @@ Connection -> ReceivedPartial<messageData, messageContext, endOfMessage>
    [I-D.ietf-httpbis-priority]
               Oku, K. and L. Pardue, "Extensible Prioritization Scheme
               for HTTP", Work in Progress, Internet-Draft, draft-ietf-
-              httpbis-priority-04, 11 July 2021,
+              httpbis-priority-06, 30 September 2021,
               <https://datatracker.ietf.org/doc/html/draft-ietf-httpbis-
-              priority-04>.
+              priority-06>.
 
    [I-D.ietf-taps-impl]
               Brunstrom, A., Pauly, T., Enghardt, T., Grinnemo, K.,
@@ -3415,10 +3485,22 @@ Connection -> ReceivedPartial<messageData, messageContext, endOfMessage>
               DOI 10.17487/RFC3261, June 2002,
               <https://datatracker.ietf.org/doc/html/rfc3261>.
 
+   [RFC3376]  Cain, B., Deering, S., Kouvelas, I., Fenner, B., and A.
+              Thyagarajan, "Internet Group Management Protocol, Version
+              3", RFC 3376, DOI 10.17487/RFC3376, October 2002,
+              <https://datatracker.ietf.org/doc/html/rfc3376>.
+
    [RFC4594]  Babiarz, J., Chan, K., and F. Baker, "Configuration
               Guidelines for DiffServ Service Classes", RFC 4594,
               DOI 10.17487/RFC4594, August 2006,
               <https://datatracker.ietf.org/doc/html/rfc4594>.
+
+   [RFC4604]  Holbrook, H., Cain, B., and B. Haberman, "Using Internet
+              Group Management Protocol Version 3 (IGMPv3) and Multicast
+              Listener Discovery Protocol Version 2 (MLDv2) for Source-
+              Specific Multicast", RFC 4604, DOI 10.17487/RFC4604,
+              August 2006,
+              <https://datatracker.ietf.org/doc/html/rfc4604>.
 
    [RFC5245]  Rosenberg, J., "Interactive Connectivity Establishment
               (ICE): A Protocol for Network Address Translator (NAT)
@@ -3538,19 +3620,19 @@ A.1.  Types
    correspondences in practical programming languages, perhaps
    constrained by implementation-specific limitations.  For example:
 
-   *  An Integer can typically be represented in C by an "int" or
-      "long", subject to the underlying platform's ranges for each.  To
+   *  An Integer can typically be represented in C by an int or long,
+      subject to the underlying platform's ranges for each.  To
       accommodate special values, a C function that returns a non-
-      negative "int" on success may return -1 on failure.  In Python,
-      such a function might return "None" or raise an exception.
+      negative int on success may return -1 on failure.  In Python, such
+      a function might return None or raise an exception.
 
-   *  In C, a Tuple may be represented as a "struct" with one member for
+   *  In C, a Tuple may be represented as a struct with one member for
       each of the value types in the ordered grouping.  In Python, by
-      contrast, a Tuple may be represented natively as a "tuple", a
+      contrast, a Tuple may be represented natively as a tuple, a
       sequence of dynamically-typed elements.
 
-   *  A Collection may be represented as a "std::set" in C++ or as a
-      "set" in Python.  In C, it may be represented as an array or as a
+   *  A Collection may be represented as a std::set in C++ or as a set
+      in Python.  In C, it may be represented as an array or as a
       higher-level data structure with appropriate accessors defined.
 
    The objects described in Section 1.1 can similarly be represented in
@@ -3578,18 +3660,18 @@ A.2.  Events and Errors
 A.3.  Time Duration
 
    Time duration types are implementation-specific.  For instance, it
-   could be a number of seconds, number of milliseconds, or a "struct
-   timeval" in C or a user-defined "Duration" class in C++.
+   could be a number of seconds, number of milliseconds, or a struct
+   timeval in C or a user-defined Duration class in C++.
 
 Appendix B.  Convenience Functions
 
 B.1.  Adding Preference Properties
 
-   As Selection Properties of type "Preference" will be set on a
+   As Selection Properties of type Preference will be set on a
    TransportProperties object quite frequently, implementations can
    provide special actions for adding each preference level i.e,
-   "TransportProperties.Set(some_property, avoid)" is equivalent to
-   "TransportProperties.Avoid(some_property)":
+   TransportProperties.Set(some_property, avoid) is equivalent to
+   TransportProperties.Avoid(some_property):
 
    TransportProperties.Require(property)
    TransportProperties.Prefer(property)
@@ -3692,140 +3774,138 @@ Appendix C.  Relationship to the Minimal Set of Transport Services for
    is reflected in the present API.  For brevity, it is based on the
    list in Section 4.1 of [RFC8923], updated according to the discussion
    in Section 5 of [RFC8923].  The present API covers all elements of
-   this section except "Notification of Excessive Retransmissions (early
-   warning below abortion threshold)".  This list is a subset of the
+   this section except Notification of Excessive Retransmissions (early
+   warning below abortion threshold).  This list is a subset of the
    transport features in Appendix A of [RFC8923], which refers to the
    primitives in "pass 2" (Section 4) of [RFC8303] for further details
    on the implementation with TCP, MPTCP, UDP, UDP-Lite, SCTP and
    LEDBAT.
 
-   *  Connect: "Initiate" Action (Section 7.1).
+   *  Connect: Initiate Action (Section 7.1).
 
-   *  Listen: "Listen" Action (Section 7.2).
+   *  Listen: Listen Action (Section 7.2).
 
    *  Specify number of attempts and/or timeout for the first
-      establishment message: "timeout" parameter of "Initiate"
-      (Section 7.1) or "InitiateWithSend" Action (Section 9.2.5).
+      establishment message: timeout parameter of Initiate (Section 7.1)
+      or InitiateWithSend Action (Section 9.2.5).
 
-   *  Disable MPTCP: "Multipath Transport" Property (Section 6.2.14).
+   *  Disable MPTCP: Multipath Transport Property (Section 6.2.14).
 
    *  Hand over a message to reliably transfer (possibly multiple times)
-      before connection establishment: "InitiateWithSend" Action
+      before connection establishment: InitiateWithSend Action
       (Section 9.2.5).
 
    *  Change timeout for aborting connection (using retransmit limit or
-      time value): "Timeout for Aborting Connection" property, using a
+      time value): Timeout for Aborting Connection property, using a
       time value (Section 8.1.3).
 
    *  Timeout event when data could not be delivered for too long:
-      "ConnectionError" Event (Section 10).
+      ConnectionError Event (Section 10).
 
-   *  Suggest timeout to the peer: "TCP-specific Properties: User
-      Timeout Option (UTO)" (Section 8.2).
+   *  Suggest timeout to the peer: TCP-specific Properties: User Timeout
+      Option (UTO) (Section 8.2).
 
-   *  Notification of ICMP error message arrival: "Notification of ICMP
-      soft error message arrival" property (Section 6.2.17).
+   *  Notification of ICMP error message arrival: Notification of ICMP
+      soft error message arrival property (Section 6.2.17).
 
    *  Choose a scheduler to operate between streams of an association:
-      "Connection Group Transmission Scheduler" property
-      (Section 8.1.5).
+      Connection Group Transmission Scheduler property (Section 8.1.5).
 
-   *  Configure priority or weight for a scheduler: "Connection
-      Priority" property (Section 8.1.2).
+   *  Configure priority or weight for a scheduler: Connection Priority
+      property (Section 8.1.2).
 
    *  "Specify checksum coverage used by the sender" and "Disable
-      checksum when sending": "Sending Corruption Protection Length"
-      property (Section 9.1.3.6) and "Full Checksum Coverage on Sending"
+      checksum when sending": Sending Corruption Protection Length
+      property (Section 9.1.3.6) and Full Checksum Coverage on Sending
       property (Section 6.2.7).
 
    *  "Specify minimum checksum coverage required by receiver" and
-      "Disable checksum requirement when receiving": "Required Minimum
-      Corruption Protection Coverage for Receiving" property
-      (Section 8.1.1) and "Full Checksum Coverage on Receiving" property
+      "Disable checksum requirement when receiving": Required Minimum
+      Corruption Protection Coverage for Receiving property
+      (Section 8.1.1) and Full Checksum Coverage on Receiving property
       (Section 6.2.8).
 
-   *  "Specify DF field": "No Network-Layer Fragmentation" property
+   *  "Specify DF field": No Network-Layer Fragmentation property
       (Section 9.1.3.9).
 
    *  Get max. transport-message size that may be sent using a non-
-      fragmented IP packet from the configured interface: "Maximum
-      Message Size Before Fragmentation or Segmentation" property
+      fragmented IP packet from the configured interface: Maximum
+      Message Size Before Fragmentation or Segmentation property
       (Section 8.1.11.2).
 
    *  Get max. transport-message size that may be received from the
-      configured interface: "Maximum Message Size on Receive" property
+      configured interface: Maximum Message Size on Receive property
       (Section 8.1.11.4).
 
-   *  Obtain ECN field: "UDP(-Lite)-specific Property: ECN" is a read-
-      only Message Property of the MessageContext object
-      (Section 9.3.3.1).
+   *  Obtain ECN field: UDP(-Lite)-specific Property: ECN is a read-only
+      Message Property of the MessageContext object (Section 9.3.3.1).
 
    *  "Specify DSCP field", "Disable Nagle algorithm", "Enable and
-      configure a "Low Extra Delay Background Transfer"": as suggested
-      in Section 5.5 of [RFC8923], these transport features are
-      collectively offered via the "Capacity Profile" property
+      configure a Low Extra Delay Background Transfer": as suggested in
+      Section 5.5 of [RFC8923], these transport features are
+      collectively offered via the Capacity Profile property
       (Section 8.1.6).  Per-Message control ("Request not to bundle
-      messages") is offered via the "Message Capacity Profile Override"
+      messages") is offered via the Message Capacity Profile Override
       property (Section 9.1.3.8).
 
    *  Close after reliably delivering all remaining data, causing an
       event informing the application on the other side: this is offered
-      by the "Close" Action with slightly changed semantics in line with
+      by the Close Action with slightly changed semantics in line with
       the discussion in Section 5.2 of [RFC8923] (Section 10).
 
    *  "Abort without delivering remaining data, causing an event
       informing the application on the other side" and "Abort without
       delivering remaining data, not causing an event informing the
-      application on the other side": this is offered by the "Abort"
+      application on the other side": this is offered by the Abort
       action without promising that this is signaled to the other side.
-      If it is, a "ConnectionError" Event will fire at the peer
+      If it is, a ConnectionError Event will fire at the peer
       (Section 10).
 
    *  "Reliably transfer data, with congestion control", "Reliably
       transfer a message, with congestion control" and "Unreliably
-      transfer a message": data is transferred via the "Send" action
-      (Section 9.2).  Reliability is controlled via the "Reliable Data
-      Transfer (Connection)" (Section 6.2.1) property and the "Reliable
-      Data Transfer (Message)" Message Property (Section 9.1.3.7).
+      transfer a message": data is transferred via the Send action
+      (Section 9.2).  Reliability is controlled via the Reliable Data
+      Transfer (Connection) (Section 6.2.1) property and the Reliable
+      Data Transfer (Message) Message Property (Section 9.1.3.7).
       Transmitting data as a message or without delimiters is controlled
       via Message Framers (Section 9.1.2).  The choice of congestion
-      control is provided via the "Congestion control" property
+      control is provided via the Congestion control property
       (Section 6.2.9).
 
-   *  Configurable Message Reliability: the "Lifetime" Message Property
+   *  Configurable Message Reliability: the Lifetime Message Property
       implements a time-based way to configure message reliability
       (Section 9.1.3.1).
 
    *  "Ordered message delivery (potentially slower than unordered)" and
       "Unordered message delivery (potentially faster than ordered)":
       these two transport features are controlled via the Message
-      Property "Ordered" (Section 9.1.3.3).
+      Property Ordered (Section 9.1.3.3).
 
    *  Request not to delay the acknowledgement (SACK) of a message:
       should the protocol support it, this is one of the transport
       features the Transport Services system can apply when an
-      application uses the "Capacity Profile" Property (Section 8.1.6)
-      or the "Message Capacity Profile Override" Message Property
-      (Section 9.1.3.8) with value "Low Latency/Interactive".
+      application uses the Capacity Profile Property (Section 8.1.6) or
+      the Message Capacity Profile Override Message Property
+      (Section 9.1.3.8) with value Low Latency/Interactive.
 
-   *  Receive data (with no message delimiting): "Receive" Action
-      (Section 9.3) and "Received" Event (Section 9.3.2.1).
+   *  Receive data (with no message delimiting): Receive Action
+      (Section 9.3) and Received Event (Section 9.3.2.1).
 
-   *  Receive a message: "Receive" Action (Section 9.3) and "Received"
-      Event (Section 9.3.2.1), using Message Framers (Section 9.1.2).
+   *  Receive a message: Receive Action (Section 9.3) and Received Event
+      (Section 9.3.2.1), using Message Framers (Section 9.1.2).
 
-   *  Information about partial message arrival: "Receive" Action
-      (Section 9.3) and "ReceivedPartial" Event (Section 9.3.2.2).
+   *  Information about partial message arrival: Receive Action
+      (Section 9.3) and ReceivedPartial Event (Section 9.3.2.2).
 
-   *  Notification of send failures: "Expired" Event (Section 9.2.2.2)
-      and "SendError" Event (Section 9.2.2.3).
+   *  Notification of send failures: Expired Event (Section 9.2.2.2) and
+      SendError Event (Section 9.2.2.3).
 
    *  Notification that the stack has no more user data to send:
-      applications can obtain this information via the "Sent" Event
+      applications can obtain this information via the Sent Event
       (Section 9.2.2.1).
 
    *  Notification to a receiver that a partial message delivery has
-      been aborted: "ReceiveError" Event (Section 9.3.2.3).
+      been aborted: ReceiveError Event (Section 9.3.2.3).
 
 Authors' Addresses
 

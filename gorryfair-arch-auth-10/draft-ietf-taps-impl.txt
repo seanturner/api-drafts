@@ -5,11 +5,9 @@
 TAPS Working Group                                     A. Brunstrom, Ed.
 Internet-Draft                                       Karlstad University
 Intended status: Informational                             T. Pauly, Ed.
-Expires: 25 March 2022                                        Apple Inc.
+Expires: 25 April 2022                                        Apple Inc.
                                                              T. Enghardt
                                                                  Netflix
-                                                           K-J. Grinnemo
-                                                     Karlstad University
                                                                 T. Jones
                                                   University of Aberdeen
                                                                P. Tiesel
@@ -18,7 +16,7 @@ Expires: 25 March 2022                                        Apple Inc.
                                                    University of Glasgow
                                                                 M. Welzl
                                                       University of Oslo
-                                                       21 September 2021
+                                                         22 October 2021
 
 
              Implementing Interfaces to Transport Services
@@ -48,7 +46,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 25 March 2022.
+   This Internet-Draft will expire on 25 April 2022.
 
 Copyright Notice
 
@@ -187,7 +185,13 @@ Table of Contents
    DTLS session, a SCTP stream, a QUIC stream, or an HTTP/2 stream).
    The properties held by a Connection or Listener is independent of
    other connections that are not part of the same Connection Group.
-   Once Initate has been called, the Selection Properties and Endpoint
+
+   Connection establishment is only a local operation for a Datagram
+   transport (e.g., UDP(-Lite)), which serves to simplify the local
+   send/receive functions and to filter the traffic for the specified
+   addresses and ports [RFC8085].
+
+   Once Initiate has been called, the Selection Properties and Endpoint
    information are immutable (i.e, an application is not able to later
    modify Selection Properties on the original Preconnection object).
    Listener objects are created with a Preconnection, at which point
@@ -1068,7 +1072,7 @@ Aggregate [Endpoint: www.example.com:80] [Interface: Any]   [Protocol: TCP]
       messages sent after a Final message will result in a SendError.
 
    *  Corruption Protection Length: when this is set to any value other
-      than "Full Coverage", it sets the minimum protection in protocols
+      than Full Coverage, it sets the minimum protection in protocols
       that allow limiting the checksum length (e.g.  UDP-Lite).  If the
       protocol stack does not support checksum length limitation, this
       property may be ignored.
@@ -1082,13 +1086,12 @@ Aggregate [Endpoint: www.example.com:80] [Interface: Any]   [Protocol: TCP]
       transmitted.
 
    *  Message Capacity Profile Override: When true, this expresses a
-      wish to override the Generic Connection Property "Capacity
-      Profile" for this Message.  Depending on the value, this can, for
-      example, be implemented by changing the DSCP value of the
-      associated packet (note that the guidelines in Section 6 of
-      [RFC7657] apply; e.g., the DSCP value should not be changed for
-      different packets within a reliable transport protocol session or
-      DCCP connection).
+      wish to override the Generic Connection Property Capacity Profile
+      for this Message.  Depending on the value, this can, for example,
+      be implemented by changing the DSCP value of the associated packet
+      (note that the guidelines in Section 6 of [RFC7657] apply; e.g.,
+      the DSCP value should not be changed for different packets within
+      a reliable transport protocol session or DCCP connection).
 
    *  No Fragmentation: When set, this property limits the message size
       to the Maximum Message Size Before Fragmentation or Segmentation
@@ -1158,8 +1161,8 @@ Aggregate [Endpoint: www.example.com:80] [Interface: Any]   [Protocol: TCP]
    connection establishment.
 
    The amount of data that can be sent as 0-RTT data varies by protocol
-   and can be queried by the application using the "Maximum Message Size
-   Concurrent with Connection Establishment" Connection Property.  An
+   and can be queried by the application using the Maximum Message Size
+   Concurrent with Connection Establishment Connection Property.  An
    implementation can set this property according to the protocols that
    it will race based on the given Selection Properties when the
    application requests to establish a connection.
@@ -1169,14 +1172,14 @@ Aggregate [Endpoint: www.example.com:80] [Interface: Any]   [Protocol: TCP]
    racing, this means that the data should be provided before the
    process of connection establishment has begun.  If the application
    wants to send 0-RTT data, it must indicate this to the implementation
-   by setting the "Safely Replayable" send parameter to true when
-   sending the data.  In general, 0-RTT data may be replayed (for
-   example, if a TCP SYN contains data, and the SYN is retransmitted,
-   the data will be retransmitted as well but may be considered as a new
-   connection instead of a retransmission).  Also, when racing
-   connections, different leaf nodes have the opportunity to send the
-   same data independently.  If data is truly safely replayable, this
-   should be permissible.
+   by setting the Safely Replayable send parameter to true when sending
+   the data.  In general, 0-RTT data may be replayed (for example, if a
+   TCP SYN contains data, and the SYN is retransmitted, the data will be
+   retransmitted as well but may be considered as a new connection
+   instead of a retransmission).  Also, when racing connections,
+   different leaf nodes have the opportunity to send the same data
+   independently.  If data is truly safely replayable, this should be
+   permissible.
 
    Once the application has provided its 0-RTT data, an implementation
    should keep a copy of this data and provide it to each new leaf node
@@ -1250,17 +1253,17 @@ Aggregate [Endpoint: www.example.com:80] [Interface: Any]   [Protocol: TCP]
    MessageFramer -> Start(Connection)
    MessageFramer -> Stop(Connection)
 
-   When a Message Framer generates a "Start" event, the framer
+   When a Message Framer generates a Start event, the framer
    implementation has the opportunity to start writing some data prior
-   to the Connection delivering its "Ready" event.  This allows the
+   to the Connection delivering its Ready event.  This allows the
    implementation to communicate control data to the Remote Endpoint
    that can be used to parse Messages.
 
    MessageFramer.MakeConnectionReady(Connection)
 
-   Similarly, when a Message Framer generates a "Stop" event, the framer
+   Similarly, when a Message Framer generates a Stop event, the framer
    implementation has the opportunity to write some final data or clear
-   up its local state before the "Closed" event is delivered to the
+   up its local state before the Closed event is delivered to the
    Application.  The framer implementation can indicate that it has
    finished with this.
 
@@ -1275,8 +1278,8 @@ Aggregate [Endpoint: www.example.com:80] [Interface: Any]   [Protocol: TCP]
    racing unsuitable it can signal this by failing the Connection prior
    to marking it as ready.  If there are no other candidates available,
    the Connection will fail.  Otherwise, the Connection will select a
-   different candidate and the Message Framer will generate a new
-   "Start" event.
+   different candidate and the Message Framer will generate a new Start
+   event.
 
    Before an implementation marks a Message Framer as ready, it can also
    dynamically add a protocol or framer above it in the stack.  This
@@ -1313,7 +1316,7 @@ MessageFramer -> NewSentMessage<Connection, MessageData, MessageContext, IsEndOf
    MessageFramer.Send(Connection, Data)
 
    To provide an example, a simple protocol that adds a length as a
-   header would receive the "NewSentMessage" event, create a data
+   header would receive the NewSentMessage event, create a data
    representation of the length of the Message data, and then send a
    block of data that is the concatenation of the length header and the
    original Message data.
@@ -1347,19 +1350,19 @@ MessageFramer.AdvanceReceiveCursor(Connection, Length)
 MessageFramer.DeliverAndAdvanceReceiveCursor(Connection, MessageContext, Length, IsEndOfMessage)
 MessageFramer.Deliver(Connection, MessageContext, Data, IsEndOfMessage)
 
-   Note that "MessageFramer.DeliverAndAdvanceReceiveCursor" allows the
+   Note that MessageFramer.DeliverAndAdvanceReceiveCursor allows the
    framer implementation to earmark bytes as part of a Message even
    before they are received by the transport.  This allows the delivery
    of very large Messages without requiring the implementation to
    directly inspect all of the bytes.
 
    To provide an example, a simple protocol that parses a length as a
-   header value would receive the "HandleReceivedData" event, and call
-   "Parse" with a minimum and maximum set to the length of the header
-   field.  Once the parse succeeded, it would call
-   "AdvanceReceiveCursor" with the length of the header field, and then
-   call "DeliverAndAdvanceReceiveCursor" with the length of the body
-   that was parsed from the header, marking the new Message as complete.
+   header value would receive the HandleReceivedData event, and call
+   Parse with a minimum and maximum set to the length of the header
+   field.  Once the parse succeeded, it would call AdvanceReceiveCursor
+   with the length of the header field, and then call
+   DeliverAndAdvanceReceiveCursor with the length of the body that was
+   parsed from the header, marking the new Message as complete.
 
 7.  Implementing Connection Management
 
@@ -1416,8 +1419,8 @@ MessageFramer.Deliver(Connection, MessageContext, Data, IsEndOfMessage)
    supports multipath or migration to adapt to the new paths.  Note
    that, from the Transport Services API point of view, migration is
    considered a part of multipath connectivity; it is just a limiting
-   policy on multipath usage.  If the "multipath" Selection Property is
-   set to "Disabled", migration is disallowed.
+   policy on multipath usage.  If the multipath Selection Property is
+   set to Disabled, migration is disallowed.
 
    For protocols that do not support multipath or migration, the
    Protocol Instances should be informed of the path change, but should
@@ -1439,23 +1442,22 @@ MessageFramer.Deliver(Connection, MessageContext, Data, IsEndOfMessage)
    If the Protocol Stack includes a transport protocol that supports
    multipath connectivity, the Transport Services implementation should
    also inform the Protocol Instance of potentially new paths that
-   become permissible based on the "multipath" Selection Property and
-   the "multipath-policy" Connection Property choices made by the
-   application.  A protocol can then establish new subflows over new
-   paths while an active path is still available or, if migration is
-   supported, also after a break has been detected, and should attempt
-   to tear down subflows over paths that are no longer used.  The
-   Transport Services API's Connection Property "multipath-policy"
-   allows an application to indicate when and how different paths should
-   be used.  However, detailed handling of these policies is still
-   implementation-specific.  For example, if the "multipath" Selection
-   Property is set to "active", the decision about when to create a new
-   path or to announce a new path or set of paths to the Remote
-   Endpoint, e.g., in the form of additional IP addresses, is
-   implementation-specific.  If the Protocol Stack includes a transport
-   protocol that does not support multipath, but does support migrating
-   between paths, the update to the set of available paths can trigger
-   the connection to be migrated.
+   become permissible based on the multipath Selection Property and the
+   multipath-policy Connection Property choices made by the application.
+   A protocol can then establish new subflows over new paths while an
+   active path is still available or, if migration is supported, also
+   after a break has been detected, and should attempt to tear down
+   subflows over paths that are no longer used.  The Transport Services
+   API's Connection Property multipath-policy allows an application to
+   indicate when and how different paths should be used.  However,
+   detailed handling of these policies is still implementation-specific.
+   For example, if the multipath Selection Property is set to active,
+   the decision about when to create a new path or to announce a new
+   path or set of paths to the Remote Endpoint, e.g., in the form of
+   additional IP addresses, is implementation-specific.  If the Protocol
+   Stack includes a transport protocol that does not support multipath,
+   but does support migrating between paths, the update to the set of
+   available paths can trigger the connection to be migrated.
 
    In case of Pooled Connections Section 7.1, the Transport Services
    implementation may add connections over new paths to the pool if
@@ -1611,8 +1613,8 @@ MessageFramer.Deliver(Connection, MessageContext, Data, IsEndOfMessage)
    implementation should have a well-defined API mapping.  API mappings
    for a protocol apply most to Connections in which the given protocol
    is the "top" of the Protocol Stack.  For example, the mapping of the
-   "Send" function for TCP applies to Connections in which the
-   application directly sends over TCP.
+   Send function for TCP applies to Connections in which the application
+   directly sends over TCP.
 
    Each protocol has a notion of Connectedness.  Possible values for
    Connectedness are:
@@ -1673,11 +1675,10 @@ MessageFramer.Deliver(Connection, MessageContext, Data, IsEndOfMessage)
    Connection Object:  TCP connections between two hosts map directly to
       Connection objects.
 
-   Initiate:  CONNECT.TCP.  Calling "Initiate" on a TCP Connection
-      causes it to reserve a local port, and send a SYN to the Remote
-      Endpoint.
+   Initiate:  CONNECT.TCP.  Calling Initiate on a TCP Connection causes
+      it to reserve a local port, and send a SYN to the Remote Endpoint.
 
-   InitiateWithSend:  CONNECT.TCP with parameter "user message".  Early
+   InitiateWithSend:  CONNECT.TCP with parameter user message.  Early
       safely replayable data is sent on a TCP Connection in the SYN, as
       TCP Fast Open data.
 
@@ -1692,20 +1693,20 @@ MessageFramer.Deliver(Connection, MessageContext, Data, IsEndOfMessage)
       connection is disconnected, such as due to receiving a RST from
       the peer.
 
-   Listen:  LISTEN.TCP.  Calling "Listen" for TCP binds a local port and
+   Listen:  LISTEN.TCP.  Calling Listen for TCP binds a local port and
       prepares it to receive inbound SYN packets from peers.
 
    ConnectionReceived:  TCP Listeners will deliver new connections once
       they have replied to an inbound SYN with a SYN-ACK.
 
-   Clone:  Calling "Clone" on a TCP Connection creates a new Connection
+   Clone:  Calling Clone on a TCP Connection creates a new Connection
       with equivalent parameters.  These Connections, and Connections
-      generated via later calls to "Clone" on one of them, form a
+      generated via later calls to Clone on one of them, form a
       Connection Group.  To realize entanglement for these Connections,
-      with the exception of "Connection Priority", changing a Connection
+      with the exception of Connection Priority, changing a Connection
       Property on one of them must affect the Connection Properties of
       the others too.  No guarantees of honoring the Connection Property
-      "Connection Priority" are given, and thus it is safe for an
+      Connection Priority are given, and thus it is safe for an
       implementation of a transport system to ignore this property.
       When it is reasonable to assume that Connections traverse the same
       path (e.g., when they share the same encapsulation), support for
@@ -1714,32 +1715,32 @@ MessageFramer.Deliver(Connection, MessageContext, Data, IsEndOfMessage)
       [RFC3124]).
 
    Send:  SEND.TCP.  TCP does not on its own preserve Message
-      boundaries.  Calling "Send" on a TCP connection lays out the bytes
+      boundaries.  Calling Send on a TCP connection lays out the bytes
       on the TCP send stream without any other delineation.  Any Message
       marked as Final will cause TCP to send a FIN once the Message has
       been completely written, by calling CLOSE.TCP immediately upon
       successful termination of SEND.TCP.  Note that transmitting a
-      Message marked as Final should not cause the "Closed" event to be
+      Message marked as Final should not cause the Closed event to be
       delivered to the application, as it will still be possible to
       receive data until the peer closes or aborts the TCP connection.
 
    Receive:  With RECEIVE.TCP, TCP delivers a stream of bytes without
-      any Message delineation.  All data delivered in the "Received" or
-      "ReceivedPartial" event will be part of a single stream-wide
-      Message that is marked Final (unless a Message Framer is used).
+      any Message delineation.  All data delivered in the Received or
+      ReceivedPartial event will be part of a single stream-wide Message
+      that is marked Final (unless a Message Framer is used).
       EndOfMessage will be delivered when the TCP Connection has
       received a FIN (CLOSE-EVENT.TCP) from the peer.  Note that
-      reception of a FIN should not cause the "Closed" event to be
+      reception of a FIN should not cause the Closed event to be
       delivered to the application, as it will still be possible for the
       application to send data.
 
-   Close:  Calling "Close" on a TCP Connection indicates that the
+   Close:  Calling Close on a TCP Connection indicates that the
       Connection should be gracefully closed (CLOSE.TCP) by sending a
       FIN to the peer.  It will then still be possible to receive data
-      until the peer closes or aborts the TCP connection.  The "Closed"
+      until the peer closes or aborts the TCP connection.  The Closed
       event will be issued upon reception of a FIN.
 
-   Abort:  Calling "Abort" on a TCP Connection indicates that the
+   Abort:  Calling Abort on a TCP Connection indicates that the
       Connection should be immediately closed by sending a RST to the
       peer (ABORT.TCP).
 
@@ -1764,9 +1765,8 @@ MessageFramer.Deliver(Connection, MessageContext, Data, IsEndOfMessage)
    Connection Object:  UDP connections represent a pair of specific IP
       addresses and ports on two hosts.
 
-   Initiate:  CONNECT.UDP.  Calling "Initiate" on a UDP Connection
-      causes it to reserve a local port, but does not generate any
-      traffic.
+   Initiate:  CONNECT.UDP.  Calling Initiate on a UDP Connection causes
+      it to reserve a local port, but does not generate any traffic.
 
    InitiateWithSend:  Early data on a UDP Connection does not have any
       special meaning.  The data is sent whenever the Connection is
@@ -1782,17 +1782,17 @@ MessageFramer.Deliver(Connection, MessageContext, Data, IsEndOfMessage)
       Lite)) upon receiving ICMP notifications indicating failures in
       the network.
 
-   Listen:  LISTEN.UDP.  Calling "Listen" for UDP binds a local port and
+   Listen:  LISTEN.UDP.  Calling Listen for UDP binds a local port and
       prepares it to receive inbound UDP datagrams from peers.
 
    ConnectionReceived:  UDP Listeners will deliver new connections once
       they have received traffic from a new Remote Endpoint.
 
-   Clone:  Calling "Clone" on a UDP Connection creates a new Connection
+   Clone:  Calling Clone on a UDP Connection creates a new Connection
       with equivalent parameters.  The two Connections are otherwise
       independent.
 
-   Send:  SEND.UDP(-Lite).  Calling "Send" on a UDP connection sends the
+   Send:  SEND.UDP(-Lite).  Calling Send on a UDP connection sends the
       data as the payload of a complete UDP datagram.  Marking Messages
       as Final does not change anything in the datagram's contents.
       Upon sending a UDP datagram, some relevant fields and flags in the
@@ -1800,15 +1800,15 @@ MessageFramer.Deliver(Connection, MessageContext, Data, IsEndOfMessage)
       IPv4 (SET_DF.UDP(-Lite)) and ECN flag (SET_ECN.UDP(-Lite)).
 
    Receive:  RECEIVE.UDP(-Lite).  UDP only delivers complete Messages to
-      "Received", each of which represents a single datagram received in
-      a UDP packet.  Upon receiving a UDP datagram, the ECN flag from
-      the IP header can be obtained (GET_ECN.UDP(-Lite)).
+      Received, each of which represents a single datagram received in a
+      UDP packet.  Upon receiving a UDP datagram, the ECN flag from the
+      IP header can be obtained (GET_ECN.UDP(-Lite)).
 
-   Close:  Calling "Close" on a UDP Connection (ABORT.UDP(-Lite))
-      releases the local port reservation.
+   Close:  Calling Close on a UDP Connection (ABORT.UDP(-Lite)) releases
+      the local port reservation.
 
-   Abort:  Calling "Abort" on a UDP Connection (ABORT.UDP(-Lite)) is
-      identical to calling "Close".
+   Abort:  Calling Abort on a UDP Connection (ABORT.UDP(-Lite)) is
+      identical to calling Close.
 
 10.4.  UDP-Lite
 
@@ -1836,11 +1836,11 @@ MessageFramer.Deliver(Connection, MessageContext, Data, IsEndOfMessage)
       Local Endpoint must be configured with a group IP address and a
       port.
 
-   Initiate:  Calling "Initiate" on a UDP Multicast Receive Connection
+   Initiate:  Calling Initiate on a UDP Multicast Receive Connection
       causes an immediate InitiateError.  This is an unsupported
       operation.
 
-   InitiateWithSend:  Calling "InitiateWithSend" on a UDP Multicast
+   InitiateWithSend:  Calling InitiateWithSend on a UDP Multicast
       Receive Connection causes an immediate InitiateError.  This is an
       unsupported operation.
 
@@ -1854,39 +1854,48 @@ MessageFramer.Deliver(Connection, MessageContext, Data, IsEndOfMessage)
       Lite)) upon receiving ICMP notifications indicating failures in
       the network.
 
-   Listen:  LISTEN.UDP.  Calling "Listen" for UDP Multicast Receive
-      binds a local port, prepares it to receive inbound UDP datagrams
-      from peers, and issues a multicast host join.  If a Remote
-      Endpoint with an address is supplied, the join is Source-specific
+   Listen:  LISTEN.UDP.  Calling Listen for UDP Multicast Receive binds
+      a local port, prepares it to receive inbound UDP datagrams from
+      peers, and issues a multicast host join.  If a Remote Endpoint
+      with an address is supplied, the join is Source-specific
       Multicast, and the path selection is based on the route to the
       Remote Endpoint.  If a Remote Endpoint is not supplied, the join
       is Any-source Multicast, and the path selection is based on the
       outbound route to the group supplied in the Local Endpoint.
 
+   There are cases where it is required to open multiple connections for
+   the same address(es).  For example, one Connection might be opened
+   for a multicast group to for a multicast control bus, and another
+   application later opens a separate Connection to the same group to
+   send signals to and/or receive signals from the common bus.  In such
+   cases, the interface needs to explicitly enable re-use of the same
+   set of addresses (equivalent to setting SO_REUSEADDR in the socket
+   API).
+
    ConnectionReceived:  UDP Multicast Receive Listeners will deliver new
       connections once they have received traffic from a new Remote
       Endpoint.
 
-   Clone:  Calling "Clone" on a UDP Multicast Receive Connection creates
-      a new Connection with equivalent parameters.  The two Connections
+   Clone:  Calling Clone on a UDP Multicast Receive Connection creates a
+      new Connection with equivalent parameters.  The two Connections
       are otherwise independent.
 
-   Send:  SEND.UDP(-Lite).  Calling "Send" on a UDP Multicast Receive
+   Send:  SEND.UDP(-Lite).  Calling Send on a UDP Multicast Receive
       connection causes an immediate SendError.  This is an unsupported
       operation.
 
    Receive:  RECEIVE.UDP(-Lite).  The Receive operation in a UDP
       Multicast Receive connection only delivers complete Messages to
-      "Received", each of which represents a single datagram received in
-      a UDP packet.  Upon receiving a UDP datagram, the ECN flag from
-      the IP header can be obtained (GET_ECN.UDP(-Lite)).
+      Received, each of which represents a single datagram received in a
+      UDP packet.  Upon receiving a UDP datagram, the ECN flag from the
+      IP header can be obtained (GET_ECN.UDP(-Lite)).
 
-   Close:  Calling "Close" on a UDP Multicast Receive Connection
+   Close:  Calling Close on a UDP Multicast Receive Connection
       (ABORT.UDP(-Lite)) releases the local port reservation and leaves
       the group.
 
-   Abort:  Calling "Abort" on a UDP Multicast Receive Connection
-      (ABORT.UDP(-Lite)) is identical to calling "Close".
+   Abort:  Calling Abort on a UDP Multicast Receive Connection
+      (ABORT.UDP(-Lite)) is identical to calling Close.
 
 10.6.  SCTP
 
@@ -1943,8 +1952,8 @@ MessageFramer.Deliver(Connection, MessageContext, Data, IsEndOfMessage)
    Initiate:  If this is the only Connection object that is assigned to
       the SCTP association or stream mapping is not used, CONNECT.SCTP
       is called.  Else, unless the Selection Property
-      "activeReadBeforeSend" is Preferred or Required, a new stream is
-      used: if there are enough streams available, "Initiate" is a local
+      activeReadBeforeSend is Preferred or Required, a new stream is
+      used: if there are enough streams available, Initiate is a local
       operation that assigns a new stream id to the Connection object.
       The number of streams is negotiated as a parameter of the prior
       CONNECT.SCTP call, and it represents a trade-off between local
@@ -1955,66 +1964,64 @@ MessageFramer.Deliver(Connection, MessageContext, Data, IsEndOfMessage)
    InitiateWithSend:  If this is the only Connection object that is
       assigned to the SCTP association or stream mapping is not used,
       CONNECT.SCTP is called with the "user message" parameter.  Else, a
-      new stream is used (see "Initiate" for how to handle running out
-      of streams), and this just sends the first message on a new
-      stream.
+      new stream is used (see Initiate for how to handle running out of
+      streams), and this just sends the first message on a new stream.
 
-   Ready:  "Initiate" or "InitiateWithSend" returns without an error,
-      i.e. SCTP's four-way handshake has completed.  If an association
-      with the peer already exists, stream mapping is used and enough
-      streams are available, a Connection Object instantly becomes Ready
-      after calling "Initiate" or "InitiateWithSend".
+   Ready:  Initiate or InitiateWithSend returns without an error, i.e.
+      SCTP's four-way handshake has completed.  If an association with
+      the peer already exists, stream mapping is used and enough streams
+      are available, a Connection Object instantly becomes Ready after
+      calling Initiate or InitiateWithSend.
 
    InitiateError:  Failure of CONNECT.SCTP.
 
    ConnectionError:  TIMEOUT.SCTP or ABORT-EVENT.SCTP.
 
    Listen:  LISTEN.SCTP.  If an association with the peer already exists
-      and stream mapping is used, "Listen" just expects to receive a new
+      and stream mapping is used, Listen just expects to receive a new
       message with a new stream id (chosen in accordance with the stream
       id assignment procedure described above).
 
    ConnectionReceived:  LISTEN.SCTP returns without an error (a result
       of successful CONNECT.SCTP from the peer), or, in case of stream
       mapping, the first message has arrived on a new stream (in this
-      case, "Receive" is also invoked).
+      case, Receive is also invoked).
 
-   Clone:  Calling "Clone" on an SCTP association creates a new
-      Connection object and assigns it a new stream id in accordance
-      with the stream id assignment procedure described above.  If there
-      are not enough streams available, ADD_STREAM.SCTP must be called.
+   Clone:  Calling Clone on an SCTP association creates a new Connection
+      object and assigns it a new stream id in accordance with the
+      stream id assignment procedure described above.  If there are not
+      enough streams available, ADD_STREAM.SCTP must be called.
 
    Priority (Connection):  When this value is changed, or a Message with
-      Message Property "Priority" is sent, and there are multiple
+      Message Property Priority is sent, and there are multiple
       Connection objects assigned to the same SCTP association,
       CONFIGURE_STREAM_SCHEDULER.SCTP is called to adjust the priorities
       of streams in the SCTP association.
 
-   Send:  SEND.SCTP.  Message Properties such as "Lifetime" and
-      "Ordered" map to parameters of this primitive.
+   Send:  SEND.SCTP.  Message Properties such as Lifetime and Ordered
+      map to parameters of this primitive.
 
    Receive:  RECEIVE.SCTP.  The "partial flag" of RECEIVE.SCTP invokes a
-      "ReceivedPartial" event.
+      ReceivedPartial event.
 
    Close: If this is the only Connection object that is assigned to the
-   SCTP association, CLOSE.SCTP is called, and the "Closed" event will
-   be delivered to the application upon the ensuing CLOSE-EVENT.SCTP.
+   SCTP association, CLOSE.SCTP is called, and the Closed event will be
+   delivered to the application upon the ensuing CLOSE-EVENT.SCTP.
    Else, the Connection object is one out of several Connection objects
    that are assigned to the same SCTP assocation, and RESET_STREAM.SCTP
    must be called, which informs the peer that the stream will no longer
-   be used for mapping and can be used by future "Initiate",
-   "InitiateWithSend" or "Listen" calls.  At the peer, the event
+   be used for mapping and can be used by future Initiate,
+   InitiateWithSend or Listen calls.  At the peer, the event
    RESET_STREAM-EVENT.SCTP will fire, which the peer must answer by
    issuing RESET_STREAM.SCTP too.  The resulting local RESET_STREAM-
    EVENT.SCTP informs the Transport Services system that the stream id
-   can now be re-used by the next "Initiate", "InitiateWithSend" or
-   "Listen" calls, and invokes a "Closed" event towards the application.
+   can now be re-used by the next Initiate, InitiateWithSend or Listen
+   calls, and invokes a Closed event towards the application.
 
    Abort: If this is the only Connection object that is assigned to the
    SCTP association, ABORT.SCTP is called.  Else, the Connection object
    is one out of several Connection objects that are assigned to the
-   same SCTP assocation, and shutdown proceeds as described under
-   "Close".
+   same SCTP assocation, and shutdown proceeds as described under Close.
 
 11.  IANA Considerations
 
@@ -2209,6 +2216,11 @@ MessageFramer.Deliver(Connection, MessageContext, Data, IsEndOfMessage)
               (Diffserv) and Real-Time Communication", RFC 7657,
               DOI 10.17487/RFC7657, November 2015,
               <https://datatracker.ietf.org/doc/html/rfc7657>.
+
+   [RFC8085]  Eggert, L., Fairhurst, G., and G. Shepherd, "UDP Usage
+              Guidelines", BCP 145, RFC 8085, DOI 10.17487/RFC8085,
+              March 2017,
+              <https://datatracker.ietf.org/doc/html/rfc8085>.
 
    [RFC8260]  Stewart, R., Tuexen, M., Loreto, S., and R. Seggelmann,
               "Stream Schedulers and User Message Interleaving for the
@@ -2410,15 +2422,6 @@ Authors' Addresses
    United States of America
 
    Email: ietf@tenghardt.net
-
-
-   Karl-Johan Grinnemo
-   Karlstad University
-   Universitetsgatan 2
-   651 88 Karlstad
-   Sweden
-
-   Email: karl-johan.grinnemo@kau.se
 
 
    Tom Jones
