@@ -1055,7 +1055,7 @@ svg [stroke="fill"], svg [fill^="#fff"] {
 </tr></thead>
 <tfoot><tr>
 <td class="left">Trammell, et al.</td>
-<td class="center">Expires 25 April 2022</td>
+<td class="center">Expires 26 April 2022</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1068,12 +1068,12 @@ svg [stroke="fill"], svg [fill^="#fff"] {
 <dd class="internet-draft">draft-ietf-taps-interface</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2021-10-22" class="published">22 October 2021</time>
+<time datetime="2021-10-23" class="published">23 October 2021</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Standards Track</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2022-04-25">25 April 2022</time></dd>
+<dd class="expires"><time datetime="2022-04-26">26 April 2022</time></dd>
 <dt class="label-authors">Authors:</dt>
 <dd class="authors">
 <div class="author">
@@ -1153,7 +1153,7 @@ multiple interfaces and potential transport protocols.<a href="#section-abstract
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 25 April 2022.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 26 April 2022.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -2709,7 +2709,7 @@ transport connection where possible.<a href="#section-6.2.6-2" class="pilcrow">�
             <dt id="section-6.2.7-1.1">
 Name:  </dt>
             <dd style="margin-left: 1.5em" id="section-6.2.7-1.2">
-              <p id="section-6.2.7-1.2.1">FullChecksumSend<a href="#section-6.2.7-1.2.1" class="pilcrow">¶</a></p>
+              <p id="section-6.2.7-1.2.1">fullChecksumSend<a href="#section-6.2.7-1.2.1" class="pilcrow">¶</a></p>
 </dd>
             <dd class="break"></dd>
 <dt id="section-6.2.7-1.3">
@@ -2739,7 +2739,7 @@ later control of the sender checksum coverage (see <a href="#msg-checksum" class
             <dt id="section-6.2.8-1.1">
 Name:  </dt>
             <dd style="margin-left: 1.5em" id="section-6.2.8-1.2">
-              <p id="section-6.2.8-1.2.1">FullChecksumRecv<a href="#section-6.2.8-1.2.1" class="pilcrow">¶</a></p>
+              <p id="section-6.2.8-1.2.1">fullChecksumRecv<a href="#section-6.2.8-1.2.1" class="pilcrow">¶</a></p>
 </dd>
             <dd class="break"></dd>
 <dt id="section-6.2.8-1.3">
@@ -6048,7 +6048,7 @@ coverage, see <a href="#prop-checksum-control-send" class="xref">Section 6.2.7</
       <h2 id="name-relationship-to-the-minimal">
 <a href="#appendix-C" class="section-number selfRef">Appendix C. </a><a href="#name-relationship-to-the-minimal" class="section-name selfRef">Relationship to the Minimal Set of Transport Services for End Systems</a>
       </h2>
-<p id="appendix-C-1"><span>[<a href="#RFC8923" class="xref">RFC8923</a>]</span> identifies a minimal set of transport services that end systems should offer. These services make all non-security-related transport features of TCP, MPTCP, UDP, UDP-Lite, SCTP and LEDBAT available that 1) require interaction with the application, and 2) do not get in the way of a possible implementation over TCP (or, with limitations, UDP). The following text explains how this minimal set is reflected in the present API. For brevity, it is based on the list in Section 4.1 of <span>[<a href="#RFC8923" class="xref">RFC8923</a>]</span>, updated according to the discussion in Section 5 of <span>[<a href="#RFC8923" class="xref">RFC8923</a>]</span>. The present API covers all elements of this section except <code>Notification of Excessive Retransmissions (early warning below abortion threshold)</code>.
+<p id="appendix-C-1"><span>[<a href="#RFC8923" class="xref">RFC8923</a>]</span> identifies a minimal set of transport services that end systems should offer. These services make all non-security-related transport features of TCP, MPTCP, UDP, UDP-Lite, SCTP and LEDBAT available that 1) require interaction with the application, and 2) do not get in the way of a possible implementation over TCP (or, with limitations, UDP). The following text explains how this minimal set is reflected in the present API. For brevity, it is based on the list in Section 4.1 of <span>[<a href="#RFC8923" class="xref">RFC8923</a>]</span>, updated according to the discussion in Section 5 of <span>[<a href="#RFC8923" class="xref">RFC8923</a>]</span>. The present API covers all elements of this section.
 This list is a subset of the transport features in Appendix A of <span>[<a href="#RFC8923" class="xref">RFC8923</a>]</span>, which refers to the primitives in "pass 2" (Section 4) of <span>[<a href="#RFC8303" class="xref">RFC8303</a>]</span> for further details on the implementation with TCP, MPTCP, UDP, UDP-Lite, SCTP and LEDBAT.<a href="#appendix-C-1" class="pilcrow">¶</a></p>
 <ul class="normal">
 <li class="normal" id="appendix-C-2.1">Connect:
@@ -6061,67 +6061,67 @@ This list is a subset of the transport features in Appendix A of <span>[<a href=
 <code>timeout</code> parameter of <code>Initiate</code> (<a href="#initiate" class="xref">Section 7.1</a>) or <code>InitiateWithSend</code> Action (<a href="#initiate-and-send" class="xref">Section 9.2.5</a>).<a href="#appendix-C-2.3" class="pilcrow">¶</a>
 </li>
         <li class="normal" id="appendix-C-2.4">Disable MPTCP:
-<code>Multipath Transport</code> Property (<a href="#multipath-mode" class="xref">Section 6.2.14</a>).<a href="#appendix-C-2.4" class="pilcrow">¶</a>
+<code>multipath</code> Property (<a href="#multipath-mode" class="xref">Section 6.2.14</a>).<a href="#appendix-C-2.4" class="pilcrow">¶</a>
 </li>
         <li class="normal" id="appendix-C-2.5">Hand over a message to reliably transfer (possibly multiple times) before connection establishment:
 <code>InitiateWithSend</code> Action (<a href="#initiate-and-send" class="xref">Section 9.2.5</a>).<a href="#appendix-C-2.5" class="pilcrow">¶</a>
 </li>
         <li class="normal" id="appendix-C-2.6">Change timeout for aborting connection (using retransmit limit or time value):
-<code>Timeout for Aborting Connection</code> property, using a time value (<a href="#conn-timeout" class="xref">Section 8.1.3</a>).<a href="#appendix-C-2.6" class="pilcrow">¶</a>
+<code>connTimeout</code> property, using a time value (<a href="#conn-timeout" class="xref">Section 8.1.3</a>).<a href="#appendix-C-2.6" class="pilcrow">¶</a>
 </li>
         <li class="normal" id="appendix-C-2.7">Timeout event when data could not be delivered for too long:
 <code>ConnectionError</code> Event (<a href="#termination" class="xref">Section 10</a>).<a href="#appendix-C-2.7" class="pilcrow">¶</a>
 </li>
         <li class="normal" id="appendix-C-2.8">Suggest timeout to the peer:
-<code>TCP-specific Properties: User Timeout Option (UTO)</code> (<a href="#tcp-uto" class="xref">Section 8.2</a>).<a href="#appendix-C-2.8" class="pilcrow">¶</a>
+See "TCP-specific Properties: User Timeout Option (UTO)" (<a href="#tcp-uto" class="xref">Section 8.2</a>).<a href="#appendix-C-2.8" class="pilcrow">¶</a>
 </li>
         <li class="normal" id="appendix-C-2.9">Notification of ICMP error message arrival:
-<code>Notification of ICMP soft error message arrival</code> property (<a href="#prop-soft-error" class="xref">Section 6.2.17</a>).<a href="#appendix-C-2.9" class="pilcrow">¶</a>
+<code>softErrorNotify</code> (<a href="#prop-soft-error" class="xref">Section 6.2.17</a>) and <code>SoftError</code> Event (<a href="#soft-errors" class="xref">Section 8.3.1</a>).<a href="#appendix-C-2.9" class="pilcrow">¶</a>
 </li>
         <li class="normal" id="appendix-C-2.10">Choose a scheduler to operate between streams of an association:
-<code>Connection Group Transmission Scheduler</code> property (<a href="#conn-scheduler" class="xref">Section 8.1.5</a>).<a href="#appendix-C-2.10" class="pilcrow">¶</a>
+<code>connScheduler</code> property (<a href="#conn-scheduler" class="xref">Section 8.1.5</a>).<a href="#appendix-C-2.10" class="pilcrow">¶</a>
 </li>
         <li class="normal" id="appendix-C-2.11">Configure priority or weight for a scheduler:
-<code>Connection Priority</code> property (<a href="#conn-priority" class="xref">Section 8.1.2</a>).<a href="#appendix-C-2.11" class="pilcrow">¶</a>
+<code>connPrio</code> property (<a href="#conn-priority" class="xref">Section 8.1.2</a>).<a href="#appendix-C-2.11" class="pilcrow">¶</a>
 </li>
         <li class="normal" id="appendix-C-2.12">"Specify checksum coverage used by the sender" and "Disable checksum when sending":
-<code>Sending Corruption Protection Length</code> property (<a href="#msg-checksum" class="xref">Section 9.1.3.6</a>) and <code>Full Checksum Coverage on Sending</code> property (<a href="#prop-checksum-control-send" class="xref">Section 6.2.7</a>).<a href="#appendix-C-2.12" class="pilcrow">¶</a>
+<code>msgChecksumLen</code> property (<a href="#msg-checksum" class="xref">Section 9.1.3.6</a>) and <code>fullChecksumSend</code> property (<a href="#prop-checksum-control-send" class="xref">Section 6.2.7</a>).<a href="#appendix-C-2.12" class="pilcrow">¶</a>
 </li>
         <li class="normal" id="appendix-C-2.13">"Specify minimum checksum coverage required by receiver" and "Disable checksum requirement when receiving":
-<code>Required Minimum Corruption Protection Coverage for Receiving</code> property (<a href="#conn-recv-checksum" class="xref">Section 8.1.1</a>) and <code>Full Checksum Coverage on Receiving</code> property (<a href="#prop-checksum-control-receive" class="xref">Section 6.2.8</a>).<a href="#appendix-C-2.13" class="pilcrow">¶</a>
+<code>recvChecksumLen</code> property (<a href="#conn-recv-checksum" class="xref">Section 8.1.1</a>) and <code>fullChecksumRecv</code> property (<a href="#prop-checksum-control-receive" class="xref">Section 6.2.8</a>).<a href="#appendix-C-2.13" class="pilcrow">¶</a>
 </li>
         <li class="normal" id="appendix-C-2.14">"Specify DF field":
-<code>No Network-Layer Fragmentation</code> property (<a href="#send-singular" class="xref">Section 9.1.3.9</a>).<a href="#appendix-C-2.14" class="pilcrow">¶</a>
+<code>noFragmentation</code> property (<a href="#send-singular" class="xref">Section 9.1.3.9</a>).<a href="#appendix-C-2.14" class="pilcrow">¶</a>
 </li>
         <li class="normal" id="appendix-C-2.15">Get max. transport-message size that may be sent using a non-fragmented IP packet from the configured interface:
-<code>Maximum Message Size Before Fragmentation or Segmentation</code> property (<a href="#conn-max-msg-notfrag" class="xref">Section 8.1.11.2</a>).<a href="#appendix-C-2.15" class="pilcrow">¶</a>
+<code>singularTransmissionMsgMaxLen</code> property (<a href="#conn-max-msg-notfrag" class="xref">Section 8.1.11.2</a>).<a href="#appendix-C-2.15" class="pilcrow">¶</a>
 </li>
         <li class="normal" id="appendix-C-2.16">Get max. transport-message size that may be received from the configured interface:
-<code>Maximum Message Size on Receive</code> property (<a href="#conn-max-msg-recv" class="xref">Section 8.1.11.4</a>).<a href="#appendix-C-2.16" class="pilcrow">¶</a>
+<code>recvMsgMaxLen</code> property (<a href="#conn-max-msg-recv" class="xref">Section 8.1.11.4</a>).<a href="#appendix-C-2.16" class="pilcrow">¶</a>
 </li>
         <li class="normal" id="appendix-C-2.17">Obtain ECN field:
-<code>UDP(-Lite)-specific Property: ECN</code> is a read-only Message Property of the MessageContext object (<a href="#receive-ecn" class="xref">Section 9.3.3.1</a>).<a href="#appendix-C-2.17" class="pilcrow">¶</a>
+This is a read-only Message Property of the MessageContext object (see "UDP(-Lite)-specific Property: ECN" <a href="#receive-ecn" class="xref">Section 9.3.3.1</a>).<a href="#appendix-C-2.17" class="pilcrow">¶</a>
 </li>
         <li class="normal" id="appendix-C-2.18">"Specify DSCP field", "Disable Nagle algorithm", "Enable and configure a <code>Low Extra Delay Background Transfer</code>":
-as suggested in Section 5.5 of <span>[<a href="#RFC8923" class="xref">RFC8923</a>]</span>, these transport features are collectively offered via the <code>Capacity Profile</code> property (<a href="#prop-cap-profile" class="xref">Section 8.1.6</a>). Per-Message control ("Request not to bundle messages") is offered via the <code>Message Capacity Profile Override</code> property (<a href="#send-profile" class="xref">Section 9.1.3.8</a>).<a href="#appendix-C-2.18" class="pilcrow">¶</a>
+as suggested in Section 5.5 of <span>[<a href="#RFC8923" class="xref">RFC8923</a>]</span>, these transport features are collectively offered via the <code>connCapacityProfile</code> property (<a href="#prop-cap-profile" class="xref">Section 8.1.6</a>). Per-Message control ("Request not to bundle messages") is offered via the <code>msgCapacityProfile</code> property (<a href="#send-profile" class="xref">Section 9.1.3.8</a>).<a href="#appendix-C-2.18" class="pilcrow">¶</a>
 </li>
         <li class="normal" id="appendix-C-2.19">Close after reliably delivering all remaining data, causing an event informing the application on the other side:
 this is offered by the <code>Close</code> Action with slightly changed semantics in line with the discussion in Section 5.2 of <span>[<a href="#RFC8923" class="xref">RFC8923</a>]</span> (<a href="#termination" class="xref">Section 10</a>).<a href="#appendix-C-2.19" class="pilcrow">¶</a>
 </li>
         <li class="normal" id="appendix-C-2.20">"Abort without delivering remaining data, causing an event informing the application on the other side" and "Abort without delivering remaining data, not causing an event informing the application on the other side":
-this is offered by the <code>Abort</code> action without promising that this is signaled to the other side. If it is, a <code>ConnectionError</code> Event will fire at the peer (<a href="#termination" class="xref">Section 10</a>).<a href="#appendix-C-2.20" class="pilcrow">¶</a>
+this is offered by the <code>Abort</code> action without promising that this is signaled to the other side. If it is, a <code>ConnectionError</code> Event will be invoked at the peer (<a href="#termination" class="xref">Section 10</a>).<a href="#appendix-C-2.20" class="pilcrow">¶</a>
 </li>
         <li class="normal" id="appendix-C-2.21">"Reliably transfer data, with congestion control", "Reliably transfer a message, with congestion control" and "Unreliably transfer a message":
-data is transferred via the <code>Send</code> action (<a href="#sending" class="xref">Section 9.2</a>). Reliability is controlled via the <code>Reliable Data Transfer (Connection)</code> (<a href="#prop-reliable" class="xref">Section 6.2.1</a>) property and the <code>Reliable Data Transfer (Message)</code> Message Property (<a href="#msg-reliable-message" class="xref">Section 9.1.3.7</a>). Transmitting data as a message or without delimiters is controlled via Message Framers (<a href="#framing" class="xref">Section 9.1.2</a>). The choice of congestion control is provided via the <code>Congestion control</code> property (<a href="#prop-cc" class="xref">Section 6.2.9</a>).<a href="#appendix-C-2.21" class="pilcrow">¶</a>
+data is transferred via the <code>Send</code> action (<a href="#sending" class="xref">Section 9.2</a>). Reliability is controlled via the <code>reliability</code> (<a href="#prop-reliable" class="xref">Section 6.2.1</a>) property and the <code>msgReliable</code> Message Property (<a href="#msg-reliable-message" class="xref">Section 9.1.3.7</a>). Transmitting data as a message or without delimiters is controlled via Message Framers (<a href="#framing" class="xref">Section 9.1.2</a>). The choice of congestion control is provided via the <code>congestionControl</code> property (<a href="#prop-cc" class="xref">Section 6.2.9</a>).<a href="#appendix-C-2.21" class="pilcrow">¶</a>
 </li>
         <li class="normal" id="appendix-C-2.22">Configurable Message Reliability:
-the <code>Lifetime</code> Message Property implements a time-based way to configure message reliability (<a href="#msg-lifetime" class="xref">Section 9.1.3.1</a>).<a href="#appendix-C-2.22" class="pilcrow">¶</a>
+the <code>msgLifetime</code> Message Property implements a time-based way to configure message reliability (<a href="#msg-lifetime" class="xref">Section 9.1.3.1</a>).<a href="#appendix-C-2.22" class="pilcrow">¶</a>
 </li>
         <li class="normal" id="appendix-C-2.23">"Ordered message delivery (potentially slower than unordered)" and "Unordered message delivery (potentially faster than ordered)":
-these two transport features are controlled via the Message Property <code>Ordered</code> (<a href="#msg-ordered" class="xref">Section 9.1.3.3</a>).<a href="#appendix-C-2.23" class="pilcrow">¶</a>
+these two transport features are controlled via the Message Property <code>msgOrdered</code> (<a href="#msg-ordered" class="xref">Section 9.1.3.3</a>).<a href="#appendix-C-2.23" class="pilcrow">¶</a>
 </li>
         <li class="normal" id="appendix-C-2.24">Request not to delay the acknowledgement (SACK) of a message:
-should the protocol support it, this is one of the transport features the Transport Services system can apply when an application uses the <code>Capacity Profile</code> Property (<a href="#prop-cap-profile" class="xref">Section 8.1.6</a>) or the <code>Message Capacity Profile Override</code> Message Property (<a href="#send-profile" class="xref">Section 9.1.3.8</a>) with value <code>Low Latency/Interactive</code>.<a href="#appendix-C-2.24" class="pilcrow">¶</a>
+should the protocol support it, this is one of the transport features the Transport Services system can apply when an application uses the <code>connCapacityProfile</code> Property (<a href="#prop-cap-profile" class="xref">Section 8.1.6</a>) or the <code>msgCapacityProfile</code> Message Property (<a href="#send-profile" class="xref">Section 9.1.3.8</a>) with value <code>Low Latency/Interactive</code>.<a href="#appendix-C-2.24" class="pilcrow">¶</a>
 </li>
         <li class="normal" id="appendix-C-2.25">Receive data (with no message delimiting):
 <code>Receive</code> Action (<a href="#receiving" class="xref">Section 9.3</a>) and <code>Received</code> Event (<a href="#receive-complete" class="xref">Section 9.3.2.1</a>).<a href="#appendix-C-2.25" class="pilcrow">¶</a>
@@ -6140,6 +6140,9 @@ applications can obtain this information via the <code>Sent</code> Event (<a hre
 </li>
         <li class="normal" id="appendix-C-2.30">Notification to a receiver that a partial message delivery has been aborted:
 <code>ReceiveError</code> Event (<a href="#receive-error" class="xref">Section 9.3.2.3</a>).<a href="#appendix-C-2.30" class="pilcrow">¶</a>
+</li>
+        <li class="normal" id="appendix-C-2.31">Notification of Excessive Retransmissions (early warning below abortion threshold):
+ <code>SoftError</code> Event (<a href="#soft-errors" class="xref">Section 8.3.1</a>).<a href="#appendix-C-2.31" class="pilcrow">¶</a>
 </li>
       </ul>
 </section>

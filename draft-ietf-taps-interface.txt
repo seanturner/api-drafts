@@ -5,7 +5,7 @@
 TAPS Working Group                                      B. Trammell, Ed.
 Internet-Draft                                   Google Switzerland GmbH
 Intended status: Standards Track                           M. Welzl, Ed.
-Expires: 25 April 2022                                University of Oslo
+Expires: 26 April 2022                                University of Oslo
                                                              T. Enghardt
                                                                  Netflix
                                                             G. Fairhurst
@@ -22,7 +22,7 @@ Expires: 25 April 2022                                University of Oslo
                                                               Apple Inc.
                                                                  K. Rose
                                                Akamai Technologies, Inc.
-                                                         22 October 2021
+                                                         23 October 2021
 
 
      An Abstract Application Layer Interface to Transport Services
@@ -56,7 +56,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 25 April 2022.
+   This Internet-Draft will expire on 26 April 2022.
 
 Copyright Notice
 
@@ -1177,7 +1177,7 @@ MulticastSenderConnection.Send(messageData)
 
 6.2.7.  Full Checksum Coverage on Sending
 
-   Name:  FullChecksumSend
+   Name:  fullChecksumSend
 
    Type:  Preference
 
@@ -1190,7 +1190,7 @@ MulticastSenderConnection.Send(messageData)
 
 6.2.8.  Full Checksum Coverage on Receiving
 
-   Name:  FullChecksumRecv
+   Name:  fullChecksumRecv
 
    Type:  Preference
 
@@ -3783,12 +3783,10 @@ Appendix C.  Relationship to the Minimal Set of Transport Services for
    is reflected in the present API.  For brevity, it is based on the
    list in Section 4.1 of [RFC8923], updated according to the discussion
    in Section 5 of [RFC8923].  The present API covers all elements of
-   this section except Notification of Excessive Retransmissions (early
-   warning below abortion threshold).  This list is a subset of the
-   transport features in Appendix A of [RFC8923], which refers to the
-   primitives in "pass 2" (Section 4) of [RFC8303] for further details
-   on the implementation with TCP, MPTCP, UDP, UDP-Lite, SCTP and
-   LEDBAT.
+   this section.  This list is a subset of the transport features in
+   Appendix A of [RFC8923], which refers to the primitives in "pass 2"
+   (Section 4) of [RFC8303] for further details on the implementation
+   with TCP, MPTCP, UDP, UDP-Lite, SCTP and LEDBAT.
 
    *  Connect: Initiate Action (Section 7.1).
 
@@ -3798,64 +3796,60 @@ Appendix C.  Relationship to the Minimal Set of Transport Services for
       establishment message: timeout parameter of Initiate (Section 7.1)
       or InitiateWithSend Action (Section 9.2.5).
 
-   *  Disable MPTCP: Multipath Transport Property (Section 6.2.14).
+   *  Disable MPTCP: multipath Property (Section 6.2.14).
 
    *  Hand over a message to reliably transfer (possibly multiple times)
       before connection establishment: InitiateWithSend Action
       (Section 9.2.5).
 
    *  Change timeout for aborting connection (using retransmit limit or
-      time value): Timeout for Aborting Connection property, using a
-      time value (Section 8.1.3).
+      time value): connTimeout property, using a time value
+      (Section 8.1.3).
 
    *  Timeout event when data could not be delivered for too long:
       ConnectionError Event (Section 10).
 
-   *  Suggest timeout to the peer: TCP-specific Properties: User Timeout
-      Option (UTO) (Section 8.2).
+   *  Suggest timeout to the peer: See "TCP-specific Properties: User
+      Timeout Option (UTO)" (Section 8.2).
 
-   *  Notification of ICMP error message arrival: Notification of ICMP
-      soft error message arrival property (Section 6.2.17).
+   *  Notification of ICMP error message arrival: softErrorNotify
+      (Section 6.2.17) and SoftError Event (Section 8.3.1).
 
    *  Choose a scheduler to operate between streams of an association:
-      Connection Group Transmission Scheduler property (Section 8.1.5).
+      connScheduler property (Section 8.1.5).
 
-   *  Configure priority or weight for a scheduler: Connection Priority
-      property (Section 8.1.2).
+   *  Configure priority or weight for a scheduler: connPrio property
+      (Section 8.1.2).
 
    *  "Specify checksum coverage used by the sender" and "Disable
-      checksum when sending": Sending Corruption Protection Length
-      property (Section 9.1.3.6) and Full Checksum Coverage on Sending
-      property (Section 6.2.7).
+      checksum when sending": msgChecksumLen property (Section 9.1.3.6)
+      and fullChecksumSend property (Section 6.2.7).
 
    *  "Specify minimum checksum coverage required by receiver" and
-      "Disable checksum requirement when receiving": Required Minimum
-      Corruption Protection Coverage for Receiving property
-      (Section 8.1.1) and Full Checksum Coverage on Receiving property
+      "Disable checksum requirement when receiving": recvChecksumLen
+      property (Section 8.1.1) and fullChecksumRecv property
       (Section 6.2.8).
 
-   *  "Specify DF field": No Network-Layer Fragmentation property
-      (Section 9.1.3.9).
+   *  "Specify DF field": noFragmentation property (Section 9.1.3.9).
 
    *  Get max. transport-message size that may be sent using a non-
-      fragmented IP packet from the configured interface: Maximum
-      Message Size Before Fragmentation or Segmentation property
-      (Section 8.1.11.2).
+      fragmented IP packet from the configured interface:
+      singularTransmissionMsgMaxLen property (Section 8.1.11.2).
 
    *  Get max. transport-message size that may be received from the
-      configured interface: Maximum Message Size on Receive property
-      (Section 8.1.11.4).
+      configured interface: recvMsgMaxLen property (Section 8.1.11.4).
 
-   *  Obtain ECN field: UDP(-Lite)-specific Property: ECN is a read-only
-      Message Property of the MessageContext object (Section 9.3.3.1).
+   *  Obtain ECN field: This is a read-only Message Property of the
+      MessageContext object (see "UDP(-Lite)-specific Property: ECN"
+      Section 9.3.3.1).
 
    *  "Specify DSCP field", "Disable Nagle algorithm", "Enable and
       configure a Low Extra Delay Background Transfer": as suggested in
       Section 5.5 of [RFC8923], these transport features are
-      collectively offered via the Capacity Profile property
+      collectively offered via the connCapacityProfile property
       (Section 8.1.6).  Per-Message control ("Request not to bundle
-      messages") is offered via the Message Capacity Profile Override
-      property (Section 9.1.3.8).
+      messages") is offered via the msgCapacityProfile property
+      (Section 9.1.3.8).
 
    *  Close after reliably delivering all remaining data, causing an
       event informing the application on the other side: this is offered
@@ -3867,35 +3861,34 @@ Appendix C.  Relationship to the Minimal Set of Transport Services for
       delivering remaining data, not causing an event informing the
       application on the other side": this is offered by the Abort
       action without promising that this is signaled to the other side.
-      If it is, a ConnectionError Event will fire at the peer
+      If it is, a ConnectionError Event will be invoked at the peer
       (Section 10).
 
    *  "Reliably transfer data, with congestion control", "Reliably
       transfer a message, with congestion control" and "Unreliably
       transfer a message": data is transferred via the Send action
-      (Section 9.2).  Reliability is controlled via the Reliable Data
-      Transfer (Connection) (Section 6.2.1) property and the Reliable
-      Data Transfer (Message) Message Property (Section 9.1.3.7).
-      Transmitting data as a message or without delimiters is controlled
-      via Message Framers (Section 9.1.2).  The choice of congestion
-      control is provided via the Congestion control property
-      (Section 6.2.9).
+      (Section 9.2).  Reliability is controlled via the reliability
+      (Section 6.2.1) property and the msgReliable Message Property
+      (Section 9.1.3.7).  Transmitting data as a message or without
+      delimiters is controlled via Message Framers (Section 9.1.2).  The
+      choice of congestion control is provided via the congestionControl
+      property (Section 6.2.9).
 
-   *  Configurable Message Reliability: the Lifetime Message Property
+   *  Configurable Message Reliability: the msgLifetime Message Property
       implements a time-based way to configure message reliability
       (Section 9.1.3.1).
 
    *  "Ordered message delivery (potentially slower than unordered)" and
       "Unordered message delivery (potentially faster than ordered)":
       these two transport features are controlled via the Message
-      Property Ordered (Section 9.1.3.3).
+      Property msgOrdered (Section 9.1.3.3).
 
    *  Request not to delay the acknowledgement (SACK) of a message:
       should the protocol support it, this is one of the transport
       features the Transport Services system can apply when an
-      application uses the Capacity Profile Property (Section 8.1.6) or
-      the Message Capacity Profile Override Message Property
-      (Section 9.1.3.8) with value Low Latency/Interactive.
+      application uses the connCapacityProfile Property (Section 8.1.6)
+      or the msgCapacityProfile Message Property (Section 9.1.3.8) with
+      value Low Latency/Interactive.
 
    *  Receive data (with no message delimiting): Receive Action
       (Section 9.3) and Received Event (Section 9.3.2.1).
@@ -3915,6 +3908,9 @@ Appendix C.  Relationship to the Minimal Set of Transport Services for
 
    *  Notification to a receiver that a partial message delivery has
       been aborted: ReceiveError Event (Section 9.3.2.3).
+
+   *  Notification of Excessive Retransmissions (early warning below
+      abortion threshold): SoftError Event (Section 8.3.1).
 
 Authors' Addresses
 
