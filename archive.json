@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2021-10-21T00:23:25.570392+00:00",
+  "timestamp": "2021-10-24T00:22:52.270016+00:00",
   "repo": "ietf-tapswg/api-drafts",
   "labels": [
     {
@@ -8065,13 +8065,13 @@
       "authorAssociation": "CONTRIBUTOR",
       "assignees": [],
       "labels": [
+        "wontfix",
         "API",
-        "admin stuff",
-        "wontfix"
+        "admin stuff"
       ],
       "body": "The RFC Editor has become rather strict in implementing the 5 author limit for drafts:\r\n\r\nThis document has more than five authors listed, which is considered excessive under normal circumstances. If you plan to request publication as an RFC, this will require additional consideration by the stream manager (for example, the IESG), and publication may be declined unless sufficient justification is provided. See RFC 7322, section 4.1.1 for details.\r\n\r\nWe should update these for -01",
       "createdAt": "2018-06-01T00:06:32Z",
-      "updatedAt": "2021-05-18T12:02:06Z",
+      "updatedAt": "2021-10-22T07:27:32Z",
       "closedAt": null,
       "comments": [
         {
@@ -8150,6 +8150,13 @@
           "body": "I agree that there are good reasons to keep a large author list. However, we should probably still review the author list before we submit. Can't remember how we actually \"distributed\" the authors when we moved away from the initial set of documents but not sure that still maps with the contributions each authors made on each document.",
           "createdAt": "2021-05-18T12:02:06Z",
           "updatedAt": "2021-05-18T12:02:06Z"
+        },
+        {
+          "author": "gorryfair",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "A review of the author list for the Arch and Implementation has allowed a reduction in the number of authors. Thanks is really appreciated to those who agreed to remove their names as authors from these specific documents, allowing the WG to meet this guidance. See: PR #959 and PR#960.",
+          "createdAt": "2021-10-22T07:26:03Z",
+          "updatedAt": "2021-10-22T07:27:32Z"
         }
       ]
     },
@@ -24954,7 +24961,7 @@
       "id": "I_kwDOBx1JF847vQKs",
       "title": "ART-ART: MUST NOT in section 8 paragraph 3",
       "url": "https://github.com/ietf-tapswg/api-drafts/issues/914",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "mwelzl",
       "authorAssociation": "CONTRIBUTOR",
       "assignees": [
@@ -24965,8 +24972,8 @@
       ],
       "body": "In section 8's third paragraph, the MUST NOT is not a good use of 2119/8174.\r\nAre you trying to say protocol specific property _names_ must not be reused\r\nacross different protocols?",
       "createdAt": "2021-09-21T11:05:07Z",
-      "updatedAt": "2021-10-20T16:44:44Z",
-      "closedAt": null,
+      "updatedAt": "2021-10-21T12:45:55Z",
+      "closedAt": "2021-10-21T12:45:55Z",
       "comments": [
         {
           "author": "gorryfair",
@@ -24996,7 +25003,7 @@
       "id": "I_kwDOBx1JF847vQvE",
       "title": "ART-ART: be clearer with RFC 7556 reference",
       "url": "https://github.com/ietf-tapswg/api-drafts/issues/915",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "mwelzl",
       "authorAssociation": "CONTRIBUTOR",
       "assignees": [
@@ -25007,8 +25014,8 @@
       ],
       "body": "At the last bullet before section 8.1, are you RFC7556 being pointed to as an\r\nexample way one might derive properties? If so, adjust the language to make it\r\nclear that its an example.",
       "createdAt": "2021-09-21T11:06:30Z",
-      "updatedAt": "2021-10-20T16:42:24Z",
-      "closedAt": null,
+      "updatedAt": "2021-10-22T09:53:53Z",
+      "closedAt": "2021-10-22T09:53:53Z",
       "comments": [
         {
           "author": "gorryfair",
@@ -25183,11 +25190,11 @@
       ],
       "labels": [
         "Architecture",
-        "discuss"
+        "ready for text"
       ],
       "body": "Our terms like \"Connection\", \"Message\" and such: this terminology must be defined somewhere. IMO the architecture draft is a good home for this.\r\n\r\nAt first, I thought we can just deal with this via a citation of one of our earlier RFCs, but alas the lists there are incomplete. RFC 8095 defines Transport Feature, Transport Service, and Transport Protocol, and Application. RFC 8303 adds a lot of things to this - including Connection, but also Primitive, Event, Socket...  RFC 8923 again has a little less, but it does add Connection Group.\r\n\r\nSo, my suggestion: copy+paste the relevant bits from these RFCs into arch, and also add Message (which doesn't seem to be defined anywhere).",
       "createdAt": "2021-10-19T10:41:25Z",
-      "updatedAt": "2021-10-20T16:31:27Z",
+      "updatedAt": "2021-10-21T08:12:35Z",
       "closedAt": null,
       "comments": [
         {
@@ -25267,7 +25274,7 @@
       "id": "I_kwDOBx1JF849e2IG",
       "title": "Arch-Review MW:",
       "url": "https://github.com/ietf-tapswg/api-drafts/issues/944",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "gorryfair",
       "authorAssociation": "CONTRIBUTOR",
       "assignees": [
@@ -25275,13 +25282,12 @@
       ],
       "labels": [
         "Architecture",
-        "discuss",
         "editorial"
       ],
       "body": "These are bunched together, and likely could be addressed by one PR:\r\n\r\nSection 2, right below Figure 2:\r\n\"The Transport Services API [I-D.ietf-taps-interface] defines the interface for an application to create network connections and transfer data.\"\r\n=> Should this be \"Connections\" instead of \"network connections\" ?\r\n\r\nSection 2.1, paragraph 2, last line: \"... made explicit in sockets.\" seems strange. Should this be \"in the sockets API.\" ?\r\n\r\nSection 2.2 paragraph 1, this sentence:\r\n\"While TCP does indeed provide the ability to send and receive data as streams, most applications need to interpret structure within these streams.\"\r\nTwo issues here. First, I would switch to singular because TCP is not a multi-streaming protocol.\r\n I.e., change this to:\r\n\r\n\"While TCP does indeed provide the ability to send and receive data as a stream, most applications need to interpret structure within this stream.\"\r\n\r\nSecond, is \"stream\" a known concept? I don't think it's defined in this document, and I'm a little unsure because, even when using singular, someone might read \"stream\" and think of \"one stream out of several, in a multi-streaming protocol\". Maybe this is nit-picking, but if you agree, I would prefer to replace \"stream\" with \"data stream\", or having a definition of \"stream\" and capitalizing it (but then the definition would have to appear before the first use of this term...)\r\nGF: Data Stream Seems good.\r\n\r\nNext paragraph: double \"provide\" in: \"Providing a message-based abstraction provides many benefits, such as:\" - I suggest to replace the second with \"has\".\r\n\r\nIn the following item list, I would remove the third item: \"the ability to manage dependencies between messages, ...\"\r\nWhile it is true that a message-based abstraction enables this, a reader of this document might get the impression that the TAPS system defined in the interface draft offers this specific functionality. It really doesn't, it would still have to be implemented on top of it. For this reason, this item strikes me as a bit misleading, and I think it should be removed.\r\n\r\nSection 3, paragraph 2: \"it can provide access to multiple sets of protocols and protocol features\" - remove \"sets of\", this adds an unnecessary level of indirection here. I guess the transport property profiles in interface, section B.2 would be such sets, but still...\r\n\r\nLast paragraph before section 3.2: \"Applications using a Transport Services system interface are REQUIRED to be robust to the automated selection provided by the system.\" - why say \"system interface\" here all of a sudden? This gives an impression as if there were two things: the API, and then perhaps also a separate \"system interface\". I'd rather replace this with \"API\".\r\n\r\nLast paragraph of section 3.4: \"In normal use, a Transport Services system SHOULD result in consistent protocol and interface selection decisions for the same network conditions given the same set of Properties.\"\r\n\r\nIsn't this too restrictive? It prohibits a Transport Services system from improving. I would change this to:\r\n\"In normal use, a given version of a Transport Services system SHOULD result in consistent protocol and interface selection decisions for the same network conditions given the same set of Properties.\"\r\n\r\nSection 4.1.5: \"For example, a Message can be marked with a Message Property indicating that it is the final message on a connection if the peer sent a TCP FIN.\"\r\nI would stop this sentence after \"on a connection.\" - or is it just me misunderstanding something? I thought (and -interface section 9.1.3.5 seems to agree with me) that the idea of \"final message for TCP\" really is that setting the property means that THIS message that I'm sending gets a FIN flag. Why would a FIN from the peer make me set this property? FWIW I could go on sending more data, and use this property much later?\r\n\r\nSection 4.1.7, item 1: \"end of stream in the ...\" - see above for a discussion of the word \"stream\".\r\n\r\nSection 4.2, item 5: \"One Protocol Stack that can be used by an application for a connection, of which there can be several.\" => I believe it should be \"Connection\" here, not \"connection\".\r\n\r\nSection 4.2.2, first sentence: \"or some combination of all of these\" - should this be \"or using some combination of all of these\" ?\r\n\r\nThis is mentioned in another Issue:\r\n\r\nSection 1.2, item 4: About the last sentence in item 4, see: https://github.com/ietf-tapswg/api-drafts/issues/939\r\n\r\nOne other review comment might need discussion prior to resolving... and will be in the next issue",
       "createdAt": "2021-10-20T14:42:00Z",
-      "updatedAt": "2021-10-20T16:30:43Z",
-      "closedAt": null,
+      "updatedAt": "2021-10-22T23:39:16Z",
+      "closedAt": "2021-10-22T23:39:16Z",
       "comments": []
     },
     {
@@ -25296,13 +25302,96 @@
         "gorryfair"
       ],
       "labels": [
-        "Architecture",
-        "editorial"
+        "Architecture"
       ],
       "body": "Section 4.2.3, item 3: \"Performance concerns about Connections introducing head-of-line blocking due to multiplexing or needing to share state on a single thread.\"\r\n\r\nI don't think application programmers should decide against using functions such as Connection Grouping because they try to optimize their performance in this way. If it performs poorly, the Transport Services system shouldn't do it. I know this isn't always black and white... I'm guessing that this was written with HTTP/2 in mind. Still ... if a mechanism is judged as generally performing better most of the time, the system should probably use it. If it doesn't perform better e.g. depending on the length of transfers, which may be known from HTTP header, then maybe the Transport Services system is the ideal place to dynamically make such a decision?\r\n\r\nAnyway - I don't think that we should indirectly suggest to application writers that internal functions chosen by the Transport Services system on the basis of high-level information like \"these Connections belong together\" might in fact perform poorly, and hence they may be better off not using them if they want the best performance for their application. So, I would remove this item.\r\n",
       "createdAt": "2021-10-20T14:43:08Z",
-      "updatedAt": "2021-10-20T17:31:12Z",
+      "updatedAt": "2021-10-21T10:29:45Z",
       "closedAt": null,
+      "comments": [
+        {
+          "author": "gorryfair",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": " Sure, applications **might** do many things and some decisions to multiplex multiple flows using a single protocol instantiation might be less performance, however, I would suggest removing this bullet: \"  *  Performance concerns about Connections introducing head-of-line blocking due to multiplexing or needing to share state on a single thread.\", because I think it creates confusion as Michael suggests. A developer understanding complex tradeoffs (such as web client browsers or NFS/SMB servers) will consider this anyway, others should not be worried.",
+          "createdAt": "2021-10-21T10:29:45Z",
+          "updatedAt": "2021-10-21T10:29:45Z"
+        }
+      ]
+    },
+    {
+      "number": 953,
+      "id": "I_kwDOBx1JF849ixlG",
+      "title": "TAPS API sits above the Transport System",
+      "url": "https://github.com/ietf-tapswg/api-drafts/issues/953",
+      "state": "CLOSED",
+      "author": "gorryfair",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [
+        "API"
+      ],
+      "body": "Please be kind. This issue comes with a PR, but any clarification of language comes with pain.\r\n\r\nWe have a terminology soup in ARCH,  in particular : (1) we currently talk about a \"system\" in different ways; (2) we talk about what is below the API in various ways (I'd like to call this the \"Transport System\", but we could instead call it the  \"Transport Services System\" if that longer form seems better  (3) The term architecture should only refer to the API and \"Transport System\" together.\r\n\r\nPlease look at the linked PR....\r\n",
+      "createdAt": "2021-10-21T13:50:51Z",
+      "updatedAt": "2021-10-21T17:17:32Z",
+      "closedAt": "2021-10-21T17:17:32Z",
+      "comments": []
+    },
+    {
+      "number": 955,
+      "id": "I_kwDOBx1JF849jwtH",
+      "title": "We fixed Arch - let's fix API",
+      "url": "https://github.com/ietf-tapswg/api-drafts/issues/955",
+      "state": "CLOSED",
+      "author": "gorryfair",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [
+        "gorryfair"
+      ],
+      "labels": [
+        "API"
+      ],
+      "body": "This is a request for a PR to align the API to this, and related  \r\nTransport Services API: The application interface (not the word interface where we can avoid this, to avoid confusion with network interfaces)\r\nTransport Services implementation: The library/code below the API\r\nTransport Services system: The entire package of API and implementation\r\nTransport Services architecture.",
+      "createdAt": "2021-10-21T18:07:20Z",
+      "updatedAt": "2021-10-22T18:50:11Z",
+      "closedAt": "2021-10-22T18:50:11Z",
+      "comments": []
+    },
+    {
+      "number": 956,
+      "id": "I_kwDOBx1JF849j6qI",
+      "title": "Impl: Pooled Connection",
+      "url": "https://github.com/ietf-tapswg/api-drafts/issues/956",
+      "state": "OPEN",
+      "author": "gorryfair",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [
+        "Implementation"
+      ],
+      "body": "## Pooled Connection {#pooled-connections}\r\n\r\n- So implementation talks about pooled connections - I must have blinked and missed that, obviously it is different to a connection group - or is it? If I am asking a silly question then I suspect we need  just a few lines of text to demuddle me.",
+      "createdAt": "2021-10-21T18:43:11Z",
+      "updatedAt": "2021-10-21T18:43:11Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 958,
+      "id": "I_kwDOBx1JF849j8_d",
+      "title": "We fixed ARCH lets fix Imple",
+      "url": "https://github.com/ietf-tapswg/api-drafts/issues/958",
+      "state": "CLOSED",
+      "author": "gorryfair",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [
+        "gorryfair"
+      ],
+      "labels": [
+        "Implementation"
+      ],
+      "body": "This is a request for a PR to align the API to this, and related\r\nTransport Services API: The application interface (not the word interface where we can avoid this, to avoid confusion with network interfaces)\r\nTransport Services implementation: The library/code below the API\r\nTransport Services system: The entire package of API and implementation\r\nTransport Services architecture.\r\nendpoint without /Local/ or /Remote/ never has a capital E",
+      "createdAt": "2021-10-21T18:50:30Z",
+      "updatedAt": "2021-10-22T18:52:11Z",
+      "closedAt": "2021-10-22T18:52:11Z",
       "comments": []
     }
   ],
@@ -74576,7 +74665,7 @@
       "id": "PR_kwDOBx1JF84tP96U",
       "title": "s/MUST/SHOULD because else we don't even eat our own dog food  :)",
       "url": "https://github.com/ietf-tapswg/api-drafts/pull/935",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "mwelzl",
       "authorAssociation": "CONTRIBUTOR",
       "assignees": [],
@@ -74585,17 +74674,19 @@
       ],
       "body": "Quote from the API draft: \"The present API covers all elements of this section except Notification of Excessive Retransmissions (early warning below abortion threshold).\"\r\n\r\nSo... shouldn't this MUST be a SHOULD?",
       "createdAt": "2021-10-15T12:23:08Z",
-      "updatedAt": "2021-10-20T16:13:53Z",
+      "updatedAt": "2021-10-21T11:38:50Z",
       "baseRepository": "ietf-tapswg/api-drafts",
       "baseRefName": "master",
       "baseRefOid": "430da64cb16ee289ece6a9679678e2323ab270de",
       "headRepository": "ietf-tapswg/api-drafts",
       "headRefName": "mw-arch-should-implement-minset",
       "headRefOid": "618e8e55c928b58b0345f18de0209287efb91015",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "closedAt": "2021-10-21T11:38:50Z",
+      "mergedAt": "2021-10-21T11:38:50Z",
+      "mergedBy": "mwelzl",
+      "mergeCommit": {
+        "oid": "769183a5add014e30c13bd40cc3a2bb72af156c1"
+      },
       "comments": [
         {
           "author": "mwelzl",
@@ -75279,7 +75370,7 @@
       "labels": [],
       "body": "resolves #865.",
       "createdAt": "2021-10-20T16:41:32Z",
-      "updatedAt": "2021-10-20T16:41:32Z",
+      "updatedAt": "2021-10-22T18:51:55Z",
       "baseRepository": "ietf-tapswg/api-drafts",
       "baseRefName": "master",
       "baseRefOid": "b3bbe46433971a4fe6df1b75ad885b0d59e89b1e",
@@ -75291,31 +75382,54 @@
       "mergedBy": null,
       "mergeCommit": null,
       "comments": [],
-      "reviews": []
+      "reviews": [
+        {
+          "id": "PRR_kwDOBx1JF84u61S8",
+          "commit": {
+            "abbreviatedOid": "901551b"
+          },
+          "author": "tfpauly",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2021-10-22T18:51:43Z",
+          "updatedAt": "2021-10-22T18:51:55Z",
+          "comments": [
+            {
+              "originalPosition": 4,
+              "body": "To avoid pseudo-normative language:\r\n\r\n```suggestion\r\nNote that the set of LocalEndpoints returned by Resolve() might or might not \r\n```",
+              "createdAt": "2021-10-22T18:51:43Z",
+              "updatedAt": "2021-10-22T18:51:55Z"
+            }
+          ]
+        }
+      ]
     },
     {
       "number": 948,
       "id": "PR_kwDOBx1JF84tc9C5",
       "title": "PR to address Arch-Review MW",
       "url": "https://github.com/ietf-tapswg/api-drafts/pull/948",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "gorryfair",
       "authorAssociation": "CONTRIBUTOR",
       "assignees": [],
       "labels": [],
       "body": "Thought to address all listed (and related) issues",
       "createdAt": "2021-10-20T17:30:42Z",
-      "updatedAt": "2021-10-20T18:31:53Z",
+      "updatedAt": "2021-10-22T23:39:17Z",
       "baseRepository": "ietf-tapswg/api-drafts",
       "baseRefName": "master",
-      "baseRefOid": "b3bbe46433971a4fe6df1b75ad885b0d59e89b1e",
+      "baseRefOid": "9c94ebc4f35407c8da1de56e203227b56436604d",
       "headRepository": "ietf-tapswg/api-drafts",
       "headRefName": "gorryfair-arch-mw-9",
-      "headRefOid": "d9c400dd499f1ba109477571d24b87ad2544dd1d",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "headRefOid": "6f18e373d789c70a2a8d282a7656f518f9301849",
+      "closedAt": "2021-10-22T23:39:16Z",
+      "mergedAt": "2021-10-22T23:39:16Z",
+      "mergedBy": "tfpauly",
+      "mergeCommit": {
+        "oid": "09d34513d8538ae763e376805ef7d03732f4effc"
+      },
       "comments": [],
       "reviews": [
         {
@@ -75343,6 +75457,796 @@
               "updatedAt": "2021-10-20T18:31:53Z"
             }
           ]
+        }
+      ]
+    },
+    {
+      "number": 949,
+      "id": "PR_kwDOBx1JF84tepyl",
+      "title": "Remove a MUST NOT",
+      "url": "https://github.com/ietf-tapswg/api-drafts/pull/949",
+      "state": "MERGED",
+      "author": "gorryfair",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [
+        "gorryfair"
+      ],
+      "labels": [
+        "API",
+        "editorial"
+      ],
+      "body": "Be firm, but avoid MUST NOT apply across different protocols\r\nTO ADDRESS #914",
+      "createdAt": "2021-10-21T08:06:39Z",
+      "updatedAt": "2021-10-21T12:45:55Z",
+      "baseRepository": "ietf-tapswg/api-drafts",
+      "baseRefName": "master",
+      "baseRefOid": "b3bbe46433971a4fe6df1b75ad885b0d59e89b1e",
+      "headRepository": "ietf-tapswg/api-drafts",
+      "headRefName": "gorryfair-MUST-NOT-9",
+      "headRefOid": "fedbb946655e21d15c3ae5894ba2a1534f7bf11d",
+      "closedAt": "2021-10-21T12:45:55Z",
+      "mergedAt": "2021-10-21T12:45:55Z",
+      "mergedBy": "gorryfair",
+      "mergeCommit": {
+        "oid": "65532816f57e4f502613c6303af58a03d417f477"
+      },
+      "comments": [
+        {
+          "author": "gorryfair",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "This was discussed at the Interim and final text approved by MW.",
+          "createdAt": "2021-10-21T12:45:50Z",
+          "updatedAt": "2021-10-21T12:45:50Z"
+        }
+      ],
+      "reviews": [
+        {
+          "id": "PRR_kwDOBx1JF84u0o7P",
+          "commit": {
+            "abbreviatedOid": "ee60227"
+          },
+          "author": "mwelzl",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "CHANGES_REQUESTED",
+          "body": "just a small thing again, else lgtm",
+          "createdAt": "2021-10-21T11:17:20Z",
+          "updatedAt": "2021-10-21T11:17:31Z",
+          "comments": [
+            {
+              "originalPosition": 15,
+              "body": "Typo in \"normally\", but: wouldn't this read better by altogether dropping the \"normally\"?",
+              "createdAt": "2021-10-21T11:17:20Z",
+              "updatedAt": "2021-10-21T11:17:31Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOBx1JF84u00_l",
+          "commit": {
+            "abbreviatedOid": "ee60227"
+          },
+          "author": "gorryfair",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2021-10-21T12:08:40Z",
+          "updatedAt": "2021-10-21T12:08:40Z",
+          "comments": [
+            {
+              "originalPosition": 15,
+              "body": "Much better without the word! (I will remove)",
+              "createdAt": "2021-10-21T12:08:40Z",
+              "updatedAt": "2021-10-21T12:08:40Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOBx1JF84u030j",
+          "commit": {
+            "abbreviatedOid": "fedbb94"
+          },
+          "author": "mwelzl",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2021-10-21T12:19:45Z",
+          "updatedAt": "2021-10-21T12:19:45Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 950,
+      "id": "PR_kwDOBx1JF84tfEtg",
+      "title": "API: PVD  and other queriable info",
+      "url": "https://github.com/ietf-tapswg/api-drafts/pull/950",
+      "state": "MERGED",
+      "author": "gorryfair",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [
+        "API"
+      ],
+      "body": "Rewording the path information with respect to PVD to reflect Info concerning the \r\npath(s) used by the Protocol Stack.",
+      "createdAt": "2021-10-21T10:20:20Z",
+      "updatedAt": "2021-10-22T09:53:59Z",
+      "baseRepository": "ietf-tapswg/api-drafts",
+      "baseRefName": "master",
+      "baseRefOid": "b3bbe46433971a4fe6df1b75ad885b0d59e89b1e",
+      "headRepository": "ietf-tapswg/api-drafts",
+      "headRefName": "gorryfair-patch-9",
+      "headRefOid": "bd4cdd926f35ae9dfa4846e37ff6187e6b8edb65",
+      "closedAt": "2021-10-22T09:53:53Z",
+      "mergedAt": "2021-10-22T09:53:53Z",
+      "mergedBy": "gorryfair",
+      "mergeCommit": {
+        "oid": "76a6719c61b7f85d4b197c2071d6052db56600cd"
+      },
+      "comments": [
+        {
+          "author": "gorryfair",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "Addressed MW comments in this PR",
+          "createdAt": "2021-10-22T09:53:59Z",
+          "updatedAt": "2021-10-22T09:53:59Z"
+        }
+      ],
+      "reviews": [
+        {
+          "id": "PRR_kwDOBx1JF84u0msS",
+          "commit": {
+            "abbreviatedOid": "027aea5"
+          },
+          "author": "mwelzl",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "CHANGES_REQUESTED",
+          "body": "a nit, else lgtm",
+          "createdAt": "2021-10-21T11:07:26Z",
+          "updatedAt": "2021-10-21T11:07:49Z",
+          "comments": [
+            {
+              "originalPosition": 9,
+              "body": "```suggestion\r\n* For Connections that are Established: information concerning the \r\n```",
+              "createdAt": "2021-10-21T11:07:26Z",
+              "updatedAt": "2021-10-21T11:07:49Z"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": 951,
+      "id": "PR_kwDOBx1JF84tfTaL",
+      "title": "ARCH components.",
+      "url": "https://github.com/ietf-tapswg/api-drafts/pull/951",
+      "state": "MERGED",
+      "author": "gorryfair",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [
+        "API"
+      ],
+      "body": "This is the second sldie trying to unravel what things are called.",
+      "createdAt": "2021-10-21T11:36:57Z",
+      "updatedAt": "2021-10-21T17:17:33Z",
+      "baseRepository": "ietf-tapswg/api-drafts",
+      "baseRefName": "master",
+      "baseRefOid": "65532816f57e4f502613c6303af58a03d417f477",
+      "headRepository": "ietf-tapswg/api-drafts",
+      "headRefName": "gorryfair-Components-10",
+      "headRefOid": "f46d97563ceeb5501536d41699e8c5c593110412",
+      "closedAt": "2021-10-21T17:17:33Z",
+      "mergedAt": "2021-10-21T17:17:32Z",
+      "mergedBy": "tfpauly",
+      "mergeCommit": {
+        "oid": "e4b262f79f276bb1eb0368cfb10ec464d0e65b86"
+      },
+      "comments": [
+        {
+          "author": "gorryfair",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "This is a PR that came out of  my unvoiced frustration with the terms. In particular when we talk about a \"system\" or and \"endpoint\"; what do we call the thing below the API: the \"transport system\", and what is the architecture (the whole thing). I don't much mind if we use \"Transport System\" or \"Transport Services System\" ... hopefully that change would be small. Is this PR sane?",
+          "createdAt": "2021-10-21T12:04:03Z",
+          "updatedAt": "2021-10-21T12:04:03Z"
+        }
+      ],
+      "reviews": [
+        {
+          "id": "PRR_kwDOBx1JF84u1A6R",
+          "commit": {
+            "abbreviatedOid": "94d7ca8"
+          },
+          "author": "mwelzl",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "CHANGES_REQUESTED",
+          "body": "Thanks for doing this, IMO this is a GREAT improvement and will make all 3 documents much better to read!   Most of my comments are very minor, but one or two need a bit of thinking.",
+          "createdAt": "2021-10-21T12:52:10Z",
+          "updatedAt": "2021-10-21T13:11:15Z",
+          "comments": [
+            {
+              "originalPosition": 72,
+              "body": "```suggestion\r\nImplementations of the Transport System within the Transport Services Architecture are intended to be flexible at connection establishment time, considering many different options and trying to select the most optimal combinations by racing them and measuring the results (see {{gathering}} and {{racing}}). This requires applications to provide higher-level endpoints than IP addresses, such as hostnames and URLs, which are used by a Transport System implementation for resolution, path selection, and racing. Transport System implementations can further implement fallback mechanisms if connection establishment of one protocol fails or performance is detected to be unsatisfactory.\r\n```",
+              "createdAt": "2021-10-21T12:52:11Z",
+              "updatedAt": "2021-10-21T13:11:15Z"
+            },
+            {
+              "originalPosition": 82,
+              "body": "```suggestion\r\nA goal of the Transport Services architecture is to redefine the interface between applications and transports in a way that allows the transport layer to evolve and improve without fundamentally changing the contract with the application. This requires a careful consideration of how to expose the capabilities of protocols. This architecture also encompasses System Policies that can influence and inform how transport protocols use a network path or interface.\r\n```",
+              "createdAt": "2021-10-21T12:53:34Z",
+              "updatedAt": "2021-10-21T13:11:15Z"
+            },
+            {
+              "originalPosition": 100,
+              "body": "```suggestion\r\nApplications using the Transport Services API are REQUIRED to be robust to the automated selection provided by the Transport System. This automated selection is constrained by the properties and preferences expressed by the application and requires applications to explictly set properties that define any necssary constraints on protocol, path, and interface selection.\r\n```",
+              "createdAt": "2021-10-21T12:55:09Z",
+              "updatedAt": "2021-10-21T13:11:15Z"
+            },
+            {
+              "originalPosition": 129,
+              "body": "```suggestion\r\nTo ensure that security protocols are not incorrectly swapped, a Transport System implementation MUST only select Protocol Stacks that meet application requirements ({{?RFC8922}}). Transport System implementations SHOULD only race Protocol Stacks where the transport security protocols within the stacks are identical. A Transport System implementation MUST NOT automatically fall back from secure protocols to insecure protocols, or to weaker versions of secure protocols. A Transport System implementation MAY allow applications to explicitly specify that fallback to a specific other version of a protocol is allowed, e.g., to allow fallback to TLS 1.2 if TLS 1.3 is not available.\r\n```\r\n\r\nWhat's it with you and \"implemenations\" ?  :-)",
+              "createdAt": "2021-10-21T12:58:08Z",
+              "updatedAt": "2021-10-21T13:11:15Z"
+            },
+            {
+              "originalPosition": 134,
+              "body": "```suggestion\r\nIt is important to note that neither the Transport Services API {{!I-D.ietf-taps-interface}} nor the guidelines for implementation of the Transport System {{?I-D.ietf-taps-impl}} define new protocols or protocol capabilities that affect what is communicated across the network. Use of the Transport Services Architecture MUST NOT require that a peer on the other side of a connection uses the same API or implementation. A Transport System acting as a connection initiator is able to communicate with any existing endpoint that implements the transport protocol(s) and all the required properties selected by the Transport System. Similarly, a Transport System acting as a listener can receive connections for any protocol that is supported by the Transport System from an existing initiator that implements the protocol, independent of whether the initiator uses the Transport Services Architecture or not.\r\n```",
+              "createdAt": "2021-10-21T13:00:42Z",
+              "updatedAt": "2021-10-21T13:11:15Z"
+            },
+            {
+              "originalPosition": 137,
+              "body": "```suggestion\r\nThe Transport System makes decisions that select protocols and interfaces. In normal use, a Transport System SHOULD result in consistent protocol and interface selection decisions for the same network conditions given the same set of Properties. This is intended to provide predictable outcomes to the application using the API.\r\n```",
+              "createdAt": "2021-10-21T13:01:04Z",
+              "updatedAt": "2021-10-21T13:11:15Z"
+            },
+            {
+              "originalPosition": 146,
+              "body": "```suggestion\r\n2. Implementation concepts that are intended to be internally used when building a Transport System that implements the Transport Services Architecture.\r\n```",
+              "createdAt": "2021-10-21T13:01:44Z",
+              "updatedAt": "2021-10-21T13:11:15Z"
+            },
+            {
+              "originalPosition": 167,
+              "body": "```suggestion\r\n* Connection: A Connection object represents one or more active transport protocol instances that can send and/or receive Messages between local and remote endpoints. It is an abstraction that represents the communication. The Connection object holds state pertaining to the underlying transport protocol instances and any ongoing data transfers. For example, an active Connection can represent a connection-oriented protocol such as TCP, or can represent a fully-specified 5-tuple for a connectionless protocol such as UDP, where the Connection remains an abstraction at the end points. It can also represent a pool of transport protocol instances, e.g., a set of TCP and QUIC connections to equivalent endpoints, or a stream of a multi-streaming transport protocol instance. Connections can be created from a Preconnection or by a Listener. \r\n```\r\n\r\nYou haven't capitalized \"endpoints\" elsewhere, and I think it's better without capitals (unless it's a defined term in the arch document? I guess it is... hmmm ... then you have to use it with capitals but only after its definition?  oh my oh my...)",
+              "createdAt": "2021-10-21T13:02:21Z",
+              "updatedAt": "2021-10-21T13:11:15Z"
+            },
+            {
+              "originalPosition": 187,
+              "body": "```suggestion\r\n* Listen: Enables a listener to accept incoming Connections. The Listener will then create Connection objects as incoming connections are accepted ({{events}}). Listeners by default register with multiple paths, protocols, and Local Endpoints, unless constrained by Selection Properties and/or the specified Local Endpoint(s). Connections can be accepted on any of the available paths or endpoints.\r\n```\r\n\r\nSee above for a discussion of \"endpoints\" vs \"Endpoints\".",
+              "createdAt": "2021-10-21T13:04:43Z",
+              "updatedAt": "2021-10-21T13:11:15Z"
+            },
+            {
+              "originalPosition": 205,
+              "body": "```suggestion\r\n* Receive: An action that indicates that the application is ready to asynchronously accept a Message over a Connection from a Remote Endpoint, while the Message content itself will be delivered in an Event ({{events}}). The interface to Receive can include Message Properties specific to the Message that is to be delivered to the application.\r\n```\r\n\r\nSo \"Remote Endpoint\" is capitalized but \"endpoint\" is not? At least for now, that's how it seems to be...",
+              "createdAt": "2021-10-21T13:05:38Z",
+              "updatedAt": "2021-10-21T13:11:15Z"
+            },
+            {
+              "originalPosition": 247,
+              "body": "This gets odd. If the Transport System is not a complete instantiation of the architecture (as I thought up to here), but just a component, then how can it be one of the \"key concepts\" of itself?  because it's also the next item in the list.",
+              "createdAt": "2021-10-21T13:09:12Z",
+              "updatedAt": "2021-10-21T13:11:15Z"
+            },
+            {
+              "originalPosition": 315,
+              "body": "in the replaced text, \"fallback\" is used as a noun, but here it is a verb - I'm not sure it's a verb that exists? Maybe \"falling back\" ?",
+              "createdAt": "2021-10-21T13:10:39Z",
+              "updatedAt": "2021-10-21T13:11:16Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOBx1JF84u1PRW",
+          "commit": {
+            "abbreviatedOid": "af82749"
+          },
+          "author": "gorryfair",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2021-10-21T13:36:39Z",
+          "updatedAt": "2021-10-21T13:36:40Z",
+          "comments": [
+            {
+              "originalPosition": 247,
+              "body": "Made the Transport System more clearly sit below the API when first introduced earlier (subtle because the \"API\" is only realised when you have a system designed to implement it, but at least tries to make reading less painful. We didn't talk about a \"component\" here, so suggest we don't. Text updated.",
+              "createdAt": "2021-10-21T13:36:40Z",
+              "updatedAt": "2021-10-21T13:36:40Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOBx1JF84u1ZHH",
+          "commit": {
+            "abbreviatedOid": "dde6398"
+          },
+          "author": "mwelzl",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "CHANGES_REQUESTED",
+          "body": "Two small things",
+          "createdAt": "2021-10-21T14:04:39Z",
+          "updatedAt": "2021-10-21T14:06:25Z",
+          "comments": [
+            {
+              "originalPosition": 261,
+              "body": "I still don't like the recursion, where the Transport System is a \"key concept\" of the Transport System. Are these maybe just key concepts of the Transport Services Architecture?",
+              "createdAt": "2021-10-21T14:04:39Z",
+              "updatedAt": "2021-10-21T14:06:25Z"
+            },
+            {
+              "originalPosition": 203,
+              "body": "Sorry, not this PR's problem, but I just noticed a capitalized Endpoint here:\r\n\r\n```suggestion\r\n* Security Parameters: Security Parameters define an application's requirements for authentication and encryption on a Connection. They are used by Transport Security protocols (such as those described in {{?RFC8922}}) to establish secure Connections. Examples of parameters that can be set include local identities, private keys, supported cryptographic algorithms, and requirements for validating trust of remote identities. Security Parameters are primarily associated with a Preconnection object, but properties related to identities can be associated directly with endpoints.\r\n```",
+              "createdAt": "2021-10-21T14:05:36Z",
+              "updatedAt": "2021-10-21T14:06:25Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOBx1JF84u1bWj",
+          "commit": {
+            "abbreviatedOid": "dde6398"
+          },
+          "author": "gorryfair",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2021-10-21T14:11:02Z",
+          "updatedAt": "2021-10-21T14:11:03Z",
+          "comments": [
+            {
+              "originalPosition": 261,
+              "body": "I'll go with your change, it's simpler.",
+              "createdAt": "2021-10-21T14:11:02Z",
+              "updatedAt": "2021-10-21T14:11:03Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOBx1JF84u1jaL",
+          "commit": {
+            "abbreviatedOid": "1e57eb5"
+          },
+          "author": "mwelzl",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2021-10-21T14:32:21Z",
+          "updatedAt": "2021-10-21T14:32:21Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOBx1JF84u1098",
+          "commit": {
+            "abbreviatedOid": "1e57eb5"
+          },
+          "author": "tfpauly",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "CHANGES_REQUESTED",
+          "body": "I'm not sure about establishing the term \"Transport System\" as a name for the implementation. I'd prefer to keep using \"Transport Services\" as the main name, and have that split into API and implementation/system.\r\n\r\nI generally think of it as:\r\n\r\nTransport Services API: The application interface\r\nTransport Services implementation: The library/code below the API\r\nTransport Services system: The entire package of API and implementation",
+          "createdAt": "2021-10-21T15:25:49Z",
+          "updatedAt": "2021-10-21T15:38:24Z",
+          "comments": [
+            {
+              "originalPosition": 14,
+              "body": "Do we need to say architecture here? We're comparing the APIs... If we do mention architecture, it should probably be:\r\n\r\n```suggestion\r\n- {{model}} describes how the API model of the Transport Services Architecture differs from traditional socket-based APIs. Specifically, it offers asynchronous event-driven interaction, the use of messages for data transfer, and the flexibility to use different transport protocols and paths without requiring major changes to the application.\r\n```\r\n\r\nBut I'd prefer:\r\n\r\n```suggestion\r\n- {{model}} describes how the API model of Transport Services differs from traditional socket-based APIs. Specifically, it offers asynchronous event-driven interaction, the use of messages for data transfer, and the flexibility to use different transport protocols and paths without requiring major changes to the application.\r\n```",
+              "createdAt": "2021-10-21T15:25:49Z",
+              "updatedAt": "2021-10-21T15:38:24Z"
+            },
+            {
+              "originalPosition": 19,
+              "body": "```suggestion\r\n- {{concepts}} presents the Transport Services architecture diagram and defines the concepts that are used by both the API {{!I-D.ietf-taps-interface}} and implementation guidelines {{?I-D.ietf-taps-impl}}. The Preconnection allows applications to configure Connection Properties. \r\n```",
+              "createdAt": "2021-10-21T15:27:14Z",
+              "updatedAt": "2021-10-21T15:38:24Z"
+            },
+            {
+              "originalPosition": 81,
+              "body": "```suggestion\r\nThe Socket API for protocols like TCP is generally limited to connecting to a single address over a single interface. It also presents a single stream to the application. Software layers built upon this API often propagate this limitation of a single-address single-stream model. The Transport Services architecture is designed:\r\n```",
+              "createdAt": "2021-10-21T15:29:26Z",
+              "updatedAt": "2021-10-21T15:38:25Z"
+            },
+            {
+              "originalPosition": 99,
+              "body": "I don't think this needs to be capitalized here. I know we have a term later, but this is just talking about the concept.\r\n\r\n```suggestion\r\nA goal of the Transport Services architecture is to redefine the interface between applications and transports in a way that allows the transport layer to evolve and improve without fundamentally changing the contract with the application. This requires a careful consideration of how to expose the capabilities of protocols. This architecture also encompasses system policies that can influence and inform how transport protocols use a network path or interface.\r\n```",
+              "createdAt": "2021-10-21T15:30:56Z",
+              "updatedAt": "2021-10-21T15:38:25Z"
+            },
+            {
+              "originalPosition": 99,
+              "body": "I don't think this needs to be capitalized here. I know we have a term later, but this is just talking about the concept.\r\n\r\n```suggestion\r\nA goal of the Transport Services architecture is to redefine the interface between applications and transports in a way that allows the transport layer to evolve and improve without fundamentally changing the contract with the application. This requires a careful consideration of how to expose the capabilities of protocols. This architecture also encompasses system policies that can influence and inform how transport protocols use a network path or interface.\r\n```",
+              "createdAt": "2021-10-21T15:31:16Z",
+              "updatedAt": "2021-10-21T15:38:26Z"
+            },
+            {
+              "originalPosition": 105,
+              "body": "```suggestion\r\nThe normative requirements described in this section allow Transport Services APIs and Transport System implementations to provide this functionality without causing incompatibility or introducing security vulnerabilities. \r\n```",
+              "createdAt": "2021-10-21T15:31:33Z",
+              "updatedAt": "2021-10-21T15:38:26Z"
+            },
+            {
+              "originalPosition": 102,
+              "body": "We haven't defined Remote Endpoints yet at this point. Why not just say remote systems?",
+              "createdAt": "2021-10-21T15:33:09Z",
+              "updatedAt": "2021-10-21T15:38:26Z"
+            },
+            {
+              "originalPosition": 110,
+              "body": "```suggestion\r\nAny functionality that is common across multiple transport protocols SHOULD be made accessible through a unified set of calls using the Transport Services API. As a baseline, any Transport Services API MUST allow access to the minimal set of features offered by transport protocols {{?RFC8923}}.\r\n```",
+              "createdAt": "2021-10-21T15:33:43Z",
+              "updatedAt": "2021-10-21T15:38:26Z"
+            },
+            {
+              "originalPosition": 141,
+              "body": "Again, Remote Endpoint isn't defined yet.",
+              "createdAt": "2021-10-21T15:34:54Z",
+              "updatedAt": "2021-10-21T15:38:26Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOBx1JF84u14U8",
+          "commit": {
+            "abbreviatedOid": "1e57eb5"
+          },
+          "author": "tfpauly",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "CHANGES_REQUESTED",
+          "body": "I'm not sure about establishing the term \"Transport System\" as a name for the implementation. I'd prefer to keep using \"Transport Services\" as the main name, and have that split into API and implementation/system.\r\n\r\nI generally think of it as:\r\n\r\nTransport Services API: The application interface\r\nTransport Services implementation: The library/code below the API\r\nTransport Services system: The entire package of API and implementation",
+          "createdAt": "2021-10-21T15:38:45Z",
+          "updatedAt": "2021-10-21T15:38:45Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOBx1JF84u2Bs8",
+          "commit": {
+            "abbreviatedOid": "14215a8"
+          },
+          "author": "gorryfair",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2021-10-21T16:09:57Z",
+          "updatedAt": "2021-10-21T16:09:57Z",
+          "comments": [
+            {
+              "originalPosition": 102,
+              "body": "ok, done",
+              "createdAt": "2021-10-21T16:09:57Z",
+              "updatedAt": "2021-10-21T16:09:57Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOBx1JF84u2B4T",
+          "commit": {
+            "abbreviatedOid": "14215a8"
+          },
+          "author": "gorryfair",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2021-10-21T16:10:37Z",
+          "updatedAt": "2021-10-21T16:10:37Z",
+          "comments": [
+            {
+              "originalPosition": 141,
+              "body": "sure, done.",
+              "createdAt": "2021-10-21T16:10:37Z",
+              "updatedAt": "2021-10-21T16:10:37Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOBx1JF84u2S39",
+          "commit": {
+            "abbreviatedOid": "65f2674"
+          },
+          "author": "tfpauly",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2021-10-21T17:11:06Z",
+          "updatedAt": "2021-10-21T17:11:07Z",
+          "comments": [
+            {
+              "originalPosition": 46,
+              "body": "```suggestion\r\n|          Transport Services Implementation          |\r\n```",
+              "createdAt": "2021-10-21T17:11:06Z",
+              "updatedAt": "2021-10-21T17:11:07Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOBx1JF84u2TDS",
+          "commit": {
+            "abbreviatedOid": "ae765c2"
+          },
+          "author": "tfpauly",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2021-10-21T17:11:35Z",
+          "updatedAt": "2021-10-21T17:11:35Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 952,
+      "id": "PR_kwDOBx1JF84tfZmu",
+      "title": "Minset: Fixing wrong statement about missing soft error, name cleanup",
+      "url": "https://github.com/ietf-tapswg/api-drafts/pull/952",
+      "state": "MERGED",
+      "author": "mwelzl",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [
+        "API"
+      ],
+      "body": "As discussed at the last interim, but cleaning up the references to use the real property names too.",
+      "createdAt": "2021-10-21T12:09:15Z",
+      "updatedAt": "2021-10-23T00:22:07Z",
+      "baseRepository": "ietf-tapswg/api-drafts",
+      "baseRefName": "master",
+      "baseRefOid": "769183a5add014e30c13bd40cc3a2bb72af156c1",
+      "headRepository": "ietf-tapswg/api-drafts",
+      "headRefName": "mw-api-minset-appendix-again",
+      "headRefOid": "21ed05d916fc8977e4597a010e9b57d49b6c6a0e",
+      "closedAt": "2021-10-23T00:22:07Z",
+      "mergedAt": "2021-10-23T00:22:07Z",
+      "mergedBy": "tfpauly",
+      "mergeCommit": {
+        "oid": "399a65447959c4b4b346f15f321283ddbaaae16c"
+      },
+      "comments": [
+        {
+          "author": "mwelzl",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "Yes, because it's just a quote of the minset RFC's name  :)   can't change that anymore",
+          "createdAt": "2021-10-21T12:21:38Z",
+          "updatedAt": "2021-10-21T12:21:38Z"
+        }
+      ],
+      "reviews": [
+        {
+          "id": "PRR_kwDOBx1JF84u02Jf",
+          "commit": {
+            "abbreviatedOid": "21ed05d"
+          },
+          "author": "gorryfair",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "APPROVED",
+          "body": "Works for me. I'm not hugely sold on \"end systems\" given my recent experience with the word \"system\" in arch - but it likely is quite OK here.",
+          "createdAt": "2021-10-21T12:13:24Z",
+          "updatedAt": "2021-10-21T12:13:24Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOBx1JF84u7dPe",
+          "commit": {
+            "abbreviatedOid": "21ed05d"
+          },
+          "author": "tfpauly",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2021-10-23T00:21:54Z",
+          "updatedAt": "2021-10-23T00:21:54Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 954,
+      "id": "PR_kwDOBx1JF84tgiHV",
+      "title": "Terms for Transport Services",
+      "url": "https://github.com/ietf-tapswg/api-drafts/pull/954",
+      "state": "MERGED",
+      "author": "gorryfair",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [
+        "gorryfair"
+      ],
+      "labels": [
+        "API",
+        "Implementation"
+      ],
+      "body": "Align with Architecture on Transport Services",
+      "createdAt": "2021-10-21T17:42:29Z",
+      "updatedAt": "2021-10-22T18:50:11Z",
+      "baseRepository": "ietf-tapswg/api-drafts",
+      "baseRefName": "master",
+      "baseRefOid": "e4b262f79f276bb1eb0368cfb10ec464d0e65b86",
+      "headRepository": "ietf-tapswg/api-drafts",
+      "headRefName": "gorryfair-intfTS-10",
+      "headRefOid": "21f626296b492155e7c32d7271a16812db36dee5",
+      "closedAt": "2021-10-22T18:50:11Z",
+      "mergedAt": "2021-10-22T18:50:10Z",
+      "mergedBy": "tfpauly",
+      "mergeCommit": {
+        "oid": "b182d495df1612d3d3148d7062c0c0d69f64799b"
+      },
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOBx1JF84u6znX",
+          "commit": {
+            "abbreviatedOid": "a958cab"
+          },
+          "author": "tfpauly",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2021-10-22T18:43:04Z",
+          "updatedAt": "2021-10-22T18:44:06Z",
+          "comments": [
+            {
+              "originalPosition": 37,
+              "body": "```suggestion\r\n{{?RFC8922}}. The Transport Services API enables an implementation\r\n```",
+              "createdAt": "2021-10-22T18:43:04Z",
+              "updatedAt": "2021-10-22T18:44:06Z"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": 957,
+      "id": "PR_kwDOBx1JF84tgwiO",
+      "title": "Trying to align more with ARCH draft-ietf-taps-impl.md",
+      "url": "https://github.com/ietf-tapswg/api-drafts/pull/957",
+      "state": "MERGED",
+      "author": "gorryfair",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [
+        "gorryfair"
+      ],
+      "labels": [
+        "Architecture"
+      ],
+      "body": "Trying to align more with ARCH on the key terms",
+      "createdAt": "2021-10-21T18:44:01Z",
+      "updatedAt": "2021-10-22T18:52:12Z",
+      "baseRepository": "ietf-tapswg/api-drafts",
+      "baseRefName": "master",
+      "baseRefOid": "e4b262f79f276bb1eb0368cfb10ec464d0e65b86",
+      "headRepository": "ietf-tapswg/api-drafts",
+      "headRefName": "gorryfair-Impl-10",
+      "headRefOid": "c1321068bbd2250f07f94e3956d4e8ad47887035",
+      "closedAt": "2021-10-22T18:52:11Z",
+      "mergedAt": "2021-10-22T18:52:11Z",
+      "mergedBy": "tfpauly",
+      "mergeCommit": {
+        "oid": "9c94ebc4f35407c8da1de56e203227b56436604d"
+      },
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOBx1JF84u60To",
+          "commit": {
+            "abbreviatedOid": "891bdcd"
+          },
+          "author": "tfpauly",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2021-10-22T18:46:33Z",
+          "updatedAt": "2021-10-22T18:49:19Z",
+          "comments": [
+            {
+              "originalPosition": 65,
+              "body": "```suggestion\r\na passive endpoint's ConnectionReceived event might not be called until data is received.\r\n```",
+              "createdAt": "2021-10-22T18:46:33Z",
+              "updatedAt": "2021-10-22T18:49:19Z"
+            },
+            {
+              "originalPosition": 173,
+              "body": "```suggestion\r\nWhen a path change occurs, e.g., when the IP address of an interface changes or a new interface becomes available, the Transport Services implementation is responsible for notifying the Protocol Instance of the change. The path change may interrupt connectivity on a path for an active connection or provide an opportunity for a transport that supports multipath or migration to adapt to the new paths. Note that, in the model of the Transport Services API, migration is considered a part of multipath connectivity; it is just a limiting policy on multipath usage. If the `multipath` Selection Property is set to `Disabled`, migration is disallowed.\r\n```",
+              "createdAt": "2021-10-22T18:47:40Z",
+              "updatedAt": "2021-10-22T18:49:19Z"
+            },
+            {
+              "originalPosition": 243,
+              "body": "```suggestion\r\nEach protocol that is supported by a Transport Services implementation should have a well-defined API mapping.\r\n```",
+              "createdAt": "2021-10-22T18:48:37Z",
+              "updatedAt": "2021-10-22T18:49:20Z"
+            },
+            {
+              "originalPosition": 244,
+              "body": "```suggestion\r\nAPI mappings for a protocol are important for Connections in which a given protocol is the \"top\" of the Protocol Stack.\r\n```",
+              "createdAt": "2021-10-22T18:48:50Z",
+              "updatedAt": "2021-10-22T18:49:20Z"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": 959,
+      "id": "PR_kwDOBx1JF84tiJdD",
+      "title": "And then there were five authors....",
+      "url": "https://github.com/ietf-tapswg/api-drafts/pull/959",
+      "state": "MERGED",
+      "author": "gorryfair",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [
+        "Architecture"
+      ],
+      "body": "    The IETF prefers drafts to have no more than five authors. In this PR two former authors have their names moved to an acknowledgment as a contributor.\r\n    ins: P. Tiesel\r\n    name: Philipp S. Tiesel\r\n    org: SAP SE\r\n    street: Konrad-Zuse-Ring 10\r\n    city: 14469 Potsdam\r\n    country: Germany\r\n    email: philipp@tiesel.net\r\n\r\n    ins: C. A. Wood\r\n    name: Christopher A. Wood\r\n    org: Cloudflare\r\n    street: 101 Townsend St\r\n    city: San Francisco\r\n    country: United States of America\r\n    email: caw@heapingbits.net",
+      "createdAt": "2021-10-22T07:14:37Z",
+      "updatedAt": "2021-10-22T17:50:43Z",
+      "baseRepository": "ietf-tapswg/api-drafts",
+      "baseRefName": "master",
+      "baseRefOid": "e4b262f79f276bb1eb0368cfb10ec464d0e65b86",
+      "headRepository": "ietf-tapswg/api-drafts",
+      "headRefName": "gorryfair-arch-auth-10",
+      "headRefOid": "32f503c5e511fde9ea26ab504d3c3617a6dc549d",
+      "closedAt": "2021-10-22T17:50:43Z",
+      "mergedAt": "2021-10-22T17:50:43Z",
+      "mergedBy": "tfpauly",
+      "mergeCommit": {
+        "oid": "fe6f60e212df928af55f031acb11365a9c0631b3"
+      },
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOBx1JF84u6pSe",
+          "commit": {
+            "abbreviatedOid": "32f503c"
+          },
+          "author": "tfpauly",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2021-10-22T17:50:39Z",
+          "updatedAt": "2021-10-22T17:50:39Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 960,
+      "id": "PR_kwDOBx1JF84tiKyX",
+      "title": "And then there were five authors....",
+      "url": "https://github.com/ietf-tapswg/api-drafts/pull/960",
+      "state": "MERGED",
+      "author": "gorryfair",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [
+        "Implementation"
+      ],
+      "body": "The IETF prefers drafts to have no more than five authors. In this PR two more former authors have their names moved to an acknowledgment as a contributor.\r\n\r\n    ins: T. Jones\r\n    name: Tom Jones\r\n    org: University of Aberdeen\r\n    street: School of Engineering\r\n    street: Fraser Noble Building\r\n    city: Aberdeen, AB24 3UE\r\n    country: UK\r\n    email: tom@erg.abdn.ac.uk\r\n  -\r\n  -\r\n    ins: C. Perkins\r\n    name: Colin Perkins\r\n    org: University of Glasgow\r\n    street: School of Computing Science\r\n    city: Glasgow G12 8QQ\r\n    country: United Kingdom\r\n    email: csp@csperkins.org",
+      "createdAt": "2021-10-22T07:22:54Z",
+      "updatedAt": "2021-10-22T17:51:32Z",
+      "baseRepository": "ietf-tapswg/api-drafts",
+      "baseRefName": "master",
+      "baseRefOid": "e4b262f79f276bb1eb0368cfb10ec464d0e65b86",
+      "headRepository": "ietf-tapswg/api-drafts",
+      "headRefName": "gorryfair-implauth-10",
+      "headRefOid": "8b78043611cee9f871a654b422455ef7d6dbee3b",
+      "closedAt": "2021-10-22T17:51:31Z",
+      "mergedAt": "2021-10-22T17:51:31Z",
+      "mergedBy": "tfpauly",
+      "mergeCommit": {
+        "oid": "9dba0c2ca489fd6d2b06465414947ac69a0c5c73"
+      },
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOBx1JF84u6pcd",
+          "commit": {
+            "abbreviatedOid": "8b78043"
+          },
+          "author": "tfpauly",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2021-10-22T17:51:22Z",
+          "updatedAt": "2021-10-22T17:51:22Z",
+          "comments": []
         }
       ]
     }
