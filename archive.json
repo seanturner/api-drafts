@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2021-10-24T00:22:52.270016+00:00",
+  "timestamp": "2021-10-26T00:21:11.475127+00:00",
   "repo": "ietf-tapswg/api-drafts",
   "labels": [
     {
@@ -23874,7 +23874,7 @@
       ],
       "body": "In the multicast endpoint section, we should have explicit examples for patterns of ASM and SSM.\r\n\r\nListen(multicast address, port, interface)\r\nGet a connection from a specific remote endpoint\r\nInitiate a connection back to talk to that endpoint,\r\netc",
       "createdAt": "2021-08-20T16:38:40Z",
-      "updatedAt": "2021-10-20T10:53:06Z",
+      "updatedAt": "2021-10-25T08:47:13Z",
       "closedAt": null,
       "comments": [
         {
@@ -23904,6 +23904,20 @@
           "body": "See my comment on #875 \u2013 this approach seems cumbersome",
           "createdAt": "2021-10-20T10:53:06Z",
           "updatedAt": "2021-10-20T10:53:06Z"
+        },
+        {
+          "author": "csperkins",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "For SSM, `Initiate()` -> send only, `Listen()` -> receive only, makes sense. \r\n\r\nBut for ASM, I'm increasingly thinking that we *also* want `Rendezvous()` -> multicast peer that can both send and receive on a single local port: you want sender and receiver to be bound to the same local address/port pair.",
+          "createdAt": "2021-10-24T22:03:36Z",
+          "updatedAt": "2021-10-24T22:03:36Z"
+        },
+        {
+          "author": "gorryfair",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "I feel uncomfortable here.  I have been persuaded we should add ASM Multicast. I suggest try a PR and see if this is simple and helpful?",
+          "createdAt": "2021-10-25T08:47:12Z",
+          "updatedAt": "2021-10-25T08:47:12Z"
         }
       ]
     },
@@ -24401,7 +24415,7 @@
       ],
       "body": "I cringe at systems that define Integers to be integers and some other\r\nenumerated things (\"special values\"). Is it necessary to define things this\r\nway? I understand it's currently typical to have this behavior in the APIs of\r\nthe protocols this system is attempting to abstract, but is it impossible to\r\nstop propagating that kind of type confusion? This API could move the things\r\nspecial values are being used for into separate arguments for example.",
       "createdAt": "2021-09-21T10:48:48Z",
-      "updatedAt": "2021-09-22T16:13:08Z",
+      "updatedAt": "2021-10-24T21:59:33Z",
       "closedAt": null,
       "comments": [
         {
@@ -24424,6 +24438,20 @@
           "body": "The \"special value\"\u202falso shows up for numeric in 8.1.3, 8.1.4, 8.1.8 and 8.1.9",
           "createdAt": "2021-09-22T16:13:08Z",
           "updatedAt": "2021-09-22T16:13:08Z"
+        },
+        {
+          "author": "csperkins",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "We discussed this in the last interim, but I don't think the tuple-based approach in #930 works well, and prefer the type enumeration suggestion @britram made. That is, don't say:\r\n~~~\r\nType:\r\n(Integer, Boolean)\r\n~~~\r\nrather say:\r\n~~~\r\nType:\r\nInteger or \"FullCoverage\"\r\n\r\nIf this value if an Integer, it represents\u2026\r\n\r\nIf this value is the enumerated value \"FullCoverage\", it means...\r\n~~~",
+          "createdAt": "2021-10-24T21:51:31Z",
+          "updatedAt": "2021-10-24T21:51:31Z"
+        },
+        {
+          "author": "mwelzl",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "ACK - already in my todo list...",
+          "createdAt": "2021-10-24T21:59:33Z",
+          "updatedAt": "2021-10-24T21:59:33Z"
         }
       ]
     },
@@ -24749,7 +24777,7 @@
       ],
       "body": "I think there's a need for more discussion and clarity around the restriction\r\nthat \"An Endpoint cannot have multiple identifiers of a same type set.\" Why\r\nnot? You effectively are letting the endpoint have (potentially) multiple IP\r\naddresses when you create it with an identifier that is a DNS name. This feels\r\nlike an artificial, inconsistent, restriction given the rest of the document\r\n(look at the 3rd paragraph of 6.1).",
       "createdAt": "2021-09-21T10:58:51Z",
-      "updatedAt": "2021-09-22T22:40:19Z",
+      "updatedAt": "2021-10-24T21:42:24Z",
       "closedAt": null,
       "comments": [
         {
@@ -24772,6 +24800,13 @@
           "body": "@britram ",
           "createdAt": "2021-09-22T22:40:18Z",
           "updatedAt": "2021-09-22T22:40:18Z"
+        },
+        {
+          "author": "csperkins",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "Does this mean the API can't distinguish a remote endpoint that's known to be a single interface with two IP addresses assigned, which would have to be passed as two `RemoteEndpoint` objects, from two remote endpoints each with a single interface? There's no way of saying \"these two IP addresses are known to be the same remote interface\"?\r\n\r\nIf so, does this matter?",
+          "createdAt": "2021-10-24T21:42:23Z",
+          "updatedAt": "2021-10-24T21:42:23Z"
         }
       ]
     },
@@ -25392,6 +25427,24 @@
       "createdAt": "2021-10-21T18:50:30Z",
       "updatedAt": "2021-10-22T18:52:11Z",
       "closedAt": "2021-10-22T18:52:11Z",
+      "comments": []
+    },
+    {
+      "number": 961,
+      "id": "I_kwDOBx1JF849qXkO",
+      "title": "How to add/remove endpoints from an existing connection?",
+      "url": "https://github.com/ietf-tapswg/api-drafts/issues/961",
+      "state": "OPEN",
+      "author": "csperkins",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [
+        "csperkins"
+      ],
+      "labels": [],
+      "body": "For multipath transport protocols, the transport can automatically manage the set of local and remote endpoints its using, and the application doesn't need to be aware of this.\r\n\r\nFor non-multipath transport protocols used peer-to-peer, the peers need to be aware of changes to the set of local and remote endpoints, so they can trigger updates to the NAT binding discovery. This can't be done automatically, since to implement Trickle ICE, it's necessary to pass the updated set of candidates to the peer via an out-of-band signalling channel, before passing them in to the connection to probe connectivity. Accordingly, we need:\r\n\r\n* A way to add/remove remote endpoints on an existing connection\r\n* A way to add/remove local endpoints on an existing connection\r\n* A way to detect when the set of local endpoints has changed\r\n\r\nTo implement Trickle ICE, adding and removing remote endpoints has to be an explicit action, since changes to the set of remote endpoints are communicated to the peer via out-of-band signalling.\r\n\r\nSimilarly, when implementing Trickle ICE, changes to the set of local endpoints have to be communicated to the peer via out-of-band signalling, so the application has to be notified about them. \r\n\r\nIt could be possible to automatically add/remove local endpoints to an existing connection, if the Preconnection left the local endpoints unspecified. But if the set of local endpoints was specified, the application will need to make a choice which ones it adds/removes when the set changes.",
+      "createdAt": "2021-10-24T21:20:29Z",
+      "updatedAt": "2021-10-24T21:26:13Z",
+      "closedAt": null,
       "comments": []
     }
   ],
@@ -76249,6 +76302,60 @@
           "comments": []
         }
       ]
+    },
+    {
+      "number": 962,
+      "id": "PR_kwDOBx1JF84tmDcv",
+      "title": "Handle changes to connection endpoints",
+      "url": "https://github.com/ietf-tapswg/api-drafts/pull/962",
+      "state": "OPEN",
+      "author": "csperkins",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "This makes the following changes:\r\n* Add `AddRemote()`, `RemoveRemote()`, `AddLocal()`, and `RemoveLocal()`\r\n  actions to existing connections\r\n* Update the description of the `PathChanged()` event to note that it's\r\n  generated if the set of local endpoints available changes\r\n* Update the peer-to-peer example to show how these can be used to support\r\n  Trickle ICE\r\n\r\nCloses #961\r\nCloses #911\r\nCloses #865",
+      "createdAt": "2021-10-24T21:25:09Z",
+      "updatedAt": "2021-10-24T21:25:09Z",
+      "baseRepository": "ietf-tapswg/api-drafts",
+      "baseRefName": "master",
+      "baseRefOid": "399a65447959c4b4b346f15f321283ddbaaae16c",
+      "headRepository": "ietf-tapswg/api-drafts",
+      "headRefName": "csperkins-911",
+      "headRefOid": "0bb49630488cb5954042e7c7ab6d444cacde50b2",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
+      "reviews": []
+    },
+    {
+      "number": 963,
+      "id": "PR_kwDOBx1JF84tnJfp",
+      "title": "Arch tidy of mix concerns",
+      "url": "https://github.com/ietf-tapswg/api-drafts/pull/963",
+      "state": "OPEN",
+      "author": "gorryfair",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [
+        "Architecture"
+      ],
+      "body": "Addressed MW comments; and also tidied several successive similar examples into one para.",
+      "createdAt": "2021-10-25T08:58:50Z",
+      "updatedAt": "2021-10-25T09:05:19Z",
+      "baseRepository": "ietf-tapswg/api-drafts",
+      "baseRefName": "master",
+      "baseRefOid": "399a65447959c4b4b346f15f321283ddbaaae16c",
+      "headRepository": "ietf-tapswg/api-drafts",
+      "headRefName": "gorryfair-mux-10",
+      "headRefOid": "c55611656ea4d8e5ff1d58f59ade8969fefbc1b4",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
+      "reviews": []
     }
   ]
 }
