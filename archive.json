@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2021-10-26T00:21:11.475127+00:00",
+  "timestamp": "2021-10-31T00:22:48.784118+00:00",
   "repo": "ietf-tapswg/api-drafts",
   "labels": [
     {
@@ -25217,7 +25217,7 @@
       "id": "I_kwDOBx1JF849Zsdj",
       "title": "Terminology (our capitalized terms)",
       "url": "https://github.com/ietf-tapswg/api-drafts/issues/939",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "mwelzl",
       "authorAssociation": "CONTRIBUTOR",
       "assignees": [
@@ -25229,8 +25229,8 @@
       ],
       "body": "Our terms like \"Connection\", \"Message\" and such: this terminology must be defined somewhere. IMO the architecture draft is a good home for this.\r\n\r\nAt first, I thought we can just deal with this via a citation of one of our earlier RFCs, but alas the lists there are incomplete. RFC 8095 defines Transport Feature, Transport Service, and Transport Protocol, and Application. RFC 8303 adds a lot of things to this - including Connection, but also Primitive, Event, Socket...  RFC 8923 again has a little less, but it does add Connection Group.\r\n\r\nSo, my suggestion: copy+paste the relevant bits from these RFCs into arch, and also add Message (which doesn't seem to be defined anywhere).",
       "createdAt": "2021-10-19T10:41:25Z",
-      "updatedAt": "2021-10-21T08:12:35Z",
-      "closedAt": null,
+      "updatedAt": "2021-10-28T09:25:38Z",
+      "closedAt": "2021-10-28T09:25:38Z",
       "comments": [
         {
           "author": "mwelzl",
@@ -25301,6 +25301,13 @@
           "body": "Thinking more about this: I reacted to seeing capitalized words such as Connection and Message before these terms are introduced, specifically in the last item in the list in section 1.2. Solutions might be:\r\n1) avoiding capitalization before the definition (which may lead to logical inconsistencies... but maybe sentences could be rephrased ... the last sentence of this item seems to be a way out, with a brief in-line explanation of what a Connection is, but then it refers to capitalized Messages, complicating things again.\r\n2) perhaps just writing a disclaimer early in the text, stating something along the lines of: \"In this document, capitalized terms (e.g. Connection, Message, ..) refer to distinct concepts of the architecture. These are defined in Sections ....\"\r\n\r\n?\r\n\r\n....but maybe there aren't many occurrences, maybe it really only is this one sentence (last item of the list in section 1.2) that needs fixing. It's worth carefully checking the document for occurrences of capitalized terms before their definition, though.",
           "createdAt": "2021-10-19T19:50:07Z",
           "updatedAt": "2021-10-20T11:13:40Z"
+        },
+        {
+          "author": "mwelzl",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "I'm closing this now because  \"Messages\" is now \"messages\" in the sentence that made me stop and wonder, and I don't find any further such trouble.\r\n\r\nThis was much ado about nothing, my apologies!",
+          "createdAt": "2021-10-28T09:25:38Z",
+          "updatedAt": "2021-10-28T09:25:38Z"
         }
       ]
     },
@@ -74363,7 +74370,7 @@
       "id": "PR_kwDOBx1JF84tPm4x",
       "title": "Remove special values and update definition of Numeric",
       "url": "https://github.com/ietf-tapswg/api-drafts/pull/930",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "mwelzl",
       "authorAssociation": "CONTRIBUTOR",
       "assignees": [],
@@ -74373,18 +74380,26 @@
       ],
       "body": "Resolves #896. Resolves #897.",
       "createdAt": "2021-10-15T09:50:27Z",
-      "updatedAt": "2021-10-15T09:50:27Z",
+      "updatedAt": "2021-10-28T08:47:29Z",
       "baseRepository": "ietf-tapswg/api-drafts",
       "baseRefName": "master",
       "baseRefOid": "430da64cb16ee289ece6a9679678e2323ab270de",
       "headRepository": "ietf-tapswg/api-drafts",
       "headRefName": "mw-api-art-art-special-value",
       "headRefOid": "a8ec7d3e68a36d40c723db532db9c8d378e7f1af",
-      "closedAt": null,
+      "closedAt": "2021-10-28T08:47:29Z",
       "mergedAt": null,
       "mergedBy": null,
       "mergeCommit": null,
-      "comments": [],
+      "comments": [
+        {
+          "author": "mwelzl",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "This is replaced by #964 ",
+          "createdAt": "2021-10-28T08:47:28Z",
+          "updatedAt": "2021-10-28T08:47:28Z"
+        }
+      ],
       "reviews": []
     },
     {
@@ -76315,7 +76330,7 @@
       "labels": [],
       "body": "This makes the following changes:\r\n* Add `AddRemote()`, `RemoveRemote()`, `AddLocal()`, and `RemoveLocal()`\r\n  actions to existing connections\r\n* Update the description of the `PathChanged()` event to note that it's\r\n  generated if the set of local endpoints available changes\r\n* Update the peer-to-peer example to show how these can be used to support\r\n  Trickle ICE\r\n\r\nCloses #961\r\nCloses #911\r\nCloses #865",
       "createdAt": "2021-10-24T21:25:09Z",
-      "updatedAt": "2021-10-24T21:25:09Z",
+      "updatedAt": "2021-10-28T08:06:36Z",
       "baseRepository": "ietf-tapswg/api-drafts",
       "baseRefName": "master",
       "baseRefOid": "399a65447959c4b4b346f15f321283ddbaaae16c",
@@ -76327,7 +76342,21 @@
       "mergedBy": null,
       "mergeCommit": null,
       "comments": [],
-      "reviews": []
+      "reviews": [
+        {
+          "id": "PRR_kwDOBx1JF84vLZbB",
+          "commit": {
+            "abbreviatedOid": "0bb4963"
+          },
+          "author": "mwelzl",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "APPROVED",
+          "body": "LGTM, thanks a lot for doing this!",
+          "createdAt": "2021-10-28T08:06:36Z",
+          "updatedAt": "2021-10-28T08:06:36Z",
+          "comments": []
+        }
+      ]
     },
     {
       "number": 963,
@@ -76343,13 +76372,126 @@
       ],
       "body": "Addressed MW comments; and also tidied several successive similar examples into one para.",
       "createdAt": "2021-10-25T08:58:50Z",
-      "updatedAt": "2021-10-25T09:05:19Z",
+      "updatedAt": "2021-10-28T07:35:56Z",
       "baseRepository": "ietf-tapswg/api-drafts",
       "baseRefName": "master",
       "baseRefOid": "399a65447959c4b4b346f15f321283ddbaaae16c",
       "headRepository": "ietf-tapswg/api-drafts",
       "headRefName": "gorryfair-mux-10",
       "headRefOid": "c55611656ea4d8e5ff1d58f59ade8969fefbc1b4",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOBx1JF84vLPRz",
+          "commit": {
+            "abbreviatedOid": "c556116"
+          },
+          "author": "mwelzl",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "CHANGES_REQUESTED",
+          "body": "",
+          "createdAt": "2021-10-28T07:34:55Z",
+          "updatedAt": "2021-10-28T07:35:56Z",
+          "comments": [
+            {
+              "originalPosition": 13,
+              "body": "Are you sure that the web browser thing is related to these particular privacy concerns only?  It seems to me that the last sentence here was better placed before, as an example of how an application could make use of Connection Contexts.\r\n\r\nI would suggest the following:\r\n\r\nThe Transport Services API can allow applications to explicitly define Connection Contexts that force separation of Cached State and Protocol Stacks. For example, a web browser application could use Connection Contexts with separate caches when implementing different tabs. Possible reasons to isolate Connections using separate Connection Contexts include:\r\n\r\n... and then continue with the bullet list, but with the \"A web browser...\" sentence removed.",
+              "createdAt": "2021-10-28T07:34:55Z",
+              "updatedAt": "2021-10-28T07:35:56Z"
+            },
+            {
+              "originalPosition": 6,
+              "body": "```suggestion\r\nFor example, an application could use a Connection Context to explicitly isolate some Connections to mitigate:\r\n```",
+              "createdAt": "2021-10-28T07:35:46Z",
+              "updatedAt": "2021-10-28T07:35:56Z"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": 964,
+      "id": "PR_kwDOBx1JF84tyJZQ",
+      "title": "Special values and update definition of \"numeric\"; replaces #930.",
+      "url": "https://github.com/ietf-tapswg/api-drafts/pull/964",
+      "state": "OPEN",
+      "author": "mwelzl",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [
+        "API",
+        "editorial"
+      ],
+      "body": "Resolves #896. Resolves #897.\r\n\r\nThis replacement for PR #930 was discussed at the last interim.",
+      "createdAt": "2021-10-28T08:46:31Z",
+      "updatedAt": "2021-10-28T08:48:11Z",
+      "baseRepository": "ietf-tapswg/api-drafts",
+      "baseRefName": "master",
+      "baseRefOid": "399a65447959c4b4b346f15f321283ddbaaae16c",
+      "headRepository": "ietf-tapswg/api-drafts",
+      "headRefName": "mw-api-art-art-special-value-try2",
+      "headRefOid": "666a80e20571829c8eb6238c8afb11875989cbf8",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
+      "reviews": []
+    },
+    {
+      "number": 965,
+      "id": "PR_kwDOBx1JF84tyOcw",
+      "title": "Clarify Pooled Connections vs. Connection Groups. Resolves #956.",
+      "url": "https://github.com/ietf-tapswg/api-drafts/pull/965",
+      "state": "OPEN",
+      "author": "mwelzl",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [
+        "Implementation",
+        "editorial"
+      ],
+      "body": "Resolves #956.",
+      "createdAt": "2021-10-28T09:11:11Z",
+      "updatedAt": "2021-10-28T09:12:35Z",
+      "baseRepository": "ietf-tapswg/api-drafts",
+      "baseRefName": "master",
+      "baseRefOid": "399a65447959c4b4b346f15f321283ddbaaae16c",
+      "headRepository": "ietf-tapswg/api-drafts",
+      "headRefName": "mw-impl-pool",
+      "headRefOid": "b76a6070432e4f36a1e6e0dcacc4dbddfda71643",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
+      "reviews": []
+    },
+    {
+      "number": 966,
+      "id": "PR_kwDOBx1JF84tyWGS",
+      "title": "Be explicit about objects being treated as call-by-value",
+      "url": "https://github.com/ietf-tapswg/api-drafts/pull/966",
+      "state": "OPEN",
+      "author": "mwelzl",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [
+        "API"
+      ],
+      "body": "Resolves #912.",
+      "createdAt": "2021-10-28T09:49:03Z",
+      "updatedAt": "2021-10-28T09:49:19Z",
+      "baseRepository": "ietf-tapswg/api-drafts",
+      "baseRefName": "master",
+      "baseRefOid": "399a65447959c4b4b346f15f321283ddbaaae16c",
+      "headRepository": "ietf-tapswg/api-drafts",
+      "headRefName": "mw-api-art-art-objects",
+      "headRefOid": "cd3f70a737c7bb3e72fc19949c7331f5ffb181a8",
       "closedAt": null,
       "mergedAt": null,
       "mergedBy": null,
