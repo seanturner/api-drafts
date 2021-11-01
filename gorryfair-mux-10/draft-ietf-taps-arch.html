@@ -1837,7 +1837,7 @@ instance.<a href="#section-4.1.8-3" class="pilcrow">¶</a></p>
           </h4>
 <p id="section-4.2.3-1">By default, stored properties of the implementation, such as cached protocol state, cached path state, and heuristics, may be shared (e.g. across multiple connections in an application). This provides efficiency and convenience for the application, since the Transport Services system can automatically optimize behavior.<a href="#section-4.2.3-1" class="pilcrow">¶</a></p>
 <p id="section-4.2.3-2">The Transport Services API can allow applications to explicitly define Connection Contexts that force separation of Cached State and Protocol Stacks. 
-For example, an application could use a Connection Context to explicitly isolate some Connections to mitigate:<a href="#section-4.2.3-2" class="pilcrow">¶</a></p>
+For example, a web browser a web browser application could use Connection Contexts with separate caches when implementing different tabs. Possible reasons to isolate Connections using separate Connection Contexts include:<a href="#section-4.2.3-2" class="pilcrow">¶</a></p>
 <ul class="normal">
 <li class="normal" id="section-4.2.3-3.1">Privacy concerns about re-using cached protocol state that can lead to linkability. Sensitive state could include TLS session state <span>[<a href="#RFC8446" class="xref">RFC8446</a>]</span> and HTTP cookies <span>[<a href="#RFC6265" class="xref">RFC6265</a>]</span>. A web browser application could use Connection Contexts with separate caches when implementing different tabs.<a href="#section-4.2.3-3.1" class="pilcrow">¶</a>
 </li>
