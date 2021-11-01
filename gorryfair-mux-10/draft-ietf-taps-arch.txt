@@ -1084,9 +1084,9 @@ Table of Contents
 
    *  Privacy concerns about re-using cached protocol state that can
       lead to linkability.  Sensitive state could include TLS session
-      state [RFC8446] and HTTP cookies [RFC6265].  A web browser
-      application could use Connection Contexts with separate caches
-      when implementing different tabs.
+      state [RFC8446] and HTTP cookies [RFC6265].  This could use
+      Connection Contexts with separate caches when implementing
+      different browser tabs.
 
    *  Privacy concerns about allowing Connections to multiplex together,
       which can tell a Remote Endpoint that all of the Connections are
