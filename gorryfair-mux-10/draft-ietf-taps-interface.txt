@@ -5,7 +5,7 @@
 TAPS Working Group                                      B. Trammell, Ed.
 Internet-Draft                                   Google Switzerland GmbH
 Intended status: Standards Track                           M. Welzl, Ed.
-Expires: 28 April 2022                                University of Oslo
+Expires: 5 May 2022                                   University of Oslo
                                                              T. Enghardt
                                                                  Netflix
                                                             G. Fairhurst
@@ -22,7 +22,7 @@ Expires: 28 April 2022                                University of Oslo
                                                               Apple Inc.
                                                                  K. Rose
                                                Akamai Technologies, Inc.
-                                                         25 October 2021
+                                                         1 November 2021
 
 
      An Abstract Application Layer Interface to Transport Services
@@ -56,7 +56,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 28 April 2022.
+   This Internet-Draft will expire on 5 May 2022.
 
 Copyright Notice
 
@@ -68,9 +68,9 @@ Copyright Notice
    license-info) in effect on the date of publication of this document.
    Please review these documents carefully, as they describe your rights
    and restrictions with respect to this document.  Code Components
-   extracted from this document must include Simplified BSD License text
-   as described in Section 4.e of the Trust Legal Provisions and are
-   provided without warranty as described in the Simplified BSD License.
+   extracted from this document must include Revised BSD License text as
+   described in Section 4.e of the Trust Legal Provisions and are
+   provided without warranty as described in the Revised BSD License.
 
 Table of Contents
 
@@ -3459,9 +3459,9 @@ Connection -> ReceivedPartial<messageData(500 bytes), messageContext, true>
    [I-D.ietf-httpbis-priority]
               Oku, K. and L. Pardue, "Extensible Prioritization Scheme
               for HTTP", Work in Progress, Internet-Draft, draft-ietf-
-              httpbis-priority-06, 30 September 2021,
+              httpbis-priority-07, 25 October 2021,
               <https://datatracker.ietf.org/doc/html/draft-ietf-httpbis-
-              priority-06>.
+              priority-07>.
 
    [I-D.ietf-taps-impl]
               Brunstrom, A., Pauly, T., Enghardt, T., Grinnemo, K.,
