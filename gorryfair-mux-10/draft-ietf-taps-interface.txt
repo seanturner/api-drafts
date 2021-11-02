@@ -5,7 +5,7 @@
 TAPS Working Group                                      B. Trammell, Ed.
 Internet-Draft                                   Google Switzerland GmbH
 Intended status: Standards Track                           M. Welzl, Ed.
-Expires: 5 May 2022                                   University of Oslo
+Expires: 6 May 2022                                   University of Oslo
                                                              T. Enghardt
                                                                  Netflix
                                                             G. Fairhurst
@@ -22,7 +22,7 @@ Expires: 5 May 2022                                   University of Oslo
                                                               Apple Inc.
                                                                  K. Rose
                                                Akamai Technologies, Inc.
-                                                         1 November 2021
+                                                         2 November 2021
 
 
      An Abstract Application Layer Interface to Transport Services
@@ -56,7 +56,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 5 May 2022.
+   This Internet-Draft will expire on 6 May 2022.
 
 Copyright Notice
 
@@ -3421,38 +3421,37 @@ Connection -> ReceivedPartial<messageData(500 bytes), messageContext, true>
    [RFC2119]  Bradner, S., "Key words for use in RFCs to Indicate
               Requirement Levels", BCP 14, RFC 2119,
               DOI 10.17487/RFC2119, March 1997,
-              <https://datatracker.ietf.org/doc/html/rfc2119>.
+              <https://www.rfc-editor.org/rfc/rfc2119>.
 
    [RFC2914]  Floyd, S., "Congestion Control Principles", BCP 41,
               RFC 2914, DOI 10.17487/RFC2914, September 2000,
-              <https://datatracker.ietf.org/doc/html/rfc2914>.
+              <https://www.rfc-editor.org/rfc/rfc2914>.
 
    [RFC4941]  Narten, T., Draves, R., and S. Krishnan, "Privacy
               Extensions for Stateless Address Autoconfiguration in
               IPv6", RFC 4941, DOI 10.17487/RFC4941, September 2007,
-              <https://datatracker.ietf.org/doc/html/rfc4941>.
+              <https://www.rfc-editor.org/rfc/rfc4941>.
 
    [RFC8084]  Fairhurst, G., "Network Transport Circuit Breakers",
               BCP 208, RFC 8084, DOI 10.17487/RFC8084, March 2017,
-              <https://datatracker.ietf.org/doc/html/rfc8084>.
+              <https://www.rfc-editor.org/rfc/rfc8084>.
 
    [RFC8085]  Eggert, L., Fairhurst, G., and G. Shepherd, "UDP Usage
               Guidelines", BCP 145, RFC 8085, DOI 10.17487/RFC8085,
-              March 2017,
-              <https://datatracker.ietf.org/doc/html/rfc8085>.
+              March 2017, <https://www.rfc-editor.org/rfc/rfc8085>.
 
    [RFC8174]  Leiba, B., "Ambiguity of Uppercase vs Lowercase in RFC
               2119 Key Words", BCP 14, RFC 8174, DOI 10.17487/RFC8174,
-              May 2017, <https://datatracker.ietf.org/doc/html/rfc8174>.
+              May 2017, <https://www.rfc-editor.org/rfc/rfc8174>.
 
    [RFC8303]  Welzl, M., Tuexen, M., and N. Khademi, "On the Usage of
               Transport Features Provided by IETF Transport Protocols",
               RFC 8303, DOI 10.17487/RFC8303, February 2018,
-              <https://datatracker.ietf.org/doc/html/rfc8303>.
+              <https://www.rfc-editor.org/rfc/rfc8303>.
 
    [RFC8446]  Rescorla, E., "The Transport Layer Security (TLS) Protocol
               Version 1.3", RFC 8446, DOI 10.17487/RFC8446, August 2018,
-              <https://datatracker.ietf.org/doc/html/rfc8446>.
+              <https://www.rfc-editor.org/rfc/rfc8446>.
 
 15.2.  Informative References
 
@@ -3475,136 +3474,129 @@ Connection -> ReceivedPartial<messageData(500 bytes), messageContext, true>
               "Definition of the Differentiated Services Field (DS
               Field) in the IPv4 and IPv6 Headers", RFC 2474,
               DOI 10.17487/RFC2474, December 1998,
-              <https://datatracker.ietf.org/doc/html/rfc2474>.
+              <https://www.rfc-editor.org/rfc/rfc2474>.
 
    [RFC2597]  Heinanen, J., Baker, F., Weiss, W., and J. Wroclawski,
               "Assured Forwarding PHB Group", RFC 2597,
               DOI 10.17487/RFC2597, June 1999,
-              <https://datatracker.ietf.org/doc/html/rfc2597>.
+              <https://www.rfc-editor.org/rfc/rfc2597>.
 
    [RFC3246]  Davie, B., Charny, A., Bennet, J.C.R., Benson, K., Le
               Boudec, J.Y., Courtney, W., Davari, S., Firoiu, V., and D.
               Stiliadis, "An Expedited Forwarding PHB (Per-Hop
               Behavior)", RFC 3246, DOI 10.17487/RFC3246, March 2002,
-              <https://datatracker.ietf.org/doc/html/rfc3246>.
+              <https://www.rfc-editor.org/rfc/rfc3246>.
 
    [RFC3261]  Rosenberg, J., Schulzrinne, H., Camarillo, G., Johnston,
               A., Peterson, J., Sparks, R., Handley, M., and E.
               Schooler, "SIP: Session Initiation Protocol", RFC 3261,
               DOI 10.17487/RFC3261, June 2002,
-              <https://datatracker.ietf.org/doc/html/rfc3261>.
+              <https://www.rfc-editor.org/rfc/rfc3261>.
 
    [RFC3376]  Cain, B., Deering, S., Kouvelas, I., Fenner, B., and A.
               Thyagarajan, "Internet Group Management Protocol, Version
               3", RFC 3376, DOI 10.17487/RFC3376, October 2002,
-              <https://datatracker.ietf.org/doc/html/rfc3376>.
+              <https://www.rfc-editor.org/rfc/rfc3376>.
 
    [RFC4594]  Babiarz, J., Chan, K., and F. Baker, "Configuration
               Guidelines for DiffServ Service Classes", RFC 4594,
               DOI 10.17487/RFC4594, August 2006,
-              <https://datatracker.ietf.org/doc/html/rfc4594>.
+              <https://www.rfc-editor.org/rfc/rfc4594>.
 
    [RFC4604]  Holbrook, H., Cain, B., and B. Haberman, "Using Internet
               Group Management Protocol Version 3 (IGMPv3) and Multicast
               Listener Discovery Protocol Version 2 (MLDv2) for Source-
               Specific Multicast", RFC 4604, DOI 10.17487/RFC4604,
-              August 2006,
-              <https://datatracker.ietf.org/doc/html/rfc4604>.
+              August 2006, <https://www.rfc-editor.org/rfc/rfc4604>.
 
    [RFC5245]  Rosenberg, J., "Interactive Connectivity Establishment
               (ICE): A Protocol for Network Address Translator (NAT)
               Traversal for Offer/Answer Protocols", RFC 5245,
               DOI 10.17487/RFC5245, April 2010,
-              <https://datatracker.ietf.org/doc/html/rfc5245>.
+              <https://www.rfc-editor.org/rfc/rfc5245>.
 
    [RFC5482]  Eggert, L. and F. Gont, "TCP User Timeout Option",
               RFC 5482, DOI 10.17487/RFC5482, March 2009,
-              <https://datatracker.ietf.org/doc/html/rfc5482>.
+              <https://www.rfc-editor.org/rfc/rfc5482>.
 
    [RFC5766]  Mahy, R., Matthews, P., and J. Rosenberg, "Traversal Using
               Relays around NAT (TURN): Relay Extensions to Session
               Traversal Utilities for NAT (STUN)", RFC 5766,
               DOI 10.17487/RFC5766, April 2010,
-              <https://datatracker.ietf.org/doc/html/rfc5766>.
+              <https://www.rfc-editor.org/rfc/rfc5766>.
 
    [RFC5865]  Baker, F., Polk, J., and M. Dolly, "A Differentiated
               Services Code Point (DSCP) for Capacity-Admitted Traffic",
               RFC 5865, DOI 10.17487/RFC5865, May 2010,
-              <https://datatracker.ietf.org/doc/html/rfc5865>.
+              <https://www.rfc-editor.org/rfc/rfc5865>.
 
    [RFC7478]  Holmberg, C., Hakansson, S., and G. Eriksson, "Web Real-
               Time Communication Use Cases and Requirements", RFC 7478,
               DOI 10.17487/RFC7478, March 2015,
-              <https://datatracker.ietf.org/doc/html/rfc7478>.
+              <https://www.rfc-editor.org/rfc/rfc7478>.
 
    [RFC7556]  Anipko, D., Ed., "Multiple Provisioning Domain
               Architecture", RFC 7556, DOI 10.17487/RFC7556, June 2015,
-              <https://datatracker.ietf.org/doc/html/rfc7556>.
+              <https://www.rfc-editor.org/rfc/rfc7556>.
 
    [RFC7657]  Black, D., Ed. and P. Jones, "Differentiated Services
               (Diffserv) and Real-Time Communication", RFC 7657,
               DOI 10.17487/RFC7657, November 2015,
-              <https://datatracker.ietf.org/doc/html/rfc7657>.
+              <https://www.rfc-editor.org/rfc/rfc7657>.
 
    [RFC8095]  Fairhurst, G., Ed., Trammell, B., Ed., and M. Kuehlewind,
               Ed., "Services Provided by IETF Transport Protocols and
               Congestion Control Mechanisms", RFC 8095,
               DOI 10.17487/RFC8095, March 2017,
-              <https://datatracker.ietf.org/doc/html/rfc8095>.
+              <https://www.rfc-editor.org/rfc/rfc8095>.
 
    [RFC8229]  Pauly, T., Touati, S., and R. Mantha, "TCP Encapsulation
               of IKE and IPsec Packets", RFC 8229, DOI 10.17487/RFC8229,
-              August 2017,
-              <https://datatracker.ietf.org/doc/html/rfc8229>.
+              August 2017, <https://www.rfc-editor.org/rfc/rfc8229>.
 
    [RFC8260]  Stewart, R., Tuexen, M., Loreto, S., and R. Seggelmann,
               "Stream Schedulers and User Message Interleaving for the
               Stream Control Transmission Protocol", RFC 8260,
               DOI 10.17487/RFC8260, November 2017,
-              <https://datatracker.ietf.org/doc/html/rfc8260>.
+              <https://www.rfc-editor.org/rfc/rfc8260>.
 
    [RFC8293]  Ghanwani, A., Dunbar, L., McBride, M., Bannai, V., and R.
               Krishnan, "A Framework for Multicast in Network
               Virtualization over Layer 3", RFC 8293,
               DOI 10.17487/RFC8293, January 2018,
-              <https://datatracker.ietf.org/doc/html/rfc8293>.
+              <https://www.rfc-editor.org/rfc/rfc8293>.
 
    [RFC8489]  Petit-Huguenin, M., Salgueiro, G., Rosenberg, J., Wing,
               D., Mahy, R., and P. Matthews, "Session Traversal
               Utilities for NAT (STUN)", RFC 8489, DOI 10.17487/RFC8489,
-              February 2020,
-              <https://datatracker.ietf.org/doc/html/rfc8489>.
+              February 2020, <https://www.rfc-editor.org/rfc/rfc8489>.
 
    [RFC8546]  Trammell, B. and M. Kuehlewind, "The Wire Image of a
               Network Protocol", RFC 8546, DOI 10.17487/RFC8546, April
-              2019, <https://datatracker.ietf.org/doc/html/rfc8546>.
+              2019, <https://www.rfc-editor.org/rfc/rfc8546>.
 
    [RFC8622]  Bless, R., "A Lower-Effort Per-Hop Behavior (LE PHB) for
               Differentiated Services", RFC 8622, DOI 10.17487/RFC8622,
-              June 2019,
-              <https://datatracker.ietf.org/doc/html/rfc8622>.
+              June 2019, <https://www.rfc-editor.org/rfc/rfc8622>.
 
    [RFC8699]  Islam, S., Welzl, M., and S. Gjessing, "Coupled Congestion
               Control for RTP Media", RFC 8699, DOI 10.17487/RFC8699,
-              January 2020,
-              <https://datatracker.ietf.org/doc/html/rfc8699>.
+              January 2020, <https://www.rfc-editor.org/rfc/rfc8699>.
 
    [RFC8899]  Fairhurst, G., Jones, T., Tüxen, M., Rüngeler, I., and T.
               Völker, "Packetization Layer Path MTU Discovery for
               Datagram Transports", RFC 8899, DOI 10.17487/RFC8899,
-              September 2020,
-              <https://datatracker.ietf.org/doc/html/rfc8899>.
+              September 2020, <https://www.rfc-editor.org/rfc/rfc8899>.
 
    [RFC8922]  Enghardt, T., Pauly, T., Perkins, C., Rose, K., and C.
               Wood, "A Survey of the Interaction between Security
               Protocols and Transport Services", RFC 8922,
               DOI 10.17487/RFC8922, October 2020,
-              <https://datatracker.ietf.org/doc/html/rfc8922>.
+              <https://www.rfc-editor.org/rfc/rfc8922>.
 
    [RFC8923]  Welzl, M. and S. Gjessing, "A Minimal Set of Transport
               Services for End Systems", RFC 8923, DOI 10.17487/RFC8923,
-              October 2020,
-              <https://datatracker.ietf.org/doc/html/rfc8923>.
+              October 2020, <https://www.rfc-editor.org/rfc/rfc8923>.
 
    [TCP-COUPLING]
               Islam, S., Welzl, M., Hiorth, K., Hayes, D., Armitage, G.,
