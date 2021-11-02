@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2021-10-31T00:22:48.784118+00:00",
+  "timestamp": "2021-11-02T00:21:34.955880+00:00",
   "repo": "ietf-tapswg/api-drafts",
   "labels": [
     {
@@ -23966,7 +23966,7 @@
       ],
       "body": "Early art-art review of draft-ietf-taps-architecture\r\n\r\nMy first observation and request is that the group rethink the separation of\r\nthe architecture and interface documents. It is a warning-sign that the\r\ninterface document is a normative reference for the architecture document. As\r\nthe documents are currently constructed, a new reader cannot grasp the\r\narchitecture without inferring some of it through reading the interface.\r\n\r\nConsider reformulating the architecture document as an overview - introduce\r\nprinciples, concepts, and terminology, but don't attempt to be normative.\r\n(There are signs that this may already be, or have been, a path the document\r\nwas being pushed towards). If nothing else, rename it, and acknowledge that the\r\nactual architecture is specified using the interface definition.\r\n\r\nNote that the first sentence of the Overview in the interface document also\r\nhighlights the current structural problem.\r\n",
       "createdAt": "2021-09-19T13:04:39Z",
-      "updatedAt": "2021-10-20T16:58:33Z",
+      "updatedAt": "2021-11-01T20:46:31Z",
       "closedAt": null,
       "comments": [
         {
@@ -24031,6 +24031,13 @@
           "body": "The review comment showed were many places where the wording of architecture can be improved. There are some high level principles that I think should remain in the architecture document. The decision in today's interim is to review the architecture to get this more into a shape that is valuable as a reference, and then check the updated draft.",
           "createdAt": "2021-10-20T16:58:33Z",
           "updatedAt": "2021-10-20T16:58:33Z"
+        },
+        {
+          "author": "gorryfair",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "I now suggest the issues are addressed and we close this issue without moving text between documents",
+          "createdAt": "2021-11-01T20:46:30Z",
+          "updatedAt": "2021-11-01T20:46:30Z"
         }
       ]
     },
@@ -76372,13 +76379,13 @@
       ],
       "body": "Addressed MW comments; and also tidied several successive similar examples into one para.",
       "createdAt": "2021-10-25T08:58:50Z",
-      "updatedAt": "2021-10-28T07:35:56Z",
+      "updatedAt": "2021-11-01T20:43:06Z",
       "baseRepository": "ietf-tapswg/api-drafts",
       "baseRefName": "master",
       "baseRefOid": "399a65447959c4b4b346f15f321283ddbaaae16c",
       "headRepository": "ietf-tapswg/api-drafts",
       "headRefName": "gorryfair-mux-10",
-      "headRefOid": "c55611656ea4d8e5ff1d58f59ade8969fefbc1b4",
+      "headRefOid": "cd2f70f347e2682017d8c619b4bb49b162ee0d2d",
       "closedAt": null,
       "mergedAt": null,
       "mergedBy": null,
@@ -76408,6 +76415,26 @@
               "body": "```suggestion\r\nFor example, an application could use a Connection Context to explicitly isolate some Connections to mitigate:\r\n```",
               "createdAt": "2021-10-28T07:35:46Z",
               "updatedAt": "2021-10-28T07:35:56Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOBx1JF84vXRq2",
+          "commit": {
+            "abbreviatedOid": "cd2f70f"
+          },
+          "author": "gorryfair",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2021-11-01T20:43:06Z",
+          "updatedAt": "2021-11-01T20:43:06Z",
+          "comments": [
+            {
+              "originalPosition": 13,
+              "body": "Should now be resolved following your text",
+              "createdAt": "2021-11-01T20:43:06Z",
+              "updatedAt": "2021-11-01T20:43:06Z"
             }
           ]
         }
@@ -76457,7 +76484,7 @@
       ],
       "body": "Resolves #956.",
       "createdAt": "2021-10-28T09:11:11Z",
-      "updatedAt": "2021-10-28T09:12:35Z",
+      "updatedAt": "2021-11-01T20:35:07Z",
       "baseRepository": "ietf-tapswg/api-drafts",
       "baseRefName": "master",
       "baseRefOid": "399a65447959c4b4b346f15f321283ddbaaae16c",
@@ -76469,7 +76496,21 @@
       "mergedBy": null,
       "mergeCommit": null,
       "comments": [],
-      "reviews": []
+      "reviews": [
+        {
+          "id": "PRR_kwDOBx1JF84vXQKD",
+          "commit": {
+            "abbreviatedOid": "b76a607"
+          },
+          "author": "gorryfair",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "APPROVED",
+          "body": "Seems to answer my issue.",
+          "createdAt": "2021-11-01T20:35:07Z",
+          "updatedAt": "2021-11-01T20:35:07Z",
+          "comments": []
+        }
+      ]
     },
     {
       "number": 966,
