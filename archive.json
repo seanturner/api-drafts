@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2021-11-02T00:21:34.955880+00:00",
+  "timestamp": "2021-11-04T00:21:38.170102+00:00",
   "repo": "ietf-tapswg/api-drafts",
   "labels": [
     {
@@ -23955,7 +23955,7 @@
       "id": "I_kwDOBx1JF847n33S",
       "title": "ART-ART: Separation of architecture and interface documents",
       "url": "https://github.com/ietf-tapswg/api-drafts/issues/879",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "gorryfair",
       "authorAssociation": "CONTRIBUTOR",
       "assignees": [
@@ -23966,8 +23966,8 @@
       ],
       "body": "Early art-art review of draft-ietf-taps-architecture\r\n\r\nMy first observation and request is that the group rethink the separation of\r\nthe architecture and interface documents. It is a warning-sign that the\r\ninterface document is a normative reference for the architecture document. As\r\nthe documents are currently constructed, a new reader cannot grasp the\r\narchitecture without inferring some of it through reading the interface.\r\n\r\nConsider reformulating the architecture document as an overview - introduce\r\nprinciples, concepts, and terminology, but don't attempt to be normative.\r\n(There are signs that this may already be, or have been, a path the document\r\nwas being pushed towards). If nothing else, rename it, and acknowledge that the\r\nactual architecture is specified using the interface definition.\r\n\r\nNote that the first sentence of the Overview in the interface document also\r\nhighlights the current structural problem.\r\n",
       "createdAt": "2021-09-19T13:04:39Z",
-      "updatedAt": "2021-11-01T20:46:31Z",
-      "closedAt": null,
+      "updatedAt": "2021-11-02T07:32:52Z",
+      "closedAt": "2021-11-02T07:32:52Z",
       "comments": [
         {
           "author": "gorryfair",
@@ -24038,6 +24038,13 @@
           "body": "I now suggest the issues are addressed and we close this issue without moving text between documents",
           "createdAt": "2021-11-01T20:46:30Z",
           "updatedAt": "2021-11-01T20:46:30Z"
+        },
+        {
+          "author": "mwelzl",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "I agree with that; closing.",
+          "createdAt": "2021-11-02T07:32:52Z",
+          "updatedAt": "2021-11-02T07:32:52Z"
         }
       ]
     },
@@ -76379,13 +76386,13 @@
       ],
       "body": "Addressed MW comments; and also tidied several successive similar examples into one para.",
       "createdAt": "2021-10-25T08:58:50Z",
-      "updatedAt": "2021-11-01T20:43:06Z",
+      "updatedAt": "2021-11-02T07:31:03Z",
       "baseRepository": "ietf-tapswg/api-drafts",
       "baseRefName": "master",
       "baseRefOid": "399a65447959c4b4b346f15f321283ddbaaae16c",
       "headRepository": "ietf-tapswg/api-drafts",
       "headRefName": "gorryfair-mux-10",
-      "headRefOid": "cd2f70f347e2682017d8c619b4bb49b162ee0d2d",
+      "headRefOid": "e59ac74a8c2ffaefb60576e6a52ef748b88a9eb1",
       "closedAt": null,
       "mergedAt": null,
       "mergedBy": null,
@@ -76435,6 +76442,26 @@
               "body": "Should now be resolved following your text",
               "createdAt": "2021-11-01T20:43:06Z",
               "updatedAt": "2021-11-01T20:43:06Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOBx1JF84vYgnA",
+          "commit": {
+            "abbreviatedOid": "cd2f70f"
+          },
+          "author": "mwelzl",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2021-11-02T07:30:34Z",
+          "updatedAt": "2021-11-02T07:30:53Z",
+          "comments": [
+            {
+              "originalPosition": 6,
+              "body": "```suggestion\r\nFor example, a web browser application could use Connection Contexts with separate caches when implementing different tabs. Possible reasons to isolate Connections using separate Connection Contexts include:\r\n```",
+              "createdAt": "2021-11-02T07:30:34Z",
+              "updatedAt": "2021-11-02T07:30:53Z"
             }
           ]
         }
