@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2021-11-04T00:21:38.170102+00:00",
+  "timestamp": "2021-11-16T00:21:56.658227+00:00",
   "repo": "ietf-tapswg/api-drafts",
   "labels": [
     {
@@ -75002,7 +75002,7 @@
       ],
       "body": "Explain the different use-cases on specifying interfaces to close #910",
       "createdAt": "2021-10-15T13:12:18Z",
-      "updatedAt": "2021-10-19T21:43:38Z",
+      "updatedAt": "2021-11-15T16:03:30Z",
       "baseRepository": "ietf-tapswg/api-drafts",
       "baseRefName": "master",
       "baseRefOid": "430da64cb16ee289ece6a9679678e2323ab270de",
@@ -75027,6 +75027,13 @@
           "body": "Like, in section 6.1.1:\r\n\r\n> Specifying a multicast group address on a Local Endpoint will indicate to the transport system that the resulting connection will be used to receive multicast messages.\r\n",
           "createdAt": "2021-10-19T21:43:38Z",
           "updatedAt": "2021-10-19T21:43:38Z"
+        },
+        {
+          "author": "philsbln",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "Multicast groups can be scoped (see RFC7346), thus, may only be available on certain interfaces or even have different meanings based on the interface. \r\nSo for Interface- and Link-Local scope, specifying the interface is strictly required. \r\n\r\nFor others use cases (like coping with non-unique use of RFC1918 addresses) this may also be helpful.",
+          "createdAt": "2021-11-15T16:03:30Z",
+          "updatedAt": "2021-11-15T16:03:30Z"
         }
       ],
       "reviews": [
@@ -76511,7 +76518,7 @@
       ],
       "body": "Resolves #956.",
       "createdAt": "2021-10-28T09:11:11Z",
-      "updatedAt": "2021-11-01T20:35:07Z",
+      "updatedAt": "2021-11-15T22:21:00Z",
       "baseRepository": "ietf-tapswg/api-drafts",
       "baseRefName": "master",
       "baseRefOid": "399a65447959c4b4b346f15f321283ddbaaae16c",
@@ -76536,6 +76543,66 @@
           "createdAt": "2021-11-01T20:35:07Z",
           "updatedAt": "2021-11-01T20:35:07Z",
           "comments": []
+        },
+        {
+          "id": "PRR_kwDOBx1JF84wDg8P",
+          "commit": {
+            "abbreviatedOid": "b76a607"
+          },
+          "author": "philsbln",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "APPROVED",
+          "body": "Works for me and makes the reasoning clearer and less theoretical.\r\nThe small change suggestion is optional, thus, improving readability IMHO.",
+          "createdAt": "2021-11-15T15:39:00Z",
+          "updatedAt": "2021-11-15T15:40:57Z",
+          "comments": [
+            {
+              "originalPosition": 8,
+              "body": "For me, prohibitions is redundant and just makes reading harder \r\n```suggestion\r\nFor applications that do not need in-order delivery of Messages, the Transport Services implementation may distribute Messages of a single Connection across several underlying transport connections or multiple streams of multi-streaming connections between endpoints, as long as all of these satisfy the requirements specified via Selection Properties.\r\n```",
+              "createdAt": "2021-11-15T15:39:01Z",
+              "updatedAt": "2021-11-15T15:40:57Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOBx1JF84wD6Ph",
+          "commit": {
+            "abbreviatedOid": "b76a607"
+          },
+          "author": "gorryfair",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2021-11-15T17:02:47Z",
+          "updatedAt": "2021-11-15T17:02:48Z",
+          "comments": [
+            {
+              "originalPosition": 8,
+              "body": "I think you do need to check the prohibitions also?",
+              "createdAt": "2021-11-15T17:02:48Z",
+              "updatedAt": "2021-11-15T17:02:48Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOBx1JF84wE8fk",
+          "commit": {
+            "abbreviatedOid": "b76a607"
+          },
+          "author": "abrunstrom",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "APPROVED",
+          "body": "LGTM, thanks!",
+          "createdAt": "2021-11-15T22:20:25Z",
+          "updatedAt": "2021-11-15T22:21:00Z",
+          "comments": [
+            {
+              "originalPosition": 8,
+              "body": "I would think so as well.",
+              "createdAt": "2021-11-15T22:20:25Z",
+              "updatedAt": "2021-11-15T22:21:00Z"
+            }
+          ]
         }
       ]
     },
