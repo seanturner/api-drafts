@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2021-11-16T00:21:56.658227+00:00",
+  "timestamp": "2021-11-21T00:23:12.071125+00:00",
   "repo": "ietf-tapswg/api-drafts",
   "labels": [
     {
@@ -76518,13 +76518,13 @@
       ],
       "body": "Resolves #956.",
       "createdAt": "2021-10-28T09:11:11Z",
-      "updatedAt": "2021-11-15T22:21:00Z",
+      "updatedAt": "2021-11-20T09:21:43Z",
       "baseRepository": "ietf-tapswg/api-drafts",
       "baseRefName": "master",
       "baseRefOid": "399a65447959c4b4b346f15f321283ddbaaae16c",
       "headRepository": "ietf-tapswg/api-drafts",
       "headRefName": "mw-impl-pool",
-      "headRefOid": "b76a6070432e4f36a1e6e0dcacc4dbddfda71643",
+      "headRefOid": "a854ef4a376cdc630508307d310e3212625a4163",
       "closedAt": null,
       "mergedAt": null,
       "mergedBy": null,
@@ -76601,6 +76601,46 @@
               "body": "I would think so as well.",
               "createdAt": "2021-11-15T22:20:25Z",
               "updatedAt": "2021-11-15T22:21:00Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOBx1JF84wV6dX",
+          "commit": {
+            "abbreviatedOid": "b76a607"
+          },
+          "author": "philsbln",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2021-11-19T10:36:56Z",
+          "updatedAt": "2021-11-19T10:36:57Z",
+          "comments": [
+            {
+              "originalPosition": 8,
+              "body": "Oh \u2026 for me \"requirements\" actually means everything you express by using \"require\" or \"prohibit\" \u2026 would probably benefit explicitly stating that and making the remainder easier to read.",
+              "createdAt": "2021-11-19T10:36:56Z",
+              "updatedAt": "2021-11-19T10:36:57Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOBx1JF84wY0-3",
+          "commit": {
+            "abbreviatedOid": "a854ef4"
+          },
+          "author": "gorryfair",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2021-11-20T09:21:43Z",
+          "updatedAt": "2021-11-20T09:21:43Z",
+          "comments": [
+            {
+              "originalPosition": 8,
+              "body": "I tried a fix in the text - if it doesn't please suggest something else.",
+              "createdAt": "2021-11-20T09:21:43Z",
+              "updatedAt": "2021-11-20T09:21:43Z"
             }
           ]
         }
