@@ -5,14 +5,14 @@
 TAPS Working Group                                         T. Pauly, Ed.
 Internet-Draft                                                Apple Inc.
 Intended status: Standards Track                        B. Trammell, Ed.
-Expires: 26 April 2022                           Google Switzerland GmbH
+Expires: 27 May 2022                             Google Switzerland GmbH
                                                             A. Brunstrom
                                                      Karlstad University
                                                             G. Fairhurst
                                                   University of Aberdeen
                                                               C. Perkins
                                                    University of Glasgow
-                                                         23 October 2021
+                                                        23 November 2021
 
 
                  An Architecture for Transport Services
@@ -46,7 +46,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 26 April 2022.
+   This Internet-Draft will expire on 27 May 2022.
 
 Copyright Notice
 
@@ -58,9 +58,9 @@ Copyright Notice
    license-info) in effect on the date of publication of this document.
    Please review these documents carefully, as they describe your rights
    and restrictions with respect to this document.  Code Components
-   extracted from this document must include Simplified BSD License text
-   as described in Section 4.e of the Trust Legal Provisions and are
-   provided without warranty as described in the Simplified BSD License.
+   extracted from this document must include Revised BSD License text as
+   described in Section 4.e of the Trust Legal Provisions and are
+   provided without warranty as described in the Revised BSD License.
 
 Table of Contents
 
@@ -1153,7 +1153,7 @@ Table of Contents
 
    This work has received funding from the European Union's Horizon 2020
    research and innovation programme under grant agreements No. 644334
-   (NEAT) and No. 688421 (MAMI).
+   (NEAT), No. 688421 (MAMI) and No 815178 (5GENESIS).
 
    This work has been supported by Leibniz Prize project funds of DFG -
    German Research Foundation: Gottfried Wilhelm Leibniz-Preis 2011 (FKZ
@@ -1188,11 +1188,11 @@ Table of Contents
    [RFC2119]  Bradner, S., "Key words for use in RFCs to Indicate
               Requirement Levels", BCP 14, RFC 2119,
               DOI 10.17487/RFC2119, March 1997,
-              <https://datatracker.ietf.org/doc/html/rfc2119>.
+              <https://www.rfc-editor.org/rfc/rfc2119>.
 
    [RFC8174]  Leiba, B., "Ambiguity of Uppercase vs Lowercase in RFC
               2119 Key Words", BCP 14, RFC 8174, DOI 10.17487/RFC8174,
-              May 2017, <https://datatracker.ietf.org/doc/html/rfc8174>.
+              May 2017, <https://www.rfc-editor.org/rfc/rfc8174>.
 
 8.2.  Informative References
 
@@ -1211,57 +1211,56 @@ Table of Contents
 
    [RFC0793]  Postel, J., "Transmission Control Protocol", STD 7,
               RFC 793, DOI 10.17487/RFC0793, September 1981,
-              <https://datatracker.ietf.org/doc/html/rfc793>.
+              <https://www.rfc-editor.org/rfc/rfc793>.
 
    [RFC4303]  Kent, S., "IP Encapsulating Security Payload (ESP)",
               RFC 4303, DOI 10.17487/RFC4303, December 2005,
-              <https://datatracker.ietf.org/doc/html/rfc4303>.
+              <https://www.rfc-editor.org/rfc/rfc4303>.
 
    [RFC6265]  Barth, A., "HTTP State Management Mechanism", RFC 6265,
               DOI 10.17487/RFC6265, April 2011,
-              <https://datatracker.ietf.org/doc/html/rfc6265>.
+              <https://www.rfc-editor.org/rfc/rfc6265>.
 
    [RFC7230]  Fielding, R., Ed. and J. Reschke, Ed., "Hypertext Transfer
               Protocol (HTTP/1.1): Message Syntax and Routing",
               RFC 7230, DOI 10.17487/RFC7230, June 2014,
-              <https://datatracker.ietf.org/doc/html/rfc7230>.
+              <https://www.rfc-editor.org/rfc/rfc7230>.
 
    [RFC7540]  Belshe, M., Peon, R., and M. Thomson, Ed., "Hypertext
               Transfer Protocol Version 2 (HTTP/2)", RFC 7540,
               DOI 10.17487/RFC7540, May 2015,
-              <https://datatracker.ietf.org/doc/html/rfc7540>.
+              <https://www.rfc-editor.org/rfc/rfc7540>.
 
    [RFC8095]  Fairhurst, G., Ed., Trammell, B., Ed., and M. Kuehlewind,
               Ed., "Services Provided by IETF Transport Protocols and
               Congestion Control Mechanisms", RFC 8095,
               DOI 10.17487/RFC8095, March 2017,
-              <https://datatracker.ietf.org/doc/html/rfc8095>.
+              <https://www.rfc-editor.org/rfc/rfc8095>.
 
    [RFC8305]  Schinazi, D. and T. Pauly, "Happy Eyeballs Version 2:
               Better Connectivity Using Concurrency", RFC 8305,
               DOI 10.17487/RFC8305, December 2017,
-              <https://datatracker.ietf.org/doc/html/rfc8305>.
+              <https://www.rfc-editor.org/rfc/rfc8305>.
 
    [RFC8445]  Keranen, A., Holmberg, C., and J. Rosenberg, "Interactive
               Connectivity Establishment (ICE): A Protocol for Network
               Address Translator (NAT) Traversal", RFC 8445,
               DOI 10.17487/RFC8445, July 2018,
-              <https://datatracker.ietf.org/doc/html/rfc8445>.
+              <https://www.rfc-editor.org/rfc/rfc8445>.
 
    [RFC8446]  Rescorla, E., "The Transport Layer Security (TLS) Protocol
               Version 1.3", RFC 8446, DOI 10.17487/RFC8446, August 2018,
-              <https://datatracker.ietf.org/doc/html/rfc8446>.
+              <https://www.rfc-editor.org/rfc/rfc8446>.
 
    [RFC8922]  Enghardt, T., Pauly, T., Perkins, C., Rose, K., and C.
               Wood, "A Survey of the Interaction between Security
               Protocols and Transport Services", RFC 8922,
               DOI 10.17487/RFC8922, October 2020,
-              <https://datatracker.ietf.org/doc/html/rfc8922>.
+              <https://www.rfc-editor.org/rfc/rfc8922>.
 
    [RFC8923]  Welzl, M. and S. Gjessing, "A Minimal Set of Transport
               Services for End Systems", RFC 8923, DOI 10.17487/RFC8923,
-              October 2020,
-              <https://datatracker.ietf.org/doc/html/rfc8923>.
+              October 2020, <https://www.rfc-editor.org/rfc/rfc8923>.
 
 Authors' Addresses
 

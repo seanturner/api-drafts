@@ -15,11 +15,11 @@
 and defines a protocol-independent Transport Services Application Programming Interface (API) that is based on an asynchronous, 
 event-driven interaction pattern. This document serves as a guide to implementation on how to build such a system. 
     " name="description">
-<meta content="xml2rfc 3.10.0" name="generator">
+<meta content="xml2rfc 3.11.1" name="generator">
 <meta content="Internet-Draft" name="keyword">
 <meta content="draft-ietf-taps-impl" name="ietf.draft">
 <!-- Generator version information:
-  xml2rfc 3.10.0
+  xml2rfc 3.11.1
     Python 3.9.5
     appdirs 1.4.4
     ConfigArgParse 1.3
@@ -203,7 +203,8 @@ event-driven interaction pattern. This document serves as a guide to implementat
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
 
-html {
+:root {
+  color-scheme: light dark;
   --background-color: #fff;
   --text-color: #222;
   --title-color: #191919;
@@ -213,6 +214,7 @@ html {
   --pilcrow-weak: #ddd;
   --pilcrow-strong: #bbb;
   --small-font-size: 14.5px;
+  --font-mono: 'Oxygen Mono', monospace;
   scrollbar-color: #bbb #eee;
 }
 body {
@@ -306,6 +308,10 @@ div {
 }
 svg {
   display: block;
+}
+/* font-family isn't space-separated, but =~ will have to do */
+svg[font-family~="monospace" i], svg [font-family~="monospace" i] {
+  font-family: var(--font-mono);
 }
 .alignCenter.art-text {
   background-color: var(--highlight-color);
@@ -401,7 +407,7 @@ a.xref {
 /* Figures */
 tt, code, pre {
   background-color: var(--highlight-color);
-  font: 14px/22px 'Oxygen Mono', monospace;
+  font: 14px/22px var(--font-mono);
 }
 tt, code {
   /* changing the font for inline elements leads to different ascender
@@ -1007,7 +1013,7 @@ address div.right {
 
 /* Dark mode. */
 @media (prefers-color-scheme: dark) {
-html {
+:root {
   --background-color: #121212;
   --text-color: #f0f0f0;
   --title-color: #fff;
@@ -1040,11 +1046,11 @@ svg [stroke="fill"], svg [fill^="#fff"] {
 <thead><tr>
 <td class="left">Internet-Draft</td>
 <td class="center">TAPS Implementation</td>
-<td class="right">October 2021</td>
+<td class="right">November 2021</td>
 </tr></thead>
 <tfoot><tr>
 <td class="left">Brunstrom, et al.</td>
-<td class="center">Expires 26 April 2022</td>
+<td class="center">Expires 27 May 2022</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1057,12 +1063,12 @@ svg [stroke="fill"], svg [fill^="#fff"] {
 <dd class="internet-draft">draft-ietf-taps-impl</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2021-10-23" class="published">23 October 2021</time>
+<time datetime="2021-11-23" class="published">23 November 2021</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Informational</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2022-04-26">26 April 2022</time></dd>
+<dd class="expires"><time datetime="2022-05-27">27 May 2022</time></dd>
 <dt class="label-authors">Authors:</dt>
 <dd class="authors">
 <div class="author">
@@ -1116,7 +1122,7 @@ event-driven interaction pattern. This document serves as a guide to implementat
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 26 April 2022.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 27 May 2022.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -1134,9 +1140,9 @@ event-driven interaction pattern. This document serves as a guide to implementat
             publication of this document. Please review these documents
             carefully, as they describe your rights and restrictions with
             respect to this document. Code Components extracted from this
-            document must include Simplified BSD License text as described in
+            document must include Revised BSD License text as described in
             Section 4.e of the Trust Legal Provisions and are provided without
-            warranty as described in the Simplified BSD License.<a href="#section-boilerplate.2-2" class="pilcrow">¶</a></p>
+            warranty as described in the Revised BSD License.<a href="#section-boilerplate.2-2" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="toc">
@@ -2726,7 +2732,7 @@ If this is the only Connection object that is assigned to the SCTP association, 
 <a href="#section-13" class="section-number selfRef">13. </a><a href="#name-acknowledgements" class="section-name selfRef">Acknowledgements</a>
       </h2>
 <p id="section-13-1">This work has received funding from the European Union's Horizon 2020 research and
-innovation programme under grant agreement No. 644334 (NEAT).<a href="#section-13-1" class="pilcrow">¶</a></p>
+innovation programme under grant agreement No. 644334 (NEAT) and No. 815178 (5GENESIS).<a href="#section-13-1" class="pilcrow">¶</a></p>
 <p id="section-13-2">This work has been supported by Leibniz Prize project funds of DFG - German
 Research Foundation: Gottfried Wilhelm Leibniz-Preis 2011 (FKZ FE 570/4-1).<a href="#section-13-2" class="pilcrow">¶</a></p>
 <p id="section-13-3">This work has been supported by the UK Engineering and Physical Sciences
@@ -2755,35 +2761,35 @@ programme through the "OCARINA" project.<a href="#section-13-4" class="pilcrow">
 <dd class="break"></dd>
 <dt id="RFC7413">[RFC7413]</dt>
         <dd>
-<span class="refAuthor">Cheng, Y.</span>, <span class="refAuthor">Chu, J.</span>, <span class="refAuthor">Radhakrishnan, S.</span>, and <span class="refAuthor">A. Jain</span>, <span class="refTitle">"TCP Fast Open"</span>, <span class="seriesInfo">RFC 7413</span>, <span class="seriesInfo">DOI 10.17487/RFC7413</span>, <time datetime="2014-12" class="refDate">December 2014</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/rfc7413">https://datatracker.ietf.org/doc/html/rfc7413</a>&gt;</span>. </dd>
+<span class="refAuthor">Cheng, Y.</span>, <span class="refAuthor">Chu, J.</span>, <span class="refAuthor">Radhakrishnan, S.</span>, and <span class="refAuthor">A. Jain</span>, <span class="refTitle">"TCP Fast Open"</span>, <span class="seriesInfo">RFC 7413</span>, <span class="seriesInfo">DOI 10.17487/RFC7413</span>, <time datetime="2014-12" class="refDate">December 2014</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc7413">https://www.rfc-editor.org/rfc/rfc7413</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC7540">[RFC7540]</dt>
         <dd>
-<span class="refAuthor">Belshe, M.</span>, <span class="refAuthor">Peon, R.</span>, and <span class="refAuthor">M. Thomson, Ed.</span>, <span class="refTitle">"Hypertext Transfer Protocol Version 2 (HTTP/2)"</span>, <span class="seriesInfo">RFC 7540</span>, <span class="seriesInfo">DOI 10.17487/RFC7540</span>, <time datetime="2015-05" class="refDate">May 2015</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/rfc7540">https://datatracker.ietf.org/doc/html/rfc7540</a>&gt;</span>. </dd>
+<span class="refAuthor">Belshe, M.</span>, <span class="refAuthor">Peon, R.</span>, and <span class="refAuthor">M. Thomson, Ed.</span>, <span class="refTitle">"Hypertext Transfer Protocol Version 2 (HTTP/2)"</span>, <span class="seriesInfo">RFC 7540</span>, <span class="seriesInfo">DOI 10.17487/RFC7540</span>, <time datetime="2015-05" class="refDate">May 2015</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc7540">https://www.rfc-editor.org/rfc/rfc7540</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC8303">[RFC8303]</dt>
         <dd>
-<span class="refAuthor">Welzl, M.</span>, <span class="refAuthor">Tuexen, M.</span>, and <span class="refAuthor">N. Khademi</span>, <span class="refTitle">"On the Usage of Transport Features Provided by IETF Transport Protocols"</span>, <span class="seriesInfo">RFC 8303</span>, <span class="seriesInfo">DOI 10.17487/RFC8303</span>, <time datetime="2018-02" class="refDate">February 2018</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/rfc8303">https://datatracker.ietf.org/doc/html/rfc8303</a>&gt;</span>. </dd>
+<span class="refAuthor">Welzl, M.</span>, <span class="refAuthor">Tuexen, M.</span>, and <span class="refAuthor">N. Khademi</span>, <span class="refTitle">"On the Usage of Transport Features Provided by IETF Transport Protocols"</span>, <span class="seriesInfo">RFC 8303</span>, <span class="seriesInfo">DOI 10.17487/RFC8303</span>, <time datetime="2018-02" class="refDate">February 2018</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc8303">https://www.rfc-editor.org/rfc/rfc8303</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC8304">[RFC8304]</dt>
         <dd>
-<span class="refAuthor">Fairhurst, G.</span> and <span class="refAuthor">T. Jones</span>, <span class="refTitle">"Transport Features of the User Datagram Protocol (UDP) and Lightweight UDP (UDP-Lite)"</span>, <span class="seriesInfo">RFC 8304</span>, <span class="seriesInfo">DOI 10.17487/RFC8304</span>, <time datetime="2018-02" class="refDate">February 2018</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/rfc8304">https://datatracker.ietf.org/doc/html/rfc8304</a>&gt;</span>. </dd>
+<span class="refAuthor">Fairhurst, G.</span> and <span class="refAuthor">T. Jones</span>, <span class="refTitle">"Transport Features of the User Datagram Protocol (UDP) and Lightweight UDP (UDP-Lite)"</span>, <span class="seriesInfo">RFC 8304</span>, <span class="seriesInfo">DOI 10.17487/RFC8304</span>, <time datetime="2018-02" class="refDate">February 2018</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc8304">https://www.rfc-editor.org/rfc/rfc8304</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC8305">[RFC8305]</dt>
         <dd>
-<span class="refAuthor">Schinazi, D.</span> and <span class="refAuthor">T. Pauly</span>, <span class="refTitle">"Happy Eyeballs Version 2: Better Connectivity Using Concurrency"</span>, <span class="seriesInfo">RFC 8305</span>, <span class="seriesInfo">DOI 10.17487/RFC8305</span>, <time datetime="2017-12" class="refDate">December 2017</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/rfc8305">https://datatracker.ietf.org/doc/html/rfc8305</a>&gt;</span>. </dd>
+<span class="refAuthor">Schinazi, D.</span> and <span class="refAuthor">T. Pauly</span>, <span class="refTitle">"Happy Eyeballs Version 2: Better Connectivity Using Concurrency"</span>, <span class="seriesInfo">RFC 8305</span>, <span class="seriesInfo">DOI 10.17487/RFC8305</span>, <time datetime="2017-12" class="refDate">December 2017</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc8305">https://www.rfc-editor.org/rfc/rfc8305</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC8421">[RFC8421]</dt>
         <dd>
-<span class="refAuthor">Martinsen, P.</span>, <span class="refAuthor">Reddy, T.</span>, and <span class="refAuthor">P. Patil</span>, <span class="refTitle">"Guidelines for Multihomed and IPv4/IPv6 Dual-Stack Interactive Connectivity Establishment (ICE)"</span>, <span class="seriesInfo">BCP 217</span>, <span class="seriesInfo">RFC 8421</span>, <span class="seriesInfo">DOI 10.17487/RFC8421</span>, <time datetime="2018-07" class="refDate">July 2018</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/rfc8421">https://datatracker.ietf.org/doc/html/rfc8421</a>&gt;</span>. </dd>
+<span class="refAuthor">Martinsen, P.</span>, <span class="refAuthor">Reddy, T.</span>, and <span class="refAuthor">P. Patil</span>, <span class="refTitle">"Guidelines for Multihomed and IPv4/IPv6 Dual-Stack Interactive Connectivity Establishment (ICE)"</span>, <span class="seriesInfo">BCP 217</span>, <span class="seriesInfo">RFC 8421</span>, <span class="seriesInfo">DOI 10.17487/RFC8421</span>, <time datetime="2018-07" class="refDate">July 2018</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc8421">https://www.rfc-editor.org/rfc/rfc8421</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC8446">[RFC8446]</dt>
         <dd>
-<span class="refAuthor">Rescorla, E.</span>, <span class="refTitle">"The Transport Layer Security (TLS) Protocol Version 1.3"</span>, <span class="seriesInfo">RFC 8446</span>, <span class="seriesInfo">DOI 10.17487/RFC8446</span>, <time datetime="2018-08" class="refDate">August 2018</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/rfc8446">https://datatracker.ietf.org/doc/html/rfc8446</a>&gt;</span>. </dd>
+<span class="refAuthor">Rescorla, E.</span>, <span class="refTitle">"The Transport Layer Security (TLS) Protocol Version 1.3"</span>, <span class="seriesInfo">RFC 8446</span>, <span class="seriesInfo">DOI 10.17487/RFC8446</span>, <time datetime="2018-08" class="refDate">August 2018</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc8446">https://www.rfc-editor.org/rfc/rfc8446</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC8923">[RFC8923]</dt>
       <dd>
-<span class="refAuthor">Welzl, M.</span> and <span class="refAuthor">S. Gjessing</span>, <span class="refTitle">"A Minimal Set of Transport Services for End Systems"</span>, <span class="seriesInfo">RFC 8923</span>, <span class="seriesInfo">DOI 10.17487/RFC8923</span>, <time datetime="2020-10" class="refDate">October 2020</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/rfc8923">https://datatracker.ietf.org/doc/html/rfc8923</a>&gt;</span>. </dd>
+<span class="refAuthor">Welzl, M.</span> and <span class="refAuthor">S. Gjessing</span>, <span class="refTitle">"A Minimal Set of Transport Services for End Systems"</span>, <span class="seriesInfo">RFC 8923</span>, <span class="seriesInfo">DOI 10.17487/RFC8923</span>, <time datetime="2020-10" class="refDate">October 2020</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc8923">https://www.rfc-editor.org/rfc/rfc8923</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 </dl>
 </section>
@@ -2806,55 +2812,55 @@ programme through the "OCARINA" project.<a href="#section-13-4" class="pilcrow">
 <dd class="break"></dd>
 <dt id="RFC1928">[RFC1928]</dt>
         <dd>
-<span class="refAuthor">Leech, M.</span>, <span class="refAuthor">Ganis, M.</span>, <span class="refAuthor">Lee, Y.</span>, <span class="refAuthor">Kuris, R.</span>, <span class="refAuthor">Koblas, D.</span>, and <span class="refAuthor">L. Jones</span>, <span class="refTitle">"SOCKS Protocol Version 5"</span>, <span class="seriesInfo">RFC 1928</span>, <span class="seriesInfo">DOI 10.17487/RFC1928</span>, <time datetime="1996-03" class="refDate">March 1996</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/rfc1928">https://datatracker.ietf.org/doc/html/rfc1928</a>&gt;</span>. </dd>
+<span class="refAuthor">Leech, M.</span>, <span class="refAuthor">Ganis, M.</span>, <span class="refAuthor">Lee, Y.</span>, <span class="refAuthor">Kuris, R.</span>, <span class="refAuthor">Koblas, D.</span>, and <span class="refAuthor">L. Jones</span>, <span class="refTitle">"SOCKS Protocol Version 5"</span>, <span class="seriesInfo">RFC 1928</span>, <span class="seriesInfo">DOI 10.17487/RFC1928</span>, <time datetime="1996-03" class="refDate">March 1996</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc1928">https://www.rfc-editor.org/rfc/rfc1928</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC3124">[RFC3124]</dt>
         <dd>
-<span class="refAuthor">Balakrishnan, H.</span> and <span class="refAuthor">S. Seshan</span>, <span class="refTitle">"The Congestion Manager"</span>, <span class="seriesInfo">RFC 3124</span>, <span class="seriesInfo">DOI 10.17487/RFC3124</span>, <time datetime="2001-06" class="refDate">June 2001</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/rfc3124">https://datatracker.ietf.org/doc/html/rfc3124</a>&gt;</span>. </dd>
+<span class="refAuthor">Balakrishnan, H.</span> and <span class="refAuthor">S. Seshan</span>, <span class="refTitle">"The Congestion Manager"</span>, <span class="seriesInfo">RFC 3124</span>, <span class="seriesInfo">DOI 10.17487/RFC3124</span>, <time datetime="2001-06" class="refDate">June 2001</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc3124">https://www.rfc-editor.org/rfc/rfc3124</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC3207">[RFC3207]</dt>
         <dd>
-<span class="refAuthor">Hoffman, P.</span>, <span class="refTitle">"SMTP Service Extension for Secure SMTP over Transport Layer Security"</span>, <span class="seriesInfo">RFC 3207</span>, <span class="seriesInfo">DOI 10.17487/RFC3207</span>, <time datetime="2002-02" class="refDate">February 2002</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/rfc3207">https://datatracker.ietf.org/doc/html/rfc3207</a>&gt;</span>. </dd>
+<span class="refAuthor">Hoffman, P.</span>, <span class="refTitle">"SMTP Service Extension for Secure SMTP over Transport Layer Security"</span>, <span class="seriesInfo">RFC 3207</span>, <span class="seriesInfo">DOI 10.17487/RFC3207</span>, <time datetime="2002-02" class="refDate">February 2002</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc3207">https://www.rfc-editor.org/rfc/rfc3207</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC5389">[RFC5389]</dt>
         <dd>
-<span class="refAuthor">Rosenberg, J.</span>, <span class="refAuthor">Mahy, R.</span>, <span class="refAuthor">Matthews, P.</span>, and <span class="refAuthor">D. Wing</span>, <span class="refTitle">"Session Traversal Utilities for NAT (STUN)"</span>, <span class="seriesInfo">RFC 5389</span>, <span class="seriesInfo">DOI 10.17487/RFC5389</span>, <time datetime="2008-10" class="refDate">October 2008</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/rfc5389">https://datatracker.ietf.org/doc/html/rfc5389</a>&gt;</span>. </dd>
+<span class="refAuthor">Rosenberg, J.</span>, <span class="refAuthor">Mahy, R.</span>, <span class="refAuthor">Matthews, P.</span>, and <span class="refAuthor">D. Wing</span>, <span class="refTitle">"Session Traversal Utilities for NAT (STUN)"</span>, <span class="seriesInfo">RFC 5389</span>, <span class="seriesInfo">DOI 10.17487/RFC5389</span>, <time datetime="2008-10" class="refDate">October 2008</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc5389">https://www.rfc-editor.org/rfc/rfc5389</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC5766">[RFC5766]</dt>
         <dd>
-<span class="refAuthor">Mahy, R.</span>, <span class="refAuthor">Matthews, P.</span>, and <span class="refAuthor">J. Rosenberg</span>, <span class="refTitle">"Traversal Using Relays around NAT (TURN): Relay Extensions to Session Traversal Utilities for NAT (STUN)"</span>, <span class="seriesInfo">RFC 5766</span>, <span class="seriesInfo">DOI 10.17487/RFC5766</span>, <time datetime="2010-04" class="refDate">April 2010</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/rfc5766">https://datatracker.ietf.org/doc/html/rfc5766</a>&gt;</span>. </dd>
+<span class="refAuthor">Mahy, R.</span>, <span class="refAuthor">Matthews, P.</span>, and <span class="refAuthor">J. Rosenberg</span>, <span class="refTitle">"Traversal Using Relays around NAT (TURN): Relay Extensions to Session Traversal Utilities for NAT (STUN)"</span>, <span class="seriesInfo">RFC 5766</span>, <span class="seriesInfo">DOI 10.17487/RFC5766</span>, <time datetime="2010-04" class="refDate">April 2010</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc5766">https://www.rfc-editor.org/rfc/rfc5766</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC6525">[RFC6525]</dt>
         <dd>
-<span class="refAuthor">Stewart, R.</span>, <span class="refAuthor">Tuexen, M.</span>, and <span class="refAuthor">P. Lei</span>, <span class="refTitle">"Stream Control Transmission Protocol (SCTP) Stream Reconfiguration"</span>, <span class="seriesInfo">RFC 6525</span>, <span class="seriesInfo">DOI 10.17487/RFC6525</span>, <time datetime="2012-02" class="refDate">February 2012</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/rfc6525">https://datatracker.ietf.org/doc/html/rfc6525</a>&gt;</span>. </dd>
+<span class="refAuthor">Stewart, R.</span>, <span class="refAuthor">Tuexen, M.</span>, and <span class="refAuthor">P. Lei</span>, <span class="refTitle">"Stream Control Transmission Protocol (SCTP) Stream Reconfiguration"</span>, <span class="seriesInfo">RFC 6525</span>, <span class="seriesInfo">DOI 10.17487/RFC6525</span>, <time datetime="2012-02" class="refDate">February 2012</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc6525">https://www.rfc-editor.org/rfc/rfc6525</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC6762">[RFC6762]</dt>
         <dd>
-<span class="refAuthor">Cheshire, S.</span> and <span class="refAuthor">M. Krochmal</span>, <span class="refTitle">"Multicast DNS"</span>, <span class="seriesInfo">RFC 6762</span>, <span class="seriesInfo">DOI 10.17487/RFC6762</span>, <time datetime="2013-02" class="refDate">February 2013</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/rfc6762">https://datatracker.ietf.org/doc/html/rfc6762</a>&gt;</span>. </dd>
+<span class="refAuthor">Cheshire, S.</span> and <span class="refAuthor">M. Krochmal</span>, <span class="refTitle">"Multicast DNS"</span>, <span class="seriesInfo">RFC 6762</span>, <span class="seriesInfo">DOI 10.17487/RFC6762</span>, <time datetime="2013-02" class="refDate">February 2013</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc6762">https://www.rfc-editor.org/rfc/rfc6762</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC6763">[RFC6763]</dt>
         <dd>
-<span class="refAuthor">Cheshire, S.</span> and <span class="refAuthor">M. Krochmal</span>, <span class="refTitle">"DNS-Based Service Discovery"</span>, <span class="seriesInfo">RFC 6763</span>, <span class="seriesInfo">DOI 10.17487/RFC6763</span>, <time datetime="2013-02" class="refDate">February 2013</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/rfc6763">https://datatracker.ietf.org/doc/html/rfc6763</a>&gt;</span>. </dd>
+<span class="refAuthor">Cheshire, S.</span> and <span class="refAuthor">M. Krochmal</span>, <span class="refTitle">"DNS-Based Service Discovery"</span>, <span class="seriesInfo">RFC 6763</span>, <span class="seriesInfo">DOI 10.17487/RFC6763</span>, <time datetime="2013-02" class="refDate">February 2013</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc6763">https://www.rfc-editor.org/rfc/rfc6763</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC7230">[RFC7230]</dt>
         <dd>
-<span class="refAuthor">Fielding, R., Ed.</span> and <span class="refAuthor">J. Reschke, Ed.</span>, <span class="refTitle">"Hypertext Transfer Protocol (HTTP/1.1): Message Syntax and Routing"</span>, <span class="seriesInfo">RFC 7230</span>, <span class="seriesInfo">DOI 10.17487/RFC7230</span>, <time datetime="2014-06" class="refDate">June 2014</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/rfc7230">https://datatracker.ietf.org/doc/html/rfc7230</a>&gt;</span>. </dd>
+<span class="refAuthor">Fielding, R., Ed.</span> and <span class="refAuthor">J. Reschke, Ed.</span>, <span class="refTitle">"Hypertext Transfer Protocol (HTTP/1.1): Message Syntax and Routing"</span>, <span class="seriesInfo">RFC 7230</span>, <span class="seriesInfo">DOI 10.17487/RFC7230</span>, <time datetime="2014-06" class="refDate">June 2014</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc7230">https://www.rfc-editor.org/rfc/rfc7230</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC7657">[RFC7657]</dt>
         <dd>
-<span class="refAuthor">Black, D., Ed.</span> and <span class="refAuthor">P. Jones</span>, <span class="refTitle">"Differentiated Services (Diffserv) and Real-Time Communication"</span>, <span class="seriesInfo">RFC 7657</span>, <span class="seriesInfo">DOI 10.17487/RFC7657</span>, <time datetime="2015-11" class="refDate">November 2015</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/rfc7657">https://datatracker.ietf.org/doc/html/rfc7657</a>&gt;</span>. </dd>
+<span class="refAuthor">Black, D., Ed.</span> and <span class="refAuthor">P. Jones</span>, <span class="refTitle">"Differentiated Services (Diffserv) and Real-Time Communication"</span>, <span class="seriesInfo">RFC 7657</span>, <span class="seriesInfo">DOI 10.17487/RFC7657</span>, <time datetime="2015-11" class="refDate">November 2015</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc7657">https://www.rfc-editor.org/rfc/rfc7657</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC8085">[RFC8085]</dt>
         <dd>
-<span class="refAuthor">Eggert, L.</span>, <span class="refAuthor">Fairhurst, G.</span>, and <span class="refAuthor">G. Shepherd</span>, <span class="refTitle">"UDP Usage Guidelines"</span>, <span class="seriesInfo">BCP 145</span>, <span class="seriesInfo">RFC 8085</span>, <span class="seriesInfo">DOI 10.17487/RFC8085</span>, <time datetime="2017-03" class="refDate">March 2017</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/rfc8085">https://datatracker.ietf.org/doc/html/rfc8085</a>&gt;</span>. </dd>
+<span class="refAuthor">Eggert, L.</span>, <span class="refAuthor">Fairhurst, G.</span>, and <span class="refAuthor">G. Shepherd</span>, <span class="refTitle">"UDP Usage Guidelines"</span>, <span class="seriesInfo">BCP 145</span>, <span class="seriesInfo">RFC 8085</span>, <span class="seriesInfo">DOI 10.17487/RFC8085</span>, <time datetime="2017-03" class="refDate">March 2017</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc8085">https://www.rfc-editor.org/rfc/rfc8085</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC8260">[RFC8260]</dt>
         <dd>
-<span class="refAuthor">Stewart, R.</span>, <span class="refAuthor">Tuexen, M.</span>, <span class="refAuthor">Loreto, S.</span>, and <span class="refAuthor">R. Seggelmann</span>, <span class="refTitle">"Stream Schedulers and User Message Interleaving for the Stream Control Transmission Protocol"</span>, <span class="seriesInfo">RFC 8260</span>, <span class="seriesInfo">DOI 10.17487/RFC8260</span>, <time datetime="2017-11" class="refDate">November 2017</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/rfc8260">https://datatracker.ietf.org/doc/html/rfc8260</a>&gt;</span>. </dd>
+<span class="refAuthor">Stewart, R.</span>, <span class="refAuthor">Tuexen, M.</span>, <span class="refAuthor">Loreto, S.</span>, and <span class="refAuthor">R. Seggelmann</span>, <span class="refTitle">"Stream Schedulers and User Message Interleaving for the Stream Control Transmission Protocol"</span>, <span class="seriesInfo">RFC 8260</span>, <span class="seriesInfo">DOI 10.17487/RFC8260</span>, <time datetime="2017-11" class="refDate">November 2017</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc8260">https://www.rfc-editor.org/rfc/rfc8260</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC8445">[RFC8445]</dt>
         <dd>
-<span class="refAuthor">Keranen, A.</span>, <span class="refAuthor">Holmberg, C.</span>, and <span class="refAuthor">J. Rosenberg</span>, <span class="refTitle">"Interactive Connectivity Establishment (ICE): A Protocol for Network Address Translator (NAT) Traversal"</span>, <span class="seriesInfo">RFC 8445</span>, <span class="seriesInfo">DOI 10.17487/RFC8445</span>, <time datetime="2018-07" class="refDate">July 2018</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/rfc8445">https://datatracker.ietf.org/doc/html/rfc8445</a>&gt;</span>. </dd>
+<span class="refAuthor">Keranen, A.</span>, <span class="refAuthor">Holmberg, C.</span>, and <span class="refAuthor">J. Rosenberg</span>, <span class="refTitle">"Interactive Connectivity Establishment (ICE): A Protocol for Network Address Translator (NAT) Traversal"</span>, <span class="seriesInfo">RFC 8445</span>, <span class="seriesInfo">DOI 10.17487/RFC8445</span>, <time datetime="2018-07" class="refDate">July 2018</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc8445">https://www.rfc-editor.org/rfc/rfc8445</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="TCP-COUPLING">[TCP-COUPLING]</dt>
       <dd>
