@@ -2071,7 +2071,7 @@ MessageFramer.Deliver(Connection, MessageContext, Data, IsEndOfMessage)
 
    This work has received funding from the European Union's Horizon 2020
    research and innovation programme under grant agreement No. 644334
-   (NEAT).
+   (NEAT) and No. 815178 (5GENESIS).
 
    This work has been supported by Leibniz Prize project funds of DFG -
    German Research Foundation: Gottfried Wilhelm Leibniz-Preis 2011 (FKZ
