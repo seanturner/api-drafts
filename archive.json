@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2021-11-21T00:23:12.071125+00:00",
+  "timestamp": "2021-11-25T00:22:32.671961+00:00",
   "repo": "ietf-tapswg/api-drafts",
   "labels": [
     {
@@ -76671,6 +76671,34 @@
       "mergedAt": null,
       "mergedBy": null,
       "mergeCommit": null,
+      "comments": [],
+      "reviews": []
+    },
+    {
+      "number": 967,
+      "id": "PR_kwDOBx1JF84u7nZU",
+      "title": "Add 5GENESIS project acknowledgement",
+      "url": "https://github.com/ietf-tapswg/api-drafts/pull/967",
+      "state": "MERGED",
+      "author": "abrunstrom",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2021-11-23T22:14:29Z",
+      "updatedAt": "2021-11-23T22:17:14Z",
+      "baseRepository": "ietf-tapswg/api-drafts",
+      "baseRefName": "master",
+      "baseRefOid": "399a65447959c4b4b346f15f321283ddbaaae16c",
+      "headRepository": "ietf-tapswg/api-drafts",
+      "headRefName": "abrunstrom-ack-updates",
+      "headRefOid": "1a689727fe319e5af7b04c630e075e4a1721b959",
+      "closedAt": "2021-11-23T22:16:39Z",
+      "mergedAt": "2021-11-23T22:16:39Z",
+      "mergedBy": "abrunstrom",
+      "mergeCommit": {
+        "oid": "44d24b00f46bb95b4ee26549ddfd13e40557a1ed"
+      },
       "comments": [],
       "reviews": []
     }
