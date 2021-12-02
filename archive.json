@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2021-11-25T00:22:32.671961+00:00",
+  "timestamp": "2021-12-02T00:22:41.474570+00:00",
   "repo": "ietf-tapswg/api-drafts",
   "labels": [
     {
@@ -75002,7 +75002,7 @@
       ],
       "body": "Explain the different use-cases on specifying interfaces to close #910",
       "createdAt": "2021-10-15T13:12:18Z",
-      "updatedAt": "2021-11-15T16:03:30Z",
+      "updatedAt": "2021-11-30T17:15:03Z",
       "baseRepository": "ietf-tapswg/api-drafts",
       "baseRefName": "master",
       "baseRefOid": "430da64cb16ee289ece6a9679678e2323ab270de",
@@ -75074,6 +75074,26 @@
               "body": "Is the meaning of unnecessary qualifiers well defined? ",
               "createdAt": "2021-10-19T14:16:42Z",
               "updatedAt": "2021-10-19T14:16:43Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOBx1JF84w1fy9",
+          "commit": {
+            "abbreviatedOid": "0a98dad"
+          },
+          "author": "theri",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2021-11-30T17:15:03Z",
+          "updatedAt": "2021-11-30T17:15:03Z",
+          "comments": [
+            {
+              "originalPosition": 17,
+              "body": "(An individual contributor:)\r\nI'm not sure \"unnecessary qualifiers\"\u202fcan be defined well enough to be useful here. Suggest to just remove the last sentence. Specifying conflicting things will already result in an error, but I'm not sure we need to error out if something is merely redundant.",
+              "createdAt": "2021-11-30T17:15:03Z",
+              "updatedAt": "2021-11-30T17:15:03Z"
             }
           ]
         }
