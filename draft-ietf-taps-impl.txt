@@ -266,16 +266,16 @@ Table of Contents
        application.
 
    In general, any protocol or path used for a connection must conform
-   to all three sources of constraints.  A violation of any of the
-   layers should cause a protocol or path to be considered ineligible
-   for use.  For an example of application preferences leading to
-   constraints, an application may prohibit the use of metered network
-   interfaces for a given Connection to avoid user cost.  Similarly, the
-   system policy at a given time may prohibit the use of such a metered
-   network interface from the application's process.  Lastly, the
-   implementation itself may default to disallowing certain network
-   interfaces unless explicitly requested by the application and allowed
-   by the system.
+   to all three sources of constraints.  A violation that occurs at any
+   of the policy layers should cause a protocol or path to be considered
+   ineligible for use.  For an example of application preferences
+   leading to constraints, an application may prohibit the use of
+   metered network interfaces for a given Connection to avoid user cost.
+   Similarly, the system policy at a given time may prohibit the use of
+   such a metered network interface from the application's process.
+   Lastly, the implementation itself may default to disallowing certain
+   network interfaces unless explicitly requested by the application and
+   allowed by the system.
 
    It is expected that the database of system policies and the method of
    looking up these policies will vary across various platforms.  An
