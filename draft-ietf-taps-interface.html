@@ -31,7 +31,7 @@ multiple interfaces and potential transport protocols.
 <meta content="draft-ietf-taps-interface" name="ietf.draft">
 <!-- Generator version information:
   xml2rfc 3.11.1
-    Python 3.9.5
+    Python 3.9.7
     appdirs 1.4.4
     ConfigArgParse 1.3
     google-i18n-address 2.5.0
@@ -39,13 +39,13 @@ multiple interfaces and potential transport protocols.
     intervaltree 3.1.0
     Jinja2 2.11.3
     kitchen 1.2.6
-    lxml 4.6.3
+    lxml 4.6.4
     pycountry 20.7.3
-    pyflakes 2.3.0
+    pyflakes 2.3.1
     PyYAML 5.4.1
-    requests 2.25.1
+    requests 2.26.0
     setuptools 52.0.0
-    six 1.15.0
+    six 1.16.0
 -->
 <link href="draft-ietf-taps-interface.xml" rel="alternate" type="application/rfc+xml">
 <link href="#copyright" rel="license">
@@ -649,36 +649,8 @@ hr {
 }
 
 /* index */
-.index ul {
-  margin: 0 0 0 1em;
-  padding: 0;
-  list-style: none;
-}
-.index ul ul {
-  margin: 0;
-}
-.index li {
-  margin: 0;
-  text-indent: -2em;
-  padding-left: 2em;
-  padding-bottom: 5px;
-}
-.indexIndex {
-  margin: 0.5em 0 1em;
-}
-.index a {
-  font-weight: 700;
-}
-/* make the index two-column on all but the smallest screens */
-@media (min-width: 500px) {
-  .index ul {
-    column-count: 2;
-    column-gap: 20px;
-  }
-  .index ul ul {
-    column-count: 1;
-    column-gap: 0;
-  }
+#rfc\.index\.index + ul {
+  margin-left: 0;
 }
 
 /* authors */
@@ -1057,11 +1029,11 @@ svg [stroke="fill"], svg [fill^="#fff"] {
 <thead><tr>
 <td class="left">Internet-Draft</td>
 <td class="center">TAPS Interface</td>
-<td class="right">November 2021</td>
+<td class="right">December 2021</td>
 </tr></thead>
 <tfoot><tr>
 <td class="left">Trammell, et al.</td>
-<td class="center">Expires 27 May 2022</td>
+<td class="center">Expires 11 June 2022</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1074,12 +1046,12 @@ svg [stroke="fill"], svg [fill^="#fff"] {
 <dd class="internet-draft">draft-ietf-taps-interface</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2021-11-23" class="published">23 November 2021</time>
+<time datetime="2021-12-08" class="published">8 December 2021</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Standards Track</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2022-05-27">27 May 2022</time></dd>
+<dd class="expires"><time datetime="2022-06-11">11 June 2022</time></dd>
 <dt class="label-authors">Authors:</dt>
 <dd class="authors">
 <div class="author">
@@ -1159,7 +1131,7 @@ multiple interfaces and potential transport protocols.<a href="#section-abstract
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 27 May 2022.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 11 June 2022.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -1245,13 +1217,16 @@ multiple interfaces and potential transport protocols.<a href="#section-abstract
                     <p id="section-toc.1-1.6.2.1.2.1.1"><a href="#section-6.1.1" class="xref">6.1.1</a>.  <a href="#name-using-multicast-endpoints" class="xref">Using Multicast Endpoints</a></p>
 </li>
                   <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.6.2.1.2.2">
-                    <p id="section-toc.1-1.6.2.1.2.2.1"><a href="#section-6.1.2" class="xref">6.1.2</a>.  <a href="#name-endpoint-aliases" class="xref">Endpoint Aliases</a></p>
+                    <p id="section-toc.1-1.6.2.1.2.2.1"><a href="#section-6.1.2" class="xref">6.1.2</a>.  <a href="#name-constraining-interfaces-for" class="xref">Constraining Interfaces for Endpoints</a></p>
 </li>
                   <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.6.2.1.2.3">
-                    <p id="section-toc.1-1.6.2.1.2.3.1"><a href="#section-6.1.3" class="xref">6.1.3</a>.  <a href="#name-endpoint-examples" class="xref">Endpoint Examples</a></p>
+                    <p id="section-toc.1-1.6.2.1.2.3.1"><a href="#section-6.1.3" class="xref">6.1.3</a>.  <a href="#name-endpoint-aliases" class="xref">Endpoint Aliases</a></p>
 </li>
                   <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.6.2.1.2.4">
-                    <p id="section-toc.1-1.6.2.1.2.4.1"><a href="#section-6.1.4" class="xref">6.1.4</a>.  <a href="#name-multicast-examples" class="xref">Multicast Examples</a></p>
+                    <p id="section-toc.1-1.6.2.1.2.4.1"><a href="#section-6.1.4" class="xref">6.1.4</a>.  <a href="#name-endpoint-examples" class="xref">Endpoint Examples</a></p>
+</li>
+                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.6.2.1.2.5">
+                    <p id="section-toc.1-1.6.2.1.2.5.1"><a href="#section-6.1.5" class="xref">6.1.5</a>.  <a href="#name-multicast-examples" class="xref">Multicast Examples</a></p>
 </li>
                 </ul>
 </li>
@@ -2187,7 +2162,7 @@ RemoteSpecifier.WithIPv6Address(2001:db8:4920:e29d:a420:7461:7073:0a)
 </pre><a href="#section-6.1-12" class="pilcrow">¶</a>
 </div>
 <ul class="normal">
-<li class="normal" id="section-6.1-13.1">Interface name (string):<a href="#section-6.1-13.1" class="pilcrow">¶</a>
+<li class="normal" id="section-6.1-13.1">Interface name (string), e.g., to qualify link-local or multicast addresses (see <a href="#ifspec" class="xref">Section 6.1.2</a> for details):<a href="#section-6.1-13.1" class="pilcrow">¶</a>
 </li>
         </ul>
 <div class="alignLeft art-text artwork" id="section-6.1-14">
@@ -2227,34 +2202,51 @@ resulting connection will be used to send multicast messages, and that the Preco
 support Initiate() but not Listen(). Any Connections created this way are send-only.<a href="#section-6.1.1-2" class="pilcrow">¶</a></p>
 <p id="section-6.1.1-3">A Rendezvous() call on Preconnections containing group addresses results in an
 EstablishmentError as described in <a href="#rendezvous" class="xref">Section 7.3</a>.<a href="#section-6.1.1-3" class="pilcrow">¶</a></p>
-<p id="section-6.1.1-4">See <a href="#multicast-examples" class="xref">Section 6.1.4</a> for more examples.<a href="#section-6.1.1-4" class="pilcrow">¶</a></p>
+<p id="section-6.1.1-4">See <a href="#multicast-examples" class="xref">Section 6.1.5</a> for more examples.<a href="#section-6.1.1-4" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="ifspec">
+<section id="section-6.1.2">
+          <h4 id="name-constraining-interfaces-for">
+<a href="#section-6.1.2" class="section-number selfRef">6.1.2. </a><a href="#name-constraining-interfaces-for" class="section-name selfRef">Constraining Interfaces for Endpoints</a>
+          </h4>
+<p id="section-6.1.2-1">Note that this API has multiple ways to constrain and prioritize endpoint candidates based on the network interface:<a href="#section-6.1.2-1" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="section-6.1.2-2.1">Specifying an interface on a RemoteEndpoint qualifies the scope of the remote endpoint, e.g., for link-local addresses.<a href="#section-6.1.2-2.1" class="pilcrow">¶</a>
+</li>
+            <li class="normal" id="section-6.1.2-2.2">Specifying an interface on a LocalEndpoint explicitly binds all candidates derived from this endpoint to use the specified interface.<a href="#section-6.1.2-2.2" class="pilcrow">¶</a>
+</li>
+            <li class="normal" id="section-6.1.2-2.3">Specifying an interface using the <code>interface</code> Selection Property (<a href="#prop-interface" class="xref">Section 6.2.11</a>) or indirectly via the <code>pvd</code> Selection Property (<a href="#prop-pvd" class="xref">Section 6.2.12</a>) influences the selection among the available candidates.<a href="#section-6.1.2-2.3" class="pilcrow">¶</a>
+</li>
+          </ul>
+<p id="section-6.1.2-3">While specifying an interface on an endpoint restricts the candidates available for connection establishment in the Pre-Establishment Phase, the Selection Properties prioritize and constrain the connection establishment.<a href="#section-6.1.2-3" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="endpoint-aliases">
-<section id="section-6.1.2">
+<section id="section-6.1.3">
           <h4 id="name-endpoint-aliases">
-<a href="#section-6.1.2" class="section-number selfRef">6.1.2. </a><a href="#name-endpoint-aliases" class="section-name selfRef">Endpoint Aliases</a>
+<a href="#section-6.1.3" class="section-number selfRef">6.1.3. </a><a href="#name-endpoint-aliases" class="section-name selfRef">Endpoint Aliases</a>
           </h4>
-<p id="section-6.1.2-1">An Endpoint can have an alternative definition when using different protocols.
+<p id="section-6.1.3-1">An Endpoint can have an alternative definition when using different protocols.
 For example, a server that supports both TLS/TCP and QUIC may be accessible
-on two different port numbers depending on which protocol is used.<a href="#section-6.1.2-1" class="pilcrow">¶</a></p>
-<p id="section-6.1.2-2">To support this, Endpoint Objects can specify "aliases". An Endpoint can have
-multiple aliases set.<a href="#section-6.1.2-2" class="pilcrow">¶</a></p>
-<div class="alignLeft art-text artwork" id="section-6.1.2-3">
+on two different port numbers depending on which protocol is used.<a href="#section-6.1.3-1" class="pilcrow">¶</a></p>
+<p id="section-6.1.3-2">To support this, Endpoint Objects can specify "aliases". An Endpoint can have
+multiple aliases set.<a href="#section-6.1.3-2" class="pilcrow">¶</a></p>
+<div class="alignLeft art-text artwork" id="section-6.1.3-3">
 <pre>
 RemoteSpecifier.AddAlias(AlternateRemoteSpecifier)
-</pre><a href="#section-6.1.2-3" class="pilcrow">¶</a>
+</pre><a href="#section-6.1.3-3" class="pilcrow">¶</a>
 </div>
-<p id="section-6.1.2-4">In order to scope an alias to a specific transport protocol, an Endpoint can
-specify a protocol identifier.<a href="#section-6.1.2-4" class="pilcrow">¶</a></p>
-<div class="alignLeft art-text artwork" id="section-6.1.2-5">
+<p id="section-6.1.3-4">In order to scope an alias to a specific transport protocol, an Endpoint can
+specify a protocol identifier.<a href="#section-6.1.3-4" class="pilcrow">¶</a></p>
+<div class="alignLeft art-text artwork" id="section-6.1.3-5">
 <pre>
 RemoteSpecifier.WithProtocol(QUIC)
-</pre><a href="#section-6.1.2-5" class="pilcrow">¶</a>
+</pre><a href="#section-6.1.3-5" class="pilcrow">¶</a>
 </div>
-<p id="section-6.1.2-6">The following example shows a case where "example.com" has a server
-running on port 443, with an alternate port of 8443 for QUIC.<a href="#section-6.1.2-6" class="pilcrow">¶</a></p>
-<div class="alignLeft art-text artwork" id="section-6.1.2-7">
+<p id="section-6.1.3-6">The following example shows a case where "example.com" has a server
+running on port 443, with an alternate port of 8443 for QUIC.<a href="#section-6.1.3-6" class="pilcrow">¶</a></p>
+<div class="alignLeft art-text artwork" id="section-6.1.3-7">
 <pre>
 RemoteSpecifier := NewRemoteEndpoint()
 RemoteSpecifier.WithHostname("example.com")
@@ -2266,77 +2258,77 @@ QUICRemoteSpecifier.WithPort(8443)
 QUICRemoteSpecifier.WithProtocol(QUIC)
 
 RemoteSpecifier.AddAlias(QUICRemoteSpecifier)
-</pre><a href="#section-6.1.2-7" class="pilcrow">¶</a>
+</pre><a href="#section-6.1.3-7" class="pilcrow">¶</a>
 </div>
 </section>
 </div>
 <div id="endpoint-examples">
-<section id="section-6.1.3">
+<section id="section-6.1.4">
           <h4 id="name-endpoint-examples">
-<a href="#section-6.1.3" class="section-number selfRef">6.1.3. </a><a href="#name-endpoint-examples" class="section-name selfRef">Endpoint Examples</a>
+<a href="#section-6.1.4" class="section-number selfRef">6.1.4. </a><a href="#name-endpoint-examples" class="section-name selfRef">Endpoint Examples</a>
           </h4>
-<p id="section-6.1.3-1">The following examples of Endpoints show common usage patterns.<a href="#section-6.1.3-1" class="pilcrow">¶</a></p>
-<p id="section-6.1.3-2">Specify a Remote Endpoint using a hostname and service name:<a href="#section-6.1.3-2" class="pilcrow">¶</a></p>
-<div class="alignLeft art-text artwork" id="section-6.1.3-3">
+<p id="section-6.1.4-1">The following examples of Endpoints show common usage patterns.<a href="#section-6.1.4-1" class="pilcrow">¶</a></p>
+<p id="section-6.1.4-2">Specify a Remote Endpoint using a hostname and service name:<a href="#section-6.1.4-2" class="pilcrow">¶</a></p>
+<div class="alignLeft art-text artwork" id="section-6.1.4-3">
 <pre>
 RemoteSpecifier := NewRemoteEndpoint()
 RemoteSpecifier.WithHostname("example.com")
 RemoteSpecifier.WithService("https")
-</pre><a href="#section-6.1.3-3" class="pilcrow">¶</a>
+</pre><a href="#section-6.1.4-3" class="pilcrow">¶</a>
 </div>
-<p id="section-6.1.3-4">Specify a Remote Endpoint using an IPv6 address and remote port:<a href="#section-6.1.3-4" class="pilcrow">¶</a></p>
-<div class="alignLeft art-text artwork" id="section-6.1.3-5">
+<p id="section-6.1.4-4">Specify a Remote Endpoint using an IPv6 address and remote port:<a href="#section-6.1.4-4" class="pilcrow">¶</a></p>
+<div class="alignLeft art-text artwork" id="section-6.1.4-5">
 <pre>
 RemoteSpecifier := NewRemoteEndpoint()
 RemoteSpecifier.WithIPv6Address(2001:db8:4920:e29d:a420:7461:7073:0a)
 RemoteSpecifier.WithPort(443)
-</pre><a href="#section-6.1.3-5" class="pilcrow">¶</a>
+</pre><a href="#section-6.1.4-5" class="pilcrow">¶</a>
 </div>
-<p id="section-6.1.3-6">Specify a Remote Endpoint using an IPv4 address and remote port:<a href="#section-6.1.3-6" class="pilcrow">¶</a></p>
-<div class="alignLeft art-text artwork" id="section-6.1.3-7">
+<p id="section-6.1.4-6">Specify a Remote Endpoint using an IPv4 address and remote port:<a href="#section-6.1.4-6" class="pilcrow">¶</a></p>
+<div class="alignLeft art-text artwork" id="section-6.1.4-7">
 <pre>
 RemoteSpecifier := NewRemoteEndpoint()
 RemoteSpecifier.WithIPv4Address(192.0.2.21)
 RemoteSpecifier.WithPort(443)
-</pre><a href="#section-6.1.3-7" class="pilcrow">¶</a>
+</pre><a href="#section-6.1.4-7" class="pilcrow">¶</a>
 </div>
-<p id="section-6.1.3-8">Specify a Local Endpoint using a local interface name and local port:<a href="#section-6.1.3-8" class="pilcrow">¶</a></p>
-<div class="alignLeft art-text artwork" id="section-6.1.3-9">
+<p id="section-6.1.4-8">Specify a Local Endpoint using a local interface name and local port:<a href="#section-6.1.4-8" class="pilcrow">¶</a></p>
+<div class="alignLeft art-text artwork" id="section-6.1.4-9">
 <pre>
 LocalSpecifier := NewLocalEndpoint()
 LocalSpecifier.WithInterface("en0")
 LocalSpecifier.WithPort(443)
-</pre><a href="#section-6.1.3-9" class="pilcrow">¶</a>
+</pre><a href="#section-6.1.4-9" class="pilcrow">¶</a>
 </div>
-<p id="section-6.1.3-10">As an alternative to specifying an interface name for the Local Endpoint, an application
+<p id="section-6.1.4-10">As an alternative to specifying an interface name for the Local Endpoint, an application
 can express more fine-grained preferences using the <code>Interface Instance or Type</code>
 Selection Property, see <a href="#prop-interface" class="xref">Section 6.2.11</a>. However, if the application specifies Selection
 Properties that are inconsistent with the Local Endpoint, this will result in an Error once the
-application attempts to open a Connection.<a href="#section-6.1.3-10" class="pilcrow">¶</a></p>
-<p id="section-6.1.3-11">Specify a Local Endpoint using a STUN server:<a href="#section-6.1.3-11" class="pilcrow">¶</a></p>
-<div class="alignLeft art-text artwork" id="section-6.1.3-12">
+application attempts to open a Connection.<a href="#section-6.1.4-10" class="pilcrow">¶</a></p>
+<p id="section-6.1.4-11">Specify a Local Endpoint using a STUN server:<a href="#section-6.1.4-11" class="pilcrow">¶</a></p>
+<div class="alignLeft art-text artwork" id="section-6.1.4-12">
 <pre>
 LocalSpecifier := NewLocalEndpoint()
 LocalSpecifier.WithStunServer(address, port, credentials)
-</pre><a href="#section-6.1.3-12" class="pilcrow">¶</a>
+</pre><a href="#section-6.1.4-12" class="pilcrow">¶</a>
 </div>
 </section>
 </div>
 <div id="multicast-examples">
-<section id="section-6.1.4">
+<section id="section-6.1.5">
           <h4 id="name-multicast-examples">
-<a href="#section-6.1.4" class="section-number selfRef">6.1.4. </a><a href="#name-multicast-examples" class="section-name selfRef">Multicast Examples</a>
+<a href="#section-6.1.5" class="section-number selfRef">6.1.5. </a><a href="#name-multicast-examples" class="section-name selfRef">Multicast Examples</a>
           </h4>
-<p id="section-6.1.4-1">Specify a Local Endpoint using an Any-Source Multicast group to join on a named local interface:<a href="#section-6.1.4-1" class="pilcrow">¶</a></p>
-<div class="alignLeft art-text artwork" id="section-6.1.4-2">
+<p id="section-6.1.5-1">Specify a Local Endpoint using an Any-Source Multicast group to join on a named local interface:<a href="#section-6.1.5-1" class="pilcrow">¶</a></p>
+<div class="alignLeft art-text artwork" id="section-6.1.5-2">
 <pre>
 LocalSpecifier := NewLocalEndpoint()
 LocalSpecifier.WithIPv4Address(233.252.0.0)
 LocalSpecifier.WithInterface("en0")
-</pre><a href="#section-6.1.4-2" class="pilcrow">¶</a>
+</pre><a href="#section-6.1.5-2" class="pilcrow">¶</a>
 </div>
-<p id="section-6.1.4-3">Source-Specific Multicast requires setting both a Local and Remote Endpoint:<a href="#section-6.1.4-3" class="pilcrow">¶</a></p>
-<div class="alignLeft art-text artwork" id="section-6.1.4-4">
+<p id="section-6.1.5-3">Source-Specific Multicast requires setting both a Local and Remote Endpoint:<a href="#section-6.1.5-3" class="pilcrow">¶</a></p>
+<div class="alignLeft art-text artwork" id="section-6.1.5-4">
 <pre>
 LocalSpecifier := NewLocalEndpoint()
 LocalSpecifier.WithIPv4Address(232.1.1.1)
@@ -2344,13 +2336,13 @@ LocalSpecifier.WithInterface("en0")
 
 RemoteSpecifier := NewRemoteEndpoint()
 RemoteSpecifier.WithIPv4Address(192.0.2.22)
-</pre><a href="#section-6.1.4-4" class="pilcrow">¶</a>
+</pre><a href="#section-6.1.5-4" class="pilcrow">¶</a>
 </div>
-<p id="section-6.1.4-5">One common pattern for multicast is to both send and receive multicast. For such
+<p id="section-6.1.5-5">One common pattern for multicast is to both send and receive multicast. For such
 cases, an application can set up both a Listener and a Connection. The Listener
 is only used to accept Connections that receive inbound multicast. The initiated
-Connection is only used to send multicast.<a href="#section-6.1.4-5" class="pilcrow">¶</a></p>
-<div class="alignLeft art-text artwork" id="section-6.1.4-6">
+Connection is only used to send multicast.<a href="#section-6.1.5-5" class="pilcrow">¶</a></p>
+<div class="alignLeft art-text artwork" id="section-6.1.5-6">
 <pre>
 // Prepare multicast Listener
 LocalMulticastSpecifier := NewLocalEndpoint()
@@ -2391,7 +2383,7 @@ Preconnection2 := NewPreconnection(LocalSpecifier,
 // Send outbound messages to the multicast group
 MulticastSenderConnection := Preconnection.Initiate()
 MulticastSenderConnection.Send(messageData)
-</pre><a href="#section-6.1.4-6" class="pilcrow">¶</a>
+</pre><a href="#section-6.1.5-6" class="pilcrow">¶</a>
 </div>
 </section>
 </div>
@@ -2884,6 +2876,7 @@ Transport Services system is implementation-specific.<a href="#section-6.2.11-5"
 such as metered or unmetered network access. If an application needs to prohibit
 metered interfaces, this should be specified via Provisioning Domain attributes
 (see <a href="#prop-pvd" class="xref">Section 6.2.12</a>) or another specific property.<a href="#section-6.2.11-6" class="pilcrow">¶</a></p>
+<p id="section-6.2.11-7">Note that this property is not used to specify an interface scope for a particular endpoint. <a href="#ifspec" class="xref">Section 6.1.2</a> provides details about how to qualify endpoint candidates on a per-interface basis.<a href="#section-6.2.11-7" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="prop-pvd">
