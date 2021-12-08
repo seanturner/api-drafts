@@ -1609,7 +1609,8 @@ Action and Event parameters whose names are suffixed with a question mark are op
       Action(param0, param1?, ...) / Event&lt;param0, param1, ...&gt;
 </pre><a href="#section-1.1-13" class="pilcrow">¶</a>
 </div>
-<p id="section-1.1-14">Actions associated with no Object are Actions on the API; they are equivalent to Actions on a per-application global context.<a href="#section-1.1-14" class="pilcrow">¶</a></p>
+<p id="section-1.1-14">Objects that are passed as parameters to Actions use call-by-value behavior.
+Actions associated with no Object are Actions on the API; they are equivalent to Actions on a per-application global context.<a href="#section-1.1-14" class="pilcrow">¶</a></p>
 <p id="section-1.1-15">Events are sent to the application or application-supplied code (e.g. framers, 
 see <a href="#framing" class="xref">Section 9.1.2</a>) for processing; the details of event processing 
 are platform- and implementation-specific.<a href="#section-1.1-15" class="pilcrow">¶</a></p>
@@ -4617,8 +4618,8 @@ it can acquire an empty MessageContext Object and add all desired Message
 Properties to that Object. It can then reuse the same messageContext Object
 for sending multiple Messages with the same properties.<a href="#section-9.1.3-6" class="pilcrow">¶</a></p>
 <p id="section-9.1.3-7">Properties can be added to a MessageContext object only before the context is used
-for sending. Once a messageContext has been used with a Send call, it is
-invalid to modify any of its properties.<a href="#section-9.1.3-7" class="pilcrow">¶</a></p>
+for sending. Once a MessageContext has been used with a Send call, further modifications
+to the MessageContext object do not have any effect on this Send call.<a href="#section-9.1.3-7" class="pilcrow">¶</a></p>
 <p id="section-9.1.3-8">The Message Properties could be inconsistent with the properties of the Protocol Stacks
 underlying the Connection on which a given Message is sent. For example,
 a Protocol Stack must be able to provide ordering if the msgOrdered
