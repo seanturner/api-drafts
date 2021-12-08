@@ -2193,10 +2193,7 @@ MessageFramer.Deliver(Connection, MessageContext, Data, IsEndOfMessage)
               DOI 10.17487/RFC5766, April 2010,
               <https://www.rfc-editor.org/rfc/rfc5766>.
 
-   [RFC6525]  Stewart, R., Tuexen, M., and P. Lei, "Stream Control
-              Transmission Protocol (SCTP) Stream Reconfiguration",
-              RFC 6525, DOI 10.17487/RFC6525, February 2012,
-              <https://www.rfc-editor.org/rfc/rfc6525>.
+   [RFC6525]  "*** BROKEN REFERENCE ***".
 
    [RFC6762]  Cheshire, S. and M. Krochmal, "Multicast DNS", RFC 6762,
               DOI 10.17487/RFC6762, February 2013,
@@ -2220,11 +2217,7 @@ MessageFramer.Deliver(Connection, MessageContext, Data, IsEndOfMessage)
               Guidelines", BCP 145, RFC 8085, DOI 10.17487/RFC8085,
               March 2017, <https://www.rfc-editor.org/rfc/rfc8085>.
 
-   [RFC8260]  Stewart, R., Tuexen, M., Loreto, S., and R. Seggelmann,
-              "Stream Schedulers and User Message Interleaving for the
-              Stream Control Transmission Protocol", RFC 8260,
-              DOI 10.17487/RFC8260, November 2017,
-              <https://www.rfc-editor.org/rfc/rfc8260>.
+   [RFC8260]  "*** BROKEN REFERENCE ***".
 
    [RFC8445]  Keranen, A., Holmberg, C., and J. Rosenberg, "Interactive
               Connectivity Establishment (ICE): A Protocol for Network
