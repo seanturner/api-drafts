@@ -2155,7 +2155,7 @@ RemoteSpecifier.WithHostname("example.com")
 </pre><a href="#section-6.1-6" class="pilcrow">¶</a>
 </div>
 <ul class="normal">
-<li class="normal" id="section-6.1-7.1">Port (a 16-bit integer) or a Service (string) that maps to a port:<a href="#section-6.1-7.1" class="pilcrow">¶</a>
+<li class="normal" id="section-6.1-7.1">Port (a 16-bit integer):<a href="#section-6.1-7.1" class="pilcrow">¶</a>
 </li>
         </ul>
 <div class="alignLeft art-text artwork" id="section-6.1-8">
@@ -2163,49 +2163,53 @@ RemoteSpecifier.WithHostname("example.com")
 RemoteSpecifier.WithPort(443)
 </pre><a href="#section-6.1-8" class="pilcrow">¶</a>
 </div>
-<div class="alignLeft art-text artwork" id="section-6.1-9">
+<ul class="normal">
+<li class="normal" id="section-6.1-9.1">Service (an identifier that maps to a port; either a the name of a well-known service, or a DNS SRV service name to be resolved):<a href="#section-6.1-9.1" class="pilcrow">¶</a>
+</li>
+        </ul>
+<div class="alignLeft art-text artwork" id="section-6.1-10">
 <pre>
 RemoteSpecifier.WithService("https")
-</pre><a href="#section-6.1-9" class="pilcrow">¶</a>
+</pre><a href="#section-6.1-10" class="pilcrow">¶</a>
 </div>
 <ul class="normal">
-<li class="normal" id="section-6.1-10.1">IP address (IPv4 or IPv6 address):<a href="#section-6.1-10.1" class="pilcrow">¶</a>
+<li class="normal" id="section-6.1-11.1">IP address (IPv4 or IPv6 address):<a href="#section-6.1-11.1" class="pilcrow">¶</a>
 </li>
         </ul>
-<div class="alignLeft art-text artwork" id="section-6.1-11">
-<pre>
-RemoteSpecifier.WithIPv4Address(192.0.2.21)
-</pre><a href="#section-6.1-11" class="pilcrow">¶</a>
-</div>
 <div class="alignLeft art-text artwork" id="section-6.1-12">
 <pre>
-RemoteSpecifier.WithIPv6Address(2001:db8:4920:e29d:a420:7461:7073:0a)
+RemoteSpecifier.WithIPv4Address(192.0.2.21)
 </pre><a href="#section-6.1-12" class="pilcrow">¶</a>
 </div>
+<div class="alignLeft art-text artwork" id="section-6.1-13">
+<pre>
+RemoteSpecifier.WithIPv6Address(2001:db8:4920:e29d:a420:7461:7073:0a)
+</pre><a href="#section-6.1-13" class="pilcrow">¶</a>
+</div>
 <ul class="normal">
-<li class="normal" id="section-6.1-13.1">Interface name (string), e.g., to qualify link-local or multicast addresses (see <a href="#ifspec" class="xref">Section 6.1.2</a> for details):<a href="#section-6.1-13.1" class="pilcrow">¶</a>
+<li class="normal" id="section-6.1-14.1">Interface name (string), e.g., to qualify link-local or multicast addresses (see <a href="#ifspec" class="xref">Section 6.1.2</a> for details):<a href="#section-6.1-14.1" class="pilcrow">¶</a>
 </li>
         </ul>
-<div class="alignLeft art-text artwork" id="section-6.1-14">
+<div class="alignLeft art-text artwork" id="section-6.1-15">
 <pre>
 LocalSpecifier.WithInterface("en0")
-</pre><a href="#section-6.1-14" class="pilcrow">¶</a>
+</pre><a href="#section-6.1-15" class="pilcrow">¶</a>
 </div>
-<p id="section-6.1-15">Note that an IPv6 address specified with a scope (e.g. <code>2001:db8:4920:e29d:a420:7461:7073:0a%en0</code>) 
-is equivalent to <code>WithIPv6Address</code> with an unscoped address and <code>WithInterface </code> together.<a href="#section-6.1-15" class="pilcrow">¶</a></p>
-<p id="section-6.1-16">An Endpoint cannot have multiple identifiers of a same type set. That is,
+<p id="section-6.1-16">Note that an IPv6 address specified with a scope (e.g. <code>2001:db8:4920:e29d:a420:7461:7073:0a%en0</code>) 
+is equivalent to <code>WithIPv6Address</code> with an unscoped address and <code>WithInterface </code> together.<a href="#section-6.1-16" class="pilcrow">¶</a></p>
+<p id="section-6.1-17">An Endpoint cannot have multiple identifiers of a same type set. That is,
 an endpoint cannot have two IP addresses specified. Two separate IP addresses
 are represented as two Endpoint Objects. If a Preconnection specifies a Remote
 Endpoint with a specific IP address set, it will only establish Connections to
 that IP address. If, on the other hand, the Remote Endpoint specifies a hostname
 but no addresses, the Connection can perform name resolution and attempt
-using any address derived from the original hostname of the Remote Endpoint.<a href="#section-6.1-16" class="pilcrow">¶</a></p>
-<p id="section-6.1-17">The Transport Services system resolves names internally, when the Initiate(),
+using any address derived from the original hostname of the Remote Endpoint.<a href="#section-6.1-17" class="pilcrow">¶</a></p>
+<p id="section-6.1-18">The Transport Services system resolves names internally, when the Initiate(),
 Listen(), or Rendezvous() method is called to establish a Connection. Privacy
-considerations for the timing of this resolution are given in <a href="#privacy-security" class="xref">Section 13</a>.<a href="#section-6.1-17" class="pilcrow">¶</a></p>
-<p id="section-6.1-18">The Resolve() action on a Preconnection can be used by the application to force
+considerations for the timing of this resolution are given in <a href="#privacy-security" class="xref">Section 13</a>.<a href="#section-6.1-18" class="pilcrow">¶</a></p>
+<p id="section-6.1-19">The Resolve() action on a Preconnection can be used by the application to force
 early binding when required, for example with some Network Address Translator
-(NAT) traversal protocols (see <a href="#rendezvous" class="xref">Section 7.3</a>).<a href="#section-6.1-18" class="pilcrow">¶</a></p>
+(NAT) traversal protocols (see <a href="#rendezvous" class="xref">Section 7.3</a>).<a href="#section-6.1-19" class="pilcrow">¶</a></p>
 <div id="using-multicast-endpoints">
 <section id="section-6.1.1">
           <h4 id="name-using-multicast-endpoints">
