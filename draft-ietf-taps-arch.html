@@ -1599,7 +1599,7 @@ In contrast to the Socket API, all interaction using the Transport Services API 
 <li class="normal" id="section-4.1.1-1.1">Endpoint: An Endpoint represents an identifier for one side of a transport connection.
 Endpoints can be Local Endpoints or Remote Endpoints, and respectively represent an identity
 that the application uses for the source or destination of a connection.
-An Endpoint can be specified at various levels of abstraction, and an Endpoint at a higher level of abstraction (such as a hostname) can be resolved to more concrete identities (such as IP addresses).<a href="#section-4.1.1-1.1" class="pilcrow">¶</a>
+An Endpoint can be specified at various levels of abstraction. An Endpoint at a higher level of abstraction (such as a hostname) can be resolved to more concrete identities (such as IP addresses). An endpoint may also represent a multicast group, in which case it selects a multicast transport for communication.<a href="#section-4.1.1-1.1" class="pilcrow">¶</a>
 </li>
             <li class="normal" id="section-4.1.1-1.2">Remote Endpoint: The Remote Endpoint represents the application's identifier for a peer that can participate in a transport connection; for example, the combination of a DNS name for the peer and a service name/port.<a href="#section-4.1.1-1.2" class="pilcrow">¶</a>
 </li>
