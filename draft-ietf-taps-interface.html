@@ -1317,6 +1317,9 @@ multiple interfaces and potential transport protocols.<a href="#section-abstract
               <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.7.2.4">
                 <p id="section-toc.1-1.7.2.4.1"><a href="#section-7.4" class="xref">7.4</a>.  <a href="#name-connection-groups" class="xref">Connection Groups</a></p>
 </li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.7.2.5">
+                <p id="section-toc.1-1.7.2.5.1"><a href="#section-7.5" class="xref">7.5</a>.  <a href="#name-adding-and-removing-endpoin" class="xref">Adding and Removing Endpoints on a Connection</a></p>
+</li>
             </ul>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.8">
@@ -1921,6 +1924,25 @@ Connection.Receive()
 //---- RendezvousDone event handler end ----
 
 Connection -&gt; Received&lt;messageDataResponse, messageContext&gt;
+
+// If new remote endpoint candidates are received from the peer over
+// the signalling channel, for example if using Trickle ICE, then add
+// them to the Connection:
+Connection.AddRemote(NewRemoteCandidates)
+
+// On a PathChange&lt;&gt; events, resolve the local endpoints to see if a
+// new local endpoint has become available and, if so, send to the peer
+// as a new candidate and add to the connection:
+Connection -&gt; PathChange&lt;&gt;
+
+//---- PathChange event handler begin ----
+ResolvedLocal, ResolvedRemote = Preconnection.Resolve()
+if ResolvedLocal has changed:
+  // ...Send the ResolvedLocal list to peer via signalling channel
+  // Add the new local endpoints to the connection:
+  Connection.AddLocal(ResolvedLocal)
+//---- PathChange event handler end ----
+
 
 // Close the Connection in a Receive event handler
 Connection.Close()
@@ -3611,6 +3633,46 @@ the Connection Group Transmission Scheduler property (<a href="#conn-scheduler" 
 See <a href="#priority-in-taps" class="xref">Section 9.2.6</a> for more.<a href="#section-7.4-13" class="pilcrow">¶</a></p>
 </section>
 </div>
+<div id="adding-and-removing-endpoints-on-a-connection">
+<section id="section-7.5">
+        <h3 id="name-adding-and-removing-endpoin">
+<a href="#section-7.5" class="section-number selfRef">7.5. </a><a href="#name-adding-and-removing-endpoin" class="section-name selfRef">Adding and Removing Endpoints on a Connection</a>
+        </h3>
+<p id="section-7.5-1">Transport protocols that are explicitly multipath aware are expected to automatically
+manage the set of Remote Endpoints that they are communicating with, and the paths to
+those endpoints. A <code>PathChange&lt;&gt;</code> event, described in <a href="#conn-path-change" class="xref">Section 8.3.2</a>, will be
+generated when the path changes.<a href="#section-7.5-1" class="pilcrow">¶</a></p>
+<p id="section-7.5-2">In some cases, however, it is necessary to explicitly indicate to a Connection that
+a new remote endpoint has become available for use, or to indicate that some remote
+endpoint is no longer available. This is most common in the case of peer to peer
+connections using Trickle ICE <span>[<a href="#RFC8838" class="xref">RFC8838</a>]</span>.<a href="#section-7.5-2" class="pilcrow">¶</a></p>
+<p id="section-7.5-3">The <code>AddRemote()</code> action can be used to add one or more new remote endpoints
+to a Connection:<a href="#section-7.5-3" class="pilcrow">¶</a></p>
+<div class="alignLeft art-text artwork" id="section-7.5-4">
+<pre>
+Connection.AddRemote([]RemoteEndpoint)
+</pre><a href="#section-7.5-4" class="pilcrow">¶</a>
+</div>
+<p id="section-7.5-5">Endpoints that are already known to the Connection are ignored. A call to
+<code>AddRemote()</code> makes the new remote endpoints available to the connection,
+but whether the Connection makes use of those endpoints will depend on the
+underlying transport protocol.<a href="#section-7.5-5" class="pilcrow">¶</a></p>
+<p id="section-7.5-6">Similarly, the <code>RemoveRemote()</code> action can be used to tell a connection to
+stop using one or more remote endpoints:<a href="#section-7.5-6" class="pilcrow">¶</a></p>
+<div class="alignLeft art-text artwork" id="section-7.5-7">
+<pre>
+Connection.RemoveRemote([]RemoteEndpoint)
+</pre><a href="#section-7.5-7" class="pilcrow">¶</a>
+</div>
+<p id="section-7.5-8">Removing all known remote endpoints can have the effect of aborting the
+connection. The effect of removing the active remote endpoint(s) depends
+on the underlying transport: multipath aware transports might be able to
+switch to a new path if other reachable remote endpoints exist, or the
+connection might abort.<a href="#section-7.5-8" class="pilcrow">¶</a></p>
+<p id="section-7.5-9">Similarly, the <code>AddLocal()</code> and <code>RemoveLocal()</code> actions can be used to add
+and remove local endpoints to/from a Connection.<a href="#section-7.5-9" class="pilcrow">¶</a></p>
+</section>
+</div>
 </section>
 </div>
 <div id="introspection">
@@ -4357,7 +4419,7 @@ Connection -&gt; SoftError&lt;&gt;
           </h4>
 <p id="section-8.3.2-1">This event notifies the application when at least one of the paths underlying a Connection has changed. Changes occur
 on a single path when the PMTU changes as well as when multiple paths are used
-and paths are added or removed, or a handover has been performed.<a href="#section-8.3.2-1" class="pilcrow">¶</a></p>
+and paths are added or removed, the set of local endpoints changes, or a handover has been performed.<a href="#section-8.3.2-1" class="pilcrow">¶</a></p>
 <div class="alignLeft art-text artwork" id="section-8.3.2-2">
 <pre>
 Connection -&gt; PathChange&lt;&gt;
@@ -5775,6 +5837,10 @@ and for contributing text, e.g., on multicast.<a href="#section-14-5" class="pil
 <dt id="RFC8699">[RFC8699]</dt>
         <dd>
 <span class="refAuthor">Islam, S.</span>, <span class="refAuthor">Welzl, M.</span>, and <span class="refAuthor">S. Gjessing</span>, <span class="refTitle">"Coupled Congestion Control for RTP Media"</span>, <span class="seriesInfo">RFC 8699</span>, <span class="seriesInfo">DOI 10.17487/RFC8699</span>, <time datetime="2020-01" class="refDate">January 2020</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc8699">https://www.rfc-editor.org/rfc/rfc8699</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC8838">[RFC8838]</dt>
+        <dd>
+<span class="refAuthor">Ivov, E.</span>, <span class="refAuthor">Uberti, J.</span>, and <span class="refAuthor">P. Saint-Andre</span>, <span class="refTitle">"Trickle ICE: Incremental Provisioning of Candidates for the Interactive Connectivity Establishment (ICE) Protocol"</span>, <span class="seriesInfo">RFC 8838</span>, <span class="seriesInfo">DOI 10.17487/RFC8838</span>, <time datetime="2021-01" class="refDate">January 2021</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc8838">https://www.rfc-editor.org/rfc/rfc8838</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC8899">[RFC8899]</dt>
         <dd>
