@@ -1617,11 +1617,9 @@ are platform- and implementation-specific.<a href="#section-1.1-15" class="pilcr
 <ul class="normal">
 <li class="normal" id="section-1.1-17.1">Boolean: Instances take the value <code>true</code> or <code>false</code>.<a href="#section-1.1-17.1" class="pilcrow">¶</a>
 </li>
-          <li class="normal" id="section-1.1-17.2">Integer: Instances take positive or negative numeric integer values, or sometimes
-special non-numeric (symbolic) values.<a href="#section-1.1-17.2" class="pilcrow">¶</a>
+          <li class="normal" id="section-1.1-17.2">Integer: Instances take positive or negative integer values.<a href="#section-1.1-17.2" class="pilcrow">¶</a>
 </li>
-          <li class="normal" id="section-1.1-17.3">Numeric: Instances take positive or negative numeric values, or sometimes special
-non-numeric (symbolic) values.<a href="#section-1.1-17.3" class="pilcrow">¶</a>
+          <li class="normal" id="section-1.1-17.3">Numeric: Instances take positive or negative real number values.<a href="#section-1.1-17.3" class="pilcrow">¶</a>
 </li>
           <li class="normal" id="section-1.1-17.4">Enumeration: A family of types in which each instance takes one of a fixed,
 predefined set of values specific to a given enumerated type.<a href="#section-1.1-17.4" class="pilcrow">¶</a>
@@ -3774,17 +3772,17 @@ Name:  </dt>
 <dt id="section-8.1.1-1.3">
 Type:  </dt>
             <dd style="margin-left: 1.5em" id="section-8.1.1-1.4">
-              <p id="section-8.1.1-1.4.1">Integer (non-negative with special value <code>Full Coverage</code>)<a href="#section-8.1.1-1.4.1" class="pilcrow">¶</a></p>
+              <p id="section-8.1.1-1.4.1">Integer or <code>Full Coverage</code><a href="#section-8.1.1-1.4.1" class="pilcrow">¶</a></p>
 </dd>
             <dd class="break"></dd>
 <dt id="section-8.1.1-1.5">
 Default:  </dt>
             <dd style="margin-left: 1.5em" id="section-8.1.1-1.6">
-              <p id="section-8.1.1-1.6.1">Full Coverage<a href="#section-8.1.1-1.6.1" class="pilcrow">¶</a></p>
+              <p id="section-8.1.1-1.6.1"><code>Full Coverage</code><a href="#section-8.1.1-1.6.1" class="pilcrow">¶</a></p>
 </dd>
           <dd class="break"></dd>
 </dl>
-<p id="section-8.1.1-2">This property specifies the minimum number of bytes in a received
+<p id="section-8.1.1-2">If this property is an Integer, it specifies the minimum number of bytes in a received
 message that need to be covered by a checksum. 
 A receiving endpoint will not forward messages that have less coverage 
 to the application. The application is responsible for handling
@@ -3844,20 +3842,20 @@ Name:  </dt>
 <dt id="section-8.1.3-1.3">
 Type:  </dt>
             <dd style="margin-left: 1.5em" id="section-8.1.3-1.4">
-              <p id="section-8.1.3-1.4.1">Numeric, with special value <code>Disabled</code><a href="#section-8.1.3-1.4.1" class="pilcrow">¶</a></p>
+              <p id="section-8.1.3-1.4.1">Numeric or <code>Disabled</code><a href="#section-8.1.3-1.4.1" class="pilcrow">¶</a></p>
 </dd>
             <dd class="break"></dd>
 <dt id="section-8.1.3-1.5">
 Default:  </dt>
             <dd style="margin-left: 1.5em" id="section-8.1.3-1.6">
-              <p id="section-8.1.3-1.6.1">Disabled<a href="#section-8.1.3-1.6.1" class="pilcrow">¶</a></p>
+              <p id="section-8.1.3-1.6.1"><code>Disabled</code><a href="#section-8.1.3-1.6.1" class="pilcrow">¶</a></p>
 </dd>
           <dd class="break"></dd>
 </dl>
-<p id="section-8.1.3-2">This property specifies how long to wait before deciding that an active Connection has
+<p id="section-8.1.3-2">If this property is Numeric, it specifies how long to wait before deciding that an active Connection has
 failed when trying to reliably deliver data to the Remote Endpoint. Adjusting this Property
-will only take effect when the underlying stack supports reliability. The special value
-<code>Disabled</code> means that no timeout is scheduled.<a href="#section-8.1.3-2" class="pilcrow">¶</a></p>
+will only take effect when the underlying stack supports reliability. If this property has the enumerated
+value <code>Disabled</code>, it means that no timeout is scheduled.<a href="#section-8.1.3-2" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="keep-alive-timeout">
@@ -3875,7 +3873,7 @@ Name:  </dt>
 <dt id="section-8.1.4-1.3">
 Type:  </dt>
             <dd style="margin-left: 1.5em" id="section-8.1.4-1.4">
-              <p id="section-8.1.4-1.4.1">Numeric, with special value <code>Disabled</code><a href="#section-8.1.4-1.4.1" class="pilcrow">¶</a></p>
+              <p id="section-8.1.4-1.4.1">Numeric or <code>Disabled</code><a href="#section-8.1.4-1.4.1" class="pilcrow">¶</a></p>
 </dd>
             <dd class="break"></dd>
 <dt id="section-8.1.4-1.5">
@@ -3886,13 +3884,13 @@ Default:  </dt>
           <dd class="break"></dd>
 </dl>
 <p id="section-8.1.4-2">A Transport Services API can request a protocol that supports sending keep alive packets <a href="#keep-alive" class="xref">Section 6.2.10</a>.
-This property specifies the maximum length of time an idle connection (one for which no transport
+If this property is an Integer, it specifies the maximum length of time an idle connection (one for which no transport
 packets have been sent) should wait before 
 the Local Endpoint sends a keep-alive packet to the Remote Endpoint. Adjusting this Property
 will only take effect when the underlying stack supports sending keep-alive packets. 
 Guidance on setting this value for datagram transports is 
 provided in <span>[<a href="#RFC8085" class="xref">RFC8085</a>]</span>.
-A value greater than the connection timeout (<a href="#conn-timeout" class="xref">Section 8.1.3</a>), or the special value <code>Disabled</code>, will disable the sending of keep-alive packets.<a href="#section-8.1.4-2" class="pilcrow">¶</a></p>
+A value greater than the connection timeout (<a href="#conn-timeout" class="xref">Section 8.1.3</a>) or the enumerated value <code>Disabled</code> will disable the sending of keep-alive packets.<a href="#section-8.1.4-2" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="conn-scheduler">
@@ -4092,21 +4090,21 @@ Name:  </dt>
 <dt id="section-8.1.8-1.3">
 Type:  </dt>
             <dd style="margin-left: 1.5em" id="section-8.1.8-1.4">
-              <p id="section-8.1.8-1.4.1">Numeric (with special value <code>Unlimited</code>) / Numeric (with special value <code>Unlimited</code>) / Numeric (with special value <code>Unlimited</code>) / Numeric (with special value <code>Unlimited</code>)<a href="#section-8.1.8-1.4.1" class="pilcrow">¶</a></p>
+              <p id="section-8.1.8-1.4.1">Numeric or <code>Unlimited</code> / Numeric or <code>Unlimited</code> / Numeric or <code>Unlimited</code> / Numeric or <code>Unlimited</code><a href="#section-8.1.8-1.4.1" class="pilcrow">¶</a></p>
 </dd>
             <dd class="break"></dd>
 <dt id="section-8.1.8-1.5">
 Default:  </dt>
             <dd style="margin-left: 1.5em" id="section-8.1.8-1.6">
-              <p id="section-8.1.8-1.6.1">Unlimited / Unlimited / Unlimited / Unlimited<a href="#section-8.1.8-1.6.1" class="pilcrow">¶</a></p>
+              <p id="section-8.1.8-1.6.1"><code>Unlimited</code> / <code>Unlimited</code> / <code>Unlimited</code> / <code>Unlimited</code><a href="#section-8.1.8-1.6.1" class="pilcrow">¶</a></p>
 </dd>
           <dd class="break"></dd>
 </dl>
-<p id="section-8.1.8-2">This property specifies an upper-bound rate that a transfer is not expected to
+<p id="section-8.1.8-2">Integer values of this property specify an upper-bound rate that a transfer is not expected to
 exceed (even if flow control and congestion control allow higher rates), and/or a
 lower-bound rate below which the application does not deem
 it will be useful. These are specified in bits per second. 
-The special value <code>Unlimited</code> indicates that no bound is specified.<a href="#section-8.1.8-2" class="pilcrow">¶</a></p>
+The enumerated value <code>Unlimited</code> indicates that no bound is specified.<a href="#section-8.1.8-2" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="group-connection-limit">
@@ -4124,17 +4122,17 @@ Name:  </dt>
 <dt id="section-8.1.9-1.3">
 Type:  </dt>
             <dd style="margin-left: 1.5em" id="section-8.1.9-1.4">
-              <p id="section-8.1.9-1.4.1">Numeric (with special value <code>Unlimited</code>)<a href="#section-8.1.9-1.4.1" class="pilcrow">¶</a></p>
+              <p id="section-8.1.9-1.4.1">Numeric or <code>Unlimited</code><a href="#section-8.1.9-1.4.1" class="pilcrow">¶</a></p>
 </dd>
             <dd class="break"></dd>
 <dt id="section-8.1.9-1.5">
 Default:  </dt>
             <dd style="margin-left: 1.5em" id="section-8.1.9-1.6">
-              <p id="section-8.1.9-1.6.1">Unlimited<a href="#section-8.1.9-1.6.1" class="pilcrow">¶</a></p>
+              <p id="section-8.1.9-1.6.1"><code>Unlimited</code><a href="#section-8.1.9-1.6.1" class="pilcrow">¶</a></p>
 </dd>
           <dd class="break"></dd>
 </dl>
-<p id="section-8.1.9-2">This property controls the number of Connections that can be accepted from
+<p id="section-8.1.9-2">If this property is an Integer, it controls the number of Connections that can be accepted from
 a peer as new members of the Connection's group. Similar to SetNewConnectionLimit(),
 this limits the number of ConnectionReceived Events that will occur, but constrained
 to the group of the Connection associated with this property. For a multi-streaming transport,
@@ -4830,21 +4828,21 @@ Name:  </dt>
 <dt id="section-9.1.3.6-1.3">
 Type:  </dt>
               <dd style="margin-left: 1.5em" id="section-9.1.3.6-1.4">
-                <p id="section-9.1.3.6-1.4.1">Integer (non-negative with special value <code>Full Coverage</code>)<a href="#section-9.1.3.6-1.4.1" class="pilcrow">¶</a></p>
+                <p id="section-9.1.3.6-1.4.1">Integer or <code>Full Coverage</code><a href="#section-9.1.3.6-1.4.1" class="pilcrow">¶</a></p>
 </dd>
               <dd class="break"></dd>
 <dt id="section-9.1.3.6-1.5">
 Default:  </dt>
               <dd style="margin-left: 1.5em" id="section-9.1.3.6-1.6">
-                <p id="section-9.1.3.6-1.6.1">Full Coverage<a href="#section-9.1.3.6-1.6.1" class="pilcrow">¶</a></p>
+                <p id="section-9.1.3.6-1.6.1"><code>Full Coverage</code><a href="#section-9.1.3.6-1.6.1" class="pilcrow">¶</a></p>
 </dd>
             <dd class="break"></dd>
 </dl>
-<p id="section-9.1.3.6-2">This property specifies the minimum length of the section of a sent Message,
+<p id="section-9.1.3.6-2">If this property is an Integer, it specifies the minimum length of the section of a sent Message,
 starting from byte 0, that the application requires to be delivered without
 corruption due to lower layer errors. It is used to specify options for simple
 integrity protection via checksums. A value of 0 means that no checksum
-needs to be calculated, and <code>Full Coverage</code> means
+needs to be calculated, and the enumerated value <code>Full Coverage</code> means
 that the entire Message needs to be protected by a checksum. Only <code>Full Coverage</code> is
 guaranteed, any other requests are advisory, which may result in <code>Full Coverage</code> being applied.<a href="#section-9.1.3.6-2" class="pilcrow">¶</a></p>
 </section>
@@ -5882,10 +5880,7 @@ correspondences in practical programming languages, perhaps constrained by
 implementation-specific limitations. For example:<a href="#appendix-A.1-1" class="pilcrow">¶</a></p>
 <ul class="normal">
 <li class="normal" id="appendix-A.1-2.1">An Integer can typically be represented in C by an <code>int</code> or <code>long</code>, subject
-to the underlying platform's ranges for each. To accommodate special values,
-a C function that returns a non-negative <code>int</code> on success may return -1 on
-failure. In Python, such a function might return <code>None</code> or raise an
-exception.<a href="#appendix-A.1-2.1" class="pilcrow">¶</a>
+to the underlying platform's ranges for each.<a href="#appendix-A.1-2.1" class="pilcrow">¶</a>
 </li>
           <li class="normal" id="appendix-A.1-2.2">In C, a Tuple may be represented as a <code>struct</code> with one member for each of
 the value types in the ordered grouping. In Python, by contrast, a Tuple may
