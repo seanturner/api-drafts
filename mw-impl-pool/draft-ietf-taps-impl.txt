@@ -5,14 +5,14 @@
 TAPS Working Group                                     A. Brunstrom, Ed.
 Internet-Draft                                       Karlstad University
 Intended status: Informational                             T. Pauly, Ed.
-Expires: 24 May 2022                                          Apple Inc.
+Expires: 11 June 2022                                         Apple Inc.
                                                              T. Enghardt
                                                                  Netflix
                                                                P. Tiesel
                                                                   SAP SE
                                                                 M. Welzl
                                                       University of Oslo
-                                                        20 November 2021
+                                                         8 December 2021
 
 
              Implementing Interfaces to Transport Services
@@ -42,7 +42,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 24 May 2022.
+   This Internet-Draft will expire on 11 June 2022.
 
 Copyright Notice
 
@@ -225,8 +225,7 @@ Table of Contents
    In the following cases, failure should be detected during pre-
    establishment:
 
-   *  A request by an application for Protocol Properties that include
-      requirements (properties required or prohibited) that cannot be
+   *  A request by an application for Protocol Properties that cannot be
       satisfied by any of the available protocols.  For example, if an
       application requires "Configure Reliability per Message", but no
       such feature is available in any protocol the host running the
@@ -1399,10 +1398,9 @@ MessageFramer.Deliver(Connection, MessageContext, Data, IsEndOfMessage)
    Transport Services implementation may distribute Messages of a single
    Connection across several underlying transport connections or
    multiple streams of multi-streaming connections between endpoints, as
-   long as all of these satisfy the requirements and prohibitions
-   specified via Selection Properties.  The Transport Services
-   implementation will then hide this connection management and only
-   expose a single Connection object, which we here call a "Pooled
+   long as all of these satisfy the Selection Properties.  The Transport
+   Services implementation will then hide this connection management and
+   only expose a single Connection object, which we here call a "Pooled
    Connection".  This is in contrast to Connection Groups, which
    explicitly expose combined treatment of Connections, giving the
    application control over multiplexing, for example.
